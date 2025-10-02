@@ -2,12 +2,12 @@
   "name": "brazil-travel-blog",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
+"scripts": {
+  "start": "react-scripts start",
+  "prebuild": "node scripts/generate-sitemap.js",
+  "build": "react-scripts build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject"  },
   "dependencies": {
     "framer-motion": "^12.23.22",
     "lucide-react": "^0.542.0",
