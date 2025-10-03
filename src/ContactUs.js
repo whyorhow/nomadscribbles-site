@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import Logo from "./Logo";
 
 function ContactUs() {
@@ -13,11 +12,30 @@ function ContactUs() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  // Updated handleSubmit to call the serverless function
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    alert("Thank you! Your message has been sent.");
-    setFormData({ name: "", email: "", message: "" });
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await res.json();
+
+      if (res.ok) {
+        alert(result.message); // Success message from serverless function
+        setFormData({ name: "", email: "", message: "" }); // Clear form
+      } else {
+        alert(result.message || "Something went wrong. Please try again.");
+        console.error("Server error:", result.error);
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+      alert("There was an error sending your message. Please try again later.");
+    }
   };
 
   return (
@@ -25,12 +43,10 @@ function ContactUs() {
       className="min-h-screen bg-cover bg-center pt-4"
       style={{ backgroundImage: "url('/images/PlacesetterBackground.jpg')" }}
     >
-      {/* Logo at top-left, scrolls with page */}
       <div className="absolute top-3 left-4 z-8">
-  <Logo className="h-6 w-auto sm:h-10" />
+        <Logo className="h-6 w-auto sm:h-10" />
       </div>
 
-      {/* Hero Image */}
       <div className="flex justify-center pb-8">
         <img
           src="/images/SaoPauloHeroImage.jpeg"
@@ -39,18 +55,15 @@ function ContactUs() {
         />
       </div>
 
-      {/* Page Title */}
       <h1 className="text-center text-3xl font-semibold mb-6 text-gray-900">
         Contact Us
       </h1>
 
-      {/* Main Content */}
       <main className="px-4 py-6 sm:py-8 max-w-screen-md mx-auto space-y-6 text-center text-gray-900 bg-white/70 p-4 sm:p-6 rounded-lg">
         <p>
           Get in touch with us for questions, collaborations, or travel tips.
         </p>
 
-        {/* Responsive Contact Form */}
         <form onSubmit={handleSubmit} className="space-y-4 text-left">
           <div>
             <label htmlFor="name" className="block mb-1 font-medium">
