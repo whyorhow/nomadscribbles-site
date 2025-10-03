@@ -9,16 +9,21 @@ export default async function handler(req, res) {
 
   console.log("Form data received:", { name, email, message });
 
+  // Gmail SMTP transporter using port 587 and TLS
   const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
+    port: 587,
+    secure: false, // TLS
     auth: {
       user: 'nomadscribbles20@gmail.com',
       pass: process.env.GMAIL_APP_PASSWORD,
     },
+    tls: {
+      rejectUnauthorized: false,
+    },
   });
 
+  // Verify SMTP connection
   try {
     await transporter.verify();
     console.log("SMTP server is ready to take messages");
@@ -27,6 +32,7 @@ export default async function handler(req, res) {
     return res.status(500).json({ message: "SMTP verification failed" });
   }
 
+  // Send email
   try {
     await transporter.sendMail({
       from: '"Nomad Scribbles" <contact@nomadscribbles.com>',
