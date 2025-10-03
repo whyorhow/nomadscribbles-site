@@ -12,7 +12,6 @@ function ContactUs() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Updated handleSubmit to call the serverless function
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -25,12 +24,10 @@ function ContactUs() {
 
       const result = await res.json();
 
+      alert(result.message); // shows either success or error message
+
       if (res.ok) {
-        alert(result.message); // Success message from serverless function
-        setFormData({ name: "", email: "", message: "" }); // Clear form
-      } else {
-        alert(result.message || "Something went wrong. Please try again.");
-        console.error("Server error:", result.error);
+        setFormData({ name: "", email: "", message: "" }); // clear form
       }
     } catch (error) {
       console.error("Error sending email:", error);
@@ -47,66 +44,48 @@ function ContactUs() {
         <Logo className="h-6 w-auto sm:h-10" />
       </div>
 
-      <div className="flex justify-center pb-8">
-        <img
-          src="/images/SaoPauloHeroImage.jpeg"
-          alt="View of São Paulo city skyline"
-          className="w-full sm:w-3/4 md:w-2/3 lg:w-1/2 h-auto rounded-lg"
-        />
-      </div>
-
       <h1 className="text-center text-3xl font-semibold mb-6 text-gray-900">
         Contact Us
       </h1>
 
       <main className="px-4 py-6 sm:py-8 max-w-screen-md mx-auto space-y-6 text-center text-gray-900 bg-white/70 p-4 sm:p-6 rounded-lg">
-        <p>
-          Get in touch with us for questions, collaborations, or travel tips.
-        </p>
-
         <form onSubmit={handleSubmit} className="space-y-4 text-left">
           <div>
-            <label htmlFor="name" className="block mb-1 font-medium">
-              Name
-            </label>
+            <label htmlFor="name" className="block mb-1 font-medium">Name</label>
             <input
               type="text"
               name="name"
               id="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
+              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <div>
-            <label htmlFor="email" className="block mb-1 font-medium">
-              Email
-            </label>
+            <label htmlFor="email" className="block mb-1 font-medium">Email</label>
             <input
               type="email"
               name="email"
               id="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
+              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <div>
-            <label htmlFor="message" className="block mb-1 font-medium">
-              Message
-            </label>
+            <label htmlFor="message" className="block mb-1 font-medium">Message</label>
             <textarea
               name="message"
               id="message"
               rows="5"
               value={formData.message}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
+              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             ></textarea>
           </div>
 
