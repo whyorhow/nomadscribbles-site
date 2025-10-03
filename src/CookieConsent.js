@@ -9,7 +9,12 @@ export default function CookieConsent() {
     try {
       const accepted = localStorage.getItem("cookiesAccepted");
       const rejected = localStorage.getItem("cookiesRejected");
-      if (!accepted && !rejected) setVisible(true);
+      if (!accepted && !rejected) {
+        // Add slight delay on mobile
+        const delay = window.innerWidth < 768 ? 500 : 0; // 0.5s delay for mobile
+        const timer = setTimeout(() => setVisible(true), delay);
+        return () => clearTimeout(timer);
+      }
     } catch {
       setVisible(true);
     }
@@ -41,9 +46,7 @@ export default function CookieConsent() {
   return (
     <div
       className={`fixed bottom-4 left-1/2 -translate-x-1/2 bg-white/95 p-4 md:p-6 rounded-lg shadow-lg flex flex-col md:flex-row items-center gap-4 z-[2000] 
-      transition-opacity duration-300 ${
-        fade ? "opacity-0" : "opacity-100 animate-slideIn"
-      }`}
+      transition-opacity duration-300 ${fade ? "opacity-0" : "opacity-100 animate-slideBounce"}`}
     >
       <p className="text-gray-900 text-center md:text-left flex-1 text-sm md:text-base leading-snug">
         We use cookies to improve your experience. You can accept or reject non-essential cookies.
