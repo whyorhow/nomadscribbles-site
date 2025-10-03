@@ -19,7 +19,7 @@ import Murals from "./Murals";
 import Santos from "./Santos";
 import ContactUs from "./ContactUs";
 import SearchResults from "./SearchResults";
-import CookieConsent from "./CookieConsent"; // temporarily disabled
+import CookieConsent from "./CookieConsent"; // now active again
 
 import Lightbox from "./Lightbox";
 
@@ -102,11 +102,11 @@ function App() {
               path="/search"
               element={<SearchResults openLightbox={openLightbox} />}
             />
-            {/* <CookieConsent /> */}
           </Routes>
         </div>
       </div>
 
+      <CookieConsent />  {/* cookie popup active again */}
       <Footer />
 
       <Lightbox

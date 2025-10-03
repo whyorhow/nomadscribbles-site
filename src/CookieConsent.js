@@ -1,11 +1,30 @@
 // CookieConsent.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function CookieConsent() {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
   const [fade, setFade] = useState(false);
 
+  useEffect(() => {
+    // Only run on the client
+    try {
+      const accepted = localStorage.getItem("cookiesAccepted");
+       console.log("cookiesAccepted =", accepted); // debug
+      if (!accepted) {
+        setVisible(true); // show if not accepted yet
+      }
+    } catch (err) {
+      // If localStorage not available (some incognito modes), still show
+      setVisible(true);
+    }
+  }, []);
+
   const handleAccept = () => {
+    try {
+      localStorage.setItem("cookiesAccepted", "true");
+    } catch (err) {
+      // ignore if storage unavailable
+    }
     setFade(true); // start fade-out
     setTimeout(() => setVisible(false), 300); // remove after animation
   };
