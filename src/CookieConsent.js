@@ -9,11 +9,9 @@ export default function CookieConsent() {
     try {
       const accepted = localStorage.getItem("cookiesAccepted");
       const rejected = localStorage.getItem("cookiesRejected");
-      if (!accepted && !rejected) {
-        setVisible(true); // show banner if no decision made
-      }
-    } catch (err) {
-      setVisible(true); // fallback if storage not available
+      if (!accepted && !rejected) setVisible(true);
+    } catch {
+      setVisible(true);
     }
   }, []);
 
@@ -21,7 +19,7 @@ export default function CookieConsent() {
     try {
       localStorage.setItem("cookiesAccepted", "true");
       localStorage.removeItem("cookiesRejected");
-    } catch (err) {}
+    } catch {}
     fadeOut();
   };
 
@@ -29,7 +27,7 @@ export default function CookieConsent() {
     try {
       localStorage.setItem("cookiesRejected", "true");
       localStorage.removeItem("cookiesAccepted");
-    } catch (err) {}
+    } catch {}
     fadeOut();
   };
 
@@ -42,23 +40,24 @@ export default function CookieConsent() {
 
   return (
     <div
-      className={`fixed bottom-4 left-1/2 -translate-x-1/2 bg-white/95 p-4 rounded-lg shadow-lg flex flex-col md:flex-row items-center gap-4 z-[2000] transition-opacity duration-300 ${
-        fade ? "opacity-0" : "opacity-100"
+      className={`fixed bottom-4 left-1/2 -translate-x-1/2 bg-white/95 p-4 md:p-6 rounded-lg shadow-lg flex flex-col md:flex-row items-center gap-4 z-[2000] 
+      transition-opacity duration-300 ${
+        fade ? "opacity-0" : "opacity-100 animate-slideIn"
       }`}
     >
-      <p className="text-gray-900 text-center md:text-left flex-1">
-        We use cookies to improve your experience. You can choose to accept or reject non-essential cookies.
+      <p className="text-gray-900 text-center md:text-left flex-1 text-sm md:text-base leading-snug">
+        We use cookies to improve your experience. You can accept or reject non-essential cookies.
       </p>
-      <div className="flex gap-2">
+      <div className="flex gap-2 mt-2 md:mt-0">
         <button
           onClick={handleAccept}
-          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition"
+          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 hover:shadow-lg transition-all duration-200 text-sm md:text-base"
         >
           Accept
         </button>
         <button
           onClick={handleReject}
-          className="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition"
+          className="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 hover:shadow-lg transition-all duration-200 text-sm md:text-base"
         >
           Reject
         </button>
