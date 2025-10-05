@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 function Home() {
   const originalCards = [
-
     {
       title: "Nomads Shop",
       link: "/nomads-shop",
@@ -19,12 +18,11 @@ function Home() {
       link: "/adventures",
       img: "/images/Home/ThumbnailA.jpg"
     },
-        {
+    {
       title: "Brazil",
       link: "/brazil",
       img: "/images/Brazil/BrazilHero.jpg"
     }
-
   ];
 
   const [cards, setCards] = useState([]);
@@ -36,7 +34,7 @@ function Home() {
   useEffect(() => {
     setCards([...originalCards, ...originalCards, ...originalCards]);
 
-    setTimeout(() => {
+    const alignTimeout = setTimeout(() => {
       if (carouselRef.current && carouselRef.current.firstChild) {
         const cardWidth = carouselRef.current.firstChild.offsetWidth;
         carouselRef.current.scrollLeft = cardWidth * originalCards.length;
@@ -47,12 +45,15 @@ function Home() {
       setPermanentDrawn(true);
     }, 3000);
 
-    return () => clearTimeout(logoTimer);
+    return () => {
+      clearTimeout(alignTimeout);
+      clearTimeout(logoTimer);
+    };
   }, []);
 
   const scroll = (direction = "right") => {
     const carousel = carouselRef.current;
-    if (!carousel) return;
+    if (!carousel || !carousel.firstChild) return;
     const cardWidth = carousel.firstChild.offsetWidth;
     const total = originalCards.length;
 
@@ -61,6 +62,7 @@ function Home() {
       behavior: "smooth"
     });
 
+    // After scroll, keep the infinite loop illusion
     setTimeout(() => {
       const scrollIndex = Math.round(carousel.scrollLeft / cardWidth);
       if (scrollIndex < total) {
@@ -75,14 +77,13 @@ function Home() {
   const showDrawn = permanentDrawn && !isHovered;
 
   return (
-    <div className="relative min-h-screen w-full">
+    <div className="relative min-h-screen w-full overflow-hidden">
       {/* Background */}
       <img
         src={process.env.PUBLIC_URL + "/images/Home/Background.jpg"}
         alt="Background"
-        className="fixed inset-0 w-full h-full object-cover opacity-20 -z-10"
+        className="fixed inset-0 w-full h-full object-cover brightness-75 -z-10 opacity-0 animate-fadeInSlow"
       />
-      <div className="absolute inset-0 bg-black bg-opacity-10 -z-5"></div>
 
       {/* Logo + Tagline */}
       <div className="relative w-full text-center pt-4 sm:pt-6 md:pt-8">
@@ -95,15 +96,15 @@ function Home() {
             <img
               src={process.env.PUBLIC_URL + "/images/Home/LogoLarge.png"}
               alt="Nomad Scribbles Logo"
-              className={`block w-full h-auto drop-shadow-lg transition-opacity duration-3000 ease-in-out ${
+              className={`block w-full h-auto drop-shadow-lg transition-opacity duration-[2000ms] ease-in-out ${
                 showOriginal ? "opacity-100" : "opacity-0"
               }`}
               style={{ width: "85%", height: "auto", margin: "0 auto" }}
             />
             <img
-              src={process.env.PUBLIC_URL + "/images/Home/LogoLargeDrawn.png"}
+              src={process.env.PUBLIC_URL + "/images/Home/LogoLargeDrawn2.png"}
               alt="Nomad Scribbles Drawn Logo"
-              className={`absolute top-1/2 left-1/2 drop-shadow-lg transition-opacity duration-3000 ease-in-out transform -translate-x-1/2 -translate-y-1/2 ${
+              className={`absolute top-1/2 left-1/2 drop-shadow-lg transition-opacity duration-[2000ms] ease-in-out transform -translate-x-1/2 -translate-y-1/2 ${
                 showDrawn ? "opacity-100" : "opacity-0"
               }`}
               style={{ width: "125%", height: "auto" }}
@@ -188,7 +189,7 @@ function Home() {
               to={card.link}
               className="relative flex-shrink-0 shadow-lg group transform transition duration-700 ease-out opacity-0 translate-y-6 animate-fadeUp"
               style={{
-                aspectRatio: "16 / 9",
+                aspectRatio: "16/9",
                 width: "16rem"
               }}
             >
@@ -202,6 +203,7 @@ function Home() {
         </div>
       </div>
 
+      {/* Inline animation styles */}
       <style>{`
         @keyframes fadeUp {
           0% { opacity: 0; transform: translateY(24px) scale(0.97); }
@@ -214,6 +216,12 @@ function Home() {
           100% { opacity: 1; }
         }
         .animate-fadeIn { animation: fadeIn 1s forwards; }
+
+        @keyframes fadeInSlow {
+          0% { opacity: 0; transform: scale(1.02); }
+          100% { opacity: 1; transform: scale(1); }
+        }
+        .animate-fadeInSlow { animation: fadeInSlow 2s ease-out forwards; }
       `}</style>
     </div>
   );
