@@ -103,7 +103,7 @@ function Home() {
             />
             <img
               src={process.env.PUBLIC_URL + "/images/Home/LogoLargeDrawn2.png"}
-              alt="Nomad Scribbles Drawn Logo"
+              alt="Nomad Scribbes Drawn Logo"
               className={`absolute top-1/2 left-1/2 drop-shadow-lg transition-opacity duration-[2000ms] ease-in-out transform -translate-x-1/2 -translate-y-1/2 ${
                 showDrawn ? "opacity-100" : "opacity-0"
               }`}

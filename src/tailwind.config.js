@@ -13,6 +13,7 @@ module.exports = {
         'parks': "url('/images/ParkBackdrop.jpg')",
         'beach': "url('/images/beach.jpg')",
         "brazil-tiles": "url('/images/BrazilFlag2.jpg')",
+        'brazil-main': "url('/images/Brazil/BrazilBack.png')",
       },
       keyframes: {
         slideBounce: {

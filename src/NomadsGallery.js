@@ -14,7 +14,7 @@ export default function NomadsGallery({ openLightbox }) {
   }, []);
 
   const handleClick = (index) => {
-    openLightbox(index, shuffledImages); // pass the full item objects
+    openLightbox(index, shuffledImages);
   };
 
   // Motion variants
@@ -25,24 +25,41 @@ export default function NomadsGallery({ openLightbox }) {
 
   const itemVariants = {
     hidden: { opacity: 0, scale: 0.9 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
   };
 
   return (
-    <div className="min-h-screen pt-4 pb-8 bg-[#95af98] relative">
+    <div
+      className="min-h-screen pt-4 pb-8 relative"
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL + "/images/NomadsGallery/GalleryWall.png"})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+      }}
+    >
+      {/* Overlay for slight dark tint to improve readability */}
+      <div className="absolute inset-0 bg-black/20"></div>
 
-      {/* Logo at top-left, scrolls with page */}
-      <div className="absolute top-3 left-4 z-8">
-  <Logo className="h-6 w-auto sm:h-10" />
+      {/* Logo at top-left */}
+      <div className="absolute top-3 left-4 z-10">
+        <Link to="/home">
+          <Logo className="h-6 w-auto sm:h-10" />
+        </Link>
       </div>
 
-<div className="flex justify-center mb-6">
-  <NomadsTitle className="w-32 sm:w-96 h-auto" />
-</div>
+      {/* Title */}
+      <div className="flex justify-center mb-6 relative z-10">
+        <NomadsTitle className="w-32 sm:w-96 h-auto" />
+      </div>
 
       {/* Masonry Grid with stagger */}
       <motion.main
-        className="px-4 max-w-screen-xl mx-auto columns-2 sm:columns-3 md:columns-4 gap-4"
+        className="px-4 max-w-screen-xl mx-auto columns-2 sm:columns-3 md:columns-4 gap-4 relative z-10"
         variants={containerVariants}
         initial="hidden"
         animate="visible"

@@ -57,7 +57,7 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex })
     <AnimatePresence>
       <motion.div
         ref={containerRef}
-        className={`fixed inset-0 backdrop-blur-sm bg-[#d5f7d9]/80 flex items-start justify-center z-50 ${
+        className={`fixed inset-0 backdrop-blur-sm bg-[#2f3e2f]/90 flex items-start justify-center z-50 ${
           isFullscreen ? "" : "p-4"
         }`}
         onClick={() => setCurrentIndex(null)}

@@ -3,36 +3,70 @@ import { Link } from "react-router-dom";
 import Logo from "./Logo";
 
 function Brazil() {
+  const cities = [
+    { name: "Rio de Janeiro", path: "/brazil/rio" },
+    { name: "Salvador", path: "/brazil/salvador" },
+    { name: "Foz do Iguaçu", path: "/brazil/foz" },
+    { name: "The Pantanal", path: "/brazil/pantanal" },
+    { name: "Bonito", path: "/brazil/bonito" },
+    { name: "Manaus", path: "/brazil/manaus" },
+  ];
+
   return (
-    <div className="min-h-screen bg-brazil-tiles bg-repeat bg-tiles pt-4 relative">
+    <div
+      className="min-h-screen relative"
+      style={{
+        backgroundImage: "url('/images/Brazil/BrazilBack.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      {/* Overlay for readability */}
+      <div className="absolute inset-0 bg-black/30"></div>
 
-      {/* Logo at top-left, scrolls with page */}
-      <div className="absolute top-4 left-4 z-10">
-        <Link to="/home">
-          <Logo className="h-4 w-auto sm:h-8" />
-        </Link>
+      {/* Page Content */}
+      <div className="relative z-10 flex flex-col items-center pt-4 px-4">
+
+        {/* Logo */}
+        <div className="absolute top-4 left-4 z-20">
+          <Link to="/home">
+            <Logo className="h-6 w-auto sm:h-10" />
+          </Link>
+        </div>
+
+        {/* Hero Image */}
+        <div className="w-full max-w-5xl mb-6 mt-14">
+          <img
+            src={process.env.PUBLIC_URL + "/images/Brazil/BrazilHero.jpg"}
+            alt="Brazilian landscape with city and nature"
+            className="w-full h-auto object-contain rounded-xl shadow-lg"
+          />
+        </div>
+
+        {/* Feature Image: São Paulo */}
+        <div className="w-full max-w-4xl mb-6">
+          <Link to="/brazil/saopaulo">
+            <img
+              src={process.env.PUBLIC_URL + "/images/Brazil/SaoPauloFeature.png"}
+              alt="São Paulo city"
+              className="w-full h-auto object-cover rounded-xl shadow-lg hover:scale-105 transition-transform"
+            />
+          </Link>
+        </div>
+
+        {/* Other Cities */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-lg w-full mb-12">
+          {cities.map((city) => (
+            <Link
+              key={city.name}
+              to={city.path}
+              className="bg-white/80 text-gray-900 backdrop-blur-md rounded-xl py-3 text-center hover:bg-white hover:shadow-lg transition"
+            >
+              {city.name}
+            </Link>
+          ))}
+        </div>
       </div>
-
-      {/* Hero Image under Logo */}
-      <div className="flex justify-center my-10">
-        <img
-          src="/images/Brazil/BrazilHero.jpg"
-          alt="Brazilian landscape with city and nature"
-          className="w-[800px] max-w-[95%] h-auto rounded-lg"
-        />
-      </div>
-
-      {/* Page Title */}
-      <h1 className="text-center text-3xl font-semibold text-gray-900 mb-6">
-        Brazil
-      </h1>
-
-      {/* Main Content */}
-      <main className="px-4 py-8 max-w-screen-md mx-auto space-y-6">
-        <p className="text-center text-gray-900">
-          Explore this amazing country!
-        </p>
-      </main>
     </div>
   );
 }
