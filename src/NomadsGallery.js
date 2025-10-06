@@ -42,15 +42,15 @@ export default function NomadsGallery({ openLightbox }) {
         backgroundAttachment: "fixed",
       }}
     >
-      {/* Overlay for slight dark tint to improve readability */}
-      <div className="absolute inset-0 bg-black/20"></div>
-
       {/* Logo at top-left */}
-      <div className="absolute top-3 left-4 z-10">
+      <div className="absolute top-3 left-4 z-20">
         <Link to="/home">
           <Logo className="h-6 w-auto sm:h-10" />
         </Link>
       </div>
+
+      {/* Overlay for slight dark tint to improve readability */}
+      <div className="absolute inset-0 bg-black/20 z-10"></div>
 
       {/* Title */}
       <div className="flex justify-center mb-6 relative z-10">
