@@ -4,23 +4,23 @@ import Lightbox from "./Lightbox";
 import artImages from "./artImages.json";
 
 function SaoPaulo() {
-  // Filter only São Paulo Landing images from JSON
-  const spImages = artImages.filter(img => img.category === "City Life");
+  const spImages = artImages.filter((img) => img.category === "City Life");
 
-  // Separate main page captions (like galleryTexts in Carnival)
   const galleryTexts = [
-    "São Paulo’s pizza culture rivals Naples",
-    "Quiet evening streets after the rain",
-    "The classic Caipirinha: lime, sugar, cachaça",
-    "The classic Caipirinha: lime, sugar, cachaça (illustrated)"
+    "São Paulo’s pizza culture rivals Naples.",
+    "Quiet evening streets after the rain.",
+    "The classic Caipirinha: lime, sugar, cachaça.",
+    "The classic Caipirinha: lime, sugar, cachaça (illustrated).",
   ];
 
   const [currentIndex, setCurrentIndex] = useState(null);
 
   return (
     <div
-      className="min-h-screen bg-cover bg-center bg-no-repeat pt-4"
-      style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/SaoPauloLanding/beach.jpg)` }}
+      className="relative min-h-screen bg-cover bg-center bg-no-repeat flex flex-col"
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/images/SaoPauloLanding/SPBackground.png)`,
+      }}
     >
       {/* Logo */}
       <div className="absolute top-3 left-4 z-10">
@@ -28,15 +28,16 @@ function SaoPaulo() {
       </div>
 
       {/* Hero Image */}
-      <div className="flex justify-center mb-6">
+      <div className="flex justify-center mt-6 mb-8">
         <img
-          src={process.env.PUBLIC_URL + "/images/SaoPauloHeroImage.jpeg"}
-          alt="View of São Paulo hills with lush greenery"
-          className="w-full max-w-[95%] sm:max-w-[800px] h-auto rounded-lg shadow-lg"
+          src={`${process.env.PUBLIC_URL}/images/SaoPauloLanding/SaoPauloFeature.png`}
+          alt="São Paulo city skyline with feature title"
+          className="w-full max-w-[900px] h-auto rounded-lg shadow-lg"
         />
       </div>
 
-      <h1 className="text-center text-[#111] text-3xl font-semibold mb-6">São Paulo</h1>
+      {/* Hidden SEO Title */}
+      <h1 className="sr-only">São Paulo — City Life and Culture</h1>
 
       <main className="px-4 py-8 max-w-screen-lg mx-auto space-y-12">
         {spImages.map((img, idx) => (
@@ -50,7 +51,7 @@ function SaoPaulo() {
               src={img.blogimage}
               alt={img.title}
               onClick={() => setCurrentIndex(idx)}
-              className="rounded-lg cursor-pointer w-full lg:w-2/5"
+              className="rounded-lg cursor-pointer w-full sm:w-3/4 lg:w-2/5 hover:opacity-90 transition-opacity"
             />
             <div className="bg-white/85 p-4 rounded-md flex-1 text-[#111]">
               <h2 className="font-bold text-lg mb-2">{img.title}</h2>
@@ -61,7 +62,7 @@ function SaoPaulo() {
 
         {/* Links to child pages */}
         <div className="mt-12 mb-16 max-w-[900px] mx-auto">
-          <ul className="space-y-6 text-xl text-[#c1c0bc]">
+          <ul className="space-y-6 text-xl text-[#c1c0bc] text-center sm:text-left">
             <li>
               <a href="/brazil/saopaulo/parks" className="hover:underline">
                 Explore the city’s lush <strong>Parks</strong>

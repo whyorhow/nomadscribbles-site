@@ -259,9 +259,9 @@ className="w-14 h-7 sm:w-16 sm:h-11 md:w-18 md:h-17 flex items-center justify-ce
 
               <div className={submenuClass(openSaoPaulo)}>
                 <Link to="/brazil/saopaulo/parks" className="text-[#38350b] text-base hover:text-[#0c0b01]">Parks</Link>
-                <Link to="/brazil/saopaulo/museums" className="text-[#38350b] text-base hover:text-[#0c0b01]">Museums</Link>
+                <Link to="/brazil/saopaulo/museums" className="text-[#38350b] text-base hover:text-[#0c0b01]">Art Galleries</Link>
                 <Link to="/brazil/saopaulo/carnival" className="text-[#38350b] text-base hover:text-[#0c0b01]">Carnival</Link>
-                <Link to="/brazil/saopaulo/murals" className="text-[#38350b] text-base hover:text-[#0c0b01]">Murals</Link>
+                <Link to="/brazil/saopaulo/murals" className="text-[#38350b] text-base hover:text-[#0c0b01]">Street Murals</Link>
                 <Link to="/brazil/saopaulo/santos" className="text-[#38350b] text-base hover:text-[#0c0b01]">Santos</Link>
               </div>
             </div>

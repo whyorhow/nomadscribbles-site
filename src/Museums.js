@@ -23,75 +23,94 @@ export default function Museums() {
   ];
 
   const galleryTexts = [
-    "The Museu de Arte de São Paulo (MASP) hovers above Avenida Paulista like a glass-and-concrete time capsule. Inside the top floor, masterpieces from Europe, Africa, Asia, and the Americas are arranged chronologically, unframed, floating on transparent easels.",
-    "There’s a clear path through the space, but the experience still feels open — like drifting through time. Near the centre, Degas’ famous ballerina sculpture stands in delicate defiance, her poise drawing the gaze amid the stillness.",
-    "Sketch of São Paulo’s art scene, blending structural lines with imagination.",
-    "Below, the tone shifts: an exhibition of Indigenous Brazilian work spreads across the lower levels. The textures are different, rooted. MASP holds both with quiet reverence.",
-    "Across the city, the Pinacoteca whispers in brick and sunlight. Afternoon shadows cut across arched windows and wood floors. The gallery moves slower, one quiet room at a time.",
-    "Design Echo: The Pinacoteca was originally built in the early 1900s and redesigned to let the architecture speak: brick walls, iron beams, and raw textures are part of the exhibition.",
+    "The Museu de Arte de São Paulo (MASP) hovers above Avenida Paulista like a glass-and-concrete time capsule. Inside, masterpieces from across continents float on transparent easels, arranged chronologically in a modernist rhythm.",
+    "There’s a path through the space, but the experience feels fluid — as if time itself has loosened its frame. Near the centre, Degas’ ballerina sculpture stands in quiet defiance, her poise commanding the stillness.",
+    "Sketch of São Paulo’s art scene — a meeting point of structure and imagination, concrete and colour.",
+    "Below, the tone shifts: an exhibition of Indigenous Brazilian art brings raw texture and ancestral depth. MASP holds both worlds — the imported and the rooted — with equal grace.",
+    "Across the city, the Pinacoteca whispers through brick and sunlight. Shadows slide across its arched windows and wooden floors; the gallery invites slowness, reflection, and calm.",
+    "Design Echo: Originally built in the early 1900s, the Pinacoteca was reimagined to celebrate its own bones — exposed brick, iron beams, and open space. The architecture itself has become an exhibit."
   ];
-
-  const openLightbox = (index) => setCurrentIndex(index);
 
   return (
     <div
-      className="min-h-screen bg-cover bg-center bg-no-repeat pt-4"
+      className="min-h-screen relative bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: `url(${process.env.PUBLIC_URL}/images/ArtGallery/ArtGalleryBackground.jpg)`,
+        backgroundImage: `url(${process.env.PUBLIC_URL}/images/ArtGallery/GalleryBackground.png)`,
       }}
     >
-      <div className="absolute top-3 left-4 z-8">
-        <Logo className="h-6 w-auto sm:h-10" />
-      </div>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/30"></div>
 
-      <div className="flex justify-center mb-6">
-        <img
-          src={process.env.PUBLIC_URL + "/images/SaoPauloHeroImage.jpeg"}
-          alt="São Paulo city skyline"
-          className="w-[800px] max-w-[95%] h-auto rounded-lg"
-        />
-      </div>
+      {/* Hidden SEO heading */}
+      <h1 className="sr-only">São Paulo Art Galleries | Nomad Scribbles Travel Blog</h1>
 
-      <h1 className="text-center text-[#111] text-3xl font-semibold mb-6">
-        Museums
-      </h1>
+      <div className="relative z-10 flex flex-col items-center pt-4 px-4">
+        {/* Logo */}
+        <div className="absolute top-4 left-4 z-20">
+          <Logo className="h-6 w-auto sm:h-10" />
+        </div>
 
-      <main className="px-4 py-6 max-w-screen-lg mx-auto space-y-8">
-        <h2 className="text-center text-[#111] text-2xl font-medium mb-2">
-          São Paulo’s Museums & Collections
-        </h2>
-        <p className="text-center text-[#111] mb-4 bg-white/70 p-2 rounded">
-          Explore local and international artworks in São Paulo’s galleries.
-        </p>
+        {/* Hero image */}
+        <div className="w-full max-w-5xl mb-6 mt-14 px-2">
+          <img
+            src={process.env.PUBLIC_URL + "/images/Brazil/SaoPauloFeature.png"}
+            alt="São Paulo skyline and MASP gallery"
+            loading="lazy"
+            className="w-full h-auto object-contain rounded-xl shadow-lg"
+          />
+        </div>
 
-        {museumImages.map((item, idx) => (
-          <div
-            key={idx}
-            className={`flex flex-col lg:flex-row items-center justify-center gap-4 ${
-              idx % 2 === 1 ? "lg:flex-row-reverse" : ""
-            }`}
-          >
-            <img
-              src={item.image}
-              alt={galleryAlts[idx] || item.title}
-              onClick={() => openLightbox(idx)}
-              className="rounded-lg cursor-pointer w-full lg:w-3/5 h-auto"
-            />
-            <div className="bg-white/85 p-2 rounded-md flex-1 text-[#111] text-left">
-              <h2 className="font-bold text-lg mb-1">{item.title}</h2>
-              <p>{galleryTexts[idx]}</p>
+        {/* Title image */}
+        <div className="w-full flex justify-center mb-6 px-2">
+          <img
+            src={process.env.PUBLIC_URL + "/images/ArtGallery/GalleryTitle.png"}
+            alt="Art Galleries"
+            loading="lazy"
+            className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg h-auto"
+          />
+        </div>
+
+        {/* Intro text */}
+        <div className="max-w-3xl bg-white/70 backdrop-blur-md p-4 rounded-xl mb-8 text-gray-900 text-center">
+          <p>
+            São Paulo’s art galleries reveal the soul of a city in conversation with itself —
+            modernism meets history, and every wall holds a story of innovation, rebellion, and light.
+          </p>
+        </div>
+
+        {/* Gallery section */}
+        <main className="px-4 py-4 max-w-screen-lg mx-auto space-y-10">
+          {museumImages.map((item, idx) => (
+            <div
+              key={idx}
+              className={`flex flex-col lg:flex-row items-center justify-center gap-6 ${
+                idx % 2 === 1 ? "lg:flex-row-reverse" : ""
+              }`}
+            >
+              <img
+                src={item.image}
+                alt={galleryAlts[idx] || item.title}
+                loading="lazy"
+                onClick={() => setCurrentIndex(idx)}
+                className="rounded-lg cursor-pointer w-full sm:w-3/4 md:w-2/3 lg:w-2/5 shadow-lg transition-transform duration-300 hover:scale-105"
+              />
+              <div className="bg-white/85 p-4 rounded-md flex-1 text-gray-900 text-left">
+                <h2 className="font-bold text-lg mb-2">{item.title}</h2>
+                <p>{galleryTexts[idx]}</p>
+              </div>
             </div>
-          </div>
-        ))}
-      </main>
+          ))}
+        </main>
 
-      {currentIndex !== null && (
-        <Lightbox
-          images={museumImages}
-          currentIndex={currentIndex}
-          setCurrentIndex={setCurrentIndex}
-        />
-      )}
+        {/* Lightbox */}
+        {currentIndex !== null && (
+          <Lightbox
+            images={museumImages}
+            currentIndex={currentIndex}
+            setCurrentIndex={setCurrentIndex}
+          />
+        )}
+      </div>
     </div>
   );
 }

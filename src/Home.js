@@ -24,9 +24,7 @@ function Home() {
       }
     }, 50);
 
-    const logoTimer = setTimeout(() => {
-      setPermanentDrawn(true);
-    }, 3000);
+    const logoTimer = setTimeout(() => setPermanentDrawn(true), 3000);
 
     return () => {
       clearTimeout(alignTimeout);
@@ -63,7 +61,7 @@ function Home() {
       {/* Background */}
       <img
         src={process.env.PUBLIC_URL + "/images/Home/Background.jpg"}
-        alt="Background"
+        alt="Beautiful travel background of Brazil"
         className="fixed inset-0 w-full h-full object-cover brightness-75 -z-10 opacity-0 animate-fadeInSlow"
       />
 
@@ -87,7 +85,7 @@ function Home() {
             />
             <img
               src={process.env.PUBLIC_URL + "/images/Home/LogoLargeDrawn2.png"}
-              alt="Nomad Scribbles Drawn Logo"
+              alt="Nomad Scribbles Hand-drawn Logo"
               className={`absolute top-1/2 left-1/2 drop-shadow-lg transition-opacity duration-[2000ms] ease-in-out transform -translate-x-1/2 -translate-y-1/2 ${
                 showDrawn ? "opacity-100" : "opacity-0"
               }`}
@@ -96,7 +94,7 @@ function Home() {
 
           <img
             src={process.env.PUBLIC_URL + "/images/Home/HomeTag.png"}
-            alt="Nomad Scribbles Tagline"
+            alt="Nomad Scribbles Tagline: Travel Stories Across Brazil & Beyond"
             className="w-2/3 sm:w-1/2 md:w-2/5 lg:w-1/3 max-w-full h-auto drop-shadow-md mt-6 sm:mt-8"
           />
         </div>
@@ -110,7 +108,7 @@ function Home() {
         >
           <img
             src={process.env.PUBLIC_URL + "/images/Home/Features/Santos.png"}
-            alt="Santos"
+            alt="Santos city travel feature"
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-0 transition-opacity duration-300"></div>
@@ -124,12 +122,12 @@ function Home() {
 
           <img
             src={process.env.PUBLIC_URL + "/images/Home/SantosScript1.png"}
-            alt="Santos Script 1"
+            alt="Santos Script Detail"
             className="absolute top-2 sm:top-4 left-2 sm:left-4 w-24 sm:w-36 md:w-44 z-20 transition-opacity duration-300 group-hover:opacity-0"
           />
           <img
             src={process.env.PUBLIC_URL + "/images/Home/SantosScript2.png"}
-            alt="Santos Script 2"
+            alt="Santos Script Hover Detail"
             className="absolute bottom-2 sm:bottom-4 right-2 sm:right-4 w-24 sm:w-36 md:w-44 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
           />
         </Link>
@@ -162,7 +160,7 @@ function Home() {
             >
               <img
                 src={process.env.PUBLIC_URL + card.img}
-                alt={card.title}
+                alt={card.title + " - travel highlights"}
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
             </Link>
