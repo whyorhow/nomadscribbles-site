@@ -3,31 +3,14 @@ import { Link } from "react-router-dom";
 
 function Home() {
   const originalCards = [
-    {
-      title: "Nomads Shop",
-      link: "/nomads-shop",
-      img: "/images/Home/ThumbnailNS.jpg"
-    },
-    {
-      title: "Nomads Gallery",
-      link: "/nomads-gallery",
-      img: "/images/Home/ThumbnailNG.jpg"
-    },
-    {
-      title: "Adventures",
-      link: "/adventures",
-      img: "/images/Home/ThumbnailA.jpg"
-    },
-    {
-      title: "Brazil",
-      link: "/brazil",
-      img: "/images/Brazil/BrazilHero.jpg"
-    }
+    { title: "Nomads Shop", link: "/nomads-shop", img: "/images/Home/ThumbnailNS.png" },
+    { title: "Nomads Gallery", link: "/nomads-gallery", img: "/images/Home/ThumbnailNG.jpg" },
+    { title: "Adventures", link: "/adventures", img: "/images/Home/ThumbnailA.jpg" },
+    { title: "Brazil", link: "/brazil", img: "/images/Brazil/BrazilHero.jpg" },
   ];
 
   const [cards, setCards] = useState([]);
   const carouselRef = useRef(null);
-
   const [permanentDrawn, setPermanentDrawn] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -59,10 +42,9 @@ function Home() {
 
     carousel.scrollBy({
       left: direction === "right" ? cardWidth : -cardWidth,
-      behavior: "smooth"
+      behavior: "smooth",
     });
 
-    // After scroll, keep the infinite loop illusion
     setTimeout(() => {
       const scrollIndex = Math.round(carousel.scrollLeft / cardWidth);
       if (scrollIndex < total) {
@@ -85,11 +67,14 @@ function Home() {
         className="fixed inset-0 w-full h-full object-cover brightness-75 -z-10 opacity-0 animate-fadeInSlow"
       />
 
+      {/* Hidden main title for SEO */}
+      <h1 className="sr-only">Nomad Scribbles | Travel Stories Across Brazil & Beyond</h1>
+
       {/* Logo + Tagline */}
       <div className="relative w-full text-center pt-4 sm:pt-6 md:pt-8">
         <div className="flex flex-col items-center animate-fadeIn">
           <div
-            className="relative inline-block w-[220px] sm:w-[320px] md:w-[500px] lg:w-[600px] max-w-full h-auto"
+            className="relative w-4/5 sm:w-3/4 md:w-2/3 lg:w-1/2 max-w-xl h-auto"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
@@ -99,47 +84,40 @@ function Home() {
               className={`block w-full h-auto drop-shadow-lg transition-opacity duration-[2000ms] ease-in-out ${
                 showOriginal ? "opacity-100" : "opacity-0"
               }`}
-              style={{ width: "85%", height: "auto", margin: "0 auto" }}
             />
             <img
               src={process.env.PUBLIC_URL + "/images/Home/LogoLargeDrawn2.png"}
-              alt="Nomad Scribbes Drawn Logo"
+              alt="Nomad Scribbles Drawn Logo"
               className={`absolute top-1/2 left-1/2 drop-shadow-lg transition-opacity duration-[2000ms] ease-in-out transform -translate-x-1/2 -translate-y-1/2 ${
                 showDrawn ? "opacity-100" : "opacity-0"
               }`}
-              style={{ width: "125%", height: "auto" }}
             />
           </div>
 
           <img
             src={process.env.PUBLIC_URL + "/images/Home/HomeTag.png"}
             alt="Nomad Scribbles Tagline"
-            className="w-[280px] sm:w-[360px] md:w-[480px] lg:w-[560px] max-w-full h-auto drop-shadow-md mt-12"
+            className="w-2/3 sm:w-1/2 md:w-2/5 lg:w-1/3 max-w-full h-auto drop-shadow-md mt-6 sm:mt-8"
           />
         </div>
       </div>
 
       {/* Santos Feature */}
-      <div className="w-screen mt-4 relative px-0">
+      <div className="w-full mt-4 px-2 sm:px-4 relative">
         <Link
           to="/brazil/saopaulo/santos"
-          className="relative block w-full h-56 sm:h-64 md:h-72 lg:h-80 cursor-pointer overflow-hidden group border-4 border-[#F5FCD9] transition-all duration-300 hover:border-opacity-0"
+          className="relative block w-full aspect-[16/9] cursor-pointer overflow-hidden group border-4 border-[#F5FCD9] transition-all duration-300 hover:border-opacity-0"
         >
           <img
             src={process.env.PUBLIC_URL + "/images/Home/Features/Santos.png"}
             alt="Santos"
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 will-change-transform"
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-0 transition-opacity duration-300"></div>
 
           <div
-            className="absolute top-0 right-0 bg-[#F5FCD9] text-[#1C1F13] px-8 py-1 text-sm sm:text-base font-semibold z-10 transition-opacity duration-300 opacity-100 group-hover:opacity-0"
-            style={{
-              width: "160px",
-              textAlign: "center",
-              transform: "rotate(45deg) translate(22%, -10%)",
-              transformOrigin: "center"
-            }}
+            className="absolute top-0 right-0 bg-[#F5FCD9] text-[#1C1F13] px-4 sm:px-6 py-1 text-xs sm:text-sm md:text-base font-semibold z-10 transition-opacity duration-300 opacity-100 group-hover:opacity-0"
+            style={{ transform: "rotate(45deg) translate(22%, -10%)", transformOrigin: "center" }}
           >
             Spotlight
           </div>
@@ -147,51 +125,40 @@ function Home() {
           <img
             src={process.env.PUBLIC_URL + "/images/Home/SantosScript1.png"}
             alt="Santos Script 1"
-            className="absolute top-4 left-4 w-36 sm:w-44 md:w-52 z-20 transition-opacity duration-300 group-hover:opacity-0"
+            className="absolute top-2 sm:top-4 left-2 sm:left-4 w-24 sm:w-36 md:w-44 z-20 transition-opacity duration-300 group-hover:opacity-0"
           />
           <img
             src={process.env.PUBLIC_URL + "/images/Home/SantosScript2.png"}
             alt="Santos Script 2"
-            className="absolute bottom-4 right-4 w-36 sm:w-44 md:w-52 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
+            className="absolute bottom-2 sm:bottom-4 right-2 sm:right-4 w-24 sm:w-36 md:w-44 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
           />
         </Link>
       </div>
 
       {/* Bottom Carousel */}
-      <div className="w-full max-w-screen-lg mx-auto py-8 relative">
+      <div className="w-full max-w-screen-lg mx-auto py-8 relative px-2 sm:px-4">
         <button
           onClick={() => scroll("left")}
           aria-label="Scroll Left"
           className="absolute left-0 top-1/2 -translate-y-1/2 bg-black bg-opacity-40 p-2 rounded-full z-10"
         >
-          <img
-            src={process.env.PUBLIC_URL + "/images/lftarrow.svg"}
-            alt="Left Arrow"
-            className="w-6 h-6"
-          />
+          <img src={process.env.PUBLIC_URL + "/images/lftarrow.svg"} alt="Left Arrow" className="w-6 h-6" />
         </button>
         <button
           onClick={() => scroll("right")}
           aria-label="Scroll Right"
           className="absolute right-0 top-1/2 -translate-y-1/2 bg-black bg-opacity-40 p-2 rounded-full z-10"
         >
-          <img
-            src={process.env.PUBLIC_URL + "/images/rtarrow.svg"}
-            alt="Right Arrow"
-            className="w-6 h-6"
-          />
+          <img src={process.env.PUBLIC_URL + "/images/rtarrow.svg"} alt="Right Arrow" className="w-6 h-6" />
         </button>
 
-        <div ref={carouselRef} className="flex overflow-x-auto overflow-y-hidden space-x-4 px-2">
+        <div ref={carouselRef} className="flex overflow-x-auto overflow-y-hidden space-x-4">
           {cards.map((card, idx) => (
             <Link
               key={idx}
               to={card.link}
               className="relative flex-shrink-0 shadow-lg group transform transition duration-700 ease-out opacity-0 translate-y-6 animate-fadeUp"
-              style={{
-                aspectRatio: "16/9",
-                width: "16rem"
-              }}
+              style={{ width: "80vw", maxWidth: "16rem", aspectRatio: "16/9" }}
             >
               <img
                 src={process.env.PUBLIC_URL + card.img}

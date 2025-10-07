@@ -1,3 +1,13 @@
-# https://www.robotstxt.org/robotstxt.html
+# robots.txt for Nomad Scribbles
 User-agent: *
-Disallow:
+Allow: /
+
+# Prevent crawling of pages not meant for indexing
+Disallow: /search
+Disallow: /news
+Disallow: /adventures
+Disallow: /contact-us
+Disallow: /nomads-shop/brazil   # optional if only /saopaulo should be indexed
+Disallow: /brazil               # optional if only /saopaulo should be indexed
+
+Sitemap: https://nomadscribbles.com/sitemap.xml

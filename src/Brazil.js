@@ -16,13 +16,16 @@ function Brazil() {
     <div
       className="min-h-screen relative"
       style={{
-        backgroundImage: "url('/images/Brazil/BrazilBack.png')",
+        backgroundImage: `url(${process.env.PUBLIC_URL}/images/Brazil/BrazilBack.png)`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
       {/* Overlay for readability */}
       <div className="absolute inset-0 bg-black/30"></div>
+
+      {/* Hidden SEO H1 */}
+      <h1 className="sr-only">Nomad Scribbles | Travel Adventures in Brazil</h1>
 
       {/* Page Content */}
       <div className="relative z-10 flex flex-col items-center pt-4 px-4">
@@ -49,7 +52,7 @@ function Brazil() {
             <img
               src={process.env.PUBLIC_URL + "/images/Brazil/SaoPauloFeature.png"}
               alt="São Paulo city"
-              className="w-full h-auto object-cover rounded-xl shadow-lg hover:scale-105 transition-transform"
+              className="w-full h-auto object-cover rounded-xl shadow-lg hover:scale-105 transition-transform duration-300"
             />
           </Link>
         </div>
@@ -60,7 +63,7 @@ function Brazil() {
             <Link
               key={city.name}
               to={city.path}
-              className="bg-white/80 text-gray-900 backdrop-blur-md rounded-xl py-3 text-center hover:bg-white hover:shadow-lg transition"
+              className="bg-white/80 text-gray-900 backdrop-blur-md rounded-xl py-3 text-center hover:bg-white hover:shadow-lg transition duration-300"
             >
               {city.name}
             </Link>

@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import Lightbox from "./Lightbox";
 import Logo from "./Logo";
-import artImages from "./artImages.json"; // Make sure this is the correct path
+import artImages from "./artImages.json";
 
 function Carnival() {
-  // Filter only Carnival images from JSON
   const carnivalImages = artImages.filter(img => img.category === "Carnival");
 
-  // Main page text (separate from JSON)
   const galleryTexts = [
     "In São Paulo, Carnival moves in two heartbeats — one loud and rehearsed, the other wild and wandering. The city hums with transformation. Sequins rise, streets melt, and the music — always the music — finds a way through everything.",
     "At the Sambódromo do Anhembi, Carnival arrives like thunder. Samba schools burst through the gates with armour made of feathers, mirrors, and stories. Floats sail past like dreams stitched from memory and myth. Dancers shimmer in unison, hands carving songs into the air.",
@@ -23,7 +21,7 @@ function Carnival() {
   return (
     <div
       className="min-h-screen bg-cover bg-center bg-no-repeat pt-4"
-      style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/CarnivalSP/CarnivalBackground.jpg)` }}
+      style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/CarnivalSP/CarnivalBackground.png)` }}
     >
       {/* Logo */}
       <div className="absolute top-3 left-4 z-10">
@@ -31,18 +29,28 @@ function Carnival() {
       </div>
 
       {/* Hero Image */}
-      <div className="flex justify-center mb-6">
+      <div className="flex justify-center mb-6 px-4">
         <img
-          src={process.env.PUBLIC_URL + "/images/SaoPauloHeroImage.jpeg"}
+          src={process.env.PUBLIC_URL + "/images/Brazil/SaoPauloFeature.png"}
           alt="São Paulo city skyline"
-          className="w-2/3 lg:w-1/3 h-auto rounded-lg"
+          className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl h-auto rounded-lg"
         />
       </div>
 
-      <h1 className="text-center text-[#111] text-3xl font-semibold mb-6">Carnival</h1>
+      {/* Carnival Title Image */}
+      <div className="flex justify-center mb-6 px-4">
+        <img
+          src={process.env.PUBLIC_URL + "/images/CarnivalSP/CarnivalTitle.png"}
+          alt="Carnival"
+          className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg h-auto"
+        />
+      </div>
+
+      {/* Hidden H1 for SEO */}
+      <h1 className="sr-only">Carnival</h1>
 
       <main className="px-4 py-8 max-w-screen-lg mx-auto space-y-12">
-        <p className="text-center text-[#111] mb-8 bg-white/70 p-2 rounded">
+        <p className="text-center text-[#111] mb-8 bg-white/70 p-2 rounded text-sm sm:text-base">
           Experience the rhythm, colors, and energy of Brazilian Carnival.
         </p>
 
@@ -57,9 +65,9 @@ function Carnival() {
               src={img.blogimage}
               alt={img.title}
               onClick={() => setCurrentIndex(idx)}
-              className="rounded-lg cursor-pointer w-full lg:w-2/5"
+              className="rounded-lg cursor-pointer w-full sm:w-3/4 md:w-2/3 lg:w-2/5 h-auto"
             />
-            <div className="bg-white/85 p-3 rounded-md flex-1 text-[#111] text-left">
+            <div className="bg-white/85 p-3 rounded-md flex-1 text-[#111] text-left text-sm sm:text-base">
               <h2 className="font-bold text-lg mb-2">{img.title}</h2>
               <p>{galleryTexts[idx]}</p>
             </div>

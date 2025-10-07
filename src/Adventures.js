@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Logo from "./Logo";
 
 function Adventures() {
-  // Full list of flags
   const countries = [
     { name: "Austria", img: "/images/Adventures/AustriaFlag.png" },
     { name: "Belgium", img: "/images/Adventures/BelgiumFlag.png" },
@@ -28,13 +27,16 @@ function Adventures() {
     <div
       className="min-h-screen bg-cover bg-center bg-no-repeat pt-4"
       style={{
-        backgroundImage: `url(${process.env.PUBLIC_URL}/images/PlacesetterBackground.jpg)`
+        backgroundImage: `url(${process.env.PUBLIC_URL}/images/Adventures/AdventuresBD.png)`
       }}
     >
-      {/* Logo at top-left, scrolls with page */}
-      <div className="absolute top-3 left-4 z-8">
-  <Logo className="h-6 w-auto sm:h-10" />
+      {/* Logo */}
+      <div className="absolute top-3 left-4 z-10">
+        <Logo className="h-6 w-auto sm:h-10" />
       </div>
+
+      {/* Hidden SEO H1 */}
+      <h1 className="sr-only">Nomad Scribbles | Adventures Around the World</h1>
 
       {/* Page Title */}
       <div className="flex justify-center mb-4">
@@ -66,7 +68,6 @@ function Adventures() {
                   alt={`${country.name} flag`}
                   className="w-full h-32 object-cover rounded-lg shadow-lg transition-transform duration-200 group-hover:scale-105"
                 />
-                {/* Hover Overlay */}
                 <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-[#FFF6EE] text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
                   {country.name}
                 </div>
