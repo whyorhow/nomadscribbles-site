@@ -6,9 +6,12 @@ import { ReactComponent as SearchIcon } from "./assets/images/Search.svg";
 function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [openAdventures, setOpenAdventures] = useState(false);
-  const [openBrazil, setOpenBrazil] = useState(false);
-  const [openSaoPaulo, setOpenSaoPaulo] = useState(false);
+
+  // Submenus open by default and remember their state
+  const [openAdventures, setOpenAdventures] = useState(true);
+  const [openBrazil, setOpenBrazil] = useState(true);
+  const [openSaoPaulo, setOpenSaoPaulo] = useState(true);
+
   const [searchQuery, setSearchQuery] = useState("");
 
   const navigate = useNavigate();
@@ -19,10 +22,8 @@ function Nav() {
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (!e.target.closest?.(".burger-menu-container") && menuOpen) {
+        // keep submenus' open state — only close the menu itself
         setMenuOpen(false);
-        setOpenAdventures(false);
-        setOpenBrazil(false);
-        setOpenSaoPaulo(false);
       }
       if (!e.target.closest?.(".search-container") && searchOpen) {
         setSearchOpen(false);
@@ -37,9 +38,7 @@ function Nav() {
         timeout = setTimeout(() => {
           setMenuOpen(false);
           setSearchOpen(false);
-          setOpenAdventures(false);
-          setOpenBrazil(false);
-          setOpenSaoPaulo(false);
+          // do not reset openAdventures/openBrazil/openSaoPaulo here
         }, 5000);
       }
     };
@@ -148,7 +147,8 @@ function Nav() {
 className="w-14 h-7 sm:w-16 sm:h-11 md:w-18 md:h-17 flex items-center justify-center
              -translate-y-1 sm:-translate-y-1.5 md:-translate-y-4"
 >
-  <svg viewBox="0 0 47.3 47.3" className="w-10 h-10" style={{ overflow: "visible" }}>            {/* Top bar */}
+  <svg viewBox="0 0 47.3 47.3" className="w-10 h-10" style={{ overflow: "visible" }}>
+            {/* Top bar */}
             <g
               id="top"
               style={{
@@ -211,7 +211,7 @@ className="w-14 h-7 sm:w-16 sm:h-11 md:w-18 md:h-17 flex items-center justify-ce
               <path
                 fill="#ceb752"
                 d="M33.9,25.5c-0.8,0-1.8-0.1-3.8-0.1c-1.3,0-2.4,0-3.2,0c-3.6,0.6-6,0.4-7.5,0.1
-                   c-0.4,0-1.1-0.3-2.1-0.3c-1.5-0.1-1.9,0-4.1-0.1c-3.3-0.1-3-0.4-3.7-0.1c-0.1,0-1.1,0.3-2.1,0c-0.3-0.1-0.7-0.3-1-0.7
+                   c-0.4,0-1.1-0.3-2.1-0.3c-1.5-0.1-1.9,0-4.1-0.1c-3.3-0.1-3,0.4-3.7-0.1c-0.1,0-1.1,0.3-2.1,0c-0.3-0.1-0.7-0.3-1-0.7
                    c-0.2-0.3-0.3-0.7-0.4-1c0-0.1-0.2-0.8,0-1.4c0.2-0.7,0.5-1,0.7-1.1s0.4-0.3,0.9-0.4c0.7-0.1,1.2-0.1,1.8-0.1
                    c0.9,0,1.6,0.1,1.6,0.1c1.1,0.1,2.2,0.3,3.2,0.4c1.7,0.3,2.6,0.3,3,0.3c1.3,0,2.3,0,2.9-0.1c1.8,0.1,3.3,0.3,4.4,0.3
                    c1.3,0,1.4-0.1,3.3-0.1c3.2-0.1,3.4,0.1,5.8,0c2.3-0.1,3.4-0.2,3.9-0.3c0.5-0.1,1.4-0.3,2.6-0.1c0.4,0.1,0.7,0.2,0.9,0.3
@@ -270,7 +270,6 @@ className="w-14 h-7 sm:w-16 sm:h-11 md:w-18 md:h-17 flex items-center justify-ce
 
         <Link className="text-[#38350b] text-lg hover:text-[#0c0b01]" to="/nomads-shop">Nomads Shop</Link>
         <Link className="text-[#38350b] text-lg hover:text-[#0c0b01]" to="/nomads-gallery">Nomads Gallery</Link>
-        <Link className="text-[#38350b] text-lg hover:text-[#0c0b01]" to="/news">News</Link>
         <Link className="text-[#38350b] text-lg hover:text-[#0c0b01]" to="/contact-us">Contact Us</Link>
       </div>
     </>

@@ -8,7 +8,6 @@ import NomadsShop from "./NomadsShop";
 import NomadsShopBrazil from "./NomadsShopBrazil";
 import NomadsShopSaoPaulo from "./NomadsShopSaoPaulo";
 import NomadsGallery from "./NomadsGallery";
-import News from "./News";
 import Adventures from "./Adventures";
 import Brazil from "./Brazil";
 import SaoPaulo from "./SaoPaulo";
@@ -63,9 +62,6 @@ function PageTitleManager() {
       case "/nomads-gallery":
         document.title = "Nomad Scribbles | Gallery";
         break;
-      case "/news":
-        document.title = "Nomad Scribbles | News";
-        break;
       case "/adventures":
         document.title = "Nomad Scribbles | Adventures";
         break;
@@ -117,7 +113,6 @@ function App() {
             <Route path="/brazil/saopaulo/murals" element={<Murals openLightbox={openLightbox} />} />
             <Route path="/brazil/saopaulo/santos" element={<Santos openLightbox={openLightbox} />} />
             <Route path="/nomads-gallery" element={<NomadsGallery openLightbox={openLightbox} />} />
-            <Route path="/news" element={<News openLightbox={openLightbox} />} />
             <Route path="/contact-us" element={<ContactUs openLightbox={openLightbox} />} />
             <Route path="/search" element={<SearchResults openLightbox={openLightbox} />} />
           </Routes>

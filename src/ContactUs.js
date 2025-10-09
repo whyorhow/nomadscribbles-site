@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import Logo from "./Logo";
 
 function ContactUs() {
@@ -51,6 +52,26 @@ function ContactUs() {
         backgroundImage: `url(${process.env.PUBLIC_URL}/images/Contact/ContactBackground.png)`,
       }}
     >
+      {/* SEO Meta */}
+      <Helmet>
+        <title>Contact Us | Nomad Scribbles</title>
+        <meta
+          name="description"
+          content="Get in touch with Nomad Scribbles — send us a message and share your travel adventures or questions."
+        />
+        <meta property="og:title" content="Contact Nomad Scribbles" />
+        <meta
+          property="og:description"
+          content="Reach out to Nomad Scribbles for questions, collaborations, or sharing your travel stories."
+        />
+        <meta
+          property="og:image"
+          content={`${process.env.PUBLIC_URL}/images/Contact/ContactBackground.png`}
+        />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://nomadscribbles.com/contact" />
+      </Helmet>
+
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/40"></div>
 

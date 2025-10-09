@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Logo from "./Logo";
-import artImages from "./artImages.json";
 import Lightbox from "./Lightbox";
+import SEO from "./components/SEO";
+import artImages from "./artImages.json";
 
 export default function Museums() {
   const [currentIndex, setCurrentIndex] = useState(null);
@@ -38,10 +39,18 @@ export default function Museums() {
         backgroundImage: `url(${process.env.PUBLIC_URL}/images/ArtGallery/GalleryBackground.png)`,
       }}
     >
+      {/* SEO */}
+      <SEO
+        title="São Paulo Art Galleries | Nomad Scribbles"
+        description="Discover São Paulo’s top art galleries and museums. From MASP to Pinacoteca, explore modern and historical masterpieces in the heart of Brazil."
+        image="/images/ArtGallery/GalleryBackground.png"
+        url="https://nomadscribbles.com/brazil/saopaulo/museums"
+      />
+
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/30"></div>
 
-      {/* Hidden SEO heading */}
+      {/* Hidden H1 for accessibility */}
       <h1 className="sr-only">São Paulo Art Galleries | Nomad Scribbles Travel Blog</h1>
 
       <div className="relative z-10 flex flex-col items-center pt-4 px-4">

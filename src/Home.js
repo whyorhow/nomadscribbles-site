@@ -1,11 +1,12 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 function Home() {
   const originalCards = [
     { title: "Nomads Shop", link: "/nomads-shop", img: "/images/Home/ThumbnailNS.png" },
     { title: "Nomads Gallery", link: "/nomads-gallery", img: "/images/Home/ThumbnailNG.jpg" },
-    { title: "Adventures", link: "/adventures", img: "/images/Home/ThumbnailA.jpg" },
+    { title: "Adventures", link: "/adventures", img: "/images/Home/ThumbnailA.png" },
     { title: "Brazil", link: "/brazil", img: "/images/Brazil/BrazilHero.jpg" },
   ];
 
@@ -58,15 +59,34 @@ function Home() {
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden">
+      <Helmet>
+        <title>Nomad Scribbles | Travel Stories Across Brazil & Beyond</title>
+        <meta
+          name="description"
+          content="Join Nomad Scribbles on a journey through Brazil and beyond — discover cities, culture, travel tips, and inspiring adventures."
+        />
+        <meta property="og:title" content="Nomad Scribbles | Travel Stories Across Brazil & Beyond" />
+        <meta
+          property="og:description"
+          content="Explore Brazil and the world with Nomad Scribbles — from São Paulo to hidden gems, immersive travel stories await."
+        />
+        <meta
+          property="og:image"
+          content={`${process.env.PUBLIC_URL}/images/Home/Background.jpg`}
+        />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://nomadscribbles.com/" />
+      </Helmet>
+
+      {/* Hidden main title for SEO */}
+      <h1 className="sr-only">Nomad Scribbles | Travel Stories Across Brazil & Beyond</h1>
+
       {/* Background */}
       <img
         src={process.env.PUBLIC_URL + "/images/Home/Background.jpg"}
         alt="Beautiful travel background of Brazil"
         className="fixed inset-0 w-full h-full object-cover brightness-75 -z-10 opacity-0 animate-fadeInSlow"
       />
-
-      {/* Hidden main title for SEO */}
-      <h1 className="sr-only">Nomad Scribbles | Travel Stories Across Brazil & Beyond</h1>
 
       {/* Logo + Tagline */}
       <div className="relative w-full text-center pt-4 sm:pt-6 md:pt-8">

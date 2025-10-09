@@ -1,13 +1,14 @@
 import React, { useState } from "react";
+import SEO from "./components/SEO";
 import Lightbox from "./Lightbox";
 import Logo from "./Logo";
-import artImages from "./artImages.json"; // Make sure this path is correct
+import artImages from "./artImages.json";
 
 function Parks() {
   // Filter only Parks images from JSON
   const parksImages = artImages.filter(img => img.category === "Parks");
 
-  // Main page text (separate from JSON)
+  // Text for each image (match order/number of images)
   const galleryTexts = [
     "Stillness lives here, but it’s never empty. Ibirapuera stretches wide through the city.",
     "At one quiet edge, a single caterpillar climbs across a monumental stone.",
@@ -22,27 +23,41 @@ function Parks() {
 
   return (
     <div
-      className="min-h-screen bg-cover bg-center bg-no-repeat pt-4"
-      style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/SP-Parks/park-Edit.jpg)` }}
+      className="min-h-screen bg-cover bg-center bg-no-repeat bg-fixed pt-4"
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/images/SP-Parks/ParksBackground.png)`,
+      }}
     >
+      {/* SEO */}
+      <SEO
+        title="Parks of São Paulo — Green Sanctuaries | Nomad Scribbles"
+        description="Discover São Paulo’s parks — from Ibirapuera’s stillness to the echoes of Burle Marx’s design — where art, nature, and calm coexist."
+        image="/images/SP-Parks/ParksBackground.png"
+        url="https://nomadscribbles.com/parks"
+      />
+
       {/* Logo */}
       <div className="absolute top-3 left-4 z-10">
-        <Logo className="h-6 w-auto sm:h-10" />
+        <Logo className="h-6 sm:h-10 w-auto" />
       </div>
 
-      {/* Hero Image */}
-      <div className="flex justify-center mb-6">
+      {/* Hero & Title Images */}
+      <div className="flex flex-col items-center mt-10 mb-6">
         <img
-          src={process.env.PUBLIC_URL + "/images/SaoPauloHeroImage.jpeg"}
-          alt="São Paulo city skyline"
-          className="w-2/3 lg:w-1/3 h-auto rounded-lg"
+          src={process.env.PUBLIC_URL + "/images/Brazil/SaoPauloFeature.png"}
+          alt="São Paulo city feature image"
+          className="w-full max-w-screen-md h-auto rounded-lg shadow-lg"
+        />
+        <img
+          src={process.env.PUBLIC_URL + "/images/SP-Parks/ParksTitle.png"}
+          alt="Parks page title"
+          className="mt-4 w-2/3 sm:w-1/2 md:w-1/3 h-auto"
         />
       </div>
 
-      <h1 className="text-center text-[#111] text-3xl font-semibold mb-6">Parks</h1>
-
+      {/* Main Content */}
       <main className="px-4 py-8 max-w-screen-lg mx-auto space-y-12">
-        <p className="text-center text-[#111] mb-8 bg-white/70 p-2 rounded">
+        <p className="text-center text-[#111] mb-8 bg-white/70 p-3 rounded text-sm sm:text-base lg:text-lg leading-relaxed">
           Discover São Paulo’s parks, where nature, art, and history coexist.
         </p>
 
@@ -57,9 +72,9 @@ function Parks() {
               src={img.blogimage}
               alt={img.title}
               onClick={() => setCurrentIndex(idx)}
-              className="rounded-lg cursor-pointer w-full lg:w-2/5"
+              className="rounded-lg cursor-pointer w-full lg:w-2/5 shadow-md"
             />
-            <div className="bg-white/85 p-3 rounded-md flex-1 text-[#111] text-left">
+            <div className="bg-white/85 p-3 rounded-md flex-1 text-[#111] text-left text-sm sm:text-base lg:text-lg leading-relaxed">
               <h2 className="font-bold text-lg mb-2">{img.title}</h2>
               <p>{galleryTexts[idx]}</p>
             </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import Logo from "./Logo";
 
 function Adventures() {
@@ -30,12 +31,32 @@ function Adventures() {
         backgroundImage: `url(${process.env.PUBLIC_URL}/images/Adventures/AdventuresBD.png)`
       }}
     >
+      {/* SEO Helmet */}
+      <Helmet>
+        <title>Adventures Around the World | Nomad Scribbles</title>
+        <meta
+          name="description"
+          content="Join us on our journeys across the globe — from Europe to Asia and the Americas, explore flags, stories, and adventures with Nomad Scribbles."
+        />
+        <meta property="og:title" content="Adventures Around the World" />
+        <meta
+          property="og:description"
+          content="Join us on our journeys across the globe — from Europe to Asia and the Americas, explore flags, stories, and adventures with Nomad Scribbles."
+        />
+        <meta
+          property="og:image"
+          content={`${process.env.PUBLIC_URL}/images/Adventures/AdventuresBD.png`}
+        />
+        <meta property="og:type" content="article" />
+        <link rel="canonical" href="https://nomadscribbles.com/adventures" />
+      </Helmet>
+
       {/* Logo */}
       <div className="absolute top-3 left-4 z-10">
         <Logo className="h-6 w-auto sm:h-10" />
       </div>
 
-      {/* Hidden SEO H1 */}
+      {/* Hidden H1 for accessibility */}
       <h1 className="sr-only">Nomad Scribbles | Adventures Around the World</h1>
 
       {/* Page Title */}

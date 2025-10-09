@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import Lightbox from "./Lightbox";
 import Logo from "./Logo";
 import artImages from "./artImages.json";
@@ -7,13 +8,13 @@ function Carnival() {
   const carnivalImages = artImages.filter(img => img.category === "Carnival");
 
   const galleryTexts = [
-    "In São Paulo, Carnival moves in two heartbeats — one loud and rehearsed, the other wild and wandering. The city hums with transformation. Sequins rise, streets melt, and the music — always the music — finds a way through everything.",
-    "At the Sambódromo do Anhembi, Carnival arrives like thunder. Samba schools burst through the gates with armour made of feathers, mirrors, and stories. Floats sail past like dreams stitched from memory and myth. Dancers shimmer in unison, hands carving songs into the air.",
-    "Behind the Feathers: Floats in the Sambódromo can stretch up to 30 metres. Each samba school performs a story with thousands of dancers, judged on costume, harmony, song, and energy.",
-    "Every step is a rehearsal of joy and resistance. From the stands, the scale stuns — whole histories unfurling in rhythm, each beat landing like a page turning. It’s spectacle, yes, but something more: a city remembering how to fly.",
-    "Then come the blocos — São Paulo’s other Carnival. Looser, louder, closer to the soil. In alleyways and open parks, drums bloom at dawn and carry through dusk. No tickets. No fences. Just movement and music, chasing the sun.",
-    "The air thickens with rhythm and rain. Glitter clings to every surface. One bloco spills around Ibirapuera Park, dancers winding through trees, strangers pulled into sudden choruses. There’s no script — only sound. Only sway.",
-    "Beats Beneath the Beads: São Paulo hosts over 500 blocos during Carnival season — many rooted in local humour, samba schools, or beloved bars. One bloco is entirely dedicated to drag performers belting out old-school marchinhas in full costume."
+    "In São Paulo, Carnival moves in two heartbeats — one loud and rehearsed, the other wild and wandering...",
+    "At the Sambódromo do Anhembi, Carnival arrives like thunder...",
+    "Behind the Feathers: Floats in the Sambódromo can stretch up to 30 metres...",
+    "Every step is a rehearsal of joy and resistance...",
+    "Then come the blocos — São Paulo’s other Carnival...",
+    "The air thickens with rhythm and rain...",
+    "Beats Beneath the Beads: São Paulo hosts over 500 blocos during Carnival season..."
   ];
 
   const [currentIndex, setCurrentIndex] = useState(null);
@@ -23,6 +24,26 @@ function Carnival() {
       className="min-h-screen bg-cover bg-center bg-no-repeat pt-4"
       style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/CarnivalSP/CarnivalBackground.png)` }}
     >
+      {/* SEO Meta */}
+      <Helmet>
+        <title>Carnival in São Paulo | Nomad Scribbles</title>
+        <meta
+          name="description"
+          content="Experience São Paulo's Carnival — the rhythm, colors, and energy of Brazil's world-famous festival."
+        />
+        <meta property="og:title" content="Carnival in São Paulo" />
+        <meta
+          property="og:description"
+          content="Join us in São Paulo for Carnival, from the Sambódromo to local blocos, experiencing music, dance, and spectacle."
+        />
+        <meta
+          property="og:image"
+          content={`${process.env.PUBLIC_URL}/images/CarnivalSP/CarnivalBackground.png`}
+        />
+        <meta property="og:type" content="article" />
+        <link rel="canonical" href="https://nomadscribbles.com/brazil/saopaulo/carnival" />
+      </Helmet>
+
       {/* Logo */}
       <div className="absolute top-3 left-4 z-10">
         <Logo className="h-6 w-auto sm:h-10" />

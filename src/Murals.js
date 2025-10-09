@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import Logo from "./Logo";
 import Lightbox from "./Lightbox";
 import artImages from "./artImages.json";
@@ -26,10 +27,30 @@ export default function Murals() {
         backgroundImage: `url(${process.env.PUBLIC_URL}/images/Murals/MuralsBackground.png)`,
       }}
     >
+      {/* Helmet SEO */}
+      <Helmet>
+        <title>São Paulo Murals | Nomad Scribbles</title>
+        <meta
+          name="description"
+          content="Explore São Paulo's vibrant mural scene — a city-wide open-air gallery filled with color, stories, and culture."
+        />
+        <meta property="og:title" content="São Paulo Murals" />
+        <meta
+          property="og:description"
+          content="Walk the streets of São Paulo and discover murals that tell stories of art, protest, identity, and history."
+        />
+        <meta
+          property="og:image"
+          content={`${process.env.PUBLIC_URL}/images/Murals/MuralsBackground.png`}
+        />
+        <meta property="og:type" content="article" />
+        <link rel="canonical" href="https://nomadscribbles.com/brazil/saopaulo/murals" />
+      </Helmet>
+
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/30"></div>
 
-      {/* Hidden SEO heading */}
+      {/* Hidden H1 for SEO */}
       <h1 className="sr-only">São Paulo Murals | Nomad Scribbles Travel Blog</h1>
 
       <div className="relative z-10 flex flex-col items-center pt-4 px-4">
@@ -38,25 +59,27 @@ export default function Murals() {
           <Logo className="h-6 w-auto sm:h-10" />
         </div>
 
-        {/* Hero Image (São Paulo feature) */}
-        <div className="w-full max-w-5xl mb-6 mt-14 px-2">
-          <img
-            src={process.env.PUBLIC_URL + "/images/Brazil/SaoPauloFeature.png"}
-            alt="São Paulo city — skyline and urban landscape"
-            loading="lazy"
-            className="w-full h-auto object-contain rounded-xl shadow-lg"
-          />
-        </div>
+{/* Responsive Hero Image scaled ~30% smaller */}
+<div className="w-full max-w-5xl mb-1 mt-14 px-2">
+  <img
+    src={process.env.PUBLIC_URL + "/images/Brazil/SaoPauloFeature.png"}
+    alt="São Paulo city — skyline and urban landscape"
+    loading="lazy"
+    className="w-[70%] sm:w-[65%] md:w-[60%] lg:w-[60%] h-auto object-contain rounded-xl shadow-lg mx-auto"
+  />
+</div>
 
-        {/* Title image (MuralsTitle) */}
-        <div className="w-full flex justify-center mb-6 px-2">
-          <img
-            src={process.env.PUBLIC_URL + "/images/Murals/MuralsTitle.png"}
-            alt="Murals"
-            loading="lazy"
-            className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg h-auto"
-          />
-        </div>
+
+{/* Title image (MuralsTitle) scaled ~30% smaller */}
+<div className="w-full flex justify-center mb-(-8) px-2">
+  <img
+    src={process.env.PUBLIC_URL + "/images/Murals/MuralsTitle.png"}
+    alt="Murals"
+    loading="lazy"
+    className="w-[70%] sm:w-[65%] md:w-[60%] lg:w-[60%] h-auto"
+  />
+</div>
+
 
         {/* Intro text box */}
         <div className="max-w-3xl bg-white/70 backdrop-blur-md p-4 rounded-xl mb-8 text-gray-900 text-center">
