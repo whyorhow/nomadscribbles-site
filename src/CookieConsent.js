@@ -49,7 +49,15 @@ export default function CookieConsent() {
       transition-opacity duration-300 ${fade ? "opacity-0" : "opacity-100 animate-slideBounce"}`}
     >
       <p className="text-gray-900 text-center md:text-left flex-1 text-sm md:text-base leading-snug">
-        We use cookies to improve your experience. You can accept or reject non-essential cookies.
+        We and our partners, including Gumroad and other partner sites (e.g., Etsy in future), use cookies and other technologies to personalise your experience, show you ads, and perform analytics. Some links on this site redirect to external sites and may be affiliate links; if you make a purchase, we may earn a small commission at no extra cost. You can accept or reject non-essential cookies.{" "}
+        <a
+          href="/privacy-policy"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline text-blue-600 hover:text-blue-800"
+        >
+          Learn more in our Privacy Policy
+        </a>.
       </p>
       <div className="flex gap-2 mt-2 md:mt-0">
         <button
