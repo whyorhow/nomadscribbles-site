@@ -85,8 +85,7 @@ function Home() {
       <img
         src={process.env.PUBLIC_URL + "/images/Home/Background.jpg"}
         alt="Beautiful travel background of Brazil"
-        className="fixed inset-0 w-full h-full object-cover brightness-75 -z-10 opacity-0 animate-fadeInSlow"
-      />
+  className="fixed inset-0 w-full h-full object-cover brightness-75 -z-10"      />
 
       {/* Logo + Tagline */}
       <div className="relative w-full text-center pt-4 sm:pt-6 md:pt-8">

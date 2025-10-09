@@ -1,12 +1,10 @@
 import React from "react";
 import { Instagram, Facebook, Twitter } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Footer() {
-  const resetCookieConsent = () => {
-    localStorage.removeItem("cookiesAccepted");
-    localStorage.removeItem("cookiesRejected");
-    window.location.reload();
-  };
+  const location = useLocation();
+  const onPreferencesPage = location.pathname === "/cookie-preferences";
 
   return (
     <footer className="flex justify-between items-center w-full bg-[#5e5c35] text-[#c1c0bc] p-4 md:p-6 box-border">
@@ -18,12 +16,15 @@ export default function Footer() {
 
       <div className="text-right text-sm flex flex-col md:flex-row items-end gap-2">
         <div>&copy; {new Date().getFullYear()} Nomad Scribbles. All rights reserved.</div>
-        <button
-          onClick={resetCookieConsent}
-          className="underline text-gray-400 hover:text-white text-sm"
-        >
-          Change my cookie preferences
-        </button>
+
+        {!onPreferencesPage && (
+          <Link
+            to="/cookie-preferences"
+            className="underline text-gray-400 hover:text-white text-sm"
+          >
+            Change my cookie preferences
+          </Link>
+        )}
       </div>
     </footer>
   );

@@ -19,13 +19,12 @@ import Santos from "./Santos";
 import ContactUs from "./ContactUs";
 import SearchResults from "./SearchResults";
 import CookieConsent from "./CookieConsent";
-
+import CookiePreferences from "./CookiePreferences";
 import Lightbox from "./Lightbox";
 
-// Helper component to manage page titles
+// Page title manager
 function PageTitleManager() {
   const location = useLocation();
-
   useEffect(() => {
     switch (location.pathname) {
       case "/":
@@ -71,11 +70,13 @@ function PageTitleManager() {
       case "/search":
         document.title = "Nomad Scribbles | Search Results";
         break;
+      case "/cookie-preferences":
+        document.title = "Nomad Scribbles | Cookie Preferences";
+        break;
       default:
         document.title = "Nomad Scribbles";
     }
   }, [location]);
-
   return null;
 }
 
@@ -84,6 +85,32 @@ function App() {
   const [lightboxImages, setLightboxImages] = useState([]);
   const [lightboxAlts, setLightboxAlts] = useState([]);
   const [lightboxPurchaseLinks, setLightboxPurchaseLinks] = useState([]);
+
+  // State for cookie consent
+  const [cookiesAccepted, setCookiesAccepted] = useState(null);
+
+  // Load stored consent
+  useEffect(() => {
+    const accepted = localStorage.getItem("cookiesAccepted") === "true";
+    const rejected = localStorage.getItem("cookiesRejected") === "true";
+    if (accepted) setCookiesAccepted(true);
+    else if (rejected) setCookiesAccepted(false);
+  }, []);
+
+  const handleConsentChange = (choice) => {
+    setCookiesAccepted(choice);
+    if (choice === true) {
+      localStorage.setItem("cookiesAccepted", "true");
+      localStorage.removeItem("cookiesRejected");
+    } else if (choice === false) {
+      localStorage.setItem("cookiesRejected", "true");
+      localStorage.removeItem("cookiesAccepted");
+    } else {
+      // specific non-essential only
+      localStorage.setItem("cookiesAccepted", "partial");
+      localStorage.removeItem("cookiesRejected");
+    }
+  };
 
   const openLightbox = (index, images, alts = [], purchaseLinks = []) => {
     setLightboxImages(images);
@@ -115,11 +142,30 @@ function App() {
             <Route path="/nomads-gallery" element={<NomadsGallery openLightbox={openLightbox} />} />
             <Route path="/contact-us" element={<ContactUs openLightbox={openLightbox} />} />
             <Route path="/search" element={<SearchResults openLightbox={openLightbox} />} />
+
+            {/* Cookie Preferences Page */}
+            <Route
+              path="/cookie-preferences"
+              element={
+                <CookiePreferences
+                  cookiesAccepted={cookiesAccepted}
+                  onConsentChange={handleConsentChange}
+                />
+              }
+            />
           </Routes>
         </div>
       </div>
-      <CookieConsent />
-      <Footer />
+
+      {/* Cookie Consent Popup - hide on preferences page */}
+      {cookiesAccepted === null && window.location.pathname !== "/cookie-preferences" && (
+        <CookieConsent
+          onAccept={() => handleConsentChange(true)}
+          onReject={() => handleConsentChange(false)}
+        />
+      )}
+
+      <Footer cookiesAccepted={cookiesAccepted} />
       <Lightbox
         images={lightboxImages}
         alts={lightboxAlts}
@@ -127,7 +173,9 @@ function App() {
         storeLink="/nomads-shop/brazil/saopaulo"
         currentIndex={lightboxIndex}
         setCurrentIndex={setLightboxIndex}
-        showPrev={() => setLightboxIndex((prev) => (prev - 1 + lightboxImages.length) % lightboxImages.length)}
+        showPrev={() =>
+          setLightboxIndex((prev) => (prev - 1 + lightboxImages.length) % lightboxImages.length)
+        }
         showNext={() => setLightboxIndex((prev) => (prev + 1) % lightboxImages.length)}
       />
     </Router>

@@ -1,17 +1,19 @@
 // CookieConsent.js
 import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function CookieConsent() {
   const [visible, setVisible] = useState(false);
   const [fade, setFade] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     try {
       const accepted = localStorage.getItem("cookiesAccepted");
       const rejected = localStorage.getItem("cookiesRejected");
       if (!accepted && !rejected) {
-        // Add slight delay on mobile
-        const delay = window.innerWidth < 768 ? 500 : 0; // 0.5s delay for mobile
+        const delay = window.innerWidth < 768 ? 500 : 0; // slight delay for mobile
         const timer = setTimeout(() => setVisible(true), delay);
         return () => clearTimeout(timer);
       }
@@ -41,6 +43,14 @@ export default function CookieConsent() {
     setTimeout(() => setVisible(false), 300);
   };
 
+  // Hide popup and go to the preferences page (passing current path)
+  const handleLearnMore = () => {
+    fadeOut();
+    setTimeout(() => {
+      navigate("/cookie-preferences", { state: { from: location.pathname } });
+    }, 350);
+  };
+
   if (!visible) return null;
 
   return (
@@ -49,15 +59,7 @@ export default function CookieConsent() {
       transition-opacity duration-300 ${fade ? "opacity-0" : "opacity-100 animate-slideBounce"}`}
     >
       <p className="text-gray-900 text-center md:text-left flex-1 text-sm md:text-base leading-snug">
-        We and our partners, including Gumroad and other partner sites (e.g., Etsy in future), use cookies and other technologies to personalise your experience, show you ads, and perform analytics. Some links on this site redirect to external sites and may be affiliate links; if you make a purchase, we may earn a small commission at no extra cost. You can accept or reject non-essential cookies.{" "}
-        <a
-          href="/privacy-policy"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline text-blue-600 hover:text-blue-800"
-        >
-          Learn more in our Privacy Policy
-        </a>.
+        We use cookies to improve your experience which may include links to recommended sites.
       </p>
       <div className="flex gap-2 mt-2 md:mt-0">
         <button
@@ -71,6 +73,12 @@ export default function CookieConsent() {
           className="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 hover:shadow-lg transition-all duration-200 text-sm md:text-base"
         >
           Reject
+        </button>
+        <button
+          onClick={handleLearnMore}
+          className="underline text-blue-600 hover:text-blue-500 text-sm md:text-base"
+        >
+          Learn more
         </button>
       </div>
     </div>
