@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import SEO from "./components/SEO";
 
 function Home() {
   const originalCards = [
@@ -59,24 +59,12 @@ function Home() {
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden">
-      <Helmet>
-        <title>Nomad Scribbles | Travel Stories Across Brazil & Beyond</title>
-        <meta
-          name="description"
-          content="Join Nomad Scribbles on a journey through Brazil and beyond — discover cities, culture, travel tips, and inspiring adventures."
-        />
-        <meta property="og:title" content="Nomad Scribbles | Travel Stories Across Brazil & Beyond" />
-        <meta
-          property="og:description"
-          content="Explore Brazil and the world with Nomad Scribbles — from São Paulo to hidden gems, immersive travel stories await."
-        />
-        <meta
-          property="og:image"
-          content={`${process.env.PUBLIC_URL}/images/Home/Background.jpg`}
-        />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://nomadscribbles.com/" />
-      </Helmet>
+<SEO
+  title="Nomad Scribbles | Travel Stories Across Brazil & Beyond"
+  description="Join Nomad Scribbles on a journey through Brazil and beyond — discover cities, culture, travel tips, and inspiring adventures."
+  image="/images/Home/Background.jpg"
+  slug=""  // homepage, so slug can be empty
+/>
 
       {/* Hidden main title for SEO */}
       <h1 className="sr-only">Nomad Scribbles | Travel Stories Across Brazil & Beyond</h1>
