@@ -7,7 +7,7 @@ function Home() {
     { title: "Nomads Shop", link: "/nomads-shop", img: "/images/Home/ThumbnailNS.png" },
     { title: "Nomads Gallery", link: "/nomads-gallery", img: "/images/Home/ThumbnailNG.jpg" },
     { title: "Adventures", link: "/adventures", img: "/images/Home/ThumbnailA.png" },
-    { title: "Brazil", link: "/brazil", img: "/images/Brazil/BrazilHero.jpg" },
+    { title: "Brazil", link: "/brazil", img: "/images/Home/ThumbnailBrazil.png" },
   ];
 
   const [cards, setCards] = useState([]);
