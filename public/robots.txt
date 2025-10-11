@@ -10,4 +10,4 @@ Disallow: /contact-us
 Disallow: /nomads-shop/brazil   # optional if only /saopaulo should be indexed
 Disallow: /brazil               # optional if only /saopaulo should be indexed
 
-Sitemap: https://nomadscribbles.com/sitemap.xml
+Sitemap: https://www.nomadscribbles.com/sitemap.xml
