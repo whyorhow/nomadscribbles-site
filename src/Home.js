@@ -99,7 +99,7 @@ function Home() {
 <div className="w-full mt-4 px-2 sm:px-4 relative">
   <Link
     to="/brazil/saopaulo/santos"
-    className="relative block w-full max-w-[60%] sm:max-w-[50%] md:max-w-[40%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden group border-4 border-[#F5FCD9] transition-all duration-300 hover:border-opacity-0"
+    className="relative block w-full max-w-[80%] sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden group border-4 border-[#F5FCD9] transition-all duration-300 hover:border-opacity-0"
   >
     <img
       src={process.env.PUBLIC_URL + "/images/Home/Features/Santos.webp"}
