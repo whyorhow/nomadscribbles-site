@@ -1,4 +1,7 @@
-# robots.txt for Nomad Scribbles
+# BEGIN Cloudflare Managed Content
+# (Cloudflare may inject its own content signals here, this is normal)
+# END Cloudflare Managed Content
+
 User-agent: *
 Allow: /
 
@@ -7,7 +10,8 @@ Disallow: /search
 Disallow: /news
 Disallow: /adventures
 Disallow: /contact-us
-Disallow: /nomads-shop/brazil   # optional if only /saopaulo should be indexed
-Disallow: /brazil               # optional if only /saopaulo should be indexed
+Disallow: /nomads-shop/brazil
+Disallow: /brazil
 
 Sitemap: https://www.nomadscribbles.com/sitemap.xml
+
