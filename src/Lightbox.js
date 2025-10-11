@@ -20,8 +20,6 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex })
   if (currentIndex === null || !images[currentIndex]) return null;
 
   const current = images[currentIndex];
-
-  // Determine if current item is object or string
   const isObject = typeof current === "object";
 
   const imageSrc = isObject ? current.lightboxImage || current.image : current;
@@ -76,14 +74,20 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex })
               src={imageSrc}
               alt={title}
               loading="lazy"
-              className="rounded-sm cursor-pointer object-contain block"
-              style={{ maxHeight: maxImageHeight }}
+              className={`
+                rounded-sm cursor-pointer object-contain block
+                ${isFullscreen
+                  ? "max-w-[100vw] max-h-[100vh]"
+                  : "max-w-[90vw] md:max-w-[80vw] lg:max-w-[70vw] max-h-[80vh] sm:max-h-[75vh] md:max-h-[70vh] lg:max-h-[65vh]"
+                }
+              `}
               onClick={toggleFullscreen}
               initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1, transition: { duration: 0.5, ease: "easeInOut" } }}
+              animate={{ scale: 1, opacity: 1, transition: { duration: 0.5, ease: 'easeInOut' } }}
               exit={{ scale: 0.8, opacity: 0, transition: { duration: 0.4 } }}
             />
 
+            {/* Left arrow */}
             <button
               className="absolute top-1/2 flex items-center justify-center z-50"
               style={{ left: isFullscreen ? "-3rem" : "-5rem", transform: "translateY(-50%)" }}
@@ -92,6 +96,7 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex })
               <img src={LeftArrow} alt="Previous" className="w-8 h-12 transition-transform duration-200 ease-in-out hover:scale-125 hover:brightness-150" />
             </button>
 
+            {/* Right arrow */}
             <button
               className="absolute top-1/2 flex items-center justify-center z-50"
               style={{ right: isFullscreen ? "-3rem" : "-5rem", transform: "translateY(-50%)" }}
@@ -100,6 +105,7 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex })
               <img src={RightArrow} alt="Next" className="w-8 h-12 transition-transform duration-200 ease-in-out hover:scale-125 hover:brightness-150" />
             </button>
 
+            {/* Close button */}
             <button
               className="absolute w-10 h-10 flex items-center justify-center z-50"
               style={{ top: "-0.5rem", right: "-3rem" }}
@@ -108,13 +114,20 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex })
               <img src={CloseIcon} alt="Close" className="w-6 h-6 transition-transform duration-200 ease-in-out hover:scale-125 hover:brightness-150" />
             </button>
 
-            <button
-              className="absolute w-10 h-10 flex items-center justify-center z-50"
-              style={{ top: "-0.5rem", left: "-3rem" }}
-              onClick={toggleFullscreen}
-            >
-              <img src={FullscreenIcon} alt="Fullscreen" className="w-6 h-6 transition-transform duration-200 ease-in-out hover:scale-125 hover:brightness-150" />
-            </button>
+            {/* Fullscreen / Enlarge button, hidden in fullscreen */}
+            {!isFullscreen && (
+              <button
+                className="absolute w-10 h-10 flex items-center justify-center z-50"
+                style={{ top: "-0.5rem", left: "-3rem" }}
+                onClick={toggleFullscreen}
+              >
+                <img
+                  src={FullscreenIcon}
+                  alt="Fullscreen"
+                  className="w-6 h-6 transition-transform duration-200 ease-in-out hover:scale-125 hover:brightness-150"
+                />
+              </button>
+            )}
           </div>
 
           {!isFullscreen && (
@@ -122,22 +135,23 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex })
               {title && <h2 className="font-bold text-lg mb-1 text-[#4a3f35]">{title}</h2>}
               {description && <p className="text-sm mb-2 text-[#333333]">{description}</p>}
               <div className="flex space-x-1">
-{gumroadLink && (
-  <a
-    href={gumroadLink}
-    style={{ backgroundColor: "#5F7536" }}
-    className="px-4 py-2 text-white font-medium rounded-sm shadow hover:opacity-90 transition-opacity"
-  >
-    Purchase
-  </a>
-)}
-{shopLink && (
-  <a
-    href={shopLink}
-    style={{ backgroundColor: "#634E39" }}
-    className="px-4 py-2 text-white font-medium rounded-sm shadow hover:opacity-90 transition-opacity"
-  >
-    Shop                  </a>
+                {gumroadLink && (
+                  <a
+                    href={gumroadLink}
+                    style={{ backgroundColor: "#5F7536" }}
+                    className="px-4 py-2 text-white font-medium rounded-sm shadow hover:opacity-90 transition-opacity"
+                  >
+                    Purchase
+                  </a>
+                )}
+                {shopLink && (
+                  <a
+                    href={shopLink}
+                    style={{ backgroundColor: "#634E39" }}
+                    className="px-4 py-2 text-white font-medium rounded-sm shadow hover:opacity-90 transition-opacity"
+                  >
+                    Shop
+                  </a>
                 )}
               </div>
             </div>
