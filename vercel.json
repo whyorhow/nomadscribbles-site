@@ -8,7 +8,7 @@
           "value": "nomadscribbles.com"
         }
       ],
-      "destination": "https://www.nomadscribbles.com/:1",
+      "destination": "https://www.nomadscribbles.com/$1",
       "permanent": true
     }
   ]
