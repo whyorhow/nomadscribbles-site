@@ -22,7 +22,7 @@ export default function Footer() {
             to="/cookie-preferences"
             className="underline text-gray-400 hover:text-white text-sm"
           >
-            Change my cookie monster preferences
+            Change my cookie preferences
           </Link>
         )}
       </div>
