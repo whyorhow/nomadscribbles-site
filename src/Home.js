@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import SEO from "./components/SEO";
 
 function Home() {
@@ -59,12 +60,12 @@ function Home() {
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden">
-<SEO
-  title="Nomad Scribbles | Travel Stories Across Brazil & Beyond"
-  description="Join Nomad Scribbles on a journey through Brazil and beyond — discover cities, culture, travel tips, and inspiring adventures."
-  image="/images/Home/Background.webp"
-  slug=""  // homepage, so slug can be empty
-/>
+      <SEO
+        title="Nomad Scribbles | Travel Stories Across Brazil & Beyond"
+        description="Join Nomad Scribbles on a journey through Brazil and beyond — discover cities, culture, travel tips, and inspiring adventures."
+        image="/images/Home/Background.webp"
+        slug=""
+      />
 
       {/* Hidden main title for SEO */}
       <h1 className="sr-only">Nomad Scribbles | Travel Stories Across Brazil & Beyond</h1>
@@ -73,30 +74,84 @@ function Home() {
       <img
         src={process.env.PUBLIC_URL + "/images/Home/Background.jpg"}
         alt="Beautiful travel background of Brazil"
-  className="fixed inset-0 w-full h-full object-cover brightness-75 -z-10"      />
+        className="fixed inset-0 w-full h-full object-cover brightness-75 -z-10"
+      />
 
-{/* Logo + Tagline */}
-<div className="relative w-full text-center pt-2 sm:pt-3 md:pt-4">
-  <div className="flex flex-col items-center">
-    <div className="w-4/5 sm:w-3/4 md:w-2/3 lg:w-1/2 max-w-xl mx-auto">
+      {/* Logo + Tagline */}
+      <div className="relative w-full text-center pt-2 sm:pt-3 md:pt-4">
+        <div className="flex flex-col items-center">
+          <div className="w-4/5 sm:w-3/4 md:w-2/3 lg:w-1/2 max-w-xl mx-auto">
+            <img
+              src={process.env.PUBLIC_URL + "/images/Home/LogoLargeDrawn2.webp"}
+              alt="Nomad Scribbles Hand-drawn Logo"
+              className="w-full h-auto object-contain drop-shadow-lg"
+            />
+          </div>
+
+          <img
+            src={process.env.PUBLIC_URL + "/images/Home/HomeTag.webp"}
+            alt="Nomad Scribbles Tagline: Travel Stories Across Brazil & Beyond"
+            className="w-2/3 sm:w-1/2 md:w-2/5 lg:w-1/3 max-w-full h-auto drop-shadow-md mt-4 sm:mt-5"
+          />
+        </div>
+      </div>
+
+{/* São Paulo Feature */}
+<motion.div
+  initial={{ opacity: 0, y: 30 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1, delay: 0.2 }}
+  className="w-full mt-4 px-2 sm:px-4 relative"
+>
+  <Link
+    to="/brazil/saopaulo"
+    className="relative block w-full max-w-[80%] sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden group border-4 border-[#F5FCD9] transition-all duration-300 hover:border-opacity-0"
+  >
+    <img
+      src={process.env.PUBLIC_URL + "/images/Home/Features/SaoPaulo.webp"}
+      alt="São Paulo city travel feature"
+      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+    />
+    <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-0 transition-opacity duration-300"></div>
+
+    {/* Ribbon background */}
+    <div
+      className="absolute top-0 right-0 bg-[#F5FCD9] px-4 sm:px-6 py-1 z-10 transition-opacity duration-300 opacity-100 group-hover:opacity-0"
+      style={{
+        transform: "rotate(45deg) translate(26%, -28%)",
+        transformOrigin: "center",
+      }}
+    >
+      {/* Handwritten text image (50% smaller) */}
       <img
-        src={process.env.PUBLIC_URL + "/images/Home/LogoLargeDrawn2.webp"}
-        alt="Nomad Scribbles Hand-drawn Logo"
-        className="w-full h-auto object-contain drop-shadow-lg"
+        src={process.env.PUBLIC_URL + "/images/Home/checkout.webp"}
+        alt="Check out handwritten label"
+        className="w-10 sm:w-12 md:w-14 h-auto"
       />
     </div>
 
+    {/* Doubled São Paulo text overlays */}
     <img
-      src={process.env.PUBLIC_URL + "/images/Home/HomeTag.webp"}
-      alt="Nomad Scribbles Tagline: Travel Stories Across Brazil & Beyond"
-      className="w-2/3 sm:w-1/2 md:w-2/5 lg:w-1/3 max-w-full h-auto drop-shadow-md mt-4 sm:mt-5"
+      src={process.env.PUBLIC_URL + "/images/Home/SaoPauloScript1.webp"}
+      alt="São Paulo Script Detail"
+      className="absolute top-2 sm:top-4 left-2 sm:left-4 w-48 sm:w-72 md:w-88 z-20 transition-opacity duration-300 group-hover:opacity-0"
     />
-  </div>
-</div>
+    <img
+      src={process.env.PUBLIC_URL + "/images/Home/SaoPauloScript2.webp"}
+      alt="São Paulo Script Hover Detail"
+      className="absolute bottom-2 sm:bottom-4 right-2 sm:right-4 w-48 sm:w-72 md:w-88 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
+    />
+  </Link>
+</motion.div>
 
 
 {/* Santos Feature */}
-<div className="w-full mt-4 px-2 sm:px-4 relative">
+<motion.div
+  initial={{ opacity: 0, y: 30 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1, delay: 0.5 }}
+  className="w-full mt-4 px-2 sm:px-4 relative"
+>
   <Link
     to="/brazil/saopaulo/santos"
     className="relative block w-full max-w-[80%] sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden group border-4 border-[#F5FCD9] transition-all duration-300 hover:border-opacity-0"
@@ -108,11 +163,20 @@ function Home() {
     />
     <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-0 transition-opacity duration-300"></div>
 
+    {/* Ribbon background */}
     <div
-      className="absolute top-0 right-0 bg-[#F5FCD9] text-[#1C1F13] px-4 sm:px-6 py-1 text-xs sm:text-sm md:text-base font-semibold z-10 transition-opacity duration-300 opacity-100 group-hover:opacity-0"
-      style={{ transform: "rotate(45deg) translate(22%, -10%)", transformOrigin: "center" }}
+      className="absolute top-0 right-0 bg-[#F5FCD9] px-4 sm:px-6 py-1 z-10 transition-opacity duration-300 opacity-100 group-hover:opacity-0"
+      style={{
+        transform: "rotate(45deg) translate(26%, -28%)",
+        transformOrigin: "center",
+      }}
     >
-      Spotlight
+      {/* Handwritten text image (50% smaller) */}
+      <img
+        src={process.env.PUBLIC_URL + "/images/Home/spotlight.webp"}
+        alt="Spotlight handwritten label"
+        className="w-10 sm:w-12 md:w-14 h-auto"
+      />
     </div>
 
     <img
@@ -126,7 +190,7 @@ function Home() {
       className="absolute bottom-2 sm:bottom-4 right-2 sm:right-4 w-24 sm:w-36 md:w-44 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
     />
   </Link>
-</div>
+</motion.div>
 
       {/* Bottom Carousel */}
       <div className="w-full max-w-screen-lg mx-auto py-8 relative px-2 sm:px-4">
