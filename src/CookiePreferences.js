@@ -50,7 +50,7 @@ export default function CookiePreferences() {
     <div
       className="min-h-screen bg-cover bg-center relative text-white"
       style={{
-        backgroundImage: `url(${process.env.PUBLIC_URL}/images/Home/Background.png)`,
+        backgroundImage: `url(${process.env.PUBLIC_URL}/images/Home/Background2.webp)`,
       }}
     >
       {/* Logo */}

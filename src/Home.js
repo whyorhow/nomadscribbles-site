@@ -72,7 +72,7 @@ function Home() {
 
       {/* Background */}
       <img
-        src={process.env.PUBLIC_URL + "/images/Home/Background.jpg"}
+        src={process.env.PUBLIC_URL + "/images/Home/Background2.webp"}
         alt="Beautiful travel background of Brazil"
         className="fixed inset-0 w-full h-full object-cover brightness-75 -z-10"
       />

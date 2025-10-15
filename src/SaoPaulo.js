@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Logo from "./Logo";
-
+import Lightbox from "./Lightbox";
+import artImages from "./artImages.json";
 
 function SaoPaulo() {
   const top5 = [
@@ -42,11 +43,26 @@ function SaoPaulo() {
     },
   ];
 
+// Filter the five inline images for lightbox
+const inlineImages = artImages.filter(
+  (img) =>
+    [
+      "pizza",
+      "street",
+      "rain",
+      "caparinhaPhoto",
+      "caparinhaDrawn"
+    ].includes(img.id)
+);
+
+
+  const [currentIndex, setCurrentIndex] = useState(null);
+
   return (
     <div
       className="relative min-h-screen bg-cover bg-center bg-no-repeat flex flex-col"
       style={{
-        backgroundImage: `url(${process.env.PUBLIC_URL}/images/SaoPauloLanding/SPBackground.webp)`,
+        backgroundImage: `url(${process.env.PUBLIC_URL}/images/Home/Background2.webp)`,
       }}
     >
       {/* SEO Tags */}
@@ -65,7 +81,6 @@ function SaoPaulo() {
           href="https://nomadscribbles.com/brazil/saopaulo"
         />
 
-        {/* Open Graph */}
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Top 5 Things to Do in São Paulo | Nomad Scribbles" />
         <meta property="og:description" content="Discover the best of São Paulo — from lush parks and world-class art galleries to Carnival, street murals, and the seaside charm of Santos." />
@@ -73,13 +88,11 @@ function SaoPaulo() {
         <meta property="og:url" content="https://nomadscribbles.com/brazil/saopaulo" />
         <meta property="og:site_name" content="Nomad Scribbles" />
 
-        {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Top 5 Things to Do in São Paulo | Nomad Scribbles" />
         <meta name="twitter:description" content="Discover the best of São Paulo — from its green parks and creative murals to Carnival and coastal escapes." />
         <meta name="twitter:image" content="https://nomadscribbles.com/images/SaoPauloLanding/SaoPauloFeature.webp" />
 
-        {/* JSON-LD */}
         <script type="application/ld+json">
           {`
             {
@@ -105,7 +118,7 @@ function SaoPaulo() {
         <img
           src={`${process.env.PUBLIC_URL}/images/SaoPauloLanding/SaoPauloFeature.webp`}
           alt="São Paulo skyline with feature title"
-className="w-full max-w-[900px] h-auto max-h-[200px] sm:max-h-[230px] rounded-lg shadow-lg object-contain"
+          className="w-full max-w-[600px] h-auto max-h-[300px] sm:max-h-[100px] rounded-lg shadow-lg object-contain"
         />
       </div>
 
@@ -126,32 +139,71 @@ className="w-full max-w-[900px] h-auto max-h-[200px] sm:max-h-[230px] rounded-lg
           and music leaks from apartment windows. The energy hums beneath everything.
         </p>
 
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-2">
           {/* Pizza Block */}
-          <div className="flex flex-col sm:flex-row items-start gap-4">
-            <img src={`${process.env.PUBLIC_URL}/images/SaoPauloLanding/pizza.webp`} alt="São Paulo-style pizza" loading="lazy" className="w-1/2 sm:w-1/5 rounded-lg shadow-md flex-shrink-0" />
+          <div className="flex flex-col sm:flex-row items-start gap-2">
+            <img
+              src={`${process.env.PUBLIC_URL}/images/SaoPauloLanding/pizza.webp`}
+              alt="São Paulo-style pizza"
+              loading="lazy"
+              className="w-1/2 sm:w-1/5 rounded-lg shadow-md flex-shrink-0 cursor-pointer"
+              onClick={() => setCurrentIndex(inlineImages.findIndex(img => img.id === "pizza"))}
+            />
             <p className="flex-1">
               Pizza here is a quiet religion. Born from Italian ovens, thin and soft, eaten late — sometimes after midnight. Every neighbourhood claims the best slice. The crust cracks softly under your teeth, the cheese stretches like warm sunlight, and each topping tells a story of local tastes and seasonal produce. Sharing a pizza feels like sharing a little piece of São Paulo itself.
             </p>
           </div>
 
           {/* Street + Rain Block */}
-          <div className="flex flex-col sm:flex-row-reverse items-start gap-4">
-            <img src={`${process.env.PUBLIC_URL}/images/SaoPauloLanding/street.webp`} alt="São Paulo street at dusk" loading="lazy" className="w-1/2 sm:w-1/5 rounded-lg shadow-md flex-shrink-0" />
-            <img src={`${process.env.PUBLIC_URL}/images/SaoPauloLanding/rain.webp`} alt="Rain on São Paulo streets" loading="lazy" className="w-1/2 sm:w-1/5 rounded-lg shadow-md flex-shrink-0" />
+          <div className="flex flex-col sm:flex-row-reverse items-start gap-2">
+            <img
+              src={`${process.env.PUBLIC_URL}/images/SaoPauloLanding/street.webp`}
+              alt="São Paulo street at dusk"
+              loading="lazy"
+              className="w-1/2 sm:w-1/5 rounded-lg shadow-md flex-shrink-0 cursor-pointer"
+              onClick={() => setCurrentIndex(inlineImages.findIndex(img => img.id === "street"))}
+            />
+            <img
+              src={`${process.env.PUBLIC_URL}/images/SaoPauloLanding/rain.webp`}
+              alt="Rain on São Paulo streets"
+              loading="lazy"
+              className="w-1/2 sm:w-1/5 rounded-lg shadow-md flex-shrink-0 cursor-pointer"
+              onClick={() => setCurrentIndex(inlineImages.findIndex(img => img.id === "rain"))}
+            />
             <p className="flex-1">
               After the rain, reflections bloom across pavements, shopfronts glow in gold and blue. Even in stillness, São Paulo feels alive — a city that never entirely sleeps. Music floats from open windows, footsteps echo on cobbled streets, and the smell of roasted coffee drifts through alleys. Every corner seems to pulse with a hidden rhythm, inviting wanderers to notice small stories in the mundane.
             </p>
           </div>
 
-          {/* Caipirinha Block */}
-          <div className="flex flex-col sm:flex-row items-start gap-4">
-            <img src={`${process.env.PUBLIC_URL}/images/SaoPauloLanding/caparinha.webp`} alt="Caipirinha cocktail with lime" loading="lazy" className="w-1/2 sm:w-1/5 rounded-lg shadow-md flex-shrink-0" />
-            <img src={`${process.env.PUBLIC_URL}/images/SaoPauloLanding/CaparinhaDrawn.webp`} alt="Illustrated Caipirinha sketch" loading="lazy" className="w-1/2 sm:w-1/5 rounded-lg shadow-md flex-shrink-0" />
-            <p className="flex-1">
-              A Caipirinha marks the pause in a city of ten million. Lime, sugar, cachaça — simple balance. Locals sip between laughter and long stories. The ice clinks in glasses as conversations meander from football to art to the day’s adventures. The tangy sweetness lingers on your tongue, a small reminder to slow down, even in a city that never stops moving.
-            </p>
-          </div>
+{/* Caipirinha Block */}
+<div className="flex flex-col sm:flex-row items-start gap-2">
+  <img
+    src={inlineImages.find(img => img.id === "caparinhaPhoto").blogimage}
+    alt="Caipirinha cocktail with lime"
+    loading="lazy"
+    className="w-1/2 sm:w-1/5 rounded-lg shadow-md flex-shrink-0 cursor-pointer"
+    onClick={() =>
+      setCurrentIndex(
+        inlineImages.findIndex(img => img.id === "caparinhaPhoto")
+      )
+    }
+  />
+  <img
+    src={inlineImages.find(img => img.id === "caparinhaDrawn").blogimage}
+    alt="Illustrated Caipirinha sketch"
+    loading="lazy"
+    className="w-1/2 sm:w-1/5 rounded-lg shadow-md flex-shrink-0 cursor-pointer"
+    onClick={() =>
+      setCurrentIndex(
+        inlineImages.findIndex(img => img.id === "caparinhaDrawn")
+      )
+    }
+  />
+  <p className="flex-1">
+    A Caipirinha marks the pause in a city of ten million. Lime, sugar, cachaça — simple balance. Locals sip between laughter and long stories. The ice clinks in glasses as conversations meander from football to art to the day’s adventures. The tangy sweetness lingers on your tongue, a small reminder to slow down, even in a city that never stops moving.
+  </p>
+</div>
+
         </div>
 
         <p className="text-center mt-4">
@@ -160,7 +212,7 @@ className="w-full max-w-[900px] h-auto max-h-[200px] sm:max-h-[230px] rounded-lg
       </section>
 
       {/* Top 5 List */}
-      <main className="px-4 py-8 max-w-screen-lg mx-auto space-y-16">
+      <main className="px-4 py-8 max-w-screen-lg mx-auto space-y-6">
         <div className="flex justify-center mb-6">
           <img
             src={`${process.env.PUBLIC_URL}/images/SaoPauloLanding/heading3.webp`}
@@ -172,24 +224,30 @@ className="w-full max-w-[900px] h-auto max-h-[200px] sm:max-h-[230px] rounded-lg
 
         {top5.map((item, idx) => (
           <div
-            key={idx}
-            className={`flex flex-col lg:flex-row items-center gap-6 bg-white/85 rounded-lg p-4 shadow-md ${
-              idx % 2 === 1 ? "lg:flex-row-reverse" : ""
-            }`}
-          >
-            <img
-              src={item.image}
-              alt={item.alt}
-              loading="lazy"
-              className="rounded-lg w-full sm:w-3/4 lg:w-2/5 shadow-md hover:opacity-90 transition-opacity"
-            />
-            <div className="flex-1">
-              <h3 className="font-bold text-lg mb-2">{item.title}</h3>
-              <p className="mb-3">{item.text}</p>
-              <a
-                href={item.link}
-                rel="noopener noreferrer"
-                className="inline-block text-[#3b3b3b] font-semibold hover:underline"
+  key={idx}
+  className={`flex flex-col lg:flex-row items-center gap-6 bg-white/50 rounded-lg p-4 shadow-md ${
+    idx % 2 === 1 ? "lg:flex-row-reverse" : ""
+  }`}
+>
+  <a
+    href={item.link}
+    rel="noopener noreferrer"
+    className="w-full sm:w-3/4 lg:w-2/5 flex-shrink-0"
+  >
+    <img
+      src={item.image}
+      alt={item.alt}
+      loading="lazy"
+      className="rounded-lg w-full shadow-md hover:opacity-90 transition-opacity"
+    />
+  </a>
+  <div className="flex-1">
+    <h3 className="font-bold text-lg mb-2">{item.title}</h3>
+    <p className="mb-3">{item.text}</p>
+    <a
+      href={item.link}
+      rel="noopener noreferrer"
+                  className="inline-block text-[#edd98d] font-semibold hover:underline"
               >
                 Read more →
               </a>
@@ -197,6 +255,15 @@ className="w-full max-w-[900px] h-auto max-h-[200px] sm:max-h-[230px] rounded-lg
           </div>
         ))}
       </main>
+
+      {/* Lightbox */}
+      {currentIndex !== null && (
+        <Lightbox
+          images={inlineImages}
+          currentIndex={currentIndex}
+          setCurrentIndex={setCurrentIndex}
+        />
+      )}
     </div>
   );
 }

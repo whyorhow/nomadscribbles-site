@@ -27,7 +27,7 @@ export default function NomadsShop() {
     <div
       className="min-h-screen bg-cover bg-no-repeat"
       style={{
-        backgroundImage: `url(/images/NomadsShop/NomadsShopBgd.png)`,
+        backgroundImage: `url(/images/Home/Background2.webp)`,
         backgroundPosition: "top center",
       }}
     >

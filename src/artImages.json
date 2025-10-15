@@ -43,6 +43,18 @@
     "category": "City Life",
         "shopLink": "/nomads-shop/brazil/saopaulo"
   },
+    {
+    "id": "street",
+    "title": "Street Night Scene",
+    "description": "An electric night in São Paulo streets.",
+    "image": "/images/SaoPauloLanding/small/street.png",
+    "blogimage": "/images/SaoPauloLanding/small/street.jpg",
+    "lightboxImage": "/images/SaoPauloLanding/full/street.jpg",  
+    "gumroadLink": "https://nomadscribbles.gumroad.com/l/tewkw",
+    "category": "City Life",
+        "shopLink": "/nomads-shop/brazil/saopaulo"
+  },
+
  {
   "id": "park1",
   "title": "Ibirapuera Park Print",

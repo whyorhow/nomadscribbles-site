@@ -22,7 +22,7 @@ function Carnival() {
   return (
     <div
       className="min-h-screen bg-cover bg-center bg-no-repeat pt-4"
-      style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/CarnivalSP/CarnivalBackground.png)` }}
+      style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/Home/Background2.webp)` }}
     >
       {/* SEO Meta */}
       <Helmet>

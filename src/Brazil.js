@@ -17,7 +17,7 @@ function Brazil() {
     <div
       className="min-h-screen relative"
       style={{
-        backgroundImage: `url(${process.env.PUBLIC_URL}/images/Brazil/BrazilBack.png)`,
+        backgroundImage: `url(${process.env.PUBLIC_URL}/images/Home/Background2.webp)`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
