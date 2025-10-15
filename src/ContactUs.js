@@ -49,7 +49,7 @@ function ContactUs() {
     <div
       className="min-h-screen bg-cover bg-center bg-no-repeat relative flex flex-col items-center justify-center px-4"
       style={{
-        backgroundImage: `url(${process.env.PUBLIC_URL}/images/Home/Background2.webp)`,
+        backgroundImage: `url(${process.env.PUBLIC_URL}/images/Home/Background2.jpg)`,
       }}
     >
       {/* SEO Meta */}

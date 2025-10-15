@@ -38,7 +38,7 @@ const cities = [
     <div
       className="min-h-screen bg-cover bg-no-repeat"
       style={{
-        backgroundImage: `url(/images/Home/Background2.webp)`,
+        backgroundImage: `url(/images/Home/Background2.jpg)`,
         backgroundPosition: "top center",
       }}
     >

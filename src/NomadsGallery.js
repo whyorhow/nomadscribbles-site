@@ -36,7 +36,7 @@ export default function NomadsGallery({ openLightbox }) {
     <div
       className="min-h-screen pt-4 pb-8 relative"
       style={{
-        backgroundImage: `url(${process.env.PUBLIC_URL + "/images/Home/Background2.webp"})`,
+        backgroundImage: `url(${process.env.PUBLIC_URL + "/images/Home/Background2.jpg"})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",

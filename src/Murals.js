@@ -24,7 +24,7 @@ export default function Murals() {
     <div
       className="min-h-screen relative bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: `url(${process.env.PUBLIC_URL}/images/Home/Background2.webp)`,
+        backgroundImage: `url(${process.env.PUBLIC_URL}/images/Home/Background2.jpg)`,
       }}
     >
       {/* Helmet SEO */}
