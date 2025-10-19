@@ -39,7 +39,7 @@ function Nav() {
           setMenuOpen(false);
           setSearchOpen(false);
           // do not reset openAdventures/openBrazil/openSaoPaulo here
-        }, 5000);
+        }, 2000);
       }
     };
     document.addEventListener("mousemove", resetTimeout);
@@ -231,11 +231,11 @@ className="w-14 h-7 sm:w-16 sm:h-11 md:w-18 md:h-17 flex items-center justify-ce
           ${menuOpen ? "translate-x-0 pointer-events-auto" : "translate-x-full pointer-events-none"}`}
         onClick={stop}
       >
-        <Link className="text-[#38350b] text-lg hover:text-[#0c0b01]" to="/home">Home</Link>
+        <Link className="text-[#38350b] text-lg hover:text-[#0c0b01]" to="/home"onClick={() => setMenuOpen(false)}>Home</Link>
 
         <div className="flex flex-col">
           <div className="flex justify-between items-center w-full">
-            <Link className="text-[#38350b] text-lg hover:text-[#0c0b01]" to="/adventures">Adventures Blog</Link>
+            <Link className="text-[#38350b] text-lg hover:text-[#0c0b01]" to="/adventures"onClick={() => setMenuOpen(false)}>Adventures Blog</Link>
 <button onClick={() => setOpenAdventures((s) => !s)} className="focus:outline-none" aria-label="Toggle travel submenu">
   <Arrow isOpen={openAdventures} />
 </button>
@@ -243,7 +243,7 @@ className="w-14 h-7 sm:w-16 sm:h-11 md:w-18 md:h-17 flex items-center justify-ce
 
           <div className={submenuClass(openAdventures)}>
             <div className="flex justify-between items-center w-full">
-              <Link className="text-[#38350b] text-base hover:text-[#0c0b01]" to="/brazil">Brazil</Link>
+              <Link className="text-[#38350b] text-base hover:text-[#0c0b01]" to="/brazil"onClick={() => setMenuOpen(false)}>Brazil</Link>
               <button onClick={() => setOpenBrazil((s) => !s)} className="focus:outline-none" aria-label="Toggle brazil submenu">
                 <Arrow isOpen={openBrazil} />
               </button>
@@ -251,13 +251,17 @@ className="w-14 h-7 sm:w-16 sm:h-11 md:w-18 md:h-17 flex items-center justify-ce
 
             <div className={submenuClass(openBrazil)}>
               <div className="flex justify-between items-center w-full">
-                <Link className="text-[#38350b] text-base hover:text-[#0c0b01]" to="/brazil/saopaulo">São Paulo</Link>
+                <Link className="text-[#38350b] text-base hover:text-[#0c0b01]" to="/brazil/saopaulo"onClick={() => setMenuOpen(false)}>São Paulo</Link>
                 <button onClick={() => setOpenSaoPaulo((s) => !s)} className="focus:outline-none" aria-label="Toggle saopaulo submenu">
                   <Arrow isOpen={openSaoPaulo} />
                 </button>
               </div>
 
-              <div className={submenuClass(openSaoPaulo)}>
+  {/* Apply one onClick to the whole submenu container */}
+  <div 
+    className={submenuClass(openSaoPaulo)} 
+    onClick={() => setMenuOpen(false)}
+  >
                 <Link to="/brazil/saopaulo/parks" className="text-[#38350b] text-base hover:text-[#0c0b01]">Parks</Link>
                 <Link to="/brazil/saopaulo/museums" className="text-[#38350b] text-base hover:text-[#0c0b01]">Art Galleries</Link>
                 <Link to="/brazil/saopaulo/carnival" className="text-[#38350b] text-base hover:text-[#0c0b01]">Carnival</Link>
@@ -268,9 +272,9 @@ className="w-14 h-7 sm:w-16 sm:h-11 md:w-18 md:h-17 flex items-center justify-ce
           </div>
         </div>
 
-        <Link className="text-[#38350b] text-lg hover:text-[#0c0b01]" to="/nomads-shop">Nomads Shop</Link>
-        <Link className="text-[#38350b] text-lg hover:text-[#0c0b01]" to="/nomads-gallery">Nomads Gallery</Link>
-        <Link className="text-[#38350b] text-lg hover:text-[#0c0b01]" to="/contact-us">Contact Us</Link>
+        <Link className="text-[#38350b] text-lg hover:text-[#0c0b01]" to="/nomads-shop"onClick={() => setMenuOpen(false)}>Nomads Shop</Link>
+        <Link className="text-[#38350b] text-lg hover:text-[#0c0b01]" to="/nomads-gallery"onClick={() => setMenuOpen(false)}>Nomads Gallery</Link>
+        <Link className="text-[#38350b] text-lg hover:text-[#0c0b01]" to="/contact-us"onClick={() => setMenuOpen(false)}>Contact Us</Link>
       </div>
     </>
   );

@@ -7,17 +7,20 @@ export default function CookiePreferences() {
   const navigate = useNavigate();
   const [cookiesAccepted, setCookiesAccepted] = useState(null); // null = no choice yet
   const [nonEssential, setNonEssential] = useState(false);
+  const [newsletterOptIn, setNewsletterOptIn] = useState(false);
 
   // Load saved choices
   useEffect(() => {
     const accepted = localStorage.getItem("cookiesAccepted");
     const rejected = localStorage.getItem("cookiesRejected");
     const nonEssentialStored = localStorage.getItem("cookiesNonEssential") === "true";
+    const newsletterStored = localStorage.getItem("newsletterOptIn") === "true";
 
     if (accepted === "true") setCookiesAccepted(true);
     else if (rejected === "true") setCookiesAccepted(false);
 
     setNonEssential(nonEssentialStored);
+    setNewsletterOptIn(newsletterStored);
   }, []);
 
   const handleChoice = (choice) => {
@@ -42,17 +45,18 @@ export default function CookiePreferences() {
     }
   };
 
+  const handleNewsletterChange = () => {
+    const newValue = !newsletterOptIn;
+    setNewsletterOptIn(newValue);
+    localStorage.setItem("newsletterOptIn", newValue.toString());
+  };
+
   const handleSaveAndReturn = () => {
     navigate(-1); // Go back to previous page
   };
 
   return (
-    <div
-      className="min-h-screen bg-cover bg-center relative text-white"
-      style={{
-        backgroundImage: `url(${process.env.PUBLIC_URL}/images/Home/Background2.jpg)`,
-      }}
-    >
+    <div className="min-h-screen relative text-white">
       {/* Logo */}
       <div className="absolute top-3 left-4 z-10">
         <Logo className="h-6 w-auto sm:h-10" />
@@ -63,15 +67,17 @@ export default function CookiePreferences() {
 
         <section>
           <p>
-            At Nomad Scribbles, we respect your privacy and are committed to protecting your personal data.
+            At Nomad Scribbles, we respect your privacy and are committed to protecting your personal data. 
+            Any personal information you provide, such as your email, will only be used to respond to your inquiries 
+            or for newsletter communications if you opt in. We never sell or share your information with third parties.
           </p>
         </section>
 
         <section>
           <h2 className="text-xl font-semibold mb-2">Cookies</h2>
           <p>
-            We use cookies to enhance your experience on our website. These include essential cookies for site
-            functionality and optional cookies for analytics or marketing. By accepting cookies, you allow us to
+            We use cookies to enhance your experience on our website. These include essential cookies for site 
+            functionality and optional cookies for analytics or marketing. By accepting cookies, you allow us to 
             collect anonymised data to understand how our site is used and improve your experience.
           </p>
         </section>
@@ -79,7 +85,7 @@ export default function CookiePreferences() {
         <section>
           <h2 className="text-xl font-semibold mb-2">External Links & Recommendations</h2>
           <p>
-            Our site may include links to external recommended sites. These may use their own cookies or tracking
+            Our site may include links to external recommended sites. These may use their own cookies or tracking 
             technologies. We do not control these sites, so please review their privacy policies independently.
           </p>
         </section>
@@ -117,6 +123,18 @@ export default function CookiePreferences() {
             </label>
           </div>
 
+          <div className="mt-4 flex items-center gap-2">
+            <input
+              type="checkbox"
+              checked={newsletterOptIn}
+              onChange={handleNewsletterChange}
+              id="newsletterOptIn"
+            />
+            <label htmlFor="newsletterOptIn">
+              I consent to receive the Nomad Scribbles newsletter via email
+            </label>
+          </div>
+
           <button
             onClick={handleSaveAndReturn}
             className="mt-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition-all duration-200"
@@ -128,7 +146,7 @@ export default function CookiePreferences() {
         <section>
           <h2 className="text-xl font-semibold mb-2">Affiliate & Sponsored Content</h2>
           <p>
-            Some links may support Nomad Scribbles through affiliate programs. Clicking these links means you are
+            Some links may support Nomad Scribbles through affiliate programs. Clicking these links means you are 
             visiting a recommended site, and we may receive a small commission at no extra cost to you.
           </p>
         </section>
@@ -136,7 +154,7 @@ export default function CookiePreferences() {
         <section>
           <h2 className="text-xl font-semibold mb-2">Contact</h2>
           <p>
-            For any questions regarding this policy, please visit our{" "}
+            For any questions regarding this policy, including your personal data or cookies, please visit our{" "}
             <Link to="/contact-us" className="underline text-blue-400 hover:text-blue-300">
               Contact page
             </Link>.

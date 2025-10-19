@@ -5,32 +5,26 @@ import Logo from "./Logo";
 
 function Adventures() {
   const countries = [
-    { name: "Austria", img: "/images/Adventures/AustriaFlag.png" },
-    { name: "Belgium", img: "/images/Adventures/BelgiumFlag.png" },
-    { name: "Brazil", img: "/images/Adventures/BrazilFlag.png", link: "/brazil" },
-    { name: "Czech Republic", img: "/images/Adventures/CzechFlag.png" },
-    { name: "England", img: "/images/Adventures/EnglandFlag.png" },
-    { name: "France", img: "/images/Adventures/FranceFlag.png" },
-    { name: "Germany", img: "/images/Adventures/GermanyFlag.png" },
-    { name: "Greece", img: "/images/Adventures/GreeceFlag.png" },
-    { name: "Hungary", img: "/images/Adventures/HungaryFlag.png" },
-    { name: "India", img: "/images/Adventures/IndiaFlag.png" },
-    { name: "Italy", img: "/images/Adventures/ItalyFlag.png" },
-    { name: "Netherlands", img: "/images/Adventures/NetherlandsFlag.png" },
-    { name: "Scotland", img: "/images/Adventures/ScotlandFlag.png" },
-    { name: "Switzerland", img: "/images/Adventures/SwissFlag.png" },
-    { name: "Thailand", img: "/images/Adventures/ThaiFlag.png" },
-    { name: "United States", img: "/images/Adventures/USAFlag.png" },
-    { name: "Wales", img: "/images/Adventures/WalesFlag.png" }
+    { name: "Austria", img: "/images/Adventures/AustriaFlag.webp" },
+    { name: "Belgium", img: "/images/Adventures/BelgiumFlag.webp" },
+    { name: "Brazil", img: "/images/Adventures/BrazilFlag.webp", link: "/brazil" },
+    { name: "Czech Republic", img: "/images/Adventures/CzechFlag.webp" },
+    { name: "England", img: "/images/Adventures/EnglandFlag.webp" },
+    { name: "France", img: "/images/Adventures/FranceFlag.webp" },
+    { name: "Germany", img: "/images/Adventures/GermanyFlag.webp" },
+    { name: "Greece", img: "/images/Adventures/GreeceFlag.webp" },
+    { name: "Hungary", img: "/images/Adventures/HungaryFlag.webp" },
+    { name: "India", img: "/images/Adventures/IndiaFlag.webp" },
+    { name: "Italy", img: "/images/Adventures/ItalyFlag.webp" },
+    { name: "Scotland", img: "/images/Adventures/ScotlandFlag.webp" },
+    { name: "Switzerland", img: "/images/Adventures/SwissFlag.webp" },
+    { name: "Thailand", img: "/images/Adventures/ThaiFlag.webp" },
+    { name: "United States", img: "/images/Adventures/USAFlag.webp" },
+    { name: "Wales", img: "/images/Adventures/WalesFlag.webp" }
   ];
 
   return (
-    <div
-      className="min-h-screen bg-cover bg-center bg-no-repeat pt-4"
-      style={{
-        backgroundImage: `url(${process.env.PUBLIC_URL}/images/Home/Background2.jpg)`
-      }}
-    >
+    <div className="min-h-screen pt-4">
       {/* SEO Component */}
       <SEO
         title="Adventures Around the World | Nomad Scribbles"
@@ -56,14 +50,22 @@ function Adventures() {
         />
       </div>
 
-      {/* Main Content */}
-      <main className="px-4 py-6 max-w-screen-lg mx-auto text-center text-[#FFF6EE] space-y-6">
-        <p>
-          Explore the places we’ve journeyed through, each flag opening a window into new stories and adventures.
-        </p>
+{/* Main Content */}
+<main className="px-2 py-0 max-w-screen-lg mx-auto text-center text-[#eeda8d] space-y-0">
+  <p className="text-lg sm:text-xl md:text-2xl font-cormorant italic leading-relaxed tracking-wide">
+    Explore the places we’ve journeyed through, each flag opening a window into new stories and adventures.
+  </p>
 
+  {/*
+  <p className="text-base sm:text-lg md:text-xl leading-relaxed tracking-wide">
+    From bustling cities to quiet villages, follow along as we share moments of culture, nature, and everyday discovery.
+  </p>
+
+  <p className="text-base sm:text-lg md:text-xl leading-relaxed tracking-wide">
+    Every adventure is a story, and every story is a memory — welcome to Nomad Scribbles.
+  </p>
         {/* Country Flags */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mt-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 mt-4">
           {countries.map((country, index) => {
             const FlagWrapper = country.link ? Link : "div";
             return (

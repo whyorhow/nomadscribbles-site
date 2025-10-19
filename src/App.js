@@ -120,10 +120,12 @@ function App() {
   };
 
   return (
-    <Router>
-      <PageTitleManager />
+
+  <Router>
+    {/* Global background wrapper */}
+<div className="min-h-screen flex flex-col bg-[#54644f] text-[#eeda8d]">
+        <PageTitleManager />      
       <Nav />
-      <div className="flex flex-col min-h-screen">
         <div className="flex-grow">
           <Routes>
             <Route path="/" element={<Home openLightbox={openLightbox} />} />

@@ -1,5 +1,9 @@
 @tailwind base;
 
+.font-cormorant {
+  font-family: 'Cormorant Garamond', serif;
+}
+
 /* Global reset */
 html, body, #root {
   margin: 0;

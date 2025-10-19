@@ -6,6 +6,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+       colors: {
+        primaryText: '#0e1406', // your soft dark green
+      },
+      fontFamily: {
+        cormorant: ['Cormorant', 'serif'], // your chosen font
+      },
       backgroundImage: {
         'art-gallery': "url('/images/ArtGalleryBackground.jpg')",
         'carnival': "url('/images/CarnivalBackground.jpg')",

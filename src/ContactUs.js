@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import { Helmet } from "react-helmet-async";
 import Logo from "./Logo";
+import SEO from "./components/SEO";
+import { motion } from "framer-motion";
 
-function ContactUs() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+export default function ContactUs() {
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -19,6 +16,13 @@ function ContactUs() {
 
     if (!formData.email.includes("@")) {
       alert("Please enter a valid email address.");
+      return;
+    }
+
+    // GDPR consent check
+    const nonEssentialConsent = localStorage.getItem("cookiesNonEssential") === "true";
+    if (!nonEssentialConsent) {
+      alert("You must accept non-essential cookies to send us a message.");
       return;
     }
 
@@ -34,9 +38,7 @@ function ContactUs() {
       const result = await res.json();
       alert(result.message);
 
-      if (res.ok) {
-        setFormData({ name: "", email: "", message: "" });
-      }
+      if (res.ok) setFormData({ name: "", email: "", message: "" });
     } catch (error) {
       console.error("Error sending email:", error);
       alert("There was an error sending your message. Please try again later.");
@@ -46,43 +48,25 @@ function ContactUs() {
   };
 
   return (
-    <div
-      className="min-h-screen bg-cover bg-center bg-no-repeat relative flex flex-col items-center justify-center px-4"
-      style={{
-        backgroundImage: `url(${process.env.PUBLIC_URL}/images/Home/Background2.jpg)`,
-      }}
-    >
-      {/* SEO Meta */}
-      <Helmet>
-        <title>Contact Us | Nomad Scribbles</title>
-        <meta
-          name="description"
-          content="Get in touch with Nomad Scribbles — send us a message and share your travel adventures or questions."
-        />
-        <meta property="og:title" content="Contact Nomad Scribbles" />
-        <meta
-          property="og:description"
-          content="Reach out to Nomad Scribbles for questions, collaborations, or sharing your travel stories."
-        />
-        <meta
-          property="og:image"
-          content={`${process.env.PUBLIC_URL}/images/Contact/ContactBackground.png`}
-        />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://nomadscribbles.com/contact" />
-      </Helmet>
+    <div className="min-h-screen relative flex flex-col items-center px-4 pt-4 pb-10">
+      {/* SEO */}
+      <SEO
+        title="Contact Us | Nomad Scribbles"
+        description="Get in touch with Nomad Scribbles — send us a message and share your travel adventures or questions."
+        image="/images/Contact/ContactBackground.png"
+        url="https://nomadscribbles.com/contact"
+      />
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/40"></div>
+      {/* Hidden H1 for accessibility */}
+      <h1 className="sr-only">Contact Us | Nomad Scribbles</h1>
 
       {/* Logo */}
       <div className="absolute top-3 left-4 z-10">
         <Logo className="h-6 w-auto sm:h-10" />
       </div>
 
-      {/* Page Title (image with hidden text for SEO) */}
+      {/* Page Title */}
       <div className="relative z-10 mt-10 mb-6 text-center">
-        <h1 className="sr-only">Contact Us</h1>
         <img
           src={process.env.PUBLIC_URL + "/images/Contact/ContactTitle.png"}
           alt="Contact Us"
@@ -91,12 +75,16 @@ function ContactUs() {
       </div>
 
       {/* Contact Form */}
-      <main className="relative z-10 w-full max-w-md bg-white/80 backdrop-blur-md p-6 sm:p-8 rounded-2xl shadow-xl text-center mb-10">
+      <motion.main
+        initial="hidden"
+        animate="visible"
+        variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.2 } } }}
+        className="relative z-10 w-full max-w-md bg-white/80 backdrop-blur-md p-6 sm:p-8 rounded-2xl shadow-xl text-center"
+      >
         <form onSubmit={handleSubmit} className="space-y-5 text-left">
-          <div>
-            <label htmlFor="name" className="block mb-1 font-medium text-[#1C1F13]">
-              Name
-            </label>
+          {/* Name */}
+          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
+            <label htmlFor="name" className="block mb-1 font-medium text-[#1C1F13]">Name</label>
             <input
               type="text"
               name="name"
@@ -106,12 +94,11 @@ function ContactUs() {
               required
               className="w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#F5FCD9] focus:border-[#F5FCD9]"
             />
-          </div>
+          </motion.div>
 
-          <div>
-            <label htmlFor="email" className="block mb-1 font-medium text-[#1C1F13]">
-              Email
-            </label>
+          {/* Email */}
+          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
+            <label htmlFor="email" className="block mb-1 font-medium text-[#1C1F13]">Email</label>
             <input
               type="email"
               name="email"
@@ -121,12 +108,11 @@ function ContactUs() {
               required
               className="w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#F5FCD9] focus:border-[#F5FCD9]"
             />
-          </div>
+          </motion.div>
 
-          <div>
-            <label htmlFor="message" className="block mb-1 font-medium text-[#1C1F13]">
-              Message
-            </label>
+          {/* Message */}
+          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
+            <label htmlFor="message" className="block mb-1 font-medium text-[#1C1F13]">Message</label>
             <textarea
               name="message"
               id="message"
@@ -135,22 +121,31 @@ function ContactUs() {
               onChange={handleChange}
               required
               className="w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#F5FCD9] focus:border-[#F5FCD9]"
-            ></textarea>
-          </div>
+            />
+          </motion.div>
 
-          <div className="flex justify-center">
-            <button
+          {/* GDPR / Consent Notice */}
+          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+            className="text-sm text-gray-700"
+          >
+            By sending this message, you consent to Nomad Scribbles collecting and using your information to respond. See our{" "}
+            <a href="/cookie-preferences" className="underline text-[#1C1F13]">Privacy & Cookie Policy</a>.
+          </motion.div>
+
+          {/* Submit */}
+          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex justify-center">
+            <motion.button
               type="submit"
               disabled={loading}
-              className="bg-[#F5FCD9] text-[#1C1F13] font-semibold py-2 px-6 rounded-full hover:bg-opacity-90 transition"
+              whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(245, 252, 217, 0.6)" }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-[#F5FCD9] text-[#1C1F13] font-semibold py-2 px-6 rounded-full transition-transform duration-300"
             >
               {loading ? "Sending..." : "Send Message"}
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
         </form>
-      </main>
+      </motion.main>
     </div>
   );
 }
-
-export default ContactUs;

@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import Logo from "./Logo"; // adjust path if needed
 
-export default function TrailTreasuresSaoPaulo({ openLightbox }) {
+export default function NomadsShopSaoPaulo({ openLightbox }) {
   const items = [
     // City Life
     {
       id: "caparinhaPhoto",
       title: "Caipirinha Photo",
       description: "A refreshing caipirinha moment in São Paulo.",
-      image: "/images/SaoPauloLanding/full/caparinha.jpg",
+      image: "/images/SaoPauloLanding/thumbnail/caparinha.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/oiloo",
       category: "City Life",
     },
@@ -16,7 +16,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "caparinhaDrawn",
       title: "Caipirinha Drawing",
       description: "Artistic drawn version of a caipirinha.",
-      image: "/images/SaoPauloLanding/full/CaparinhaDrawn.jpg",
+      image: "/images/SaoPauloLanding/thumbnail/CaparinhaDrawn.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/byrhy",
       category: "City Life",
     },
@@ -24,7 +24,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "pizza",
       title: "Pizza Print",
       description: "São Paulo’s famous pizza scene captured.",
-      image: "/images/SaoPauloLanding/full/pizza.jpg",
+      image: "/images/SaoPauloLanding/thumbnail/pizza.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/iechb",
       category: "City Life",
     },
@@ -32,7 +32,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "rain",
       title: "Rain Scene",
       description: "A rainy day in São Paulo streets.",
-      image: "/images/SaoPauloLanding/full/rain.jpg",
+      image: "/images/SaoPauloLanding/thumbnail/rain.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/rpfnoe",
       category: "City Life",
     },
@@ -42,7 +42,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "park1",
       title: "Ibirapuera Park Print",
       description: "Beautiful view of Ibirapuera Park in São Paulo.",
-      image: "/images/SP-Parks/full/Park1.jpg",
+      image: "/images/SP-Parks/thumbnail/Park1.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/nmdpn",
       category: "Parks",
     },
@@ -50,7 +50,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "park2",
       title: "Park2 Print",
       description: "Another view of São Paulo’s parks.",
-      image: "/images/SP-Parks/full/Park2.jpg",
+      image: "/images/SP-Parks/thumbnail/Park2.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/zypszc",
       category: "Parks",
     },
@@ -58,7 +58,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "park3",
       title: "Park3 Print",
       description: "Capturing the greenery of the city.",
-      image: "/images/SP-Parks/full/Park3.jpg",
+      image: "/images/SP-Parks/thumbnail/Park3.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/wwpco",
       category: "Parks",
     },
@@ -66,7 +66,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "park4",
       title: "Park4 Print",
       description: "Quiet corners of Ibirapuera Park.",
-      image: "/images/SP-Parks/full/Park4.jpg",
+      image: "/images/SP-Parks/thumbnail/Park4.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/pdlkl",
       category: "Parks",
     },
@@ -74,7 +74,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "park5",
       title: "Park5 Print",
       description: "Park paths and city skyline.",
-      image: "/images/SP-Parks/full/Park5.jpg",
+      image: "/images/SP-Parks/thumbnail/Park5.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/dqsmj",
       category: "Parks",
     },
@@ -82,7 +82,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "park6",
       title: "Park6 Print",
       description: "Sunlight through the trees.",
-      image: "/images/SP-Parks/full/Park6.jpg",
+      image: "/images/SP-Parks/thumbnail/Park6.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/lstekx",
       category: "Parks",
     },
@@ -90,7 +90,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "park7",
       title: "Burle Marx Poster",
       description: "Iconic design poster of Burle Marx.",
-      image: "/images/SP-Parks/full/Park7.jpg",
+      image: "/images/SP-Parks/thumbnail/Park7.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/vgmnwm",
       category: "Parks",
     },
@@ -100,7 +100,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "graffiti1",
       title: "Graffiti 1",
       description: "Vibrant street art in São Paulo.",
-      image: "/images/Murals/full/Graffiti1.jpg",
+      image: "/images/Murals/thumbnail/Graffiti1.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/lyxdq",
       category: "Murals",
     },
@@ -108,7 +108,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "graffiti2",
       title: "Graffiti 2",
       description: "Urban mural capturing city life.",
-      image: "/images/Murals/full/Graffiti2.jpg",
+      image: "/images/Murals/thumbnail/Graffiti2.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/vxqtux",
       category: "Murals",
     },
@@ -116,7 +116,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "graffiti3",
       title: "Graffiti 3",
       description: "Colourful street art scene.",
-      image: "/images/Murals/full/Graffiti3.jpg",
+      image: "/images/Murals/thumbnail/Graffiti3.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/mztdgd",
       category: "Murals",
     },
@@ -124,7 +124,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "graffiti4",
       title: "Graffiti 4",
       description: "A wall full of creative expression.",
-      image: "/images/Murals/full/Graffiti4.jpg",
+      image: "/images/Murals/thumbnail/Graffiti4.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/gipav",
       category: "Murals",
     },
@@ -132,7 +132,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "graffiti5",
       title: "Graffiti 5",
       description: "São Paulo mural culture captured.",
-      image: "/images/Murals/full/Graffiti5.jpg",
+      image: "/images/Murals/thumbnail/Graffiti5.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/twbmh",
       category: "Murals",
     },
@@ -140,7 +140,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "graffiti6",
       title: "Graffiti 6",
       description: "Urban art in the city streets.",
-      image: "/images/Murals/full/Graffiti6.jpg",
+      image: "/images/Murals/thumbnail/Graffiti6.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/mgmcf",
       category: "Murals",
     },
@@ -148,7 +148,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "graffiti7",
       title: "Graffiti 7",
       description: "Dynamic colours and shapes.",
-      image: "/images/Murals/full/Graffiti7.jpg",
+      image: "/images/Murals/thumbnail/Graffiti7.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/sbhqbf",
       category: "Murals",
     },
@@ -156,7 +156,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "graffiti8",
       title: "Graffiti 8",
       description: "Street art showcasing São Paulo vibes.",
-      image: "/images/Murals/full/Graffiti8.jpg",
+      image: "/images/Murals/thumbnail/Graffiti8.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/klcopp",
       category: "Murals",
     },
@@ -166,7 +166,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "santos1",
       title: "Santos 1",
       description: "Coastal charm of Santos, Brazil.",
-      image: "/images/Santos/Santos1.jpg",
+      image: "/images/Santos/thumbnail/Santos1.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/imrcgs",
       category: "Santos",
     },
@@ -174,7 +174,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "santos2",
       title: "Santos 2",
       description: "Scenes from the port city of Santos.",
-      image: "/images/Santos/Santos2.jpg",
+      image: "/images/Santos/thumbnail/Santos2.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/felnv",
       category: "Santos",
     },
@@ -182,7 +182,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "santos3",
       title: "Santos 3",
       description: "Ocean and urban blend in Santos.",
-      image: "/images/Santos/Santos3.jpg",
+      image: "/images/Santos/thumbnail/Santos3.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/epmgt",
       category: "Santos",
     },
@@ -190,7 +190,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "santos4",
       title: "Santos 4",
       description: "Views from the coastline of Santos.",
-      image: "/images/Santos/Santos4.jpg",
+      image: "/images/Santos/thumbnail/Santos4.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/xhgdwdd",
       category: "Santos",
     },
@@ -198,7 +198,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "santos5",
       title: "Santos 5",
       description: "Life by the beaches of Santos.",
-      image: "/images/Santos/Santos5.jpg",
+      image: "/images/Santos/thumbnail/Santos5.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/rswumv",
       category: "Santos",
     },
@@ -206,7 +206,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "santos6",
       title: "Santos 5 Artwork",
       description: "Another moment from the city of Santos.",
-      image: "/images/Santos/Santos5Drawn.jpg",
+      image: "/images/Santos/thumbnail/Santos5Drawn.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/ynvfwu",
       category: "Santos",
     },
@@ -216,7 +216,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "carnival1",
       title: "Carnival 1",
       description: "São Paulo Carnival streets alive with color and music",
-      image: "/images/CarnivalSP/Carnival1.jpg",
+      image: "/images/CarnivalSP/thumbnail/Carnival1.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/junhjy",
       category: "Carnival",
     },
@@ -224,7 +224,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "carnival2",
       title: "Carnival 2",
       description: "Samba schools perform at Sambódromo do Anhembi",
-      image: "/images/CarnivalSP/Carnival2.jpg",
+      image: "/images/CarnivalSP/thumbnail/Carnival2.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/htrdk",
       category: "Carnival",
     },
@@ -232,7 +232,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "carnival3",
       title: "Carnival 3",
       description: "Floats behind the scenes at Sambódromo",
-      image: "/images/CarnivalSP/Carnival3.jpg",
+      image: "/images/CarnivalSP/thumbnail/Carnival3.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/oktonph",
       category: "Carnival",
     },
@@ -240,7 +240,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "carnival4",
       title: "Carnival 4",
       description: "Spectators watching Carnival, city rhythms unfolding",
-      image: "/images/CarnivalSP/Carnival4.jpg",
+      image: "/images/CarnivalSP/thumbnail/Carnival4.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/hfnkpg",
       category: "Carnival",
     },
@@ -248,7 +248,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "carnival5",
       title: "Carnival 5",
       description: "Blocos in alleyways and open parks during Carnival",
-      image: "/images/CarnivalSP/Carnival5.jpg",
+      image: "/images/CarnivalSP/thumbnail/Carnival5.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/cgujou",
       category: "Carnival",
     },
@@ -256,7 +256,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "carnival6",
       title: "Carnival 6",
       description: "Ibirapuera Park bloco dancers winding through trees",
-      image: "/images/CarnivalSP/Carnival6.jpg",
+      image: "/images/CarnivalSP/thumbnail/Carnival6.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/iuzniy",
       category: "Carnival",
     },
@@ -264,7 +264,7 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
       id: "carnival7",
       title: "Carnival 7",
       description: "Drag performers performing marchinhas at a bloco",
-      image: "/images/CarnivalSP/Carnival7.jpg",
+      image: "/images/CarnivalSP/thumbnail/Carnival7.webp",
       gumroadLink: "https://nomadscribbles.gumroad.com/l/mykatk",
       category: "Carnival",
     },
@@ -287,10 +287,10 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
 
   return (
     <div
-      className="min-h-screen bg-cover bg-no-repeat"
+     className="min-h-screen"
+
       style={{
-        backgroundImage: `url(/images/Home/Background2.jpg)`,
-        backgroundPosition: "top center",
+   
       }}
     >
       <div className="absolute top-3 left-4 z-8">
@@ -299,15 +299,19 @@ export default function TrailTreasuresSaoPaulo({ openLightbox }) {
 
       <div className="flex justify-center mb-6">
         <img
-          src="/images/NomadsShop/NomadsShopTitle.png"
+          src="/images/NomadsShop/NomadsShopTitle.webp"
           alt="NomadsShop Title"
           className="w-2/3 sm:w-[60%] lg:w-1/3 h-auto rounded-lg"
         />
       </div>
-
-      <h1 className="text-center text-[#111] text-3xl font-semibold mb-6">
-        São Paulo
-      </h1>
+   <div className="flex justify-center mt-2 mb-2">
+        <img
+          src={`${process.env.PUBLIC_URL}/images/SaoPauloLanding/SaoPauloFeature.webp`}
+          alt="São Paulo skyline with feature title"
+          className="w-full max-w-[600px] h-auto rounded-lg shadow-lg object-contain"
+        />
+      </div>
+ <h1 className="sr-only">São Paulo</h1>
 
       <div className="flex flex-wrap justify-center gap-3 mb-8">
         {categories.map((cat) => (

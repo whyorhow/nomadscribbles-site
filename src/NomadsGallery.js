@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import artImages from "./artImages.json";
 import Logo from "./Logo";
-import { ReactComponent as NomadsTitle } from "./assets/images/NGTitle.svg";
+import SEO from "./components/SEO";
 
 export default function NomadsGallery({ openLightbox }) {
   const [shuffledImages, setShuffledImages] = useState([]);
@@ -33,29 +33,35 @@ export default function NomadsGallery({ openLightbox }) {
   };
 
   return (
-    <div
-      className="min-h-screen pt-4 pb-8 relative"
-      style={{
-        backgroundImage: `url(${process.env.PUBLIC_URL + "/images/Home/Background2.jpg"})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundAttachment: "fixed",
-      }}
-    >
-      {/* Logo at top-left */}
+    <div className="min-h-screen pt-4 pb-8 relative">
+      {/* SEO */}
+      <SEO
+        title="Nomads Gallery | Nomad Scribbles"
+        description="Explore our curated gallery of photos and artwork from our travels around the world."
+        image="/images/NomadsGallery/NGTitle.webp"
+        slug="/nomads-gallery"
+        canonical="https://nomadscribbles.com/nomads-gallery"
+      />
+
+      {/* Logo */}
       <div className="absolute top-3 left-4 z-20">
         <Link to="/home">
           <Logo className="h-6 w-auto sm:h-10" />
         </Link>
       </div>
 
-      {/* Overlay for slight dark tint to improve readability */}
-      <div className="absolute inset-0 bg-black/20 z-10"></div>
-
-      {/* Title */}
+      {/* Title Image */}
       <div className="flex justify-center mb-6 relative z-10">
-        <NomadsTitle className="w-32 sm:w-96 h-auto" />
+        <img
+          src={process.env.PUBLIC_URL + "/images/NomadsGallery/NGTitle.webp"}
+          alt="Nomads Gallery"
+          className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg h-auto"
+        />
       </div>
+            {/* Instruction heading */}
+      <h1 className="text-center text-3xl sm:text-4xl font-bold mt-4 mb-8 text-primaryText relative z-10">
+        Click a photo below to explore the gallery.
+      </h1>
 
       {/* Masonry Grid with stagger */}
       <motion.main
@@ -82,7 +88,7 @@ export default function NomadsGallery({ openLightbox }) {
               transition={{ type: "spring", stiffness: 200, damping: 30 }}
             >
               <img
-                src={img.image}
+                src={img.image.replace(/\.(jpg|jpeg|png)$/, ".webp")}
                 alt={img.title}
                 className="w-full h-full object-contain block drop-shadow-[0_30px_30px_rgba(0,0,0,0.35)]"
                 loading="lazy"
