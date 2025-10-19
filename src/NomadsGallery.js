@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import artImages from "./artImages.json";
 import Logo from "./Logo";
 import SEO from "./components/SEO";
+import { fadeScale, hoverScale, staggerContainer } from "./animations";
 
 export default function NomadsGallery({ openLightbox }) {
   const [shuffledImages, setShuffledImages] = useState([]);
@@ -17,24 +18,8 @@ export default function NomadsGallery({ openLightbox }) {
     openLightbox(index, shuffledImages);
   };
 
-  // Motion variants
-  const containerVariants = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.08 } },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
-  };
-
   return (
     <div className="min-h-screen pt-4 pb-8 relative">
-      {/* SEO */}
       <SEO
         title="Nomads Gallery | Nomad Scribbles"
         description="Explore our curated gallery of photos and artwork from our travels around the world."
@@ -43,14 +28,12 @@ export default function NomadsGallery({ openLightbox }) {
         canonical="https://nomadscribbles.com/nomads-gallery"
       />
 
-      {/* Logo */}
       <div className="absolute top-3 left-4 z-20">
         <Link to="/home">
           <Logo className="h-6 w-auto sm:h-10" />
         </Link>
       </div>
 
-      {/* Title Image */}
       <div className="flex justify-center mb-6 relative z-10">
         <img
           src={process.env.PUBLIC_URL + "/images/NomadsGallery/NGTitle.webp"}
@@ -58,15 +41,14 @@ export default function NomadsGallery({ openLightbox }) {
           className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg h-auto"
         />
       </div>
-            {/* Instruction heading */}
+
       <h1 className="text-center text-3xl sm:text-4xl font-bold mt-4 mb-8 text-primaryText relative z-10">
         Click a photo below to explore the gallery.
       </h1>
 
-      {/* Masonry Grid with stagger */}
       <motion.main
         className="px-4 max-w-screen-xl mx-auto columns-2 sm:columns-3 md:columns-4 gap-4 relative z-10"
-        variants={containerVariants}
+        variants={staggerContainer}
         initial="hidden"
         animate="visible"
       >
@@ -78,14 +60,17 @@ export default function NomadsGallery({ openLightbox }) {
               key={img.id}
               className="mb-4 break-inside-avoid relative cursor-pointer"
               style={{ height: isLarge ? "28rem" : "20rem" }}
-              variants={itemVariants}
+              variants={fadeScale}
               onClick={() => handleClick(index)}
               tabIndex={0}
               onKeyPress={(e) => {
                 if (e.key === "Enter") handleClick(index);
               }}
-              whileHover={{ scale: 1.5, zIndex: 50 }}
+              whileHover="hover"
               transition={{ type: "spring", stiffness: 200, damping: 30 }}
+              animate={fadeScale.visible}
+              initial={fadeScale.hidden}
+              exit={fadeScale.exit}
             >
               <img
                 src={img.image.replace(/\.(jpg|jpeg|png)$/, ".webp")}

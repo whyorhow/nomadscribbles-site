@@ -8,13 +8,22 @@ import FullscreenIcon from "./assets/images/enlarge.svg";
 export default function Lightbox({ images = [], currentIndex, setCurrentIndex }) {
   const containerRef = useRef(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleFullscreenChange = () => {
       setIsFullscreen(Boolean(document.fullscreenElement));
     };
     document.addEventListener("fullscreenchange", handleFullscreenChange);
-    return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
+
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      window.removeEventListener("resize", checkMobile);
+    };
   }, []);
 
   if (currentIndex === null || !images[currentIndex]) return null;
@@ -49,7 +58,6 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex })
   const cardHeight = 160;
   const verticalPadding = 32;
   const viewportHeight = typeof window !== "undefined" ? window.innerHeight : 800;
-  const maxImageHeight = isFullscreen ? viewportHeight : viewportHeight - cardHeight - verticalPadding;
 
   return (
     <AnimatePresence>
@@ -90,7 +98,10 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex })
             {/* Left arrow */}
             <button
               className="absolute top-1/2 flex items-center justify-center z-50"
-              style={{ left: isFullscreen ? "-3rem" : "-5rem", transform: "translateY(-50%)" }}
+              style={{
+                left: isFullscreen ? "-3rem" : isMobile ? "0.5rem" : "-5rem",
+                transform: "translateY(-50%)"
+              }}
               onClick={(e) => { e.stopPropagation(); showPrev(); }}
             >
               <img src={LeftArrow} alt="Previous" className="w-8 h-12 transition-transform duration-200 ease-in-out hover:scale-125 hover:brightness-150" />
@@ -99,7 +110,10 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex })
             {/* Right arrow */}
             <button
               className="absolute top-1/2 flex items-center justify-center z-50"
-              style={{ right: isFullscreen ? "-3rem" : "-5rem", transform: "translateY(-50%)" }}
+              style={{
+                right: isFullscreen ? "-3rem" : isMobile ? "0.5rem" : "-5rem",
+                transform: "translateY(-50%)"
+              }}
               onClick={(e) => { e.stopPropagation(); showNext(); }}
             >
               <img src={RightArrow} alt="Next" className="w-8 h-12 transition-transform duration-200 ease-in-out hover:scale-125 hover:brightness-150" />
@@ -108,7 +122,7 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex })
             {/* Close button */}
             <button
               className="absolute w-10 h-10 flex items-center justify-center z-50"
-              style={{ top: "-0.5rem", right: "-3rem" }}
+              style={{ top: "-0.5rem", right: isMobile ? "1rem" : "-3rem" }}
               onClick={(e) => { e.stopPropagation(); setCurrentIndex(null); }}
             >
               <img src={CloseIcon} alt="Close" className="w-6 h-6 transition-transform duration-200 ease-in-out hover:scale-125 hover:brightness-150" />
@@ -118,7 +132,7 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex })
             {!isFullscreen && (
               <button
                 className="absolute w-10 h-10 flex items-center justify-center z-50"
-                style={{ top: "-0.5rem", left: "-3rem" }}
+                style={{ top: "-0.5rem", left: isMobile ? "1rem" : "-3rem" }}
                 onClick={toggleFullscreen}
               >
                 <img

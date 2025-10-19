@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import Logo from "./Logo"; // adjust path if needed
+import { motion } from "framer-motion";
+import Logo from "./Logo";
+import { fadeScale, hoverScale, staggerContainer } from "./animations";
 
 export default function NomadsShopSaoPaulo({ openLightbox }) {
   const items = [
@@ -270,7 +272,7 @@ export default function NomadsShopSaoPaulo({ openLightbox }) {
     },
   ];
 
-  const categories = ["All", "City Life", "Parks", "Murals", "Santos", "Carnival"];
+const categories = ["All", "City Life", "Parks", "Murals", "Santos", "Carnival"];
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [visibleCount, setVisibleCount] = useState(12);
 
@@ -281,17 +283,20 @@ export default function NomadsShopSaoPaulo({ openLightbox }) {
 
   const visibleItems = filteredItems.slice(0, visibleCount);
 
-  const imagesArray = filteredItems.map((i) => i.image);
-  const altsArray = filteredItems.map((i) => i.title);
-  const gumroadArray = filteredItems.map((i) => i.gumroadLink);
+  // prepare objects for lightbox
+  const lightboxItems = filteredItems.map((item) => ({
+    image: item.image,
+    title: item.title,
+    shortDescription: item.description,
+    gumroadLink: item.gumroadLink,
+  }));
 
   return (
-    <div
-     className="min-h-screen"
-
-      style={{
-   
-      }}
+    <motion.div
+      className="min-h-screen"
+      variants={staggerContainer}
+      initial="hidden"
+      animate="visible"
     >
       <div className="absolute top-3 left-4 z-8">
         <Logo className="h-6 w-auto sm:h-10" />
@@ -304,14 +309,16 @@ export default function NomadsShopSaoPaulo({ openLightbox }) {
           className="w-2/3 sm:w-[60%] lg:w-1/3 h-auto rounded-lg"
         />
       </div>
-   <div className="flex justify-center mt-2 mb-2">
+
+      <div className="flex justify-center mt-2 mb-2">
         <img
           src={`${process.env.PUBLIC_URL}/images/SaoPauloLanding/SaoPauloFeature.webp`}
           alt="São Paulo skyline with feature title"
           className="w-full max-w-[600px] h-auto rounded-lg shadow-lg object-contain"
         />
       </div>
- <h1 className="sr-only">São Paulo</h1>
+
+      <h1 className="sr-only">São Paulo</h1>
 
       <div className="flex flex-wrap justify-center gap-3 mb-8">
         {categories.map((cat) => (
@@ -333,62 +340,57 @@ export default function NomadsShopSaoPaulo({ openLightbox }) {
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-screen-lg mx-auto">
-        {visibleItems.map((item) => {
-          const lightboxIndex = filteredItems.indexOf(item);
-          return (
-            <div
-              key={item.id}
-              className="relative w-full h-48 rounded-lg overflow-hidden cursor-pointer transform transition-all duration-200 hover:scale-105 hover:shadow-xl"
-              onClick={() =>
-                openLightbox(lightboxIndex, imagesArray, altsArray, gumroadArray)
-              }
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  openLightbox(lightboxIndex, imagesArray, altsArray, gumroadArray);
-                }
-              }}
-            >
-              <img
-                src={item.image}
-                alt={item.title}
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-              <div className="absolute bottom-0 left-0 w-full bg-white/60 backdrop-blur-sm p-2 flex flex-col items-center gap-1 rounded-b-lg">
-                <p className="text-[#111] font-semibold text-sm sm:text-base text-center">
-                  {item.title}
-                </p>
-                <p className="text-[#111] text-xs sm:text-sm text-center">
-                  {item.description}
-                </p>
-                {item.gumroadLink && (
-                  <a
-                    href={item.gumroadLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-gray-200 text-[#111] py-1 px-2 rounded hover:bg-gray-300 transition text-xs sm:text-sm"
-                  >
-                    Purchase
-                  </a>
-                )}
-              </div>
+        {visibleItems.map((item, index) => (
+          <motion.div
+            key={item.id}
+            variants={fadeScale}
+            whileHover={hoverScale}
+            className="relative w-full h-48 rounded-lg overflow-hidden cursor-pointer transform transition-all duration-200 hover:shadow-xl"
+            onClick={() => openLightbox(index, lightboxItems)}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") openLightbox(index, lightboxItems);
+            }}
+          >
+            <img
+              src={item.image}
+              alt={item.title}
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+            <div className="absolute bottom-0 left-0 w-full bg-white/60 backdrop-blur-sm p-2 flex flex-col items-center gap-1 rounded-b-lg">
+              <p className="text-[#111] font-semibold text-sm sm:text-base text-center">
+                {item.title}
+              </p>
+              <p className="text-[#111] text-xs sm:text-sm text-center">{item.description}</p>
+              {item.gumroadLink && (
+                <a
+                  href={item.gumroadLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gray-200 text-[#111] py-1 px-2 rounded hover:bg-gray-300 transition text-xs sm:text-sm"
+                >
+                  Purchase
+                </a>
+              )}
             </div>
-          );
-        })}
+          </motion.div>
+        ))}
       </div>
 
       {visibleCount < filteredItems.length && (
         <div className="flex justify-center my-8">
-          <button
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => setVisibleCount((prev) => prev + 12)}
             className="px-6 py-3 bg-black text-white rounded-lg hover:bg-black/80 transition"
           >
             Load More
-          </button>
+          </motion.button>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }
