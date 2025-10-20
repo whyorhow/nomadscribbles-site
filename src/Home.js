@@ -19,6 +19,9 @@ function Home() {
   const [showMiniSP, setShowMiniSP] = useState(false);
   const [showMiniSantos, setShowMiniSantos] = useState(false);
 
+  // Detect mobile device
+  const isMobile = window.innerWidth <= 768;
+
   useEffect(() => {
     setCards([...originalCards, ...originalCards, ...originalCards]);
 
@@ -54,8 +57,11 @@ function Home() {
   };
 
   const handleSPClick = () => {
-    if (!showMiniSP) setShowMiniSP(true);
-    else navigate("/brazil/saopaulo");
+    if (isMobile) {
+      setShowMiniSP(!showMiniSP);
+    } else {
+      navigate("/brazil/saopaulo");
+    }
   };
 
   const handleSantosClick = () => {
@@ -105,65 +111,57 @@ function Home() {
         </motion.div>
       </motion.div>
 
-{/* São Paulo Feature */}
-<motion.div
-  initial="hidden"
-  animate="visible"
-  variants={staggerContainer}
-  className="w-full mt-4 px-2 sm:px-4 relative"
->
-  <motion.div
-    className="relative block w-full max-w-[80%] sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden group transition-all duration-[2000ms]"
-    onMouseEnter={() => window.innerWidth >= 640 && setShowMiniSP(true)}
-    onMouseLeave={() => window.innerWidth >= 640 && setShowMiniSP(false)}
-    onClick={() => window.innerWidth < 640 && handleSPClick()}
-    variants={fadeScale}
-  >
-    <motion.img
-      src={process.env.PUBLIC_URL + "/images/Home/Features/SaoPaulo.webp"}
-      alt="São Paulo city travel feature"
-      className="w-full h-full object-cover transition-transform duration-2000 group-hover:scale-105"
-      variants={hoverScale}
-    />
-    <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-0 transition-opacity duration-[2000ms]"></div>
+      {/* São Paulo Feature */}
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={staggerContainer}
+        className="w-full mt-4 px-2 sm:px-4 relative"
+      >
+        <motion.div
+          className="relative block w-full max-w-[80%] sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden group transition-all duration-[2000ms]"
+          onMouseEnter={() => !isMobile && setShowMiniSP(true)}
+          onMouseLeave={() => !isMobile && setShowMiniSP(false)}
+          onClick={handleSPClick}
+          variants={fadeScale}
+        >
+          <motion.img
+            src={process.env.PUBLIC_URL + "/images/Home/Features/SaoPaulo.webp"}
+            alt="São Paulo city travel feature"
+            className="w-full h-full object-cover transition-transform duration-2000 group-hover:scale-105"
+            variants={hoverScale}
+          />
+          <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-0 transition-opacity duration-[2000ms]"></div>
 
-    <motion.img
-      src={process.env.PUBLIC_URL + "/images/Home/SaoPauloScript1.webp"}
-      alt="São Paulo Script Detail"
-      className={`absolute top-2 sm:top-4 left-2 sm:left-4 w-48 sm:w-72 md:w-88 z-20 transition-opacity duration-[2000ms] ${!showMiniSP ? 'opacity-100' : 'opacity-0'}`}
-      variants={fadeScale}
-    />
-    <motion.img
-      src={process.env.PUBLIC_URL + "/images/Home/SaoPauloScript2.webp"}
-      alt="São Paulo Script Hover Detail"
-      className={`absolute bottom-2 sm:bottom-4 right-2 sm:right-4 w-48 sm:w-72 md:w-88 z-20 transition-opacity duration-[2000ms] ${showMiniSP ? 'opacity-100' : 'opacity-0'}`}
-      variants={fadeScale}
-    />
-
+          <motion.img
+            src={process.env.PUBLIC_URL + "/images/Home/SaoPauloScript1.webp"}
+            alt="São Paulo Script Detail"
+            className={`absolute top-2 sm:top-4 left-2 sm:left-4 w-48 sm:w-72 md:w-88 z-20 transition-opacity duration-[2000ms] ${!showMiniSP ? 'opacity-100' : 'opacity-0'}`}
+            variants={fadeScale}
+          />
+{showMiniSP && (
 <motion.div
-  initial={{ opacity: 0, y: 24 }}
-  animate={{ opacity: showMiniSP ? 1 : 0, y: showMiniSP ? 0 : 24 }}
-  transition={{ duration: 1.5, ease: "easeInOut" }}
-  className="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-row items-end justify-center space-x-3 z-20"
+  className={`absolute bottom-16 inset-x-0 flex justify-center items-end space-x-2 sm:space-x-3 z-20 transition-all duration-[2000ms] ease-in-out ${showMiniSP ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+  variants={fadeScale}
 >
   <img
     src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/pizza.webp"}
     alt="São Paulo Pizza"
-    className="w-36 sm:w-48 md:w-60 lg:w-60 h-auto rounded-sm shadow-lg"
+    className="w-24 sm:w-30 md:w-44 lg:w-44 h-auto rounded-sm shadow-lg transition-opacity duration-[4000ms]"
   />
   <img
     src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/street.webp"}
     alt="São Paulo Street"
-    className="w-36 sm:w-48 md:w-60 lg:w-60 h-auto rounded-sm shadow-lg"
+    className="w-24 sm:w-30 md:w-44 lg:w-44 h-auto rounded-sm shadow-lg transition-opacity duration-[4000ms]"
   />
   <img
     src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/caparinha.webp"}
     alt="Caipirinha"
-    className="w-36 sm:w-48 md:w-60 lg:w-60 h-auto rounded-sm shadow-lg"
+    className="w-24 sm:w-30 md:w-44 lg:w-44 h-auto rounded-sm shadow-lg transition-opacity duration-[4000ms]"
   />
-</motion.div>
-  </motion.div>
-</motion.div>
+</motion.div>)}
+        </motion.div>
+      </motion.div>
 
       {/* Santos Feature */}
       <motion.div
@@ -219,52 +217,51 @@ function Home() {
         </motion.div>
       </motion.div>
 
- {/* Bottom Carousel */}
-<div className="w-full max-w-screen-lg mx-auto py-8 relative px-2 sm:px-4">
-  <button
-    onClick={() => scroll("left")}
-    aria-label="Scroll Left"
-    className="absolute left-0 top-1/2 -translate-y-1/2 bg-black bg-opacity-40 p-2 rounded-full z-10"
-  >
-    <img src={process.env.PUBLIC_URL + "/images/lftarrow.svg"} alt="Left Arrow" className="w-6 h-6" />
-  </button>
-  <button
-    onClick={() => scroll("right")}
-    aria-label="Scroll Right"
-    className="absolute right-0 top-1/2 -translate-y-1/2 bg-black bg-opacity-40 p-2 rounded-full z-10"
-  >
-    <img src={process.env.PUBLIC_URL + "/images/rtarrow.svg"} alt="Right Arrow" className="w-6 h-6" />
-  </button>
-
-  <div
-    ref={carouselRef}
-    className="flex overflow-x-auto overflow-y-hidden space-x-4 scrollbar-hide"
-  >
-    {cards.map((card, idx) => (
-      <Link key={idx} to={card.link} className="flex-shrink-0 w-[80vw] max-w-[16rem] aspect-[16/9]">
-        <motion.div
-          className="relative shadow-lg group w-full h-full"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          whileHover={{ scale: 1.05 }}
-          transition={{ duration: 0.8, ease: "easeInOut", delay: idx * 0.15 }}
+      {/* Bottom Carousel */}
+      <div className="w-full max-w-screen-lg mx-auto py-8 relative px-2 sm:px-4">
+        <button
+          onClick={() => scroll("left")}
+          aria-label="Scroll Left"
+          className="absolute left-0 top-1/2 -translate-y-1/2 bg-black bg-opacity-40 p-2 rounded-full z-10"
         >
-          <img
-            src={process.env.PUBLIC_URL + card.img}
-            alt={card.title + " - travel highlights"}
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-          />
-        </motion.div>
-      </Link>
-    ))}
-  </div>
-</div>
+          <img src={process.env.PUBLIC_URL + "/images/lftarrow.svg"} alt="Left Arrow" className="w-6 h-6" />
+        </button>
+        <button
+          onClick={() => scroll("right")}
+          aria-label="Scroll Right"
+          className="absolute right-0 top-1/2 -translate-y-1/2 bg-black bg-opacity-40 p-2 rounded-full z-10"
+        >
+          <img src={process.env.PUBLIC_URL + "/images/rtarrow.svg"} alt="Right Arrow" className="w-6 h-6" />
+        </button>
 
-<style>{`
-  .scrollbar-hide::-webkit-scrollbar { display: none; }
-  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-`}</style>
+        <div
+          ref={carouselRef}
+          className="flex overflow-x-auto overflow-y-hidden space-x-4 scrollbar-hide"
+        >
+          {cards.map((card, idx) => (
+            <Link key={idx} to={card.link} className="flex-shrink-0 w-[80vw] max-w-[16rem] aspect-[16/9]">
+              <motion.div
+                className="relative shadow-lg group w-full h-full"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.8, ease: "easeInOut", delay: idx * 0.15 }}
+              >
+                <img
+                  src={process.env.PUBLIC_URL + card.img}
+                  alt={card.title + " - travel highlights"}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              </motion.div>
+            </Link>
+          ))}
+        </div>
+      </div>
 
+      <style>{`
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
     </div>
   );
 }
