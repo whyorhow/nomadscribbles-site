@@ -140,26 +140,28 @@ function Home() {
       variants={fadeScale}
     />
 
-    <motion.div
-      className={`absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-row items-end justify-center space-x-3 z-20 transition-all duration-[2000ms] ease-in-out ${showMiniSP ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-      variants={fadeScale}
-    >
-      <img
-        src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/pizza.webp"}
-        alt="São Paulo Pizza"
-        className="w-36 sm:w-48 md:w-60 lg:w-60 h-auto rounded-sm shadow-lg transition-opacity duration-[2000ms]"
-      />
-      <img
-        src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/street.webp"}
-        alt="São Paulo Street"
-        className="w-36 sm:w-48 md:w-60 lg:w-60 h-auto rounded-sm shadow-lg transition-opacity duration-[2000ms]"
-      />
-      <img
-        src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/caparinha.webp"}
-        alt="Caipirinha"
-        className="w-36 sm:w-48 md:w-60 lg:w-60 h-auto rounded-sm shadow-lg transition-opacity duration-[2000ms]"
-      />
-    </motion.div>
+<motion.div
+  initial={{ opacity: 0, y: 24 }}
+  animate={{ opacity: showMiniSP ? 1 : 0, y: showMiniSP ? 0 : 24 }}
+  transition={{ duration: 1.5, ease: "easeInOut" }}
+  className="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-row items-end justify-center space-x-3 z-20"
+>
+  <img
+    src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/pizza.webp"}
+    alt="São Paulo Pizza"
+    className="w-36 sm:w-48 md:w-60 lg:w-60 h-auto rounded-sm shadow-lg"
+  />
+  <img
+    src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/street.webp"}
+    alt="São Paulo Street"
+    className="w-36 sm:w-48 md:w-60 lg:w-60 h-auto rounded-sm shadow-lg"
+  />
+  <img
+    src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/caparinha.webp"}
+    alt="Caipirinha"
+    className="w-36 sm:w-48 md:w-60 lg:w-60 h-auto rounded-sm shadow-lg"
+  />
+</motion.div>
   </motion.div>
 </motion.div>
 
