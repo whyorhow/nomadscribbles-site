@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import SEO from "./components/SEO";
 import { fadeScale, hoverScale, staggerContainer } from "./animations";
+import { Typewriter } from "react-simple-typewriter";
 
 function Home() {
   const navigate = useNavigate();
@@ -19,7 +20,6 @@ function Home() {
   const [showMiniSP, setShowMiniSP] = useState(false);
   const [showMiniSantos, setShowMiniSantos] = useState(false);
 
-  // Detect mobile device
   const isMobile = window.innerWidth <= 768;
 
   useEffect(() => {
@@ -72,24 +72,17 @@ function Home() {
   return (
     <div className="relative min-h-screen w-full overflow-hidden">
       <SEO
-        title="Nomad Scribbles | Travel Stories Across Brazil & Beyond"
-        description="Join Nomad Scribbles on a journey through Brazil and beyond — discover cities, culture, travel tips, and inspiring adventures."
+        title="Nomad Scribbles | Travel Stories Across the World"
+        description="Join Nomad Scribbles on a journey through cities, culture, travel tips, and inspiring adventures."
         image="/images/Home/Background.webp"
         slug=""
       />
 
-      <h1 className="sr-only">Nomad Scribbles | Travel Stories Across Brazil & Beyond</h1>
+      <h1 className="sr-only">Nomad Scribbles | Travel Stories Across the World</h1>
 
-      {/* Background */}
-      <img
-        src={process.env.PUBLIC_URL + "/images/Home/Background.jpg"}
-        alt="Beautiful travel background of Brazil"
-        className="fixed inset-0 w-full h-full object-cover -z-10"
-      />
-
-      {/* Logo + Tagline */}
+      {/* Logo + About / Tagline */}
       <motion.div
-        className="relative w-full text-center pt-2 sm:pt-3 md:pt-4"
+        className="relative w-full text-center pt-4 sm:pt-6 md:pt-8"
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
@@ -102,21 +95,35 @@ function Home() {
               className="w-full h-auto object-contain drop-shadow-lg"
             />
           </motion.div>
-          <motion.img
-            src={process.env.PUBLIC_URL + "/images/Home/HomeTag.webp"}
-            alt="Nomad Scribbles Tagline: Travel Stories Across Brazil & Beyond"
-            className="w-2/3 sm:w-1/2 md:w-2/5 lg:w-1/3 max-w-full h-auto drop-shadow-md mt-4 sm:mt-5"
-            variants={fadeScale}
-          />
-        </motion.div>
-      </motion.div>
+
+{/* Typewriter About / Tagline */}
+<motion.div
+  className="mt-4 sm:mt-5 text-lg sm:text-xl md:text-2xl font-handwriting drop-shadow-md text-[#eeda8d] max-w-2xl mx-auto text-center"
+  variants={fadeScale}
+>
+  <Typewriter
+    words={[
+      "We are wanderers sharing slow-travel stories and reflections.",
+      "We love to explore, create, and inspire curiosity.",
+      "Travel with us – wander and wonder."
+    ]}
+    loop={0}               // type once through
+    cursor
+    cursorStyle="|"
+    typeSpeed={60}         // slightly slower for natural feel
+    deleteSpeed={20}       // gentle deletion
+    delaySpeed={3000}      // longer pause between lines
+  />
+</motion.div>
+</motion.div>
+</motion.div>
 
       {/* São Paulo Feature */}
       <motion.div
         initial="hidden"
         animate="visible"
         variants={staggerContainer}
-        className="w-full mt-4 px-2 sm:px-4 relative"
+        className="w-full mt-8 px-2 sm:px-4 relative"
       >
         <motion.div
           className="relative block w-full max-w-[80%] sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden group transition-all duration-[2000ms]"
@@ -139,27 +146,28 @@ function Home() {
             className={`absolute top-2 sm:top-4 left-2 sm:left-4 w-48 sm:w-72 md:w-88 z-20 transition-opacity duration-[2000ms] ${!showMiniSP ? 'opacity-100' : 'opacity-0'}`}
             variants={fadeScale}
           />
-{showMiniSP && (
-<motion.div
-  className={`absolute bottom-16 inset-x-0 flex justify-center items-end space-x-2 sm:space-x-3 z-20 transition-all duration-[2000ms] ease-in-out ${showMiniSP ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-  variants={fadeScale}
->
-  <img
-    src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/pizza.webp"}
-    alt="São Paulo Pizza"
-    className="w-24 sm:w-30 md:w-44 lg:w-44 h-auto rounded-sm shadow-lg transition-opacity duration-[4000ms]"
-  />
-  <img
-    src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/street.webp"}
-    alt="São Paulo Street"
-    className="w-24 sm:w-30 md:w-44 lg:w-44 h-auto rounded-sm shadow-lg transition-opacity duration-[4000ms]"
-  />
-  <img
-    src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/caparinha.webp"}
-    alt="Caipirinha"
-    className="w-24 sm:w-30 md:w-44 lg:w-44 h-auto rounded-sm shadow-lg transition-opacity duration-[4000ms]"
-  />
-</motion.div>)}
+          {showMiniSP && (
+            <motion.div
+              className={`absolute bottom-16 inset-x-0 flex justify-center items-end space-x-2 sm:space-x-3 z-20 transition-all duration-[2000ms] ease-in-out ${showMiniSP ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+              variants={fadeScale}
+            >
+              <img
+                src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/pizza.webp"}
+                alt="São Paulo Pizza"
+                className="w-24 sm:w-30 md:w-44 lg:w-44 h-auto rounded-sm shadow-lg transition-opacity duration-[4000ms]"
+              />
+              <img
+                src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/street.webp"}
+                alt="São Paulo Street"
+                className="w-24 sm:w-30 md:w-44 lg:w-44 h-auto rounded-sm shadow-lg transition-opacity duration-[4000ms]"
+              />
+              <img
+                src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/caparinha.webp"}
+                alt="Caipirinha"
+                className="w-24 sm:w-30 md:w-44 lg:w-44 h-auto rounded-sm shadow-lg transition-opacity duration-[4000ms]"
+              />
+            </motion.div>
+          )}
         </motion.div>
       </motion.div>
 

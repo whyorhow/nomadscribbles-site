@@ -122,9 +122,13 @@ function App() {
   return (
 
   <Router>
+
     {/* Global background wrapper */}
-<div className="min-h-screen flex flex-col bg-[#54644f] text-[#eeda8d]">
-        <PageTitleManager />      
+<div className="min-h-screen flex flex-col
+  bg-gradient-to-b from-[#5c6e53] via-[#485b3c] to-[#37462f]
+  text-[#eeda8d]">
+    
+                <PageTitleManager />      
       <Nav />
         <div className="flex-grow">
           <Routes>
