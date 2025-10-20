@@ -92,8 +92,7 @@ export default function ContactUs() {
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#F5FCD9] focus:border-[#F5FCD9]"
-            />
+className="w-full p-2 rounded-md border border-gray-400 bg-gray-400 focus:outline-none focus:ring-2 focus:ring-[#F5FCD9] focus:border-[#F5FCD9]"            />
           </motion.div>
 
           {/* Email */}
@@ -106,7 +105,7 @@ export default function ContactUs() {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#F5FCD9] focus:border-[#F5FCD9]"
+className="w-full p-2 rounded-md border border-gray-400 bg-gray-400 focus:outline-none focus:ring-2 focus:ring-[#F5FCD9] focus:border-[#F5FCD9]"            />
             />
           </motion.div>
 
@@ -120,7 +119,7 @@ export default function ContactUs() {
               value={formData.message}
               onChange={handleChange}
               required
-              className="w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#F5FCD9] focus:border-[#F5FCD9]"
+className="w-full p-2 rounded-md border border-gray-400 bg-gray-400 focus:outline-none focus:ring-2 focus:ring-[#F5FCD9] focus:border-[#F5FCD9]"            />
             />
           </motion.div>
 
@@ -139,7 +138,7 @@ export default function ContactUs() {
               disabled={loading}
               whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(245, 252, 217, 0.6)" }}
               whileTap={{ scale: 0.95 }}
-              className="bg-[#F5FCD9] text-[#1C1F13] font-semibold py-2 px-6 rounded-full transition-transform duration-300"
+              className="bg-gray-400 text-[#1C1F13] font-semibold py-2 px-6 rounded-full transition-transform duration-300"
             >
               {loading ? "Sending..." : "Send Message"}
             </motion.button>

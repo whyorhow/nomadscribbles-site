@@ -105,63 +105,63 @@ function Home() {
         </motion.div>
       </motion.div>
 
-      {/* São Paulo Feature */}
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={staggerContainer}
-        className="w-full mt-4 px-2 sm:px-4 relative"
-      >
-        <motion.div
-          className="relative block w-full max-w-[80%] sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden group transition-all duration-[2000ms]"
-          onMouseEnter={() => setShowMiniSP(true)}
-          onMouseLeave={() => setShowMiniSP(false)}
-          onClick={handleSPClick}
-          variants={fadeScale}
-        >
-          <motion.img
-            src={process.env.PUBLIC_URL + "/images/Home/Features/SaoPaulo.webp"}
-            alt="São Paulo city travel feature"
-            className="w-full h-full object-cover transition-transform duration-2000 group-hover:scale-105"
-            variants={hoverScale}
-          />
-          <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-0 transition-opacity duration-[2000ms]"></div>
+{/* São Paulo Feature */}
+<motion.div
+  initial="hidden"
+  animate="visible"
+  variants={staggerContainer}
+  className="w-full mt-4 px-2 sm:px-4 relative"
+>
+  <motion.div
+    className="relative block w-full max-w-[80%] sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden group transition-all duration-[2000ms]"
+    onMouseEnter={() => window.innerWidth >= 640 && setShowMiniSP(true)}
+    onMouseLeave={() => window.innerWidth >= 640 && setShowMiniSP(false)}
+    onClick={() => window.innerWidth < 640 && handleSPClick()}
+    variants={fadeScale}
+  >
+    <motion.img
+      src={process.env.PUBLIC_URL + "/images/Home/Features/SaoPaulo.webp"}
+      alt="São Paulo city travel feature"
+      className="w-full h-full object-cover transition-transform duration-2000 group-hover:scale-105"
+      variants={hoverScale}
+    />
+    <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-0 transition-opacity duration-[2000ms]"></div>
 
-          <motion.img
-            src={process.env.PUBLIC_URL + "/images/Home/SaoPauloScript1.webp"}
-            alt="São Paulo Script Detail"
-            className={`absolute top-2 sm:top-4 left-2 sm:left-4 w-48 sm:w-72 md:w-88 z-20 transition-opacity duration-[2000ms] ${!showMiniSP ? 'opacity-100' : 'opacity-0'}`}
-            variants={fadeScale}
-          />
-          <motion.img
-            src={process.env.PUBLIC_URL + "/images/Home/SaoPauloScript2.webp"}
-            alt="São Paulo Script Hover Detail"
-            className={`absolute bottom-2 sm:bottom-4 right-2 sm:right-4 w-48 sm:w-72 md:w-88 z-20 transition-opacity duration-[2000ms] ${showMiniSP ? 'opacity-100' : 'opacity-0'}`}
-            variants={fadeScale}
-          />
+    <motion.img
+      src={process.env.PUBLIC_URL + "/images/Home/SaoPauloScript1.webp"}
+      alt="São Paulo Script Detail"
+      className={`absolute top-2 sm:top-4 left-2 sm:left-4 w-48 sm:w-72 md:w-88 z-20 transition-opacity duration-[2000ms] ${!showMiniSP ? 'opacity-100' : 'opacity-0'}`}
+      variants={fadeScale}
+    />
+    <motion.img
+      src={process.env.PUBLIC_URL + "/images/Home/SaoPauloScript2.webp"}
+      alt="São Paulo Script Hover Detail"
+      className={`absolute bottom-2 sm:bottom-4 right-2 sm:right-4 w-48 sm:w-72 md:w-88 z-20 transition-opacity duration-[2000ms] ${showMiniSP ? 'opacity-100' : 'opacity-0'}`}
+      variants={fadeScale}
+    />
 
-          <motion.div
-            className={`absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-row items-end justify-center space-x-3 z-20 transition-all duration-[2000ms] ease-in-out ${showMiniSP ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-            variants={fadeScale}
-          >
-            <img
-              src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/pizza.webp"}
-              alt="São Paulo Pizza"
-              className="w-36 sm:w-48 md:w-60 lg:w-60 h-auto rounded-sm shadow-lg transition-opacity duration-[2000ms]"
-            />
-            <img
-              src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/street.webp"}
-              alt="São Paulo Street"
-              className="w-36 sm:w-48 md:w-60 lg:w-60 h-auto rounded-sm shadow-lg transition-opacity duration-[2000ms]"
-            />
-            <img
-              src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/caparinha.webp"}
-              alt="Caipirinha"
-              className="w-36 sm:w-48 md:w-60 lg:w-60 h-auto rounded-sm shadow-lg transition-opacity duration-[2000ms]"
-            />
-          </motion.div>
-        </motion.div>
-      </motion.div>
+    <motion.div
+      className={`absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-row items-end justify-center space-x-3 z-20 transition-all duration-[2000ms] ease-in-out ${showMiniSP ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+      variants={fadeScale}
+    >
+      <img
+        src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/pizza.webp"}
+        alt="São Paulo Pizza"
+        className="w-36 sm:w-48 md:w-60 lg:w-60 h-auto rounded-sm shadow-lg transition-opacity duration-[2000ms]"
+      />
+      <img
+        src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/street.webp"}
+        alt="São Paulo Street"
+        className="w-36 sm:w-48 md:w-60 lg:w-60 h-auto rounded-sm shadow-lg transition-opacity duration-[2000ms]"
+      />
+      <img
+        src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/caparinha.webp"}
+        alt="Caipirinha"
+        className="w-36 sm:w-48 md:w-60 lg:w-60 h-auto rounded-sm shadow-lg transition-opacity duration-[2000ms]"
+      />
+    </motion.div>
+  </motion.div>
+</motion.div>
 
       {/* Santos Feature */}
       <motion.div
