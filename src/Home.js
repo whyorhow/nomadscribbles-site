@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import SEO from "./components/SEO";
 import { fadeScale, hoverScale, staggerContainer } from "./animations";
-import { Typewriter } from "react-simple-typewriter";
+import HandwritingTagline from "./HandwritingTagline"; // nod to your file
 
 function Home() {
   const navigate = useNavigate();
@@ -19,7 +19,6 @@ function Home() {
   const carouselRef = useRef(null);
   const [showMiniSP, setShowMiniSP] = useState(false);
   const [showMiniSantos, setShowMiniSantos] = useState(false);
-
   const isMobile = window.innerWidth <= 768;
 
   useEffect(() => {
@@ -57,11 +56,8 @@ function Home() {
   };
 
   const handleSPClick = () => {
-    if (isMobile) {
-      setShowMiniSP(!showMiniSP);
-    } else {
-      navigate("/brazil/saopaulo");
-    }
+    if (isMobile) setShowMiniSP(!showMiniSP);
+    else navigate("/brazil/saopaulo");
   };
 
   const handleSantosClick = () => {
@@ -96,27 +92,15 @@ function Home() {
             />
           </motion.div>
 
-{/* Typewriter About / Tagline */}
-<motion.div
-  className="mt-4 sm:mt-5 text-lg sm:text-xl md:text-2xl font-handwriting drop-shadow-md text-[#eeda8d] max-w-2xl mx-auto text-center"
-  variants={fadeScale}
->
-  <Typewriter
-    words={[
-      "We are wanderers sharing slow-travel stories and reflections.",
-      "We love to explore, create, and inspire curiosity.",
-      "Travel with us – wander and wonder."
-    ]}
-    loop={0}               // type once through
-    cursor
-    cursorStyle="|"
-    typeSpeed={60}         // slightly slower for natural feel
-    deleteSpeed={20}       // gentle deletion
-    delaySpeed={3000}      // longer pause between lines
-  />
-</motion.div>
-</motion.div>
-</motion.div>
+          {/* Handwriting Tagline */}
+          <motion.div
+            className="mt-4 sm:mt-5 text-lg sm:text-xl md:text-2xl font-handwriting drop-shadow-md text-[#eeda8d] max-w-2xl mx-auto text-center"
+            variants={fadeScale}
+          >
+            <HandwritingTagline />
+          </motion.div>
+        </motion.div>
+      </motion.div>
 
       {/* São Paulo Feature */}
       <motion.div
