@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
 import SEO from "./components/SEO";
+import { trackEvent } from "./utils/analytics"; // analytics helper
 
 export default function NomadsShop() {
   const countries = [
@@ -23,6 +24,8 @@ export default function NomadsShop() {
     { name: "Wales", img: "/images/Adventures/WalesFlag.webp" }
   ];
 
+  const cookiesAccepted = localStorage.getItem("cookiesAccepted") === "true";
+
   return (
     <div className="min-h-screen relative">
       {/* SEO */}
@@ -33,6 +36,7 @@ export default function NomadsShop() {
         slug="adventures"
         canonical="https://yourdomain.com/adventures"
       />
+
       {/* Logo */}
       <div className="mt-4 ml-4 z-30">
         <Logo className="h-6 w-auto sm:h-10" />
@@ -46,10 +50,11 @@ export default function NomadsShop() {
           className="max-w-full w-[54%] sm:w-[42%] md:w-[36%] lg:w-[30%] h-auto rounded-lg"
         />
       </div>
+
       {/* Instruction heading */}
-<h1 className="text-center text-3xl sm:text-4xl font-bold mt-4 mb-8 text-primaryText">
-  Click a country below to explore our collections.
-</h1>
+      <h1 className="text-center text-3xl sm:text-4xl font-bold mt-4 mb-8 text-primaryText">
+        Click a country below to explore our collections.
+      </h1>
 
       {/* Country Flags Grid */}
       <div className="max-w-screen-lg mx-auto px-4 py-8">
@@ -63,6 +68,11 @@ export default function NomadsShop() {
                 key={index}
                 to={country.link || "#"}
                 className="relative group cursor-pointer"
+                onClick={() => {
+                  if (cookiesAccepted && country.link) {
+                    trackEvent("shop_country_click", "Navigation", country.name);
+                  }
+                }}
               >
                 <div className="aspect-[4/3] w-full rounded-lg overflow-hidden shadow-lg">
                   <img

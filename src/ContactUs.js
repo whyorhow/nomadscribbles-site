@@ -3,6 +3,9 @@ import Logo from "./Logo";
 import SEO from "./components/SEO";
 import { motion } from "framer-motion";
 
+// Import analytics helper
+import { trackEvent } from "./utils/analytics";
+
 export default function ContactUs() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [loading, setLoading] = useState(false);
@@ -24,6 +27,12 @@ export default function ContactUs() {
     if (!nonEssentialConsent) {
       alert("You must accept non-essential cookies to send us a message.");
       return;
+    }
+
+    // Track GA event if consent given
+    const cookiesAccepted = localStorage.getItem("cookiesAccepted") === "true";
+    if (cookiesAccepted) {
+      trackEvent("submit_contact_form", "Contact", "Contact Us Form");
     }
 
     setLoading(true);
@@ -92,7 +101,8 @@ export default function ContactUs() {
               value={formData.name}
               onChange={handleChange}
               required
-className="w-full p-2 rounded-md border border-gray-400 bg-gray-400 focus:outline-none focus:ring-2 focus:ring-[#F5FCD9] focus:border-[#F5FCD9]"            />
+              className="w-full p-2 rounded-md border border-gray-400 bg-gray-400 focus:outline-none focus:ring-2 focus:ring-[#F5FCD9] focus:border-[#F5FCD9]"
+            />
           </motion.div>
 
           {/* Email */}
@@ -105,7 +115,7 @@ className="w-full p-2 rounded-md border border-gray-400 bg-gray-400 focus:outlin
               value={formData.email}
               onChange={handleChange}
               required
-className="w-full p-2 rounded-md border border-gray-400 bg-gray-400 focus:outline-none focus:ring-2 focus:ring-[#F5FCD9] focus:border-[#F5FCD9]"            />
+              className="w-full p-2 rounded-md border border-gray-400 bg-gray-400 focus:outline-none focus:ring-2 focus:ring-[#F5FCD9] focus:border-[#F5FCD9]"
             />
           </motion.div>
 
@@ -119,7 +129,7 @@ className="w-full p-2 rounded-md border border-gray-400 bg-gray-400 focus:outlin
               value={formData.message}
               onChange={handleChange}
               required
-className="w-full p-2 rounded-md border border-gray-400 bg-gray-400 focus:outline-none focus:ring-2 focus:ring-[#F5FCD9] focus:border-[#F5FCD9]"            />
+              className="w-full p-2 rounded-md border border-gray-400 bg-gray-400 focus:outline-none focus:ring-2 focus:ring-[#F5FCD9] focus:border-[#F5FCD9]"
             />
           </motion.div>
 

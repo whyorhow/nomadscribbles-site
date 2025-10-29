@@ -1,13 +1,14 @@
+// src/Home.js
 import React, { useRef, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import SEO from "./components/SEO";
 import { fadeScale, hoverScale, staggerContainer } from "./animations";
-import HandwritingTagline from "./HandwritingTagline"; // nod to your file
+import HandwritingTagline from "./HandwritingTagline"; 
+import { trackEvent } from "./utils/analytics"; // added for feature clicks
 
 function Home() {
   const navigate = useNavigate();
-
   const originalCards = [
     { title: "Nomads Shop", link: "/nomads-shop", img: "/images/Home/ThumbnailNS.webp" },
     { title: "Nomads Gallery", link: "/nomads-gallery", img: "/images/Home/ThumbnailNG.webp" },
@@ -76,7 +77,6 @@ function Home() {
 
       <h1 className="sr-only">Nomad Scribbles | Travel Stories Across the World</h1>
 
-      {/* Logo + About / Tagline */}
       <motion.div
         className="relative w-full text-center pt-4 sm:pt-6 md:pt-8"
         variants={staggerContainer}
@@ -92,7 +92,6 @@ function Home() {
             />
           </motion.div>
 
-          {/* Handwriting Tagline */}
           <motion.div
             className="mt-4 sm:mt-5 text-lg sm:text-xl md:text-2xl font-handwriting drop-shadow-md text-[#eeda8d] max-w-2xl mx-auto text-center"
             variants={fadeScale}
@@ -111,9 +110,15 @@ function Home() {
       >
         <motion.div
           className="relative block w-full max-w-[80%] sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden group transition-all duration-[2000ms]"
-          onMouseEnter={() => !isMobile && setShowMiniSP(true)}
+          onMouseEnter={() => {
+            if (!isMobile) setShowMiniSP(true);
+            trackEvent("hover_feature", "Home Page", "São Paulo Feature");
+          }}
           onMouseLeave={() => !isMobile && setShowMiniSP(false)}
-          onClick={handleSPClick}
+          onClick={() => {
+            handleSPClick();
+            trackEvent("click_feature", "Home Page", "São Paulo Feature");
+          }}
           variants={fadeScale}
         >
           <motion.img
@@ -164,9 +169,15 @@ function Home() {
       >
         <motion.div
           className="relative block w-full max-w-[80%] sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden group transition-all duration-[2000ms]"
-          onMouseEnter={() => setShowMiniSantos(true)}
+          onMouseEnter={() => {
+            setShowMiniSantos(true);
+            trackEvent("hover_feature", "Home Page", "Santos Feature");
+          }}
           onMouseLeave={() => setShowMiniSantos(false)}
-          onClick={handleSantosClick}
+          onClick={() => {
+            handleSantosClick();
+            trackEvent("click_feature", "Home Page", "Santos Feature");
+          }}
           variants={fadeScale}
         >
           <motion.img

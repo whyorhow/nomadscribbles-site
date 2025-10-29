@@ -5,15 +5,16 @@ import RightArrow from "./assets/images/rtarrow.svg";
 import CloseIcon from "./assets/images/cross.svg";
 import FullscreenIcon from "./assets/images/enlarge.svg";
 
+// Analytics helper
+import { trackEvent } from "./utils/analytics";
+
 export default function Lightbox({ images = [], currentIndex, setCurrentIndex }) {
   const containerRef = useRef(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleFullscreenChange = () => {
-      setIsFullscreen(Boolean(document.fullscreenElement));
-    };
+    const handleFullscreenChange = () => setIsFullscreen(Boolean(document.fullscreenElement));
     document.addEventListener("fullscreenchange", handleFullscreenChange);
 
     const checkMobile = () => setIsMobile(window.innerWidth < 640);
@@ -37,12 +38,15 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex })
   const gumroadLink = isObject ? current.gumroadLink : null;
   const shopLink = isObject ? current.shopLink : null;
 
+  const cookiesAccepted = localStorage.getItem("cookiesAccepted") === "true";
+
   const toggleFullscreen = async (e) => {
     e.stopPropagation();
     if (!document.fullscreenElement) {
       try {
         await containerRef.current.requestFullscreen();
         setIsFullscreen(true);
+        if (cookiesAccepted) trackEvent("lightbox_fullscreen", "Engagement", imageSrc);
       } catch (err) {
         console.error("Fullscreen request failed:", err);
       }
@@ -52,29 +56,38 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex })
     }
   };
 
-  const showNext = () => setCurrentIndex((prev) => (prev + 1) % images.length);
-  const showPrev = () => setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  const showNext = () => {
+    setCurrentIndex((prev) => {
+      const nextIndex = (prev + 1) % images.length;
+      if (cookiesAccepted) trackEvent("lightbox_next", "Engagement", images[nextIndex]);
+      return nextIndex;
+    });
+  };
 
-  const cardHeight = 160;
-  const verticalPadding = 32;
-  const viewportHeight = typeof window !== "undefined" ? window.innerHeight : 800;
+  const showPrev = () => {
+    setCurrentIndex((prev) => {
+      const prevIndex = (prev - 1 + images.length) % images.length;
+      if (cookiesAccepted) trackEvent("lightbox_prev", "Engagement", images[prevIndex]);
+      return prevIndex;
+    });
+  };
+
+  const handlePurchaseClick = (link, eventName) => {
+    if (cookiesAccepted) trackEvent(eventName, "Engagement", link);
+  };
 
   return (
     <AnimatePresence>
       <motion.div
         ref={containerRef}
-        className={`fixed inset-0 backdrop-blur-sm bg-[#2f3e2f]/90 flex items-start justify-center z-50 ${
-          isFullscreen ? "" : "p-4"
-        }`}
+        className={`fixed inset-0 backdrop-blur-sm bg-[#2f3e2f]/90 flex items-start justify-center z-50 ${isFullscreen ? "" : "p-4"}`}
         onClick={() => setCurrentIndex(null)}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0, transition: { duration: 0.3 } }}
       >
         <div
-          className={`relative flex flex-col items-center max-w-full ${
-            isFullscreen ? "" : "mt-8 mb-8"
-          }`}
+          className={`relative flex flex-col items-center max-w-full ${isFullscreen ? "" : "mt-8 mb-8"}`}
           onClick={(e) => e.stopPropagation()}
         >
           <div className="relative inline-block group mb-4">
@@ -82,16 +95,14 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex })
               src={imageSrc}
               alt={title}
               loading="lazy"
-              className={`
-                rounded-sm cursor-pointer object-contain block
-                ${isFullscreen
+              className={`rounded-sm cursor-pointer object-contain block ${
+                isFullscreen
                   ? "max-w-[100vw] max-h-[100vh]"
                   : "max-w-[90vw] md:max-w-[80vw] lg:max-w-[70vw] max-h-[80vh] sm:max-h-[75vh] md:max-h-[70vh] lg:max-h-[65vh]"
-                }
-              `}
+              }`}
               onClick={toggleFullscreen}
               initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1, transition: { duration: 0.5, ease: 'easeInOut' } }}
+              animate={{ scale: 1, opacity: 1, transition: { duration: 0.5, ease: "easeInOut" } }}
               exit={{ scale: 0.8, opacity: 0, transition: { duration: 0.4 } }}
             />
 
@@ -100,9 +111,12 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex })
               className="absolute top-1/2 flex items-center justify-center z-50"
               style={{
                 left: isFullscreen ? "-3rem" : isMobile ? "0.5rem" : "-5rem",
-                transform: "translateY(-50%)"
+                transform: "translateY(-50%)",
               }}
-              onClick={(e) => { e.stopPropagation(); showPrev(); }}
+              onClick={(e) => {
+                e.stopPropagation();
+                showPrev();
+              }}
             >
               <img src={LeftArrow} alt="Previous" className="w-8 h-12 transition-transform duration-200 ease-in-out hover:scale-125 hover:brightness-150" />
             </button>
@@ -112,9 +126,12 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex })
               className="absolute top-1/2 flex items-center justify-center z-50"
               style={{
                 right: isFullscreen ? "-3rem" : isMobile ? "0.5rem" : "-5rem",
-                transform: "translateY(-50%)"
+                transform: "translateY(-50%)",
               }}
-              onClick={(e) => { e.stopPropagation(); showNext(); }}
+              onClick={(e) => {
+                e.stopPropagation();
+                showNext();
+              }}
             >
               <img src={RightArrow} alt="Next" className="w-8 h-12 transition-transform duration-200 ease-in-out hover:scale-125 hover:brightness-150" />
             </button>
@@ -123,12 +140,15 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex })
             <button
               className="absolute w-10 h-10 flex items-center justify-center z-50"
               style={{ top: "-0.5rem", right: isMobile ? "1rem" : "-3rem" }}
-              onClick={(e) => { e.stopPropagation(); setCurrentIndex(null); }}
+              onClick={(e) => {
+                e.stopPropagation();
+                setCurrentIndex(null);
+              }}
             >
               <img src={CloseIcon} alt="Close" className="w-6 h-6 transition-transform duration-200 ease-in-out hover:scale-125 hover:brightness-150" />
             </button>
 
-            {/* Fullscreen / Enlarge button, hidden in fullscreen */}
+            {/* Fullscreen / Enlarge button */}
             {!isFullscreen && (
               <button
                 className="absolute w-10 h-10 flex items-center justify-center z-50"
@@ -152,6 +172,7 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex })
                 {gumroadLink && (
                   <a
                     href={gumroadLink}
+                    onClick={() => handlePurchaseClick(gumroadLink, "lightbox_purchase")}
                     style={{ backgroundColor: "#5F7536" }}
                     className="px-4 py-2 text-white font-medium rounded-sm shadow hover:opacity-90 transition-opacity"
                   >
@@ -161,6 +182,7 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex })
                 {shopLink && (
                   <a
                     href={shopLink}
+                    onClick={() => handlePurchaseClick(shopLink, "lightbox_shop")}
                     style={{ backgroundColor: "#634E39" }}
                     className="px-4 py-2 text-white font-medium rounded-sm shadow hover:opacity-90 transition-opacity"
                   >

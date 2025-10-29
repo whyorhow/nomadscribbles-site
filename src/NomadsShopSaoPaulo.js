@@ -3,6 +3,9 @@ import { motion } from "framer-motion";
 import Logo from "./Logo";
 import { fadeScale, hoverScale, staggerContainer } from "./animations";
 
+// import analytics function
+import { trackEvent } from "./utils/analytics";
+
 export default function NomadsShopSaoPaulo({ openLightbox }) {
   const items = [
     // City Life
@@ -272,7 +275,7 @@ export default function NomadsShopSaoPaulo({ openLightbox }) {
     },
   ];
 
-const categories = ["All", "City Life", "Parks", "Murals", "Santos", "Carnival"];
+ const categories = ["All", "City Life", "Parks", "Murals", "Santos", "Carnival"];
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [visibleCount, setVisibleCount] = useState(12);
 
@@ -346,11 +349,15 @@ const categories = ["All", "City Life", "Parks", "Murals", "Santos", "Carnival"]
             variants={fadeScale}
             whileHover={hoverScale}
             className="relative w-full h-48 rounded-lg overflow-hidden cursor-pointer transform transition-all duration-200 hover:shadow-xl"
-            onClick={() => openLightbox(index, lightboxItems)}
+            onClick={() => {
+              trackEvent("open_lightbox", { item: item.title, category: item.category });
+              openLightbox(index, lightboxItems);
+            }}
             role="button"
             tabIndex={0}
             onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") openLightbox(index, lightboxItems);
+              if (e.key === "Enter" || e.key === " ")
+                openLightbox(index, lightboxItems);
             }}
           >
             <img
@@ -369,6 +376,9 @@ const categories = ["All", "City Life", "Parks", "Murals", "Santos", "Carnival"]
                   href={item.gumroadLink}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() =>
+                    trackEvent("purchase_click", { item: item.title, category: item.category })
+                  }
                   className="bg-gray-200 text-[#111] py-1 px-2 rounded hover:bg-gray-300 transition text-xs sm:text-sm"
                 >
                   Purchase

@@ -5,6 +5,7 @@ import artImages from "./artImages.json";
 import Logo from "./Logo";
 import SEO from "./components/SEO";
 import { fadeScale, hoverScale, staggerContainer } from "./animations";
+import { trackEvent } from "./utils/analytics"; // import your analytics helper
 
 export default function NomadsGallery({ openLightbox }) {
   const [shuffledImages, setShuffledImages] = useState([]);
@@ -16,6 +17,7 @@ export default function NomadsGallery({ openLightbox }) {
 
   const handleClick = (index) => {
     openLightbox(index, shuffledImages);
+    trackEvent("click_gallery_image", "Nomads Gallery", shuffledImages[index].title);
   };
 
   return (
@@ -62,6 +64,7 @@ export default function NomadsGallery({ openLightbox }) {
               style={{ height: isLarge ? "28rem" : "20rem" }}
               variants={fadeScale}
               onClick={() => handleClick(index)}
+              onMouseEnter={() => trackEvent("hover_gallery_image", "Nomads Gallery", img.title)}
               tabIndex={0}
               onKeyPress={(e) => {
                 if (e.key === "Enter") handleClick(index);

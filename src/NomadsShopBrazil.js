@@ -6,10 +6,12 @@ import "swiper/css";
 import products from "./artImages.json";
 import LeftArrow from "./assets/images/lftarrow.svg";
 import RightArrow from "./assets/images/rtarrow.svg";
+import { trackEvent } from "./utils/analytics"; // import analytics helper
 
 export default function NomadsShopBrazil() {
   const flagRef = useRef(null);
   const swiperRef = useRef(null);
+  const cookiesAccepted = localStorage.getItem("cookiesAccepted") === "true";
 
   const cities = [
     { name: "Rio de Janeiro", path: "/nomads-shop/brazil/rio" },
@@ -86,6 +88,11 @@ export default function NomadsShopBrazil() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-2 inline-block px-6 py-2 bg-black text-white rounded hover:bg-gray-800 transition"
+                    onClick={() => {
+                      if (cookiesAccepted) {
+                        trackEvent("purchase_click", "Shop Carousel", item.title);
+                      }
+                    }}
                   >
                     Purchase
                   </a>
@@ -129,6 +136,11 @@ export default function NomadsShopBrazil() {
               key={city.name}
               to={city.path}
               className="flex justify-center items-center px-4 py-3 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-lg shadow-md border border-white/20 text-center transform transition duration-200 hover:bg-white/20 hover:scale-105 hover:shadow-lg"
+              onClick={() => {
+                if (cookiesAccepted) {
+                  trackEvent("city_navigation", "Shop Brazil", city.name);
+                }
+              }}
             >
               {city.name}
             </Link>

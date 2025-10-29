@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { HelmetProvider, Helmet } from 'react-helmet-async';
 
 import Nav from "./Nav";
 import Footer from "./Footer";
@@ -21,6 +22,9 @@ import SearchResults from "./SearchResults";
 import CookieConsent from "./CookieConsent";
 import CookiePreferences from "./CookiePreferences";
 import Lightbox from "./Lightbox";
+
+// Import analytics helpers
+import { trackEvent, trackPageView } from "./utils/analytics";
 
 // Page title manager
 function PageTitleManager() {
@@ -80,13 +84,22 @@ function PageTitleManager() {
   return null;
 }
 
+// Page view tracker
+function PageViewTracker({ cookiesAccepted }) {
+  const location = useLocation();
+  useEffect(() => {
+    if (cookiesAccepted) {
+      trackPageView(location.pathname + location.search);
+    }
+  }, [location, cookiesAccepted]);
+  return null;
+}
+
 function App() {
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const [lightboxImages, setLightboxImages] = useState([]);
   const [lightboxAlts, setLightboxAlts] = useState([]);
   const [lightboxPurchaseLinks, setLightboxPurchaseLinks] = useState([]);
-
-  // State for cookie consent
   const [cookiesAccepted, setCookiesAccepted] = useState(null);
 
   // Load stored consent
@@ -106,7 +119,6 @@ function App() {
       localStorage.setItem("cookiesRejected", "true");
       localStorage.removeItem("cookiesAccepted");
     } else {
-      // specific non-essential only
       localStorage.setItem("cookiesAccepted", "partial");
       localStorage.removeItem("cookiesRejected");
     }
@@ -117,74 +129,95 @@ function App() {
     setLightboxAlts(alts);
     setLightboxPurchaseLinks(purchaseLinks);
     setLightboxIndex(index);
+
+    if (cookiesAccepted) {
+      trackEvent('open_lightbox', 'Engagement', images[index] || 'Unknown image');
+    }
   };
 
   return (
+    <HelmetProvider>
+      <Router>
+        {/* Load GA script only if cookies are accepted */}
+        {cookiesAccepted && (
+          <Helmet>
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-87DFFWTXFM"></script>
+            <script>
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-87DFFWTXFM');
+              `}
+            </script>
+          </Helmet>
+        )}
 
-  <Router>
+        <div
+          className="min-h-screen flex flex-col
+          bg-gradient-to-b from-[#5c6e53] via-[#485b3c] to-[#37462f]
+          text-[#eeda8d]"
+        >
+          <PageTitleManager />
+          <PageViewTracker cookiesAccepted={cookiesAccepted} />
+          <Nav />
 
-    {/* Global background wrapper */}
-<div className="min-h-screen flex flex-col
-  bg-gradient-to-b from-[#5c6e53] via-[#485b3c] to-[#37462f]
-  text-[#eeda8d]">
-    
-                <PageTitleManager />      
-      <Nav />
-        <div className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home openLightbox={openLightbox} />} />
-            <Route path="/home" element={<Home openLightbox={openLightbox} />} />
-            <Route path="/adventures" element={<Adventures openLightbox={openLightbox} />} />
-            <Route path="/nomads-shop" element={<NomadsShop openLightbox={openLightbox} />} />
-            <Route path="/nomads-shop/brazil" element={<NomadsShopBrazil openLightbox={openLightbox} />} />
-            <Route path="/nomads-shop/brazil/saopaulo" element={<NomadsShopSaoPaulo openLightbox={openLightbox} />} />
-            <Route path="/brazil" element={<Brazil openLightbox={openLightbox} />} />
-            <Route path="/brazil/saopaulo" element={<SaoPaulo openLightbox={openLightbox} />} />
-            <Route path="/brazil/saopaulo/parks" element={<Parks openLightbox={openLightbox} />} />
-            <Route path="/brazil/saopaulo/museums" element={<Museums openLightbox={openLightbox} />} />
-            <Route path="/brazil/saopaulo/carnival" element={<Carnival openLightbox={openLightbox} />} />
-            <Route path="/brazil/saopaulo/murals" element={<Murals openLightbox={openLightbox} />} />
-            <Route path="/brazil/saopaulo/santos" element={<Santos openLightbox={openLightbox} />} />
-            <Route path="/nomads-gallery" element={<NomadsGallery openLightbox={openLightbox} />} />
-            <Route path="/contact-us" element={<ContactUs openLightbox={openLightbox} />} />
-            <Route path="/search" element={<SearchResults openLightbox={openLightbox} />} />
-
-            {/* Cookie Preferences Page */}
-            <Route
-              path="/cookie-preferences"
-              element={
-                <CookiePreferences
-                  cookiesAccepted={cookiesAccepted}
-                  onConsentChange={handleConsentChange}
-                />
-              }
-            />
-          </Routes>
+          <div className="flex-grow">
+            <Routes>
+              <Route path="/" element={<Home openLightbox={openLightbox} />} />
+              <Route path="/home" element={<Home openLightbox={openLightbox} />} />
+              <Route path="/adventures" element={<Adventures openLightbox={openLightbox} />} />
+              <Route path="/nomads-shop" element={<NomadsShop openLightbox={openLightbox} />} />
+              <Route path="/nomads-shop/brazil" element={<NomadsShopBrazil openLightbox={openLightbox} />} />
+              <Route path="/nomads-shop/brazil/saopaulo" element={<NomadsShopSaoPaulo openLightbox={openLightbox} />} />
+              <Route path="/brazil" element={<Brazil openLightbox={openLightbox} />} />
+              <Route path="/brazil/saopaulo" element={<SaoPaulo openLightbox={openLightbox} />} />
+              <Route path="/brazil/saopaulo/parks" element={<Parks openLightbox={openLightbox} />} />
+              <Route path="/brazil/saopaulo/museums" element={<Museums openLightbox={openLightbox} />} />
+              <Route path="/brazil/saopaulo/carnival" element={<Carnival openLightbox={openLightbox} />} />
+              <Route path="/brazil/saopaulo/murals" element={<Murals openLightbox={openLightbox} />} />
+              <Route path="/brazil/saopaulo/santos" element={<Santos openLightbox={openLightbox} />} />
+              <Route path="/nomads-gallery" element={<NomadsGallery openLightbox={openLightbox} />} />
+              <Route path="/contact-us" element={<ContactUs openLightbox={openLightbox} />} />
+              <Route path="/search" element={<SearchResults openLightbox={openLightbox} />} />
+              <Route
+                path="/cookie-preferences"
+                element={
+                  <CookiePreferences
+                    cookiesAccepted={cookiesAccepted}
+                    onConsentChange={handleConsentChange}
+                  />
+                }
+              />
+            </Routes>
+          </div>
         </div>
-      </div>
 
-      {/* Cookie Consent Popup - hide on preferences page */}
-      {cookiesAccepted === null && window.location.pathname !== "/cookie-preferences" && (
-        <CookieConsent
-          onAccept={() => handleConsentChange(true)}
-          onReject={() => handleConsentChange(false)}
+        {/* Cookie Consent Popup - hide on preferences page */}
+        {cookiesAccepted === null && window.location.pathname !== "/cookie-preferences" && (
+          <CookieConsent
+            onAccept={() => handleConsentChange(true)}
+            onReject={() => handleConsentChange(false)}
+          />
+        )}
+
+        <Footer cookiesAccepted={cookiesAccepted} />
+        <Lightbox
+          images={lightboxImages}
+          alts={lightboxAlts}
+          purchaseLinks={lightboxPurchaseLinks}
+          storeLink="/nomads-shop/brazil/saopaulo"
+          currentIndex={lightboxIndex}
+          setCurrentIndex={setLightboxIndex}
+          showPrev={() =>
+            setLightboxIndex((prev) => (prev - 1 + lightboxImages.length) % lightboxImages.length)
+          }
+          showNext={() =>
+            setLightboxIndex((prev) => (prev + 1) % lightboxImages.length)
+          }
         />
-      )}
-
-      <Footer cookiesAccepted={cookiesAccepted} />
-      <Lightbox
-        images={lightboxImages}
-        alts={lightboxAlts}
-        purchaseLinks={lightboxPurchaseLinks}
-        storeLink="/nomads-shop/brazil/saopaulo"
-        currentIndex={lightboxIndex}
-        setCurrentIndex={setLightboxIndex}
-        showPrev={() =>
-          setLightboxIndex((prev) => (prev - 1 + lightboxImages.length) % lightboxImages.length)
-        }
-        showNext={() => setLightboxIndex((prev) => (prev + 1) % lightboxImages.length)}
-      />
-    </Router>
+      </Router>
+    </HelmetProvider>
   );
 }
 

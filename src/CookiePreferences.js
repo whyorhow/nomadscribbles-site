@@ -93,7 +93,7 @@ export default function CookiePreferences() {
         <section>
           <h2 className="text-xl font-semibold mb-2">Your Choices</h2>
           <p>
-            Choose your cookie preference below. Essential cookies will always operate.
+            Select your cookie preference. Essential cookies are always active to ensure the website works correctly. Analytics cookies help us understand how visitors use the site, but are optional.
           </p>
 
           <div className="mt-2 flex flex-col gap-2">
@@ -103,7 +103,7 @@ export default function CookiePreferences() {
                 checked={cookiesAccepted && nonEssential}
                 onChange={() => handleChoice("acceptAll")}
               />
-              Accept all cookies
+              Accept all cookies (essential + analytics)
             </label>
             <label className="flex items-center gap-2">
               <input
@@ -131,7 +131,7 @@ export default function CookiePreferences() {
               id="newsletterOptIn"
             />
             <label htmlFor="newsletterOptIn">
-              I consent to receive the Nomad Scribbles newsletter via email
+              I consent to receive the Nomad Scribbles newsletter via email (future option)
             </label>
           </div>
 
