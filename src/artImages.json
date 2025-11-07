@@ -8,7 +8,7 @@
     "lightboxImage": "/images/SaoPauloLanding/full/caparinha.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/oiloo",
     "category": "City Life",
-    "shopLink": "/nomads-shop/brazil/saopaulo"
+   "shopLink": "https://nomadscribbles.co.uk/shop"
   },
   {
     "id": "caparinhaDrawn",
@@ -19,8 +19,7 @@
     "lightboxImage": "/images/SaoPauloLanding/full/CaparinhaDrawn.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/byrhy",
     "category": "City Life",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "pizza",
     "title": "Pizza Print",
@@ -30,8 +29,7 @@
     "lightboxImage": "/images/SaoPauloLanding/full/pizza.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/iechb",
     "category": "City Life",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "rain",
     "title": "Rain Scene",
@@ -41,8 +39,7 @@
     "lightboxImage": "/images/SaoPauloLanding/full/rain.jpg",  
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/rpfnoe",
     "category": "City Life",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
     {
     "id": "street",
     "title": "Street Night Scene",
@@ -52,8 +49,7 @@
     "lightboxImage": "/images/SaoPauloLanding/full/street.jpg",  
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/tewkw",
     "category": "City Life",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
 
  {
   "id": "park1",
@@ -64,8 +60,7 @@
   "lightboxImage": "/images/SP-Parks/full/Park1.jpg",
   "gumroadLink": "https://nomadscribbles.gumroad.com/l/nmdpn",
   "category": "Parks",
-      "shopLink": "/nomads-shop/brazil/saopaulo"
-},
+ "shopLink": "https://nomadscribbles.co.uk/shop"},
   {
     "id": "park2",
     "title": "Caterpillar on Monument Stone",
@@ -75,8 +70,7 @@
     "lightboxImage": "/images/SP-Parks/full/Park2.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/zypszc",
     "category": "Parks",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "park3",
     "title": "Roots and Tree Canopy",
@@ -86,8 +80,7 @@
     "lightboxImage": "/images/SP-Parks/full/Park3.jpg", 
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/wwpco",
     "category": "Parks",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "park4",
     "title": "Monkey in the Canopy",
@@ -97,8 +90,7 @@
     "lightboxImage": "/images/SP-Parks/full/Park4.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/pdlkl",
     "category": "Parks",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "park5",
     "title": "Moss-Covered Tree Stumps",
@@ -108,8 +100,7 @@
     "lightboxImage": "/images/SP-Parks/full/Park5.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/dqsmj",
     "category": "Parks",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "park6",
     "title": "Forest Floor Sculptures",
@@ -119,8 +110,7 @@
     "lightboxImage": "/images/SP-Parks/full/Park6.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/lstekx",
     "category": "Parks",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "park7",
     "title": "Burle Marx Curved Landscape",
@@ -130,8 +120,7 @@
     "lightboxImage": "/images/SP-Parks/full/Park7.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/vgmnwm",
     "category": "Parks",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "graffiti1",
     "title": "Walls That Speak",
@@ -141,8 +130,7 @@
     "lightboxImage": "/images/Murals/full/Graffiti1.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/lyxdq",
     "category": "Murals",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "graffiti2",
     "title": "Colour on Concrete",
@@ -152,8 +140,7 @@
     "lightboxImage": "/images/Murals/full/Graffiti2.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/vxqtux",
     "category": "Murals",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "graffiti3",
     "title": "Flight Across a Storefront",
@@ -163,8 +150,7 @@
     "lightboxImage": "/images/Murals/full/Graffiti3.jpg",  
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/mztdgd",
     "category": "Murals",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "graffiti4",
     "title": "Beco do Batman",
@@ -174,8 +160,7 @@
     "lightboxImage": "/images/Murals/full/Graffiti4.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/gipav",
     "category": "Murals",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "graffiti5",
     "title": "Layers of Change",
@@ -185,8 +170,7 @@
     "lightboxImage": "/images/Murals/full/Graffiti5.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/twbmh",
     "category": "Murals",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "graffiti6",
     "title": "Steps That Paint Stories",
@@ -196,8 +180,7 @@
     "lightboxImage": "/images/Murals/full/Graffiti6.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/mgmcf",
     "category": "Murals",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "graffiti7",
     "title": "Urban Voices",
@@ -207,8 +190,7 @@
     "lightboxImage": "/images/Murals/full/Graffiti7.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/sbhqbf",
     "category": "Murals",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "graffiti8",
     "title": "The Open-Air Gallery",
@@ -218,8 +200,7 @@
     "lightboxImage": "/images/Murals/full/Graffiti8.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/klcopp",
     "category": "Murals",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "santos1",
     "title": "Santos Skyline by the Atlantic",
@@ -229,8 +210,7 @@
     "lightboxImage": "/images/Santos/full/Santos1.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/imrcgs",
     "category": "Santos",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "santos2",
     "title": "Pelé Museum Legacy in Santos",
@@ -240,8 +220,7 @@
     "lightboxImage": "/images/Santos/full/Santos2.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/felnv",
     "category": "Santos",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "santos3",
     "title": "Vila Belmiro — Pelé’s Historic 1000th Goal",
@@ -251,8 +230,7 @@
     "lightboxImage": "/images/Santos/full/Santos3.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/epmgt",
     "category": "Santos",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "santos4",
     "title": "Green Hills and City Overlook of Santos",
@@ -262,8 +240,7 @@
     "lightboxImage": "/images/Santos/full/Santos4.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/xhgdwdd",
     "category": "Santos",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "santos5",
     "title": "Port of Santos — Heart of Latin America’s Trade",
@@ -273,8 +250,7 @@
     "lightboxImage": "/images/Santos/full/Santos5.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/rswumv",
     "category": "Santos",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "santos6",
     "title": "Santos Shoreline Where City Meets Sea",
@@ -284,8 +260,7 @@
     "lightboxImage": "/images/Santos/full/Santos5Drawn.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/ynvfwu",
     "category": "Santos",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "carnival1",
     "title": "Streets Alive with Color and Music",
@@ -295,8 +270,7 @@
     "lightboxImage": "/images/CarnivalSP/full/Carnival1.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/junhjy",
     "category": "Carnival",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "carnival2",
     "title": "Samba Schools in Full Flow",
@@ -306,8 +280,7 @@
     "lightboxImage": "/images/CarnivalSP/full/Carnival2.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/htrdk",
     "category": "Carnival",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "carnival3",
     "title": "Behind the Scenes: Carnival Floats",
@@ -317,8 +290,7 @@
     "lightboxImage": "/images/CarnivalSP/full/Carnival3.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/oktonph",
     "category": "Carnival",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "carnival4",
     "title": "Crowds and Rhythm: The Spectator View",
@@ -328,8 +300,7 @@
     "lightboxImage": "/images/CarnivalSP/full/Carnival4.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/hfnkpg",
     "category": "Carnival",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "carnival5",
     "title": "Alleyway Blocos in Motion",
@@ -339,8 +310,7 @@
     "lightboxImage": "/images/CarnivalSP/full/Carnival5.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/cgujou",
     "category": "Carnival",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "carnival6",
     "title": "Dancers in Ibirapuera Park",
@@ -350,8 +320,7 @@
     "lightboxImage": "/images/CarnivalSP/full/Carnival6.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/iuzniy",
     "category": "Carnival",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "carnival7",
     "title": "Drag Performers and Marchinhas",
@@ -361,8 +330,7 @@
     "lightboxImage": "/images/CarnivalSP/full/Carnival7.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/mykatk",
     "category": "Carnival",
-        "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "artgallery1",
     "title": "MASP floating gallery above Avenida Paulista",
@@ -372,8 +340,7 @@
     "lightboxImage": "/images/ArtGallery/full/ArtGallery1.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/azpozv",
     "category": "Museums",
-    "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "artgallery2",
     "title": "Degas ballerina sculpture in MASP",
@@ -383,8 +350,7 @@
     "lightboxImage": "/images/ArtGallery/full/ArtGallery2.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/vbggph",
     "category": "Museums",
-    "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "artgallery4drawn",
     "title": "Art Gallery Drawing",
@@ -394,8 +360,7 @@
     "lightboxImage": "/images/ArtGallery/full/ArtGallery4Drawn.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/rxtsgi",
     "category": "Museums",
-    "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "artgallery3",
     "title": "Indigenous Brazilian exhibition in MASP lower levels",
@@ -405,8 +370,7 @@
     "lightboxImage": "/images/ArtGallery/full/ArtGallery3.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/bltpzl",
     "category": "Museums",
-    "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "artgallery4",
     "title": "Pinacoteca building and photography exhibition",
@@ -416,8 +380,7 @@
     "lightboxImage": "/images/ArtGallery/full/ArtGallery4.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/wkanbl",
     "category": "Museums",
-    "shopLink": "/nomads-shop/brazil/saopaulo"
-  },
+ "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "artgallery5",
     "title": "Pinacoteca architectural details and living gallery",
@@ -427,6 +390,5 @@
     "lightboxImage": "/images/ArtGallery/full/ArtGallery5.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/mshcaw",
     "category": "Museums",
-    "shopLink": "/nomads-shop/brazil/saopaulo"
-  }
+ "shopLink": "https://nomadscribbles.co.uk/shop"  }
 ]

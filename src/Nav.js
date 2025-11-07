@@ -296,9 +296,29 @@ className="w-14 h-7 sm:w-16 sm:h-11 md:w-18 md:h-17 flex items-center justify-ce
     </div>
   </div>
 
-  <Link className="text-[#38350b] text-lg hover:text-[#0c0b01]" to="/nomads-shop" onClick={() => setMenuOpen(false)}>Nomads Shop</Link>
-  <Link className="text-[#38350b] text-lg hover:text-[#0c0b01]" to="/nomads-gallery" onClick={() => setMenuOpen(false)}>Nomads Gallery</Link>
-  <Link className="text-[#38350b] text-lg hover:text-[#0c0b01]" to="/contact-us" onClick={() => setMenuOpen(false)}>Contact Us</Link>
+  <a
+href="https://nomadscribbles.co.uk/shop"
+  onClick={() => setMenuOpen(false)}
+  className="text-[#38350b] text-lg hover:text-[#0c0b01]"
+  target="_self"
+  rel="noopener noreferrer"
+>
+  Nomads Shop
+    </a>
+  <Link
+    className="text-[#38350b] text-lg hover:text-[#0c0b01]"
+    to="/nomads-gallery"
+    onClick={() => setMenuOpen(false)}
+  >
+    Nomads Gallery
+  </Link>
+  <Link
+    className="text-[#38350b] text-lg hover:text-[#0c0b01]"
+    to="/contact-us"
+    onClick={() => setMenuOpen(false)}
+  >
+    Contact Us
+  </Link>
 </div>
     </>
   );

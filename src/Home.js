@@ -5,12 +5,12 @@ import { motion } from "framer-motion";
 import SEO from "./components/SEO";
 import { fadeScale, hoverScale, staggerContainer } from "./animations";
 import HandwritingTagline from "./HandwritingTagline"; 
-import { trackEvent } from "./utils/analytics"; // added for feature clicks
+import { trackEvent } from "./utils/analytics";
 
 function Home() {
   const navigate = useNavigate();
   const originalCards = [
-    { title: "Nomads Shop", link: "/nomads-shop", img: "/images/Home/ThumbnailNS.webp" },
+    { title: "Nomads Shop", link: "https://nomadscribbles.co.uk/shop", img: "/images/Home/ThumbnailNS.webp", external: true },
     { title: "Nomads Gallery", link: "/nomads-gallery", img: "/images/Home/ThumbnailNG.webp" },
     { title: "Adventures", link: "/adventures", img: "/images/Home/ThumbnailA.webp" },
     { title: "Brazil", link: "/brazil", img: "/images/Home/Thumbnail.webp" },
@@ -100,6 +100,7 @@ function Home() {
           </motion.div>
         </motion.div>
       </motion.div>
+
 
       {/* São Paulo Feature */}
       <motion.div
@@ -220,50 +221,75 @@ function Home() {
         </motion.div>
       </motion.div>
 
-      {/* Bottom Carousel */}
-      <div className="w-full max-w-screen-lg mx-auto py-8 relative px-2 sm:px-4">
-        <button
-          onClick={() => scroll("left")}
-          aria-label="Scroll Left"
-          className="absolute left-0 top-1/2 -translate-y-1/2 bg-black bg-opacity-40 p-2 rounded-full z-10"
-        >
-          <img src={process.env.PUBLIC_URL + "/images/lftarrow.svg"} alt="Left Arrow" className="w-6 h-6" />
-        </button>
-        <button
-          onClick={() => scroll("right")}
-          aria-label="Scroll Right"
-          className="absolute right-0 top-1/2 -translate-y-1/2 bg-black bg-opacity-40 p-2 rounded-full z-10"
-        >
-          <img src={process.env.PUBLIC_URL + "/images/rtarrow.svg"} alt="Right Arrow" className="w-6 h-6" />
-        </button>
+    {/* Bottom Carousel */}
+<div className="w-full max-w-screen-lg mx-auto py-8 relative px-2 sm:px-4">
+  <button
+    onClick={() => scroll("left")}
+    aria-label="Scroll Left"
+    className="absolute left-0 top-1/2 -translate-y-1/2 bg-black bg-opacity-40 p-2 rounded-full z-10"
+  >
+    <img src={process.env.PUBLIC_URL + "/images/lftarrow.svg"} alt="Left Arrow" className="w-6 h-6" />
+  </button>
+  <button
+    onClick={() => scroll("right")}
+    aria-label="Scroll Right"
+    className="absolute right-0 top-1/2 -translate-y-1/2 bg-black bg-opacity-40 p-2 rounded-full z-10"
+  >
+    <img src={process.env.PUBLIC_URL + "/images/rtarrow.svg"} alt="Right Arrow" className="w-6 h-6" />
+  </button>
 
-        <div
-          ref={carouselRef}
-          className="flex overflow-x-auto overflow-y-hidden space-x-4 scrollbar-hide"
+  <div ref={carouselRef} className="flex overflow-x-auto overflow-y-hidden space-x-4 scrollbar-hide">
+    {cards.map((card, idx) =>
+      card.external ? (
+        <a
+          key={idx}
+          href={card.link}           // external link for WordPress shop
+          target="_self"             // same tab
+          rel="noopener noreferrer"
+          className="flex-shrink-0 w-[80vw] max-w-[16rem] aspect-[16/9]"
         >
-          {cards.map((card, idx) => (
-            <Link key={idx} to={card.link} className="flex-shrink-0 w-[80vw] max-w-[16rem] aspect-[16/9]">
-              <motion.div
-                className="relative shadow-lg group w-full h-full"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.8, ease: "easeInOut", delay: idx * 0.15 }}
-              >
-                <img
-                  src={process.env.PUBLIC_URL + card.img}
-                  alt={card.title + " - travel highlights"}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              </motion.div>
-            </Link>
-          ))}
-        </div>
-      </div>
+          <motion.div
+            className="relative shadow-lg group w-full h-full"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.8, ease: "easeInOut", delay: idx * 0.15 }}
+          >
+            <img
+              src={process.env.PUBLIC_URL + card.img}
+              alt={card.title + " - travel highlights"}
+              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+          </motion.div>
+        </a>
+      ) : (
+        <Link
+          key={idx}
+          to={card.link}             // internal React routes
+          className="flex-shrink-0 w-[80vw] max-w-[16rem] aspect-[16/9]"
+        >
+          <motion.div
+            className="relative shadow-lg group w-full h-full"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.8, ease: "easeInOut", delay: idx * 0.15 }}
+          >
+            <img
+              src={process.env.PUBLIC_URL + card.img}
+              alt={card.title + " - travel highlights"}
+              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+          </motion.div>
+        </Link>
+      )
+    )}
+  </div>
+</div>
 
-      <style>{`
-        .scrollbar-hide::-webkit-scrollbar { display: none; }
-        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+<style>{`
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
     </div>
   );
