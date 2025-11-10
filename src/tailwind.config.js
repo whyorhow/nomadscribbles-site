@@ -7,19 +7,22 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primaryText: '#0e1406', // your soft dark green
+        darkText: '#E5CF6B',   // text on dark backgrounds
+        lightText: '#101E0E',  // text on light backgrounds
+        primaryText: '#0e1406', // existing soft dark green
       },
       fontFamily: {
-        cormorant: ['Cormorant', 'serif'], // existing font
+        cormorant: ['Cormorant', 'serif'],      // existing font
         handwriting: ['Dancing Script', 'cursive'], // new handwriting font
       },
       backgroundImage: {
+        'main-gradient': 'linear-gradient(to bottom, #575E38, #292D18)', // new global gradient
         'art-gallery': "url('/images/ArtGalleryBackground.jpg')",
         'carnival': "url('/images/CarnivalBackground.jpg')",
         'murals': "url('/images/muralbackground.jpg')",
         'parks': "url('/images/ParkBackdrop.jpg')",
         'beach': "url('/images/beach.jpg')",
-        "brazil-tiles": "url('/images/BrazilFlag2.jpg')",
+        'brazil-tiles': "url('/images/BrazilFlag2.jpg')",
         'brazil-main': "url('/images/Brazil/BrazilBack.png')",
       },
       keyframes: {

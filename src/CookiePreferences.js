@@ -67,6 +67,19 @@ export default function CookiePreferences() {
 
         <section>
           <p>
+            This Privacy & Cookie Policy applies to all Nomad Scribbles websites, including our main site{" "}
+            <a href="https://nomadscribbles.com" className="underline text-blue-400 hover:text-blue-300">
+              nomadscribbles.com
+            </a>{" "}
+            and our shop{" "}
+            <a href="https://nomadscribbles.co.uk" className="underline text-blue-400 hover:text-blue-300">
+              nomadscribbles.co.uk
+            </a>. Any reference to “our website” or “this site” applies to both unless otherwise stated.
+          </p>
+        </section>
+
+        <section>
+          <p>
             At Nomad Scribbles, we respect your privacy and are committed to protecting your personal data. 
             Any personal information you provide, such as your email, will only be used to respond to your inquiries 
             or for newsletter communications if you opt in. We never sell or share your information with third parties.
@@ -76,9 +89,26 @@ export default function CookiePreferences() {
         <section>
           <h2 className="text-xl font-semibold mb-2">Cookies</h2>
           <p>
-            We use cookies to enhance your experience on our website. These include essential cookies for site 
-            functionality and optional cookies for analytics or marketing. By accepting cookies, you allow us to 
-            collect anonymised data to understand how our site is used and improve your experience.
+            We use cookies to enhance your experience on our websites. These include essential cookies for core 
+            functionality and optional cookies for analytics or marketing. Our shop platform{" "}
+            <a href="https://nomadscribbles.co.uk" className="underline text-blue-400 hover:text-blue-300">
+              nomadscribbles.co.uk
+            </a>{" "}
+            may also use additional cookies required by its eCommerce system. By accepting cookies, you allow us to 
+            collect anonymised data to understand how our sites are used and improve your experience.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold mb-2">Connected Sites</h2>
+          <p>
+            Our shop at{" "}
+            <a href="https://nomadscribbles.co.uk" className="underline text-blue-400 hover:text-blue-300">
+              nomadscribbles.co.uk
+            </a>{" "}
+            is operated by the same Nomad Scribbles team and follows the same data protection standards described in 
+            this policy. When you visit our shop, cookies or analytics may function slightly differently due to the 
+            platform’s technical setup, but your privacy rights remain the same.
           </p>
         </section>
 

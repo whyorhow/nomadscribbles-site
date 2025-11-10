@@ -21,7 +21,7 @@ import CookieConsent from "./CookieConsent";
 import CookiePreferences from "./CookiePreferences";
 import Lightbox from "./Lightbox";
 
-// Import analytics helpers
+// Analytics helpers
 import { trackEvent, trackPageView } from "./utils/analytics";
 
 // Page title manager
@@ -127,7 +127,7 @@ function App() {
   return (
     <HelmetProvider>
       <Router>
-        {/* Load GA script only if cookies are accepted */}
+        {/* GA script */}
         {cookiesAccepted && (
           <Helmet>
             <script async src="https://www.googletagmanager.com/gtag/js?id=G-87DFFWTXFM"></script>
@@ -142,11 +142,8 @@ function App() {
           </Helmet>
         )}
 
-        <div
-          className="min-h-screen flex flex-col
-          bg-gradient-to-b from-[#5c6e53] via-[#485b3c] to-[#37462f]
-          text-[#eeda8d]"
-        >
+        {/* --- Global wrapper with gradient using Tailwind arbitrary values --- */}
+        <div className="min-h-screen flex flex-col bg-[linear-gradient(to_bottom,#575E38,#292D18)] text-[#E5CF6B]">
           <PageTitleManager />
           <PageViewTracker cookiesAccepted={cookiesAccepted} />
           <Nav />
@@ -156,7 +153,6 @@ function App() {
               <Route path="/" element={<Home openLightbox={openLightbox} />} />
               <Route path="/home" element={<Home openLightbox={openLightbox} />} />
               <Route path="/adventures" element={<Adventures openLightbox={openLightbox} />} />
-
               <Route path="/brazil" element={<Brazil openLightbox={openLightbox} />} />
               <Route path="/brazil/saopaulo" element={<SaoPaulo openLightbox={openLightbox} />} />
               <Route path="/brazil/saopaulo/parks" element={<Parks openLightbox={openLightbox} />} />
@@ -181,7 +177,7 @@ function App() {
           </div>
         </div>
 
-        {/* Cookie Consent Popup - hide on preferences page */}
+        {/* Cookie Consent Popup */}
         {cookiesAccepted === null && window.location.pathname !== "/cookie-preferences" && (
           <CookieConsent
             onAccept={() => handleConsentChange(true)}

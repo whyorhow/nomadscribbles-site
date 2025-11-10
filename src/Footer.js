@@ -1,6 +1,5 @@
 import React from "react";
-import { Instagram, Facebook } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { trackEvent } from "./utils/analytics";
 
 export default function Footer() {
@@ -23,7 +22,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full bg-[#5e5c35] text-[#c1c0bc] p-2 md:p-3 border-t border-[#817e65] text-xs md:text-sm">
+    <footer className="w-full bg-[#AEA363] text-darkText p-2 md:p-3 border-t border-[#817e65] text-xs md:text-sm">
       <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-2 md:gap-3 text-center md:text-left">
         
         {/* Left section */}
@@ -32,34 +31,67 @@ export default function Footer() {
           {/* Social icons */}
           <div className="flex items-center gap-3">
             <button
-              onClick={() => handleExternalClick("click_instagram", "Footer", "Instagram", "https://www.instagram.com/nomadscribbles?igsh=NXNzcGlsNXR5amt1&utm_source=qr")}
-              className="hover:text-white transition-colors"
+              onClick={() =>
+                handleExternalClick(
+                  "click_instagram",
+                  "Footer",
+                  "Instagram",
+                  "https://www.instagram.com/nomadscribbles"
+                )
+              }
+              className="hover:text-lightText transition-colors"
             >
-              <Instagram className="w-4 h-4 md:w-5 md:h-5" />
-            </button>
-            <button
-              onClick={() => handleExternalClick("click_facebook", "Footer", "Facebook", "https://www.facebook.com/yourFacebookPage")}
-              className="hover:text-white transition-colors"
-            >
-              <Facebook className="w-4 h-4 md:w-5 md:h-5" />
-            </button>
-            <button
-              onClick={() => handleExternalClick("click_x", "Footer", "X/Twitter", "https://x.com/NomadScribblesX")}
-              className="hover:text-white transition-colors"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 170 154.06"
-                fill="currentColor"
+              <img
+                src="/images/MyIcons/Instaicon.svg"
+                alt="Instagram"
                 className="w-4 h-4 md:w-5 md:h-5"
-              >
-                <path d="m133.88,0h26.07l-56.95,65.26,67,88.8h-52.46l-41.09-53.87-47.02,53.87H3.36l60.91-69.81L0,0h53.79l37.13,49.23L133.88,0Zm-9.14,138.42h14.45L45.93,14.82h-15.49l94.3,123.6Z"/>
-              </svg>
+              />
+            </button>
+            <button
+              onClick={() =>
+                handleExternalClick(
+                  "click_facebook",
+                  "Footer",
+                  "Facebook",
+                  "https://www.facebook.com/yourFacebookPage"
+                )
+              }
+              className="hover:text-lightText transition-colors"
+            >
+              <img
+                src="/images/MyIcons/Facebookicon.svg"
+                alt="Facebook"
+                className="w-4 h-4 md:w-5 md:h-5"
+              />
+            </button>
+            <button
+              onClick={() =>
+                handleExternalClick(
+                  "click_x",
+                  "Footer",
+                  "X/Twitter",
+                  "https://x.com/NomadScribblesX"
+                )
+              }
+              className="hover:text-lightText transition-colors"
+            >
+              <img
+                src="/images/MyIcons/Xicon.svg"
+                alt="X/Twitter"
+                className="w-4 h-4 md:w-5 md:h-5"
+              />
             </button>
 
             {/* Small-screen favicon link */}
             <button
-              onClick={() => handleInternalClick("click_contact_footer", "Footer", "Favicon Small", "/contact-us")}
+              onClick={() =>
+                handleInternalClick(
+                  "click_contact_footer",
+                  "Footer",
+                  "Favicon Small",
+                  "/contact-us"
+                )
+              }
               className="md:hidden hover:opacity-90 transition-transform duration-300 ease-in-out hover:scale-110"
               aria-label="Contact us"
             >
@@ -73,8 +105,15 @@ export default function Footer() {
 
           {/* Full tagline for medium+ screens */}
           <button
-            onClick={() => handleInternalClick("click_contact_footer", "Footer", "Full Tagline", "/contact-us")}
-            className="hidden md:flex items-center gap-2 italic transition-all duration-300 hover:text-white hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]"
+            onClick={() =>
+              handleInternalClick(
+                "click_contact_footer",
+                "Footer",
+                "Full Tagline",
+                "/contact-us"
+              )
+            }
+            className="hidden md:flex items-center gap-2 italic transition-all duration-300 hover:text-lightText hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]"
           >
             <img
               src="/images/favicon-192x192.png"
@@ -95,8 +134,15 @@ export default function Footer() {
               <>
                 <span>|</span>
                 <button
-                  onClick={() => handleInternalClick("click_cookie_footer", "Footer", "Cookie Preferences", "/cookie-preferences")}
-                  className="underline text-gray-400 hover:text-white"
+                  onClick={() =>
+                    handleInternalClick(
+                      "click_cookie_footer",
+                      "Footer",
+                      "Cookie Preferences",
+                      "/cookie-preferences"
+                    )
+                  }
+                  className="underline text-darkText hover:text-lightText"
                 >
                   Cookies
                 </button>
@@ -109,8 +155,15 @@ export default function Footer() {
             <div>&copy; {year} Nomad Scribbles</div>
             {!onPreferencesPage && (
               <button
-                onClick={() => handleInternalClick("click_cookie_footer", "Footer", "Change site preferences", "/cookie-preferences")}
-                className="underline text-gray-400 hover:text-white text-xs md:text-sm"
+                onClick={() =>
+                  handleInternalClick(
+                    "click_cookie_footer",
+                    "Footer",
+                    "Change site preferences",
+                    "/cookie-preferences"
+                  )
+                }
+                className="underline text-darkText hover:text-lightText text-xs md:text-sm"
               >
                 Change site preferences
               </button>

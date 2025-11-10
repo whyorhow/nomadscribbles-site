@@ -8,6 +8,16 @@ import FullscreenIcon from "./assets/images/enlarge.svg";
 // Analytics helper
 import { trackEvent } from "./utils/analytics";
 
+/* --- Helper: dynamic text color based on background luminance --- */
+function getTextColorForBg(hexColor) {
+  if (hexColor.startsWith("#")) hexColor = hexColor.slice(1);
+  const r = parseInt(hexColor.slice(0, 2), 16);
+  const g = parseInt(hexColor.slice(2, 4), 16);
+  const b = parseInt(hexColor.slice(4, 6), 16);
+  const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  return luminance < 128 ? "text-darkText" : "text-lightText";
+}
+
 export default function Lightbox({ images = [], currentIndex, setCurrentIndex }) {
   const containerRef = useRef(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -76,11 +86,15 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex })
     if (cookiesAccepted) trackEvent(eventName, "Engagement", link);
   };
 
+  /* --- Overlay background and dynamic text --- */
+  const overlayBg = "#2f3e2f"; // semi-dark overlay
+  const overlayTextClass = getTextColorForBg(overlayBg);
+
   return (
     <AnimatePresence>
       <motion.div
         ref={containerRef}
-        className={`fixed inset-0 backdrop-blur-sm bg-[#2f3e2f]/90 flex items-start justify-center z-50 ${isFullscreen ? "" : "p-4"}`}
+        className={`fixed inset-0 backdrop-blur-sm bg-[${overlayBg}]/90 flex items-start justify-center z-50 ${overlayTextClass} ${isFullscreen ? "" : "p-4"}`}
         onClick={() => setCurrentIndex(null)}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -165,16 +179,17 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex })
           </div>
 
           {!isFullscreen && (
-            <div className="w-full max-w-[95vw] bg-[#e1e5e1] mt-1 p-1 pb-2 shadow flex flex-col items-start">
-              {title && <h2 className="font-bold text-lg mb-1 text-[#4a3f35]">{title}</h2>}
-              {description && <p className="text-sm mb-2 text-[#333333]">{description}</p>}
+            <div className={`w-full max-w-[95vw] mt-1 p-1 pb-2 shadow flex flex-col items-start ${overlayTextClass}`} style={{ backgroundColor: "#e1e5e1" }}>
+              {title && <h2 className={`font-bold text-lg mb-1 ${overlayTextClass}`}>{title}</h2>}
+              {description && <p className={`text-sm mb-2 ${overlayTextClass}`}>{description}</p>}
               <div className="flex space-x-1">
                 {gumroadLink && (
                   <a
                     href={gumroadLink}
                     onClick={() => handlePurchaseClick(gumroadLink, "lightbox_purchase")}
-                    style={{ backgroundColor: "#5F7536" }}
-                    className="px-4 py-2 text-white font-medium rounded-sm shadow hover:opacity-90 transition-opacity"
+                    className={`px-4 py-2 font-medium rounded-sm shadow hover:opacity-90 transition-opacity ${
+                      overlayTextClass === "text-darkText" ? "bg-[#5F7536] text-white" : "bg-[#c5d89b] text-[#101E0E]"
+                    }`}
                   >
                     Purchase
                   </a>
@@ -183,8 +198,9 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex })
                   <a
                     href={shopLink}
                     onClick={() => handlePurchaseClick(shopLink, "lightbox_shop")}
-                    style={{ backgroundColor: "#634E39" }}
-                    className="px-4 py-2 text-white font-medium rounded-sm shadow hover:opacity-90 transition-opacity"
+                    className={`px-4 py-2 font-medium rounded-sm shadow hover:opacity-90 transition-opacity ${
+                      overlayTextClass === "text-darkText" ? "bg-[#634E39] text-white" : "bg-[#d8c9b5] text-[#101E0E]"
+                    }`}
                   >
                     Shop
                   </a>

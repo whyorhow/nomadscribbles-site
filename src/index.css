@@ -1,5 +1,7 @@
 @tailwind base;
+@tailwind components;
 
+/* Fonts */
 .font-cormorant {
   font-family: 'Cormorant Garamond', serif;
 }
@@ -12,5 +14,19 @@ html, body, #root {
   overflow-x: hidden;
 }
 
-@tailwind components;
+/* Custom gradient as Tailwind utility */
+@layer utilities {
+  .bg-main-gradient {
+    background-image: linear-gradient(to bottom, #575E38, #292D18);
+  }
+}
+
+/* Apply global gradient and text color */
+@layer base {
+  body {
+    @apply bg-main-gradient min-h-screen;
+    color: theme('colors.darkText');
+  }
+}
+
 @tailwind utilities;

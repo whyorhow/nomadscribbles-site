@@ -1,0 +1,20 @@
+{
+  "name": "My Custom Icons",
+  "icons": [
+    {
+      "title": "Facebook",
+      "svg": "Facebookicon.svg",
+      "styles": []
+    },
+    {
+      "title": "Instagram",
+      "svg": "Instaicon.svg",
+      "styles": []
+    },
+    {
+      "title": "X/Twitter",
+      "svg": "Xicon.svg",
+      "styles": []
+    }
+  ]
+}
