@@ -23,27 +23,27 @@ export default function HandwritingTagline({
       xmlns="http://www.w3.org/2000/svg"
       className="w-full max-w-[606px] h-auto mx-auto"
     >
-      <path
-        ref={pathRef}
-        d={pathData}
-        fill="transparent"
-        stroke={strokeColor}
-        strokeWidth={strokeWidth}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeDasharray={pathLength}
-        strokeDashoffset={-pathLength}
-        style={{
-          animation: `draw ${duration}s cubic-bezier(0.65, 0, 0.35, 1) forwards`,
-        }}
-      />
-      <style>{`
-        @keyframes draw {
-          to {
-            stroke-dashoffset: 0;
-          }
-        }
-      `}</style>
+     <path
+  ref={pathRef}
+  d={pathData}
+  fill="transparent"
+  stroke={strokeColor}
+  strokeWidth={strokeWidth}
+  strokeLinecap="round"
+  strokeLinejoin="round"
+  strokeDasharray={pathLength}
+  strokeDashoffset={-pathLength} // start fully hidden, left to right
+  style={{
+    animation: `draw ${duration}s cubic-bezier(0.65, 0, 0.35, 1) forwards`,
+  }}
+/>
+<style>{`
+  @keyframes draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+`}</style>
     </svg>
   );
 }

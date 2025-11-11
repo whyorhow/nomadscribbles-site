@@ -53,7 +53,7 @@
 
  {
   "id": "park1",
-  "title": "Ibirapuera Park Print",
+  "title": "Ibirapuera Park",
   "description": "Beautiful view of Ibirapuera Park in São Paulo.",
   "image": "/images/SP-Parks/small/Park1z.webp",
   "blogimage": "/images/SP-Parks/small/Park1.jpg",
@@ -103,7 +103,7 @@
  "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "park6",
-    "title": "Forest Floor Sculptures",
+    "title": "Evolving Tree Stump",
     "description": "Sunlight through the trees.",
     "image": "/images/SP-Parks/small/Park6z.webp",
     "blogimage": "/images/SP-Parks/small/Park6.jpg",
@@ -113,7 +113,7 @@
  "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "park7",
-    "title": "Burle Marx Curved Landscape",
+    "title": "Burle Marx Curved Trees",
     "description": "Iconic design poster of Burle Marx.",
     "image": "/images/SP-Parks/small/Park7z.webp",
     "blogimage": "/images/SP-Parks/small/Park7.jpg",
@@ -143,7 +143,7 @@
  "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "graffiti3",
-    "title": "Flight Across a Storefront",
+    "title": "The Little Prince of São Paulo",
     "description": "Colourful street art scene.",
     "image": "/images/Murals/small/Graffiti3z.webp",
     "blogimage": "/images/Murals/small/Graffiti3.jpg",
@@ -163,7 +163,7 @@
  "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "graffiti5",
-    "title": "Layers of Change",
+    "title": "Steps That Paint Stories",
     "description": "São Paulo mural culture captured.",
     "image": "/images/Murals/small/Graffiti5z.webp",
     "blogimage": "/images/Murals/small/Graffiti5.jpg",
@@ -173,7 +173,7 @@
  "shopLink": "https://nomadscribbles.co.uk/shop"  },
   {
     "id": "graffiti6",
-    "title": "Steps That Paint Stories",
+    "title": "Senna Forever",
     "description": "Urban art in the city streets.",
     "image": "/images/Murals/small/Graffiti6z.webp",
     "blogimage": "/images/Murals/small/Graffiti6.jpg",
