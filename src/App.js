@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 
+import TestDanishSky from "./TestDanishSky";
 import NotFound from "./NotFound";
 import Nav from "./Nav";
 import Footer from "./Footer";
@@ -164,6 +165,7 @@ function App() {
               <Route path="/contact-us" element={<ContactUs openLightbox={openLightbox} />} />
               <Route path="/search" element={<SearchResults openLightbox={openLightbox} />} />
               <Route path="*" element={<NotFound />} />
+              <Route path="/test-danishsky" element={<TestDanishSky />} />
               <Route
                 path="/cookie-preferences"
                 element={

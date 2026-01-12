@@ -42,7 +42,7 @@ export default function Footer() {
               className="hover:text-lightText transition-colors"
             >
               <img
-                src="/images/MyIcons/Instaicon.svg"
+                src="/images/Instaicon.svg"
                 alt="Instagram"
                 className="w-4 h-4 md:w-5 md:h-5"
               />
@@ -59,7 +59,7 @@ export default function Footer() {
               className="hover:text-lightText transition-colors"
             >
               <img
-                src="/images/MyIcons/Facebookicon.svg"
+                src="/images/Facebookicon.svg"
                 alt="Facebook"
                 className="w-4 h-4 md:w-5 md:h-5"
               />
@@ -76,7 +76,7 @@ export default function Footer() {
               className="hover:text-lightText transition-colors"
             >
               <img
-                src="/images/MyIcons/Xicon.svg"
+                src="/images/Xicon.svg"
                 alt="X/Twitter"
                 className="w-4 h-4 md:w-5 md:h-5"
               />

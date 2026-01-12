@@ -14,6 +14,11 @@ html, body, #root {
   overflow-x: hidden;
 }
 
+@keyframes sway {
+  0%, 100% { transform: translateX(-50%) translateX(0px); }
+  50% { transform: translateX(-50%) translateX(5px); } /* adjust 5px for sway distance */
+}
+
 /* Custom gradient as Tailwind utility */
 @layer utilities {
   .bg-main-gradient {
