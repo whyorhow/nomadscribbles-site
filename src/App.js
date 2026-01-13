@@ -6,6 +6,8 @@ import TestDanishSky from "./TestDanishSky";
 import NotFound from "./NotFound";
 import Nav from "./Nav";
 import Footer from "./Footer";
+import NomadsShop from "./NomadsShop";
+import NomadsShopBrazil from "./NomadsShopBrazil";
 import Home from "./Home";
 import NomadsGallery from "./NomadsGallery";
 import Adventures from "./Adventures";
@@ -154,6 +156,9 @@ function App() {
               <Route path="/" element={<Home openLightbox={openLightbox} />} />
               <Route path="/home" element={<Home openLightbox={openLightbox} />} />
               <Route path="/adventures" element={<Adventures openLightbox={openLightbox} />} />
+              <Route path="/nomadsshop" element={<NomadsShop />} />
+              <Route path="/nomads-shop" element={<NomadsShop />} />
+              <Route path="/nomads-shop/brazil" element={<NomadsShopBrazil />} />
               <Route path="/brazil" element={<Brazil openLightbox={openLightbox} />} />
               <Route path="/brazil/saopaulo" element={<SaoPaulo openLightbox={openLightbox} />} />
               <Route path="/brazil/saopaulo/parks" element={<Parks openLightbox={openLightbox} />} />
@@ -164,8 +169,8 @@ function App() {
               <Route path="/nomads-gallery" element={<NomadsGallery openLightbox={openLightbox} />} />
               <Route path="/contact-us" element={<ContactUs openLightbox={openLightbox} />} />
               <Route path="/search" element={<SearchResults openLightbox={openLightbox} />} />
+               <Route path="/test-danishsky" element={<TestDanishSky />} />
               <Route path="*" element={<NotFound />} />
-              <Route path="/test-danishsky" element={<TestDanishSky />} />
               <Route
                 path="/cookie-preferences"
                 element={

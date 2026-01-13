@@ -7,17 +7,37 @@ import { skyObjects } from "./Sky";
 import { sunsObjects } from "./Suns";
 import { waterObjects } from "./Water";
 import { soilObjects } from "./Soil";
-import { grassObjects } from "./Grass";  
+import { grassObjects } from "./Grass";
 import HandwritingTagline from "./HandwritingTagline";
 import { trackEvent } from "./utils/analytics";
 
 const TestDanishSky = () => {
   const navigate = useNavigate();
+
   const [scrollY, setScrollY] = useState(0);
   const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
 
+  // --- Feature states (copied from Home logic) ---
+  const [showMiniSP, setShowMiniSP] = useState(false);
+  const [showMiniSantos, setShowMiniSantos] = useState(false);
+
+  const isMobile = window.innerWidth <= 768;
+
+  const handleSPClick = () => {
+    if (isMobile) setShowMiniSP((prev) => !prev);
+    else navigate("/brazil/saopaulo");
+  };
+
+  const handleSantosClick = () => {
+    setShowMiniSantos((prev) => {
+      if (!prev) return true;
+      navigate("/brazil/saopaulo/santos");
+      return prev;
+    });
+  };
+
   const originalCards = [
-    { title: "Nomads Shop", link: "https://nomadscribbles.co.uk/shop", img: "/images/Home/ThumbnailNS.webp", external: true },
+    { title: "Nomads Shop", link: "/nomadsshop", img: "/images/Home/ThumbnailNS.webp" },
     { title: "Nomads Gallery", link: "/nomads-gallery", img: "/images/Home/ThumbnailNG.webp" },
     { title: "Adventures", link: "/adventures", img: "/images/Home/ThumbnailA.webp" },
     { title: "Brazil", link: "/brazil", img: "/images/Home/Thumbnail.webp" },
@@ -43,8 +63,8 @@ const TestDanishSky = () => {
     setCards([...originalCards, ...originalCards, ...originalCards]);
 
     const alignTimeout = setTimeout(() => {
-if (carouselRef.current && carouselRef.current.firstChild) {
-  const cardWidth = carouselRef.current.firstChild.offsetWidth;
+      if (carouselRef.current && carouselRef.current.firstChild) {
+        const cardWidth = carouselRef.current.firstChild.offsetWidth;
         carouselRef.current.scrollLeft = cardWidth * originalCards.length;
       }
     }, 50);
@@ -52,27 +72,26 @@ if (carouselRef.current && carouselRef.current.firstChild) {
     return () => clearTimeout(alignTimeout);
   }, []);
 
-const scroll = (direction = "right") => {
-  const carousel = carouselRef.current;
-  if (!carousel || !carousel.firstChild) return; // safer than children[0]
-  const cardWidth = carousel.firstChild.offsetWidth;
-  const total = originalCards.length;
+  const scroll = (direction = "right") => {
+    const carousel = carouselRef.current;
+    if (!carousel || !carousel.firstChild) return;
+    const cardWidth = carousel.firstChild.offsetWidth;
+    const total = originalCards.length;
 
-  carousel.scrollBy({
-    left: direction === "right" ? cardWidth : -cardWidth,
-    behavior: "smooth",
-  });
+    carousel.scrollBy({
+      left: direction === "right" ? cardWidth : -cardWidth,
+      behavior: "smooth",
+    });
 
-  setTimeout(() => {
-    const scrollIndex = Math.round(carousel.scrollLeft / cardWidth);
-    if (scrollIndex < total) {
-      carousel.scrollLeft += total * cardWidth;
-    } else if (scrollIndex >= total * 2) {
-      carousel.scrollLeft -= total * cardWidth;
-    }
-  }, 350);
-};
-
+    setTimeout(() => {
+      const scrollIndex = Math.round(carousel.scrollLeft / cardWidth);
+      if (scrollIndex < total) {
+        carousel.scrollLeft += total * cardWidth;
+      } else if (scrollIndex >= total * 2) {
+        carousel.scrollLeft -= total * cardWidth;
+      }
+    }, 350);
+  };
 
   const renderLayer = (layer, index) => {
     let parallaxY = 0;
@@ -117,22 +136,17 @@ const scroll = (direction = "right") => {
         style={layerStyle}
       >
         {layer.path && (
-          <path
-            d={layer.path}
-            fill={layer.fill}
-            stroke={layer.stroke}
-            strokeWidth={layer.strokeWidth}
-          />
+          <path d={layer.path} fill={layer.fill} stroke={layer.stroke} strokeWidth={layer.strokeWidth} />
         )}
       </svg>
     );
   };
 
-  const sky = skyObjects.map(layer => ({ ...layer, zIndex: layer.zIndex ?? 1 }));
-  const suns = sunsObjects.map(layer => ({ ...layer, zIndex: layer.zIndex ?? 10 }));
-  const water = waterObjects.map(layer => ({ ...layer, zIndex: layer.zIndex ?? 15 }));
-  const soil = soilObjects.map(layer => ({ ...layer, zIndex: layer.zIndex ?? 20 }));
-  const grass = grassObjects.map(layer => ({ ...layer, zIndex: layer.zIndex ?? 25 }));
+  const sky = skyObjects.map((layer) => ({ ...layer, zIndex: layer.zIndex ?? 1 }));
+  const suns = sunsObjects.map((layer) => ({ ...layer, zIndex: layer.zIndex ?? 10 }));
+  const water = waterObjects.map((layer) => ({ ...layer, zIndex: layer.zIndex ?? 15 }));
+  const soil = soilObjects.map((layer) => ({ ...layer, zIndex: layer.zIndex ?? 20 }));
+  const grass = grassObjects.map((layer) => ({ ...layer, zIndex: layer.zIndex ?? 25 }));
 
   return (
     <div className="relative w-screen h-[200vh] overflow-hidden bg-[#342508ff]">
@@ -157,6 +171,7 @@ const scroll = (direction = "right") => {
               className="w-full h-auto object-contain drop-shadow-lg"
             />
           </motion.div>
+
           <motion.div
             className="mt-4 sm:mt-5 text-lg sm:text-xl md:text-2xl font-handwriting drop-shadow-md text-[#eeda8d] max-w-2xl mx-auto text-center"
             variants={fadeScale}
@@ -165,80 +180,215 @@ const scroll = (direction = "right") => {
           </motion.div>
         </motion.div>
       </motion.div>
-{/* Carousel */}
-<motion.div className="relative mt-10 max-w-screen-lg mx-auto px-4 z-[9999]" variants={staggerContainer} initial="hidden" animate="visible">
-  <button
-    onClick={() => scroll("left")}
-    className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-40 p-2 rounded-full"
-  >
-    <img src={process.env.PUBLIC_URL + "/images/lftarrow.svg"} alt="Left Arrow" className="w-6 h-6"/>
-  </button>
-  <button
-    onClick={() => scroll("right")}
-    className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-40 p-2 rounded-full"
-  >
-    <img src={process.env.PUBLIC_URL + "/images/rtarrow.svg"} alt="Right Arrow" className="w-6 h-6"/>
-  </button>
 
-  <div
-    ref={carouselRef}
-    className="flex overflow-x-auto overflow-y-hidden space-x-4 scrollbar-hide"
-    style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-  >
-    {cards.map((card, idx) =>
-      card.external ? (
-        <a
-          key={idx}
-          href={card.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex-shrink-0 w-[80vw] max-w-[16rem] aspect-[16/9]"
+      {/* São Paulo Feature */}
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={staggerContainer}
+        className="w-full mt-8 px-2 sm:px-4 relative z-[9999]"
+      >
+        <motion.div
+          className="relative block w-full max-w-[80%] sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden group transition-all duration-[2000ms]"
+          onMouseEnter={() => {
+            if (!isMobile) setShowMiniSP(true);
+            trackEvent("hover_feature", "TestDanishSky", "São Paulo Feature");
+          }}
+          onMouseLeave={() => !isMobile && setShowMiniSP(false)}
+          onClick={() => {
+            handleSPClick();
+            trackEvent("click_feature", "TestDanishSky", "São Paulo Feature");
+          }}
+          variants={fadeScale}
         >
-          <motion.div
-            className="relative shadow-lg group w-full h-full cursor-pointer"
-            whileHover={{ scale: 1.05 }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeInOut", delay: idx * 0.15 }}
-          >
-            <img
-              src={process.env.PUBLIC_URL + card.img}
-              alt={card.title}
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-          </motion.div>
-        </a>
-      ) : (
-        <Link
-          key={idx}
-          to={card.link}
-          className="flex-shrink-0 w-[80vw] max-w-[16rem] aspect-[16/9]"
+          <motion.img
+            src={process.env.PUBLIC_URL + "/images/Home/Features/SaoPaulo.webp"}
+            alt="São Paulo city travel feature"
+            className="w-full h-full object-cover transition-transform duration-2000 group-hover:scale-105"
+            variants={hoverScale}
+          />
+          <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-0 transition-opacity duration-[2000ms]"></div>
+
+          <motion.img
+            src={process.env.PUBLIC_URL + "/images/Home/SaoPauloScript1.webp"}
+            alt="São Paulo Script Detail"
+            className={`absolute top-2 sm:top-4 left-2 sm:left-4 w-48 sm:w-72 md:w-88 z-20 transition-opacity duration-[2000ms] ${
+              !showMiniSP ? "opacity-100" : "opacity-0"
+            }`}
+            variants={fadeScale}
+          />
+
+          {showMiniSP && (
+            <motion.div
+              className={`absolute bottom-16 inset-x-0 flex justify-center items-end space-x-2 sm:space-x-3 z-20 transition-all duration-[2000ms] ease-in-out ${
+                showMiniSP ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              }`}
+              variants={fadeScale}
+            >
+              <img
+                src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/pizza.webp"}
+                alt="São Paulo Pizza"
+                className="w-24 sm:w-30 md:w-44 lg:w-44 h-auto rounded-sm shadow-lg transition-opacity duration-[4000ms]"
+              />
+              <img
+                src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/street.webp"}
+                alt="São Paulo Street"
+                className="w-24 sm:w-30 md:w-44 lg:w-44 h-auto rounded-sm shadow-lg transition-opacity duration-[4000ms]"
+              />
+              <img
+                src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/caparinha.webp"}
+                alt="Caipirinha"
+                className="w-24 sm:w-30 md:w-44 lg:w-44 h-auto rounded-sm shadow-lg transition-opacity duration-[4000ms]"
+              />
+            </motion.div>
+          )}
+        </motion.div>
+      </motion.div>
+
+      {/* Santos Feature */}
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={staggerContainer}
+        className="w-full mt-4 px-2 sm:px-4 relative z-[9999]"
+      >
+        <motion.div
+          className="relative block w-full max-w-[80%] sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden group transition-all duration-[2000ms]"
+          onMouseEnter={() => {
+            setShowMiniSantos(true);
+            trackEvent("hover_feature", "TestDanishSky", "Santos Feature");
+          }}
+          onMouseLeave={() => setShowMiniSantos(false)}
+          onClick={() => {
+            handleSantosClick();
+            trackEvent("click_feature", "TestDanishSky", "Santos Feature");
+          }}
+          variants={fadeScale}
         >
-          <motion.div
-            className="relative shadow-lg group w-full h-full cursor-pointer"
-            whileHover={{ scale: 1.05 }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeInOut", delay: idx * 0.15 }}
-          >
-            <img
-              src={process.env.PUBLIC_URL + card.img}
-              alt={card.title}
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-          </motion.div>
-        </Link>
-      )
-    )}
-  </div>
-</motion.div>
+          <motion.img
+            src={process.env.PUBLIC_URL + "/images/Home/Features/Santos.webp"}
+            alt="Santos city travel feature"
+            className="w-full h-full object-cover transition-transform duration-2000 group-hover:scale-105"
+            variants={hoverScale}
+          />
+          <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-0 transition-opacity duration-[2000ms]"></div>
 
-<style>{`
-  .scrollbar-hide::-webkit-scrollbar { display: none; }
-  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-`}</style>
+          <motion.img
+            src={process.env.PUBLIC_URL + "/images/Home/SantosScript1.webp"}
+            alt="Santos Script Detail"
+            className={`absolute top-2 sm:top-4 left-2 sm:left-4 w-24 sm:w-36 md:w-44 z-20 transition-opacity duration-[2000ms] ${
+              !showMiniSantos ? "opacity-100" : "opacity-0"
+            }`}
+            variants={fadeScale}
+          />
+          <motion.img
+            src={process.env.PUBLIC_URL + "/images/Home/SantosScript2.webp"}
+            alt="Santos Script Hover Detail"
+            className={`absolute bottom-2 sm:bottom-4 right-2 sm:right-4 w-24 sm:w-36 md:w-44 z-20 transition-opacity duration-[2000ms] ${
+              showMiniSantos ? "opacity-100" : "opacity-0"
+            }`}
+            variants={fadeScale}
+          />
 
+          {showMiniSantos && (
+            <>
+              <motion.img
+                src={process.env.PUBLIC_URL + "/images/Home/Features/SantosMini1.webp"}
+                alt=""
+                className="absolute top-2 left-2 w-36 sm:w-48 md:w-64 lg:w-72 z-20 transition-opacity duration-[2000ms]"
+                variants={fadeScale}
+              />
+              <motion.img
+                src={process.env.PUBLIC_URL + "/images/Home/Features/SantosMini2.webp"}
+                alt=""
+                className="absolute top-1/3 right-4 w-36 sm:w-48 md:w-64 lg:w-72 z-20 transition-opacity duration-[2000ms]"
+                variants={fadeScale}
+              />
+              <motion.img
+                src={process.env.PUBLIC_URL + "/images/Home/Features/SantosMini3.webp"}
+                alt=""
+                className="absolute bottom-4 left-1/3 w-36 sm:w-48 md:w-64 lg:w-72 z-20 transition-opacity duration-[2000ms]"
+                variants={fadeScale}
+              />
+            </>
+          )}
+        </motion.div>
+      </motion.div>
 
+      {/* Carousel */}
+      <motion.div
+        className="relative mt-10 max-w-screen-lg mx-auto px-4 z-[9999]"
+        variants={staggerContainer}
+        initial="hidden"
+        animate="visible"
+      >
+        <button
+          onClick={() => scroll("left")}
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-40 p-2 rounded-full"
+        >
+          <img src={process.env.PUBLIC_URL + "/images/lftarrow.svg"} alt="Left Arrow" className="w-6 h-6" />
+        </button>
+
+        <button
+          onClick={() => scroll("right")}
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-40 p-2 rounded-full"
+        >
+          <img src={process.env.PUBLIC_URL + "/images/rtarrow.svg"} alt="Right Arrow" className="w-6 h-6" />
+        </button>
+
+        <div
+          ref={carouselRef}
+          className="flex overflow-x-auto overflow-y-hidden space-x-4 scrollbar-hide"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+          {cards.map((card, idx) =>
+            card.external ? (
+              <a
+                key={idx}
+                href={card.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-shrink-0 w-[80vw] max-w-[16rem] aspect-[16/9]"
+              >
+                <motion.div
+                  className="relative shadow-lg group w-full h-full cursor-pointer"
+                  whileHover={{ scale: 1.05 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, ease: "easeInOut", delay: idx * 0.15 }}
+                >
+                  <img
+                    src={process.env.PUBLIC_URL + card.img}
+                    alt={card.title}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </motion.div>
+              </a>
+            ) : (
+              <Link key={idx} to={card.link} className="flex-shrink-0 w-[80vw] max-w-[16rem] aspect-[16/9]">
+                <motion.div
+                  className="relative shadow-lg group w-full h-full cursor-pointer"
+                  whileHover={{ scale: 1.05 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, ease: "easeInOut", delay: idx * 0.15 }}
+                >
+                  <img
+                    src={process.env.PUBLIC_URL + card.img}
+                    alt={card.title}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </motion.div>
+              </Link>
+            )
+          )}
+        </div>
+      </motion.div>
+
+      <style>{`
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
     </div>
   );
 };

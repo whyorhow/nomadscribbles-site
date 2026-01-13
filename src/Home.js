@@ -4,13 +4,26 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import SEO from "./components/SEO";
 import { fadeScale, hoverScale, staggerContainer } from "./animations";
-import HandwritingTagline from "./HandwritingTagline"; 
+import HandwritingTagline from "./HandwritingTagline";
 import { trackEvent } from "./utils/analytics";
+
+// Parallax background layers
+import { skyObjects } from "./Sky";
+import { sunsObjects } from "./Suns";
+import { waterObjects } from "./Water";
+import { soilObjects } from "./Soil";
+import { grassObjects } from "./Grass";
 
 function Home() {
   const navigate = useNavigate();
+
+  // Parallax tracking
+  const [scrollY, setScrollY] = useState(0);
+  const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+
   const originalCards = [
-    { title: "Nomads Shop", link: "https://nomadscribbles.co.uk/shop", img: "/images/Home/ThumbnailNS.webp", external: true },
+    { title: "Nomads Shop", link: "/nomadsshop", img: "/images/Home/ThumbnailNS.webp" },
     { title: "Nomads Gallery", link: "/nomads-gallery", img: "/images/Home/ThumbnailNG.webp" },
     { title: "Adventures", link: "/adventures", img: "/images/Home/ThumbnailA.webp" },
     { title: "Brazil", link: "/brazil", img: "/images/Home/Thumbnail.webp" },
@@ -18,10 +31,32 @@ function Home() {
 
   const [cards, setCards] = useState([]);
   const carouselRef = useRef(null);
+
   const [showMiniSP, setShowMiniSP] = useState(false);
   const [showMiniSantos, setShowMiniSantos] = useState(false);
-  const isMobile = window.innerWidth <= 768;
 
+  // ✅ responsive now
+  const isMobile = viewportWidth <= 768;
+
+  // Scroll + resize listeners (for parallax)
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    const handleResize = () => {
+      setViewportHeight(window.innerHeight);
+      setViewportWidth(window.innerWidth);
+    };
+
+    // ✅ passive scroll
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // Carousel init
   useEffect(() => {
     setCards([...originalCards, ...originalCards, ...originalCards]);
 
@@ -38,6 +73,7 @@ function Home() {
   const scroll = (direction = "right") => {
     const carousel = carouselRef.current;
     if (!carousel || !carousel.firstChild) return;
+
     const cardWidth = carousel.firstChild.offsetWidth;
     const total = originalCards.length;
 
@@ -57,17 +93,123 @@ function Home() {
   };
 
   const handleSPClick = () => {
-    if (isMobile) setShowMiniSP(!showMiniSP);
+    if (isMobile) setShowMiniSP((prev) => !prev);
     else navigate("/brazil/saopaulo");
   };
 
   const handleSantosClick = () => {
-    if (!showMiniSantos) setShowMiniSantos(true);
-    else navigate("/brazil/saopaulo/santos");
+    setShowMiniSantos((prev) => {
+      if (!prev) return true;
+      navigate("/brazil/saopaulo/santos");
+      return prev;
+    });
   };
 
+  // ---- Parallax Layer Renderer (responsive) ----
+  const renderLayer = (layer, index) => {
+    const isMobileBp = viewportWidth <= 640;
+    const isTabletBp = viewportWidth > 640 && viewportWidth <= 1024;
+
+    const pick = (mobileVal, tabletVal, desktopVal, fallbackVal) => {
+      if (isMobileBp && mobileVal !== undefined) return mobileVal;
+      if (isTabletBp && tabletVal !== undefined) return tabletVal;
+      if (desktopVal !== undefined) return desktopVal;
+      return fallbackVal;
+    };
+
+    const width = pick(layer.widthMobile, layer.widthTablet, layer.widthDesktop, layer.width || "100%");
+    const speed = pick(layer.speedMobile, layer.speedTablet, layer.speedDesktop, layer.speed ?? 0.05);
+    const xSpeed = pick(layer.xSpeedMobile, layer.xSpeedTablet, layer.xSpeedDesktop, layer.xSpeed ?? 0);
+
+    const baseTopPercent = pick(
+      layer.baseTopPercentMobile,
+      layer.baseTopPercentTablet,
+      layer.baseTopPercentDesktop,
+      layer.baseTopPercent
+    );
+
+    const baseBottomPercent = pick(
+      layer.baseBottomPercentMobile,
+      layer.baseBottomPercentTablet,
+      layer.baseBottomPercentDesktop,
+      layer.baseBottomPercent
+    );
+
+    const baseLeftPercent = pick(
+      layer.baseLeftPercentMobile,
+      layer.baseLeftPercentTablet,
+      layer.baseLeftPercentDesktop,
+      layer.baseLeftPercent || 0
+    );
+
+    let parallaxY = 0;
+    if (baseTopPercent !== undefined) {
+      const basePx = viewportHeight * (baseTopPercent / 100);
+      parallaxY = basePx - scrollY * speed * 20;
+    } else if (baseBottomPercent !== undefined) {
+      const distanceFromBottom = viewportHeight * (baseBottomPercent / 100);
+      parallaxY = viewportHeight - distanceFromBottom - scrollY * speed * 20;
+    }
+
+    const layerStyle = {
+      position: "absolute",
+      width,
+      height: layer.height || "auto",
+      zIndex: layer.zIndex ?? 0,
+      top: `${parallaxY}px`,
+
+      pointerEvents: "none",
+      maxWidth: "none",
+      willChange: "transform, top, left",
+    };
+
+    if (layer.centerHorizontally) {
+      layerStyle.left = "50%";
+      layerStyle.transform = "translateX(-50%)";
+
+      if (xSpeed) {
+        const parallaxX = scrollY * (xSpeed * 10);
+        layerStyle.transform = `translateX(calc(-50% + ${parallaxX}px))`;
+      }
+
+      if (layer.sway) {
+        layerStyle.animation = `sway ${layer.swayDuration || 2}s ease-in-out infinite alternate`;
+      }
+    } else {
+      const parallaxX = (baseLeftPercent / 100) * viewportWidth + scrollY * (xSpeed * 20);
+      layerStyle.left = `${parallaxX}px`;
+    }
+
+    return (
+      <svg
+        key={layer.id || index}
+        viewBox={layer.viewBox || "0 0 800 400"}
+        preserveAspectRatio={layer.preserveAspectRatio || "xMidYMid meet"}
+        style={layerStyle}
+      >
+        {layer.path && (
+          <path d={layer.path} fill={layer.fill} stroke={layer.stroke} strokeWidth={layer.strokeWidth} />
+        )}
+      </svg>
+    );
+  };
+
+  const sky = skyObjects.map((layer) => ({ ...layer, zIndex: layer.zIndex ?? 1 }));
+  const suns = sunsObjects.map((layer) => ({ ...layer, zIndex: layer.zIndex ?? 10 }));
+  const water = waterObjects.map((layer) => ({ ...layer, zIndex: layer.zIndex ?? 15 }));
+  const soil = soilObjects.map((layer) => ({ ...layer, zIndex: layer.zIndex ?? 20 }));
+  const grass = grassObjects.map((layer) => ({ ...layer, zIndex: layer.zIndex ?? 25 }));
+
   return (
-    <div className="relative min-h-screen w-full overflow-hidden">
+    <div className="relative w-screen h-[200vh] overflow-hidden bg-[#342508ff]">
+      {/* Parallax background */}
+      {sky.map(renderLayer)}
+      {suns.map(renderLayer)}
+      {water.map(renderLayer)}
+      {soil.map(renderLayer)}
+      {grass.map(renderLayer)}
+
+      {/* Existing SEO + content */}
       <SEO
         title="Nomad Scribbles | Travel Stories Across the World"
         description="Join Nomad Scribbles on a journey through cities, culture, travel tips, and inspiring adventures."
@@ -77,8 +219,9 @@ function Home() {
 
       <h1 className="sr-only">Nomad Scribbles | Travel Stories Across the World</h1>
 
+      {/* Logo & Tagline */}
       <motion.div
-        className="relative w-full text-center pt-4 sm:pt-6 md:pt-8"
+        className="relative z-10 text-center pt-4 sm:pt-6 md:pt-8"
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
@@ -101,13 +244,12 @@ function Home() {
         </motion.div>
       </motion.div>
 
-
       {/* São Paulo Feature */}
       <motion.div
         initial="hidden"
         animate="visible"
         variants={staggerContainer}
-        className="w-full mt-8 px-2 sm:px-4 relative"
+        className="w-full mt-8 px-2 sm:px-4 relative z-[9999]"
       >
         <motion.div
           className="relative block w-full max-w-[80%] sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden group transition-all duration-[2000ms]"
@@ -133,12 +275,17 @@ function Home() {
           <motion.img
             src={process.env.PUBLIC_URL + "/images/Home/SaoPauloScript1.webp"}
             alt="São Paulo Script Detail"
-            className={`absolute top-2 sm:top-4 left-2 sm:left-4 w-48 sm:w-72 md:w-88 z-20 transition-opacity duration-[2000ms] ${!showMiniSP ? 'opacity-100' : 'opacity-0'}`}
+            className={`absolute top-2 sm:top-4 left-2 sm:left-4 w-48 sm:w-72 md:w-88 z-20 transition-opacity duration-[2000ms] ${
+              !showMiniSP ? "opacity-100" : "opacity-0"
+            }`}
             variants={fadeScale}
           />
+
           {showMiniSP && (
             <motion.div
-              className={`absolute bottom-16 inset-x-0 flex justify-center items-end space-x-2 sm:space-x-3 z-20 transition-all duration-[2000ms] ease-in-out ${showMiniSP ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+              className={`absolute bottom-16 inset-x-0 flex justify-center items-end space-x-2 sm:space-x-3 z-20 transition-all duration-[2000ms] ease-in-out ${
+                showMiniSP ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              }`}
               variants={fadeScale}
             >
               <img
@@ -166,7 +313,7 @@ function Home() {
         initial="hidden"
         animate="visible"
         variants={staggerContainer}
-        className="w-full mt-4 px-2 sm:px-4 relative"
+        className="w-full mt-4 px-2 sm:px-4 relative z-[9999]"
       >
         <motion.div
           className="relative block w-full max-w-[80%] sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden group transition-all duration-[2000ms]"
@@ -192,27 +339,37 @@ function Home() {
           <motion.img
             src={process.env.PUBLIC_URL + "/images/Home/SantosScript1.webp"}
             alt="Santos Script Detail"
-            className={`absolute top-2 sm:top-4 left-2 sm:left-4 w-24 sm:w-36 md:w-44 z-20 transition-opacity duration-[2000ms] ${!showMiniSantos ? 'opacity-100' : 'opacity-0'}`}
+            className={`absolute top-2 sm:top-4 left-2 sm:left-4 w-24 sm:w-36 md:w-44 z-20 transition-opacity duration-[2000ms] ${
+              !showMiniSantos ? "opacity-100" : "opacity-0"
+            }`}
             variants={fadeScale}
           />
           <motion.img
             src={process.env.PUBLIC_URL + "/images/Home/SantosScript2.webp"}
             alt="Santos Script Hover Detail"
-            className={`absolute bottom-2 sm:bottom-4 right-2 sm:right-4 w-24 sm:w-36 md:w-44 z-20 transition-opacity duration-[2000ms] ${showMiniSantos ? 'opacity-100' : 'opacity-0'}`}
+            className={`absolute bottom-2 sm:bottom-4 right-2 sm:right-4 w-24 sm:w-36 md:w-44 z-20 transition-opacity duration-[2000ms] ${
+              showMiniSantos ? "opacity-100" : "opacity-0"
+            }`}
             variants={fadeScale}
           />
 
           {showMiniSantos && (
             <>
-              <motion.img src={process.env.PUBLIC_URL + "/images/Home/Features/SantosMini1.webp"} alt=""
+              <motion.img
+                src={process.env.PUBLIC_URL + "/images/Home/Features/SantosMini1.webp"}
+                alt=""
                 className="absolute top-2 left-2 w-36 sm:w-48 md:w-64 lg:w-72 z-20 transition-opacity duration-[2000ms]"
                 variants={fadeScale}
               />
-              <motion.img src={process.env.PUBLIC_URL + "/images/Home/Features/SantosMini2.webp"} alt=""
+              <motion.img
+                src={process.env.PUBLIC_URL + "/images/Home/Features/SantosMini2.webp"}
+                alt=""
                 className="absolute top-1/3 right-4 w-36 sm:w-48 md:w-64 lg:w-72 z-20 transition-opacity duration-[2000ms]"
                 variants={fadeScale}
               />
-              <motion.img src={process.env.PUBLIC_URL + "/images/Home/Features/SantosMini3.webp"} alt=""
+              <motion.img
+                src={process.env.PUBLIC_URL + "/images/Home/Features/SantosMini3.webp"}
+                alt=""
                 className="absolute bottom-4 left-1/3 w-36 sm:w-48 md:w-64 lg:w-72 z-20 transition-opacity duration-[2000ms]"
                 variants={fadeScale}
               />
@@ -221,75 +378,71 @@ function Home() {
         </motion.div>
       </motion.div>
 
-    {/* Bottom Carousel */}
-<div className="w-full max-w-screen-lg mx-auto py-8 relative px-2 sm:px-4">
-  <button
-    onClick={() => scroll("left")}
-    aria-label="Scroll Left"
-    className="absolute left-0 top-1/2 -translate-y-1/2 bg-black bg-opacity-40 p-2 rounded-full z-10"
-  >
-    <img src={process.env.PUBLIC_URL + "/images/lftarrow.svg"} alt="Left Arrow" className="w-6 h-6" />
-  </button>
-  <button
-    onClick={() => scroll("right")}
-    aria-label="Scroll Right"
-    className="absolute right-0 top-1/2 -translate-y-1/2 bg-black bg-opacity-40 p-2 rounded-full z-10"
-  >
-    <img src={process.env.PUBLIC_URL + "/images/rtarrow.svg"} alt="Right Arrow" className="w-6 h-6" />
-  </button>
-
-  <div ref={carouselRef} className="flex overflow-x-auto overflow-y-hidden space-x-4 scrollbar-hide">
-    {cards.map((card, idx) =>
-      card.external ? (
-        <a
-          key={idx}
-          href={card.link}           // external link for WordPress shop
-          target="_self"             // same tab
-          rel="noopener noreferrer"
-          className="flex-shrink-0 w-[80vw] max-w-[16rem] aspect-[16/9]"
+      {/* Bottom Carousel */}
+      <div className="w-full max-w-screen-lg mx-auto py-8 relative px-2 sm:px-4 z-[9999]">
+        <button
+          onClick={() => scroll("left")}
+          aria-label="Scroll Left"
+          className="absolute left-0 top-1/2 -translate-y-1/2 bg-black bg-opacity-40 p-2 rounded-full z-10"
         >
-          <motion.div
-            className="relative shadow-lg group w-full h-full"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.8, ease: "easeInOut", delay: idx * 0.15 }}
-          >
-            <img
-              src={process.env.PUBLIC_URL + card.img}
-              alt={card.title + " - travel highlights"}
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-          </motion.div>
-        </a>
-      ) : (
-        <Link
-          key={idx}
-          to={card.link}             // internal React routes
-          className="flex-shrink-0 w-[80vw] max-w-[16rem] aspect-[16/9]"
+          <img src={process.env.PUBLIC_URL + "/images/lftarrow.svg"} alt="Left Arrow" className="w-6 h-6" />
+        </button>
+        <button
+          onClick={() => scroll("right")}
+          aria-label="Scroll Right"
+          className="absolute right-0 top-1/2 -translate-y-1/2 bg-black bg-opacity-40 p-2 rounded-full z-10"
         >
-          <motion.div
-            className="relative shadow-lg group w-full h-full"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.8, ease: "easeInOut", delay: idx * 0.15 }}
-          >
-            <img
-              src={process.env.PUBLIC_URL + card.img}
-              alt={card.title + " - travel highlights"}
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-          </motion.div>
-        </Link>
-      )
-    )}
-  </div>
-</div>
+          <img src={process.env.PUBLIC_URL + "/images/rtarrow.svg"} alt="Right Arrow" className="w-6 h-6" />
+        </button>
 
-<style>{`
-  .scrollbar-hide::-webkit-scrollbar { display: none; }
-  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        <div ref={carouselRef} className="flex overflow-x-auto overflow-y-hidden space-x-4 scrollbar-hide">
+          {cards.map((card, idx) =>
+            card.external ? (
+              <a
+                key={idx}
+                href={card.link}
+                target="_self"
+                rel="noopener noreferrer"
+                className="flex-shrink-0 w-[80vw] max-w-[16rem] aspect-[16/9]"
+              >
+                <motion.div
+                  className="relative shadow-lg group w-full h-full"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.8, ease: "easeInOut", delay: idx * 0.15 }}
+                >
+                  <img
+                    src={process.env.PUBLIC_URL + card.img}
+                    alt={card.title + " - travel highlights"}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </motion.div>
+              </a>
+            ) : (
+              <Link key={idx} to={card.link} className="flex-shrink-0 w-[80vw] max-w-[16rem] aspect-[16/9]">
+                <motion.div
+                  className="relative shadow-lg group w-full h-full"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.8, ease: "easeInOut", delay: idx * 0.15 }}
+                >
+                  <img
+                    src={process.env.PUBLIC_URL + card.img}
+                    alt={card.title + " - travel highlights"}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </motion.div>
+              </Link>
+            )
+          )}
+        </div>
+      </div>
+
+      <style>{`
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
     </div>
   );

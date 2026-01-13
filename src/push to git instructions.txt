@@ -1,1 +1,1 @@
-git add . ; git commit -m "danish sky changes" ; git push origin main
+git add . ; git commit -m "danish sky to home changes" ; git push origin main
