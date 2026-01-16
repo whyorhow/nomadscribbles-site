@@ -38,6 +38,13 @@ function Home() {
   // ✅ responsive now
   const isMobile = viewportWidth <= 768;
 
+  // Manual delay for Logo
+  const [logoVisible, setLogoVisible] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => setLogoVisible(true), 6000);
+    return () => clearTimeout(timer);
+  }, []);
+
   // Scroll + resize listeners (for parallax)
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -201,7 +208,7 @@ function Home() {
   const grass = grassObjects.map((layer) => ({ ...layer, zIndex: layer.zIndex ?? 25 }));
 
   return (
-    <div className="relative w-screen h-[200vh] overflow-hidden bg-[#342508ff]">
+    <div className="relative w-screen min-h-[250vh] overflow-hidden bg-[#342508ff]">
       {/* Parallax background */}
       {sky.map(renderLayer)}
       {suns.map(renderLayer)}
@@ -219,37 +226,44 @@ function Home() {
 
       <h1 className="sr-only">Nomad Scribbles | Travel Stories Across the World</h1>
 
-      {/* Logo & Tagline */}
+      {/* Tagline Section (Top) */}
       <motion.div
-        className="relative z-10 text-center pt-4 sm:pt-6 md:pt-8"
-        variants={staggerContainer}
+        className="relative z-20 text-center pt-20 sm:pt-24"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
+      >
+        <div className="text-lg sm:text-xl md:text-2xl font-handwriting drop-shadow-md text-[#eeda8d] w-3/4 sm:w-full max-w-2xl mx-auto text-center opacity-90">
+          <HandwritingTagline duration={4} />
+        </div>
+      </motion.div>
+
+      {/* Logo (Delayed & Lower, Size Doubled, Raised) */}
+      <motion.div
+        className="relative z-10 text-center pt-[6vh]"
         initial="hidden"
-        animate="visible"
+        animate={logoVisible ? "visible" : "hidden"}
+        variants={staggerContainer}
+        style={{ opacity: logoVisible ? 1 : 0, transition: 'opacity 1s ease-in-out' }}
       >
         <motion.div className="flex flex-col items-center" variants={fadeScale}>
-          <motion.div className="w-4/5 sm:w-3/4 md:w-2/3 lg:w-1/2 max-w-xl mx-auto" variants={fadeScale}>
+          <motion.div className="w-full sm:w-4/5 md:w-3/4 lg:w-3/4 max-w-4xl mx-auto" variants={fadeScale}>
             <img
-              src={process.env.PUBLIC_URL + "/images/Home/LogoLargeDrawn2.webp"}
+              src={process.env.PUBLIC_URL + "/images/Home/LogoNew.png"}
               alt="Nomad Scribbles Hand-drawn Logo"
               className="w-full h-auto object-contain drop-shadow-lg"
             />
           </motion.div>
-
-          <motion.div
-            className="mt-4 sm:mt-5 text-lg sm:text-xl md:text-2xl font-handwriting drop-shadow-md text-[#eeda8d] max-w-2xl mx-auto text-center"
-            variants={fadeScale}
-          >
-            <HandwritingTagline />
-          </motion.div>
         </motion.div>
       </motion.div>
 
-      {/* São Paulo Feature */}
+      {/* Sao Paulo Feature */}
       <motion.div
         initial="hidden"
-        animate="visible"
+        whileInView="visible"
+        viewport={{ amount: 0.3 }}
         variants={staggerContainer}
-        className="w-full mt-8 px-2 sm:px-4 relative z-[9999]"
+        className="w-full mt-[85vh] px-2 sm:px-4 relative z-[9999]"
       >
         <motion.div
           className="relative block w-full max-w-[80%] sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden group transition-all duration-[2000ms]"
@@ -275,17 +289,15 @@ function Home() {
           <motion.img
             src={process.env.PUBLIC_URL + "/images/Home/SaoPauloScript1.webp"}
             alt="São Paulo Script Detail"
-            className={`absolute top-2 sm:top-4 left-2 sm:left-4 w-48 sm:w-72 md:w-88 z-20 transition-opacity duration-[2000ms] ${
-              !showMiniSP ? "opacity-100" : "opacity-0"
-            }`}
+            className={`absolute top-2 sm:top-4 left-2 sm:left-4 w-48 sm:w-72 md:w-88 z-20 transition-opacity duration-[2000ms] ${!showMiniSP ? "opacity-100" : "opacity-0"
+              }`}
             variants={fadeScale}
           />
 
           {showMiniSP && (
             <motion.div
-              className={`absolute bottom-16 inset-x-0 flex justify-center items-end space-x-2 sm:space-x-3 z-20 transition-all duration-[2000ms] ease-in-out ${
-                showMiniSP ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-              }`}
+              className={`absolute bottom-16 inset-x-0 flex justify-center items-end space-x-2 sm:space-x-3 z-20 transition-all duration-[2000ms] ease-in-out ${showMiniSP ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                }`}
               variants={fadeScale}
             >
               <img
@@ -311,9 +323,10 @@ function Home() {
       {/* Santos Feature */}
       <motion.div
         initial="hidden"
-        animate="visible"
+        whileInView="visible"
+        viewport={{ amount: 0.3 }}
         variants={staggerContainer}
-        className="w-full mt-4 px-2 sm:px-4 relative z-[9999]"
+        className="w-full mt-32 px-2 sm:px-4 relative z-[9999]"
       >
         <motion.div
           className="relative block w-full max-w-[80%] sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden group transition-all duration-[2000ms]"
@@ -339,17 +352,15 @@ function Home() {
           <motion.img
             src={process.env.PUBLIC_URL + "/images/Home/SantosScript1.webp"}
             alt="Santos Script Detail"
-            className={`absolute top-2 sm:top-4 left-2 sm:left-4 w-24 sm:w-36 md:w-44 z-20 transition-opacity duration-[2000ms] ${
-              !showMiniSantos ? "opacity-100" : "opacity-0"
-            }`}
+            className={`absolute top-2 sm:top-4 left-2 sm:left-4 w-24 sm:w-36 md:w-44 z-20 transition-opacity duration-[2000ms] ${!showMiniSantos ? "opacity-100" : "opacity-0"
+              }`}
             variants={fadeScale}
           />
           <motion.img
             src={process.env.PUBLIC_URL + "/images/Home/SantosScript2.webp"}
             alt="Santos Script Hover Detail"
-            className={`absolute bottom-2 sm:bottom-4 right-2 sm:right-4 w-24 sm:w-36 md:w-44 z-20 transition-opacity duration-[2000ms] ${
-              showMiniSantos ? "opacity-100" : "opacity-0"
-            }`}
+            className={`absolute bottom-2 sm:bottom-4 right-2 sm:right-4 w-24 sm:w-36 md:w-44 z-20 transition-opacity duration-[2000ms] ${showMiniSantos ? "opacity-100" : "opacity-0"
+              }`}
             variants={fadeScale}
           />
 
@@ -408,7 +419,8 @@ function Home() {
                 <motion.div
                   className="relative shadow-lg group w-full h-full"
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ amount: 0.2 }}
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.8, ease: "easeInOut", delay: idx * 0.15 }}
                 >
@@ -424,7 +436,8 @@ function Home() {
                 <motion.div
                   className="relative shadow-lg group w-full h-full"
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ amount: 0.2 }}
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.8, ease: "easeInOut", delay: idx * 0.15 }}
                 >
