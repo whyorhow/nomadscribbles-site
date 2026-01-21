@@ -7,7 +7,8 @@ export const sunsObjects = [
   {
     id: "sun1",
     viewBox: "0 0 2000 2000",
-    baseTopPercent: 136,
+    baseTopPercent: 125, // Raised from 136
+    baseTopPercentMobile: 120,
     baseLeftPercent: 0,
     speed: 0.09,
     xSpeed: 0.0,
@@ -26,7 +27,8 @@ export const sunsObjects = [
   {
     id: "sun2",
     viewBox: "0 0 2000 2000",
-    baseTopPercent: 136,
+    baseTopPercent: 125, // Raised from 136
+    baseTopPercentMobile: 120,
     baseLeftPercent: 0,
     speed: 0.09,
     xSpeed: 0.0,
@@ -45,7 +47,8 @@ export const sunsObjects = [
   {
     id: "sun3",
     viewBox: "0 0 2000 2000",
-    baseTopPercent: 135,
+    baseTopPercent: 115, // Raised from 135 to close gap with sun4
+    baseTopPercentMobile: 110,
     baseLeftPercent: 0,
     speed: 0.09,
     xSpeed: 0.0,
@@ -65,6 +68,7 @@ export const sunsObjects = [
     id: "sun4",
     viewBox: "0 0 2000 2000",
     baseTopPercent: 100,
+    baseTopPercentMobile: 100,
     baseLeftPercent: 0,
     speed: 0.09,
     xSpeed: 0.0,

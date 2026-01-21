@@ -164,10 +164,12 @@ function Home() {
       height: layer.height || "auto",
       zIndex: layer.zIndex ?? 0,
       top: `${parallaxY}px`,
+      left: `${baseLeftPercent}%`, // Use the calculated baseLeftPercent
 
       pointerEvents: "none",
       maxWidth: "none",
       willChange: "transform, top, left",
+      opacity: layer.opacity ?? 1,
     };
 
     if (layer.centerHorizontally) {
