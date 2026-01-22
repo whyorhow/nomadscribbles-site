@@ -58,7 +58,7 @@ function Pantanal() {
             <SEO
                 title="The Pantanal | Nomad Scribbles"
                 description="Explore the Pantanal, the world's largest tropical wetland and a wildlife sanctuary in Brazil."
-                image="/images/Pantanal/small/Pantanal1.webp"
+                image="/images/Pantanal/small/Pantanal1F.webp"
                 slug="/brazil/pantanal"
             />
 
@@ -75,7 +75,7 @@ function Pantanal() {
             {/* Hero Image */}
             <div className="flex justify-center mb-2 px-2">
                 <img
-                    src={process.env.PUBLIC_URL + "/images/Pantanal/small/Pantanal1.webp"}
+                    src={process.env.PUBLIC_URL + "/images/Pantanal/small/Pantanal1F.webp"}
                     alt="Pantanal landscape"
                     loading="lazy"
                     className="w-full max-w-[600px] sm:max-w-[700px] md:max-w-[800px] lg:max-w-[800px] h-auto rounded-lg shadow-lg"

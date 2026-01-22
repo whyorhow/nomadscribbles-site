@@ -110,7 +110,7 @@ function Salvador() {
             <SEO
                 title="Salvador | Nomad Scribbles"
                 description="Salvador: A city where history does not recede into the background — it moves, sings, resists, and remembers."
-                image="/images/Salvador/small/Salvador1.webp"
+                image="/images/Salvador/small/Salvador1F.webp"
                 slug="/brazil/salvador"
             />
 
@@ -127,7 +127,7 @@ function Salvador() {
             {/* Hero Image */}
             <div className="flex justify-center mb-2 px-2">
                 <img
-                    src={process.env.PUBLIC_URL + "/images/Salvador/small/Salvador1.webp"}
+                    src={process.env.PUBLIC_URL + "/images/Salvador/small/Salvador1F.webp"}
                     alt="Salvador landscape"
                     loading="lazy"
                     className="w-full max-w-[600px] sm:max-w-[700px] md:max-w-[800px] lg:max-w-[800px] h-auto rounded-lg shadow-lg"

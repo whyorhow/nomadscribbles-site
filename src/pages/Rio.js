@@ -75,7 +75,7 @@ function Rio() {
             <SEO
                 title="Rio de Janeiro | Nomad Scribbles"
                 description="Rio de Janeiro: Where stone, sea, and belief shape the skyline. A city pressed to the mountains and defined by its dramatic geography."
-                image="/images/Rio/small/Rio1.webp"
+                image="/images/Rio/small/Rio1F.webp"
                 slug="/brazil/rio"
             />
 
@@ -92,7 +92,7 @@ function Rio() {
             {/* Hero Image */}
             <div className="flex justify-center mb-2 px-2">
                 <img
-                    src={process.env.PUBLIC_URL + "/images/Rio/small/Rio1.webp"}
+                    src={process.env.PUBLIC_URL + "/images/Rio/small/Rio1F.webp"}
                     alt="Rio landscape"
                     loading="lazy"
                     className="w-full max-w-[600px] sm:max-w-[700px] md:max-w-[800px] lg:max-w-[800px] h-auto rounded-lg shadow-lg"
