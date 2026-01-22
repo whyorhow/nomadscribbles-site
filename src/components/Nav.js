@@ -293,6 +293,7 @@ function Nav() {
                 <Link to="/brazil/saopaulo/santos" className="text-[#38350b] text-base hover:text-[#0c0b01]" onClick={() => setMenuOpen(false)}>Santos</Link>
               </div>
               <Link className="text-[#38350b] text-base hover:text-[#0c0b01]" to="/brazil/pantanal" onClick={() => setMenuOpen(false)}>The Pantanal</Link>
+              <Link className="text-[#38350b] text-base hover:text-[#0c0b01]" to="/brazil/rio" onClick={() => setMenuOpen(false)}>Rio de Janeiro</Link>
             </div>
           </div>
         </div>

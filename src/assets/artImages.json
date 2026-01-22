@@ -504,5 +504,126 @@
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Pantanal",
     "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
+  {
+    "id": "rio1",
+    "title": "Rio Landscape",
+    "description": "Scenic view of Rio de Janeiro.",
+    "image": "/images/Rio/small/Rio1F.webp",
+    "blogimage": "/images/Rio/small/Rio1.webp",
+    "lightboxImage": "/images/Rio/small/Rio1.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Rio",
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
+  {
+    "id": "rio2",
+    "title": "Rio Scenes",
+    "description": "Capturing the essence of Rio.",
+    "image": "/images/Rio/small/Rio2F.webp",
+    "blogimage": "/images/Rio/small/Rio2.webp",
+    "lightboxImage": "/images/Rio/small/Rio2.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Rio",
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
+  {
+    "id": "rio3",
+    "title": "Sugarloaf View",
+    "description": "Iconic views of Sugarloaf Mountain.",
+    "image": "/images/Rio/small/Rio3F.webp",
+    "blogimage": "/images/Rio/small/Rio3.webp",
+    "lightboxImage": "/images/Rio/small/Rio3.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Rio",
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
+  {
+    "id": "rio4",
+    "title": "Urban Jungle",
+    "description": "Where the city meets the forest.",
+    "image": "/images/Rio/small/Rio4F.webp",
+    "blogimage": "/images/Rio/small/Rio4.webp",
+    "lightboxImage": "/images/Rio/small/Rio4.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Rio",
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
+  {
+    "id": "rio5",
+    "title": "Beach Life",
+    "description": "Copacabana and Ipanema vibes.",
+    "image": "/images/Rio/small/Rio5F.webp",
+    "blogimage": "/images/Rio/small/Rio5.webp",
+    "lightboxImage": "/images/Rio/small/Rio5.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Rio",
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
+  {
+    "id": "rio6",
+    "title": "Christ the Redeemer",
+    "description": "Watching over the city.",
+    "image": "/images/Rio/small/Rio6F.webp",
+    "blogimage": "/images/Rio/small/Rio6.webp",
+    "lightboxImage": "/images/Rio/small/Rio6.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Rio",
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
+  {
+    "id": "rio7",
+    "title": "Favela Colors",
+    "description": "The vibrant colors of the hillsides.",
+    "image": "/images/Rio/small/Rio7F.webp",
+    "blogimage": "/images/Rio/small/Rio7.webp",
+    "lightboxImage": "/images/Rio/small/Rio7.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Rio",
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
+  {
+    "id": "rio8",
+    "title": "Rio Street Art",
+    "description": "Art found in the streets of Rio.",
+    "image": "/images/Rio/small/Rio8F.webp",
+    "blogimage": "/images/Rio/small/Rio8.webp",
+    "lightboxImage": "/images/Rio/small/Rio8.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Rio",
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
+  {
+    "id": "rio9",
+    "title": "Tropical vibes",
+    "description": "Palm trees and ocean breeze.",
+    "image": "/images/Rio/small/Rio9F.webp",
+    "blogimage": "/images/Rio/small/Rio9.webp",
+    "lightboxImage": "/images/Rio/small/Rio9.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Rio",
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
+  {
+    "id": "rio10",
+    "title": "Rio Sunset",
+    "description": "Sunset over the mountains.",
+    "image": "/images/Rio/small/Rio10F.webp",
+    "blogimage": "/images/Rio/small/Rio10.webp",
+    "lightboxImage": "/images/Rio/small/Rio10.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Rio",
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
+  {
+    "id": "rio11",
+    "title": "Night Lights",
+    "description": "Rio de Janeiro at night.",
+    "image": "/images/Rio/small/Rio11F.webp",
+    "blogimage": "/images/Rio/small/Rio11.webp",
+    "lightboxImage": "/images/Rio/small/Rio11.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Rio",
+    "shopLink": "https://nomadscribbles.co.uk/shop"
   }
 ]
