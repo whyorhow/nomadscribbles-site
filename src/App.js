@@ -2,29 +2,31 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 
-import TestDanishSky from "./TestDanishSky";
-import NotFound from "./NotFound";
-import Nav from "./Nav";
-import Footer from "./Footer";
-import NomadsShop from "./NomadsShop";
-import NomadsShopBrazil from "./NomadsShopBrazil";
-import Home from "./Home";
-import NomadsGallery from "./NomadsGallery";
-import Adventures from "./Adventures";
-import Brazil from "./Brazil";
-import SaoPaulo from "./SaoPaulo";
-import Parks from "./Parks";
-import Museums from "./Museums";
-import Carnival from "./Carnival";
-import Murals from "./Murals";
-import Santos from "./Santos";
-import ContactUs from "./ContactUs";
-import SearchResults from "./SearchResults";
-import CookieConsent from "./CookieConsent";
-import CookiePreferences from "./CookiePreferences";
-import Lightbox from "./Lightbox";
+// --- Pages ---
+import Home from "./pages/Home";
+import Adventures from "./pages/Adventures";
+import NomadsShop from "./pages/NomadsShop";
+import NomadsShopBrazil from "./pages/NomadsShopBrazil";
+import Brazil from "./pages/Brazil";
+import SaoPaulo from "./pages/SaoPaulo";
+import Parks from "./pages/Parks";
+import Museums from "./pages/Museums";
+import Carnival from "./pages/Carnival";
+import Murals from "./pages/Murals";
+import Santos from "./pages/Santos";
+import NomadsGallery from "./pages/NomadsGallery";
+import ContactUs from "./pages/ContactUs";
+import SearchResults from "./pages/SearchResults";
+import NotFound from "./pages/NotFound";
+import CookiePreferences from "./pages/CookiePreferences";
 
-// Analytics helpers
+// --- Components ---
+import Nav from "./components/Nav";
+import Footer from "./components/Footer";
+import Lightbox from "./components/Lightbox";
+import CookieConsent from "./components/CookieConsent";
+
+// --- Utilities ---
 import { trackEvent, trackPageView } from "./utils/analytics";
 
 // Page title manager
@@ -169,7 +171,6 @@ function App() {
               <Route path="/nomads-gallery" element={<NomadsGallery openLightbox={openLightbox} />} />
               <Route path="/contact-us" element={<ContactUs openLightbox={openLightbox} />} />
               <Route path="/search" element={<SearchResults openLightbox={openLightbox} />} />
-               <Route path="/test-danishsky" element={<TestDanishSky />} />
               <Route path="*" element={<NotFound />} />
               <Route
                 path="/cookie-preferences"
