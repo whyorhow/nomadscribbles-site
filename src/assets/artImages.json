@@ -8,7 +8,7 @@
     "lightboxImage": "/images/SaoPauloLanding/full/caparinha.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/oiloo",
     "category": "City Life",
-   "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "https://nomadscribbles.co.uk/shop"
   },
   {
     "id": "caparinhaDrawn",
@@ -19,7 +19,8 @@
     "lightboxImage": "/images/SaoPauloLanding/full/CaparinhaDrawn.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/byrhy",
     "category": "City Life",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "pizza",
     "title": "Pizza Print",
@@ -29,68 +30,74 @@
     "lightboxImage": "/images/SaoPauloLanding/full/pizza.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/iechb",
     "category": "City Life",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "rain",
     "title": "Rain Scene",
     "description": "A rainy day in São Paulo streets.",
     "image": "/images/SaoPauloLanding/small/rainz.webp",
     "blogimage": "/images/SaoPauloLanding/small/rain.jpg",
-    "lightboxImage": "/images/SaoPauloLanding/full/rain.jpg",  
+    "lightboxImage": "/images/SaoPauloLanding/full/rain.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/rpfnoe",
     "category": "City Life",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
-    {
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
+  {
     "id": "street",
     "title": "Street Night Scene",
     "description": "An electric night in São Paulo streets.",
     "image": "/images/SaoPauloLanding/small/streetz.webp",
     "blogimage": "/images/SaoPauloLanding/small/street.jpg",
-    "lightboxImage": "/images/SaoPauloLanding/full/street.jpg",  
+    "lightboxImage": "/images/SaoPauloLanding/full/street.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/tewkw",
     "category": "City Life",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
-
- {
-  "id": "park1",
-  "title": "Ibirapuera Park",
-  "description": "Beautiful view of Ibirapuera Park in São Paulo.",
-  "image": "/images/SP-Parks/small/Park1z.webp",
-  "blogimage": "/images/SP-Parks/small/Park1.jpg",
-  "lightboxImage": "/images/SP-Parks/full/Park1.jpg",
-  "gumroadLink": "https://nomadscribbles.gumroad.com/l/nmdpn",
-  "category": "Parks",
- "shopLink": "https://nomadscribbles.co.uk/shop"},
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
+  {
+    "id": "park1",
+    "title": "Ibirapuera Park",
+    "description": "Beautiful view of Ibirapuera Park in São Paulo.",
+    "image": "/images/SP-Parks/small/Park1z.webp",
+    "blogimage": "/images/SP-Parks/small/Park1.jpg",
+    "lightboxImage": "/images/SP-Parks/full/Park1.jpg",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/l/nmdpn",
+    "category": "Parks",
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "park2",
     "title": "Caterpillar on Monument Stone",
     "description": "Another view of São Paulo’s parks.",
     "image": "/images/SP-Parks/small/Park2z.webp",
-  "blogimage": "/images/SP-Parks/small/Park2.jpg",
+    "blogimage": "/images/SP-Parks/small/Park2.jpg",
     "lightboxImage": "/images/SP-Parks/full/Park2.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/zypszc",
     "category": "Parks",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "park3",
     "title": "Roots and Tree Canopy",
     "description": "Capturing the greenery of the city.",
     "image": "/images/SP-Parks/small/Park3z.webp",
     "blogimage": "/images/SP-Parks/small/Park3.jpg",
-    "lightboxImage": "/images/SP-Parks/full/Park3.jpg", 
+    "lightboxImage": "/images/SP-Parks/full/Park3.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/wwpco",
     "category": "Parks",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "park4",
     "title": "Monkey in the Canopy",
     "description": "Quiet corners of Ibirapuera Park.",
     "image": "/images/SP-Parks/small/Park4z.webp",
-    "blogimage": "/images/SP-Parks/small/Park4.jpg",  
+    "blogimage": "/images/SP-Parks/small/Park4.jpg",
     "lightboxImage": "/images/SP-Parks/full/Park4.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/pdlkl",
     "category": "Parks",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "park5",
     "title": "Moss-Covered Tree Stumps",
@@ -100,7 +107,8 @@
     "lightboxImage": "/images/SP-Parks/full/Park5.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/dqsmj",
     "category": "Parks",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "park6",
     "title": "Evolving Tree Stump",
@@ -110,7 +118,8 @@
     "lightboxImage": "/images/SP-Parks/full/Park6.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/lstekx",
     "category": "Parks",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "park7",
     "title": "Burle Marx Curved Trees",
@@ -120,7 +129,8 @@
     "lightboxImage": "/images/SP-Parks/full/Park7.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/vgmnwm",
     "category": "Parks",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "graffiti1",
     "title": "Walls That Speak",
@@ -130,27 +140,30 @@
     "lightboxImage": "/images/Murals/full/Graffiti1.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/lyxdq",
     "category": "Murals",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "graffiti2",
     "title": "Colour on Concrete",
     "description": "Urban mural capturing city life.",
     "image": "/images/Murals/small/Graffiti2z.webp",
-    "blogimage": "/images/Murals/small/Graffiti2.jpg", 
+    "blogimage": "/images/Murals/small/Graffiti2.jpg",
     "lightboxImage": "/images/Murals/full/Graffiti2.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/vxqtux",
     "category": "Murals",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "graffiti3",
     "title": "The Little Prince of São Paulo",
     "description": "Colourful street art scene.",
     "image": "/images/Murals/small/Graffiti3z.webp",
     "blogimage": "/images/Murals/small/Graffiti3.jpg",
-    "lightboxImage": "/images/Murals/full/Graffiti3.jpg",  
+    "lightboxImage": "/images/Murals/full/Graffiti3.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/mztdgd",
     "category": "Murals",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "graffiti4",
     "title": "Beco do Batman",
@@ -160,7 +173,8 @@
     "lightboxImage": "/images/Murals/full/Graffiti4.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/gipav",
     "category": "Murals",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "graffiti5",
     "title": "Steps That Paint Stories",
@@ -170,7 +184,8 @@
     "lightboxImage": "/images/Murals/full/Graffiti5.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/twbmh",
     "category": "Murals",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "graffiti6",
     "title": "Senna Forever",
@@ -180,7 +195,8 @@
     "lightboxImage": "/images/Murals/full/Graffiti6.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/mgmcf",
     "category": "Murals",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "graffiti7",
     "title": "Urban Voices",
@@ -190,7 +206,8 @@
     "lightboxImage": "/images/Murals/full/Graffiti7.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/sbhqbf",
     "category": "Murals",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "graffiti8",
     "title": "The Open-Air Gallery",
@@ -200,77 +217,85 @@
     "lightboxImage": "/images/Murals/full/Graffiti8.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/klcopp",
     "category": "Murals",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "santos1",
     "title": "Santos Skyline by the Atlantic",
     "description": "Coastal charm of Santos, Brazil.",
     "image": "/images/Santos/small/Santos1z.webp",
-     "blogimage": "/images/Santos/small/Santos1.webp", 
+    "blogimage": "/images/Santos/small/Santos1.webp",
     "lightboxImage": "/images/Santos/full/Santos1.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/imrcgs",
     "category": "Santos",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "santos2",
     "title": "Pelé Museum Legacy in Santos",
     "description": "Scenes from the port city of Santos.",
     "image": "/images/Santos/small/Santos2z.webp",
-      "blogimage": "/images/Santos/small/Santos2.webp",
+    "blogimage": "/images/Santos/small/Santos2.webp",
     "lightboxImage": "/images/Santos/full/Santos2.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/felnv",
     "category": "Santos",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "santos3",
     "title": "Vila Belmiro — Pelé’s Historic 1000th Goal",
     "description": "Ocean and urban blend in Santos.",
     "image": "/images/Santos/small/Santos3z.webp",
-      "blogimage": "/images/Santos/small/Santos3.jpg",
+    "blogimage": "/images/Santos/small/Santos3.jpg",
     "lightboxImage": "/images/Santos/full/Santos3.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/epmgt",
     "category": "Santos",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "santos4",
     "title": "Green Hills and City Overlook of Santos",
     "description": "Views from the coastline of Santos.",
     "image": "/images/Santos/small/Santos4z.webp",
-      "blogimage": "/images/Santos/small/Santos4.jpg",
+    "blogimage": "/images/Santos/small/Santos4.jpg",
     "lightboxImage": "/images/Santos/full/Santos4.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/xhgdwdd",
     "category": "Santos",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "santos5",
     "title": "Nature Reclaims: Santos’ Forgotten Corners",
     "description": "Life by the beaches of Santos.",
     "image": "/images/Santos/small/Santos5z.webp",
-      "blogimage": "/images/Santos/small/Santos5.jpg",
+    "blogimage": "/images/Santos/small/Santos5.jpg",
     "lightboxImage": "/images/Santos/full/Santos5.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/rswumv",
     "category": "Santos",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "santos6",
     "title": "Nature and Architecture, Reimagined",
     "description": "Another moment from the city of Santos.",
     "image": "/images/Santos/small/Santos5Drawnz.webp",
-      "blogimage": "/images/Santos/small/Santos5Drawn.jpg",
+    "blogimage": "/images/Santos/small/Santos5Drawn.jpg",
     "lightboxImage": "/images/Santos/full/Santos5Drawn.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/ynvfwu",
     "category": "Santos",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "carnival1",
     "title": "Carnival Float",
     "description": "São Paulo Carnival streets alive with colour and music",
     "image": "/images/CarnivalSP/small/Carnival1z.webp",
-    "blogimage": "/images/CarnivalSP/small/Carnival1.webp",      
+    "blogimage": "/images/CarnivalSP/small/Carnival1.webp",
     "lightboxImage": "/images/CarnivalSP/full/Carnival1.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/junhjy",
     "category": "Carnival",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "carnival2",
     "title": "Samba Schools in Full Flow",
@@ -280,7 +305,8 @@
     "lightboxImage": "/images/CarnivalSP/full/Carnival2.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/htrdk",
     "category": "Carnival",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "carnival3",
     "title": "Carnival Performers",
@@ -290,7 +316,8 @@
     "lightboxImage": "/images/CarnivalSP/full/Carnival3.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/oktonph",
     "category": "Carnival",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "carnival4",
     "title": "Crowds and Rhythm: The Spectator View",
@@ -300,17 +327,19 @@
     "lightboxImage": "/images/CarnivalSP/full/Carnival4.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/hfnkpg",
     "category": "Carnival",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "carnival5",
-        "title": "Rhythm in Formation: São Paulo Carnival",
+    "title": "Rhythm in Formation: São Paulo Carnival",
     "description": "Ibirapuera Park bloco dancers winding through trees",
     "image": "/images/CarnivalSP/small/Carnival6z.webp",
     "blogimage": "/images/CarnivalSP/small/Carnival6.webp",
     "lightboxImage": "/images/CarnivalSP/full/Carnival6.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/iuzniy",
     "category": "Carnival",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "carnival6",
     "title": "Alleyway Blocos in Motion",
@@ -320,7 +349,8 @@
     "lightboxImage": "/images/CarnivalSP/full/Carnival5.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/cgujou",
     "category": "Carnival",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "carnival7",
     "title": "Dancing Through the Park: Ibirapuera Blocos",
@@ -330,7 +360,8 @@
     "lightboxImage": "/images/CarnivalSP/full/Carnival7.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/mykatk",
     "category": "Carnival",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "artgallery1",
     "title": "MASP floating gallery above Avenida Paulista",
@@ -340,7 +371,8 @@
     "lightboxImage": "/images/ArtGallery/full/ArtGallery1.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/azpozv",
     "category": "Museums",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "artgallery2",
     "title": "Degas ballerina sculpture in MASP",
@@ -350,7 +382,8 @@
     "lightboxImage": "/images/ArtGallery/full/ArtGallery2.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/vbggph",
     "category": "Museums",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "artgallery4drawn",
     "title": "Art Gallery Drawing",
@@ -360,7 +393,8 @@
     "lightboxImage": "/images/ArtGallery/full/ArtGallery4Drawn.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/rxtsgi",
     "category": "Museums",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "artgallery3",
     "title": "Indigenous Brazilian exhibition in MASP lower levels",
@@ -370,7 +404,8 @@
     "lightboxImage": "/images/ArtGallery/full/ArtGallery3.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/bltpzl",
     "category": "Museums",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "artgallery4",
     "title": "Pinacoteca building and photography exhibition",
@@ -380,7 +415,8 @@
     "lightboxImage": "/images/ArtGallery/full/ArtGallery4.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/wkanbl",
     "category": "Museums",
- "shopLink": "https://nomadscribbles.co.uk/shop"  },
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
   {
     "id": "artgallery5",
     "title": "Pinacoteca architectural details and living gallery",
@@ -390,5 +426,83 @@
     "lightboxImage": "/images/ArtGallery/full/ArtGallery5.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/mshcaw",
     "category": "Museums",
- "shopLink": "https://nomadscribbles.co.uk/shop"  }
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
+  {
+    "id": "pantanal1",
+    "title": "Wetlands Dawn",
+    "description": "The sun rises over the vast wetlands of the Pantanal.",
+    "image": "/images/Pantanal/small/Pantanal1F.webp",
+    "blogimage": "/images/Pantanal/small/Pantanal1.webp",
+    "lightboxImage": "/images/Pantanal/small/Pantanal1.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Pantanal",
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
+  {
+    "id": "pantanal2",
+    "title": "Jaguar Country",
+    "description": "The elusive jaguar prowls the riverbanks.",
+    "image": "/images/Pantanal/small/Pantanal2F.webp",
+    "blogimage": "/images/Pantanal/small/Pantanal2.webp",
+    "lightboxImage": "/images/Pantanal/small/Pantanal2.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Pantanal",
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
+  {
+    "id": "pantanal3",
+    "title": "Crowning Glory",
+    "description": "Vibrant birdlife fills the canopy.",
+    "image": "/images/Pantanal/small/Pantanal3F.webp",
+    "blogimage": "/images/Pantanal/small/Pantanal3.webp",
+    "lightboxImage": "/images/Pantanal/small/Pantanal3.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Pantanal",
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
+  {
+    "id": "pantanal4",
+    "title": "River giants",
+    "description": "Caimans resting on the muddy banks.",
+    "image": "/images/Pantanal/small/Pantanal4F.webp",
+    "blogimage": "/images/Pantanal/small/Pantanal4.webp",
+    "lightboxImage": "/images/Pantanal/small/Pantanal4.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Pantanal",
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
+  {
+    "id": "pantanal5",
+    "title": "Marsh Deer",
+    "description": "A marsh deer navigating the tall grass.",
+    "image": "/images/Pantanal/small/Pantanal5F.webp",
+    "blogimage": "/images/Pantanal/small/Pantanal5.webp",
+    "lightboxImage": "/images/Pantanal/small/Pantanal5.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Pantanal",
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
+  {
+    "id": "pantanal6",
+    "title": "Hyacinth Macaw",
+    "description": "The brilliant blue of the Hyacinth Macaw.",
+    "image": "/images/Pantanal/small/Pantanal6F.webp",
+    "blogimage": "/images/Pantanal/small/Pantanal6.webp",
+    "lightboxImage": "/images/Pantanal/small/Pantanal6.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Pantanal",
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  },
+  {
+    "id": "pantanal7",
+    "title": "Sunset Reflection",
+    "description": "Colors of the sunset mirrored in the water.",
+    "image": "/images/Pantanal/small/Pantanal7F.webp",
+    "blogimage": "/images/Pantanal/small/Pantanal7.webp",
+    "lightboxImage": "/images/Pantanal/small/Pantanal7.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Pantanal",
+    "shopLink": "https://nomadscribbles.co.uk/shop"
+  }
 ]

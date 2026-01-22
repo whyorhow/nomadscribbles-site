@@ -85,7 +85,7 @@ function Brazil() {
             key={city.name}
             variants={fadeScale}
           >
-            {city.path === "/brazil/saopaulo" ? (
+            {["/brazil/saopaulo", "/brazil/pantanal"].includes(city.path) ? (
               <Link
                 to={city.path}
                 className="bg-white/80 text-gray-900 backdrop-blur-md rounded-xl py-3 text-center hover:bg-white hover:shadow-lg transition duration-300"
