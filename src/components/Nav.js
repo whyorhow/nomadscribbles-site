@@ -294,6 +294,7 @@ function Nav() {
               </div>
               <Link className="text-[#38350b] text-base hover:text-[#0c0b01]" to="/brazil/pantanal" onClick={() => setMenuOpen(false)}>The Pantanal</Link>
               <Link className="text-[#38350b] text-base hover:text-[#0c0b01]" to="/brazil/rio" onClick={() => setMenuOpen(false)}>Rio de Janeiro</Link>
+              <Link className="text-[#38350b] text-base hover:text-[#0c0b01]" to="/brazil/salvador" onClick={() => setMenuOpen(false)}>Salvador</Link>
             </div>
           </div>
         </div>

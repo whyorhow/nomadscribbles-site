@@ -16,6 +16,7 @@ import Murals from "./pages/Murals";
 import Santos from "./pages/Santos";
 import Pantanal from "./pages/Pantanal";
 import Rio from "./pages/Rio";
+import Salvador from "./pages/Salvador";
 import NomadsGallery from "./pages/NomadsGallery";
 import ContactUs from "./pages/ContactUs";
 import SearchResults from "./pages/SearchResults";
@@ -165,6 +166,7 @@ function App() {
               <Route path="/nomads-shop/brazil" element={<NomadsShopBrazil />} />
               <Route path="/brazil" element={<Brazil openLightbox={openLightbox} />} />
               <Route path="/brazil/rio" element={<Rio />} />
+              <Route path="/brazil/salvador" element={<Salvador />} />
               <Route path="/brazil/pantanal" element={<Pantanal />} />
               <Route path="/brazil/saopaulo" element={<SaoPaulo openLightbox={openLightbox} />} />
               <Route path="/brazil/saopaulo/parks" element={<Parks openLightbox={openLightbox} />} />
