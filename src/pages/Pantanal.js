@@ -9,19 +9,48 @@ import artImages from "../assets/artImages.json";
 import { fadeScale, staggerContainer } from "../utils/animations";
 
 function Pantanal() {
-    const pantanalImages = artImages.filter(img => img.category === "Pantanal");
+    // Get all Pantanal images from the JSON
+    const allPantanalImages = artImages.filter(img => img.category === "Pantanal");
 
-    const galleryTexts = [
-        "The Pantanal is the world's largest tropical wetland area, a sprawling wilderness that comes alive with the rhythm of the rains. Here, the boundary between land and water blurs, creating a sanctuary for an incredible diversity of life.",
-        "Known as the realm of the jaguar, the Pantanal offers one of the best chances to spot these elusive big cats in the wild. As they patrol the riverbanks, the jungle holds its breath, a testament to the raw power of nature.",
-        "The skies above the wetlands are a canvas of motion and color. Flocks of vibrant macaws, toucans, and herons fill the air, their calls echoing across the marshes. It is a birdwatcher's paradise, where every gaze upward reveals a new wonder.",
-        "Beneath the water's surface, life is just as abundant. Caimans bask on sun-drenched banks, while giant otters frolic in the currents. The intricate waterways are the veins of this ecosystem, sustaining a complex web of life.",
-        "A marsh deer navigates the tall grass, silent and graceful. In the Pantanal, adaptation is key. Species here have evolved to thrive in a landscape that changes dramatically with the seasons, from flooded plains to dry grasslands.",
-        "The Hyacinth Macaw, with its stunning cobalt blue feathers, is a symbol of the region's beauty and fragility. Conservation efforts here are crucial to ensure these magnificent creatures continue to grace the Pantanal's skies.",
-        "As the sun sets, the water acts as a mirror, doubling the fiery colors of the sky. The transition from day to night brings a new chorus of sounds, as the nocturnal inhabitants of the wetlands begin their nightly activities."
+    // Define the content blocks provided by the user
+    // We will attempt to map specific images to these blocks.
+    const contentBlocks = [
+        {
+            title: "Water That Moves the World",
+            text: "The Pantanal is one of the largest tropical wetlands on Earth, stretching across Brazil, Bolivia, and Paraguay. Unlike landscapes shaped by roads or permanent boundaries, this region is governed almost entirely by water. Seasonal flooding transforms grasslands into shallow lakes, rivers overflow into forests, and familiar paths disappear for months at a time. Life here is built around movement and return. Animals migrate with the water’s rise and retreat, adapting not to fixed terrain, but to constant change. The land never settles — it breathes.",
+            imageId: "pantanal1" // Wetlands Dawn
+        },
+        {
+            title: "Ancient Survivors",
+            text: "Caimans are among the Pantanal’s oldest residents, descendants of lineages that have survived millions of years of environmental upheaval. Perfectly adapted to wetland life, they are both hunters and quiet engineers of the ecosystem. Their movement through shallow waters creates channels used by fish, birds, and smaller animals. Often still and watchful, they embody the patience of the Pantanal itself — a reminder that survival here depends less on speed and more on balance.",
+            imageId: "pantanal4" // River Giants (Caimans)
+        },
+        {
+            title: "Voices of the Canopy",
+            text: "Macaws and toucans bring colour and sound to the Pantanal’s upper layers, but their role goes far beyond spectacle. Feeding on fruits across wide distances, they act as natural gardeners, dispersing seeds that help regenerate forests after floods or fires. Their calls echo across water and trees, carrying information — warnings, territory, presence. In a landscape where visibility often blurs into reflection and foliage, sound becomes a way of mapping space.",
+            imageId: "pantanal3" // Crowning Glory (Birds)
+        },
+        {
+            title: "A Wetland of Extremes",
+            text: "The Pantanal shifts dramatically between seasons. During the dry months, animals gather around shrinking water sources, creating dense pockets of life where predator and prey exist in close proximity. When the rains return, the land opens again. Water spreads outward, competition eases, and animals disperse across newly formed wetlands. These cycles have repeated for centuries, shaping behaviours, migration patterns, and even the timing of birth and growth.",
+            imageId: "pantanal5" // Marsh Deer (Animals disperse)
+        },
+        {
+            title: "A Fragile Balance",
+            text: "Despite its vastness, the Pantanal is deeply sensitive. Fires, deforestation, and changes to upstream rivers threaten the delicate flooding cycles that sustain the region. Because everything here depends on water flowing freely, disruption in one area can ripple across hundreds of kilometres. Conservation in the Pantanal isn’t about freezing the landscape in time — it’s about allowing its natural rhythms to continue uninterrupted.",
+            imageId: "pantanal7" // Sunset Reflection (Mood fitting for conservation/fragility)
+        }
     ];
 
     const [currentIndex, setCurrentIndex] = useState(null);
+
+    // Helper to open lightbox with correct index from the full list
+    const handleImageClick = (imageId) => {
+        const index = allPantanalImages.findIndex(img => img.id === imageId);
+        if (index !== -1) {
+            setCurrentIndex(index);
+        }
+    };
 
     return (
         <div className="relative min-h-screen pt-2">
@@ -65,31 +94,37 @@ function Pantanal() {
                     Immerse yourself in the wild heart of Brazil, where nature reigns supreme and every moment is a brush with the extraordinary.
                 </p>
 
-                {pantanalImages.map((img, idx) => (
-                    <div
-                        key={img.id}
-                        className={`flex flex-col lg:flex-row items-center justify-center gap-6 ${idx % 2 === 1 ? "lg:flex-row-reverse" : ""
-                            }`}
-                    >
-                        <img
-                            src={img.blogimage}
-                            alt={img.title}
-                            loading="lazy"
-                            onClick={() => setCurrentIndex(idx)}
-                            className="rounded-lg cursor-pointer w-full sm:w-3/4 md:w-2/3 lg:w-2/5 h-auto shadow-md hover:opacity-95 transition-opacity"
-                        />
-                        <div className="p-4 rounded-md flex-1 text-left text-sm sm:text-base">
-                            <h2 className="font-bold text-lg mb-2">{img.title}</h2>
-                            <p>{galleryTexts[idx] || img.description}</p>
+                {contentBlocks.map((block, idx) => {
+                    const img = allPantanalImages.find(i => i.id === block.imageId);
+                    // Fallback if image isn't found (shouldn't happen if IDs are correct)
+                    if (!img) return null;
+
+                    return (
+                        <div
+                            key={block.title}
+                            className={`flex flex-col lg:flex-row items-center justify-center gap-6 ${idx % 2 === 1 ? "lg:flex-row-reverse" : ""
+                                }`}
+                        >
+                            <img
+                                src={img.blogimage}
+                                alt={img.title}
+                                loading="lazy"
+                                onClick={() => handleImageClick(block.imageId)}
+                                className="rounded-lg cursor-pointer w-full sm:w-3/4 md:w-2/3 lg:w-2/5 h-auto shadow-md hover:opacity-95 transition-opacity"
+                            />
+                            <div className="p-4 rounded-md flex-1 text-left text-sm sm:text-base">
+                                <h2 className="font-bold text-lg mb-2">{block.title}</h2>
+                                <p>{block.text}</p>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    );
+                })}
             </main>
 
             {/* Lightbox */}
             {currentIndex !== null && (
                 <Lightbox
-                    images={pantanalImages}
+                    images={allPantanalImages}
                     currentIndex={currentIndex}
                     setCurrentIndex={setCurrentIndex}
                 />
