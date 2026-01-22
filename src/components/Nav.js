@@ -96,8 +96,7 @@ function Nav() {
   const stop = (e) => e.stopPropagation();
 
   const submenuClass = (isOpen) =>
-    `ml-4 flex flex-col gap-1 overflow-hidden transition-all duration-300 ${
-      isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+    `ml-4 flex flex-col gap-1 overflow-hidden transition-all duration-300 ${isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
     }`;
 
   const svgCenterX = 47.3 / 2;
@@ -144,28 +143,28 @@ function Nav() {
 
   return (
     <>
-<div className="search-container fixed top-2 md:top-2 right-12 z-50 flex items-center">
-  <SearchIcon
-    className={`cursor-pointer transition-transform duration-300 p-1 w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11
+      <div className="search-container fixed top-2 md:top-2 right-12 z-50 flex items-center">
+        <SearchIcon
+          className={`cursor-pointer transition-transform duration-300 p-1 w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11
       ${searchOpen ? "scale-125" : "scale-100"}`} // slightly bigger when active
-    onClick={toggleSearch}
-    aria-label="Open search"
-  />
-  <form onSubmit={handleSearchSubmit} className="relative flex items-center">
-    <input
-      type="text"
-      placeholder="Search..."
-      value={searchQuery}
-      onChange={(e) => setSearchQuery(e.target.value)}
-      className={`absolute right-0 px-3 py-1 rounded border border-gray-700 outline-none
+          onClick={toggleSearch}
+          aria-label="Open search"
+        />
+        <form onSubmit={handleSearchSubmit} className="relative flex items-center">
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className={`absolute right-0 px-3 py-1 rounded border border-gray-700 outline-none
         bg-[#ceb752]/40 text-[#ceb752]
         transition-all duration-300 ease-in-out
         ${searchOpen ? "w-40 sm:w-48 md:w-56 opacity-100 pointer-events-auto" : "w-0 opacity-0 pointer-events-none"}`}
-      style={{ transformOrigin: "right center" }}
-      aria-label="Search"
-    />
-  </form>
-</div>
+            style={{ transformOrigin: "right center" }}
+            aria-label="Search"
+          />
+        </form>
+      </div>
 
       <div
         className="burger-menu-container fixed top-6 md:top-8 right-1 z-50 cursor-pointer"
@@ -174,11 +173,11 @@ function Nav() {
         aria-controls="site-menu"
         onClick={toggleMenu}
       >
-        <div 
-className="w-14 h-7 sm:w-16 sm:h-11 md:w-18 md:h-17 flex items-center justify-center
+        <div
+          className="w-14 h-7 sm:w-16 sm:h-11 md:w-18 md:h-17 flex items-center justify-center
              -translate-y-1 sm:-translate-y-1.5 md:-translate-y-4"
->
-  <svg viewBox="0 0 47.3 47.3" className="w-10 h-10" style={{ overflow: "visible" }}>
+        >
+          <svg viewBox="0 0 47.3 47.3" className="w-10 h-10" style={{ overflow: "visible" }}>
             {/* Top bar */}
             <g
               id="top"
@@ -253,73 +252,74 @@ className="w-14 h-7 sm:w-16 sm:h-11 md:w-18 md:h-17 flex items-center justify-ce
           </svg>
         </div>
       </div>
-<div
-  id="site-menu"
-  className={`fixed top-0 right-0 h-full w-64 z-40 flex flex-col pt-12 p-4 gap-2 text-lg overflow-y-auto
+      <div
+        id="site-menu"
+        className={`fixed top-0 right-0 h-full w-64 z-40 flex flex-col pt-12 p-4 gap-2 text-lg overflow-y-auto
     transform transition-transform duration-300
     bg-[#e8eac7]/40
     ${menuOpen ? "translate-x-0 pointer-events-auto" : "translate-x-full pointer-events-none"}`}
->
-  <Link className="text-[#38350b] text-lg hover:text-[#0c0b01]" to="/home" onClick={() => setMenuOpen(false)}>Home</Link>
+      >
+        <Link className="text-[#38350b] text-lg hover:text-[#0c0b01]" to="/home" onClick={() => setMenuOpen(false)}>Home</Link>
 
-  <div className="flex flex-col">
-    <div className="flex justify-between items-center w-full">
-      <Link className="text-[#38350b] text-lg hover:text-[#0c0b01]" to="/adventures" onClick={() => setMenuOpen(false)}>Adventures Blog</Link>
-      <button onClick={() => toggleSubmenu("adventures", setOpenAdventures)} className="focus:outline-none" aria-label="Toggle travel submenu">
-        <Arrow isOpen={openAdventures} />
-      </button>
-    </div>
+        <div className="flex flex-col">
+          <div className="flex justify-between items-center w-full">
+            <Link className="text-[#38350b] text-lg hover:text-[#0c0b01]" to="/adventures" onClick={() => setMenuOpen(false)}>Adventures Blog</Link>
+            <button onClick={() => toggleSubmenu("adventures", setOpenAdventures)} className="focus:outline-none" aria-label="Toggle travel submenu">
+              <Arrow isOpen={openAdventures} />
+            </button>
+          </div>
 
-    <div className={submenuClass(openAdventures)}>
-      <div className="flex justify-between items-center w-full">
-        <Link className="text-[#38350b] text-base hover:text-[#0c0b01]" to="/brazil" onClick={() => setMenuOpen(false)}>Brazil</Link>
-        <button onClick={() => toggleSubmenu("brazil", setOpenBrazil)} className="focus:outline-none" aria-label="Toggle brazil submenu">
-          <Arrow isOpen={openBrazil} />
-        </button>
-      </div>
+          <div className={submenuClass(openAdventures)}>
+            <div className="flex justify-between items-center w-full">
+              <Link className="text-[#38350b] text-base hover:text-[#0c0b01]" to="/brazil" onClick={() => setMenuOpen(false)}>Brazil</Link>
+              <button onClick={() => toggleSubmenu("brazil", setOpenBrazil)} className="focus:outline-none" aria-label="Toggle brazil submenu">
+                <Arrow isOpen={openBrazil} />
+              </button>
+            </div>
 
-      <div className={submenuClass(openBrazil)}>
-        <div className="flex justify-between items-center w-full">
-          <Link className="text-[#38350b] text-base hover:text-[#0c0b01]" to="/brazil/saopaulo" onClick={() => setMenuOpen(false)}>São Paulo</Link>
-          <button onClick={() => toggleSubmenu("saopaulo", setOpenSaoPaulo)} className="focus:outline-none" aria-label="Toggle saopaulo submenu">
-            <Arrow isOpen={openSaoPaulo} />
-          </button>
+            <div className={submenuClass(openBrazil)}>
+              <div className="flex justify-between items-center w-full">
+                <Link className="text-[#38350b] text-base hover:text-[#0c0b01]" to="/brazil/saopaulo" onClick={() => setMenuOpen(false)}>São Paulo</Link>
+                <button onClick={() => toggleSubmenu("saopaulo", setOpenSaoPaulo)} className="focus:outline-none" aria-label="Toggle saopaulo submenu">
+                  <Arrow isOpen={openSaoPaulo} />
+                </button>
+              </div>
+
+              <div className={submenuClass(openSaoPaulo)}>
+                <Link to="/brazil/saopaulo/parks" className="text-[#38350b] text-base hover:text-[#0c0b01]" onClick={() => setMenuOpen(false)}>Parks</Link>
+                <Link to="/brazil/saopaulo/museums" className="text-[#38350b] text-base hover:text-[#0c0b01]" onClick={() => setMenuOpen(false)}>Art Galleries</Link>
+                <Link to="/brazil/saopaulo/carnival" className="text-[#38350b] text-base hover:text-[#0c0b01]" onClick={() => setMenuOpen(false)}>Carnival</Link>
+                <Link to="/brazil/saopaulo/murals" className="text-[#38350b] text-base hover:text-[#0c0b01]" onClick={() => setMenuOpen(false)}>Street Murals</Link>
+                <Link to="/brazil/saopaulo/santos" className="text-[#38350b] text-base hover:text-[#0c0b01]" onClick={() => setMenuOpen(false)}>Santos</Link>
+              </div>
+              <Link className="text-[#38350b] text-base hover:text-[#0c0b01]" to="/brazil/pantanal" onClick={() => setMenuOpen(false)}>The Pantanal</Link>
+            </div>
+          </div>
         </div>
 
-        <div className={submenuClass(openSaoPaulo)}>
-          <Link to="/brazil/saopaulo/parks" className="text-[#38350b] text-base hover:text-[#0c0b01]" onClick={() => setMenuOpen(false)}>Parks</Link>
-          <Link to="/brazil/saopaulo/museums" className="text-[#38350b] text-base hover:text-[#0c0b01]" onClick={() => setMenuOpen(false)}>Art Galleries</Link>
-          <Link to="/brazil/saopaulo/carnival" className="text-[#38350b] text-base hover:text-[#0c0b01]" onClick={() => setMenuOpen(false)}>Carnival</Link>
-          <Link to="/brazil/saopaulo/murals" className="text-[#38350b] text-base hover:text-[#0c0b01]" onClick={() => setMenuOpen(false)}>Street Murals</Link>
-          <Link to="/brazil/saopaulo/santos" className="text-[#38350b] text-base hover:text-[#0c0b01]" onClick={() => setMenuOpen(false)}>Santos</Link>
-        </div>
+        <Link
+          to="/nomadsshop"
+          onClick={() => setMenuOpen(false)}
+          className="text-[#38350b] text-lg hover:text-[#0c0b01]"
+        >
+          Nomads Shop
+        </Link>
+
+        <Link
+          className="text-[#38350b] text-lg hover:text-[#0c0b01]"
+          to="/nomads-gallery"
+          onClick={() => setMenuOpen(false)}
+        >
+          Nomads Gallery
+        </Link>
+        <Link
+          className="text-[#38350b] text-lg hover:text-[#0c0b01]"
+          to="/contact-us"
+          onClick={() => setMenuOpen(false)}
+        >
+          Contact Us
+        </Link>
       </div>
-    </div>
-  </div>
-
-<Link
-  to="/nomadsshop"
-  onClick={() => setMenuOpen(false)}
-  className="text-[#38350b] text-lg hover:text-[#0c0b01]"
->
-  Nomads Shop
-</Link>
-
-  <Link
-    className="text-[#38350b] text-lg hover:text-[#0c0b01]"
-    to="/nomads-gallery"
-    onClick={() => setMenuOpen(false)}
-  >
-    Nomads Gallery
-  </Link>
-  <Link
-    className="text-[#38350b] text-lg hover:text-[#0c0b01]"
-    to="/contact-us"
-    onClick={() => setMenuOpen(false)}
-  >
-    Contact Us
-  </Link>
-</div>
     </>
   );
 }
