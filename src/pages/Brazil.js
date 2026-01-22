@@ -10,7 +10,7 @@ function Brazil() {
     { name: "Rio de Janeiro", path: "/brazil/rio" },
     { name: "Salvador", path: "/brazil/salvador" },
     { name: "Foz do Iguaçu", path: "/brazil/foz" },
-    { name: "The Pantanal", path: "/brazil/pantanal" },
+    { name: "Pantanal", path: "/brazil/pantanal" },
     { name: "Bonito", path: "/brazil/bonito" },
     { name: "Manaus", path: "/brazil/manaus" },
   ];
@@ -88,7 +88,7 @@ function Brazil() {
             {["/brazil/saopaulo", "/brazil/pantanal"].includes(city.path) ? (
               <Link
                 to={city.path}
-                className="bg-white/80 text-gray-900 backdrop-blur-md rounded-xl py-3 text-center hover:bg-white hover:shadow-lg transition duration-300"
+                className="block w-full bg-white/80 text-gray-900 backdrop-blur-md rounded-xl py-3 text-center hover:bg-white hover:shadow-lg transition duration-300"
               >
                 {city.name}
               </Link>
