@@ -76,6 +76,10 @@ function SearchResults() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-start py-12 px-4 bg-gray-50">
+      {/* Logo */}
+      <div className="mt-4 ml-4 z-50">
+        <Logo className="h-6 w-auto sm:h-10" />
+      </div>
       <h1 className="text-3xl font-semibold mb-6">Search Results for "{query}"</h1>
 
       {results.length > 0 ? (
@@ -96,7 +100,7 @@ function SearchResults() {
       )}
 
       <Link
-        to="/home"
+        to="/"
         className="mt-8 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
       >
         ← Return Home

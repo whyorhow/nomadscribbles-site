@@ -6,7 +6,7 @@ import SEO from "../components/SEO";
 export default function NotFound() {
   return (
     <div className="min-h-screen relative flex flex-col items-center px-4 pt-4 pb-10 bg-gradient-to-b from-[#5c6e53] via-[#485b3c] to-[#37462f] text-[#eeda8d]">
-      
+
       {/* SEO */}
       <SEO
         title="404 Not Found | Nomad Scribbles"
@@ -18,7 +18,7 @@ export default function NotFound() {
       <h1 className="sr-only">404 Not Found | Nomad Scribbles</h1>
 
       {/* Logo */}
-      <div className="absolute top-3 left-4 z-10">
+      <div className="mt-4 ml-4 z-50">
         <Logo className="h-6 w-auto sm:h-10" />
       </div>
 

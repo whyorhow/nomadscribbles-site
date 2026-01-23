@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Logo from "../components/Logo";
 import { fadeScale, hoverScale, staggerContainer } from "../utils/animations";
@@ -167,6 +167,56 @@ export default function NomadsShopSaoPaulo({ openLightbox }) {
       category: "Murals",
     },
 
+    // Museums
+    {
+      id: "artgallery1",
+      title: "MASP floating gallery",
+      description: "Masterpieces floating on glass easels.",
+      image: "/images/ArtGallery/thumbnail/ArtGallery1.webp",
+      gumroadLink: "https://nomadscribbles.gumroad.com/l/azpozv",
+      category: "Museums",
+    },
+    {
+      id: "artgallery2",
+      title: "Degas Ballerina",
+      description: "Degas sculpture in MASP.",
+      image: "/images/ArtGallery/thumbnail/ArtGallery2.webp",
+      gumroadLink: "https://nomadscribbles.gumroad.com/l/vbggph",
+      category: "Museums",
+    },
+    {
+      id: "artgallery4drawn",
+      title: "Art Gallery Drawing",
+      description: "Sketch of São Paulo’s art scene.",
+      image: "/images/ArtGallery/thumbnail/ArtGallery4Drawn.webp",
+      gumroadLink: "https://nomadscribbles.gumroad.com/l/rxtsgi",
+      category: "Museums",
+    },
+    {
+      id: "artgallery3",
+      title: "Indigenous Exhibition",
+      description: "Indigenous art at MASP.",
+      image: "/images/ArtGallery/thumbnail/ArtGallery3.webp",
+      gumroadLink: "https://nomadscribbles.gumroad.com/l/bltpzl",
+      category: "Museums",
+    },
+    {
+      id: "artgallery4",
+      title: "Pinacoteca light",
+      description: "Sunlight in the Pinacoteca.",
+      image: "/images/ArtGallery/thumbnail/ArtGallery4.webp",
+      gumroadLink: "https://nomadscribbles.gumroad.com/l/wkanbl",
+      category: "Museums",
+    },
+    {
+      id: "artgallery5",
+      title: "Pinacoteca Architecture",
+      description: "Brick and iron details.",
+      image: "/images/ArtGallery/thumbnail/ArtGallery5.webp",
+      gumroadLink: "https://nomadscribbles.gumroad.com/l/mshcaw",
+      category: "Museums",
+    },
+
     // Santos
     {
       id: "santos1",
@@ -276,9 +326,19 @@ export default function NomadsShopSaoPaulo({ openLightbox }) {
     },
   ];
 
-  const categories = ["All", "City Life", "Parks", "Murals", "Santos", "Carnival"];
+  const categories = ["All", "City Life", "Parks", "Murals", "Santos", "Carnival", "Museums"];
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [visibleCount, setVisibleCount] = useState(12);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const categoryParam = params.get("category");
+    if (categoryParam && categories.includes(categoryParam)) {
+      setSelectedCategory(categoryParam);
+    }
+  }, [location]);
 
   const filteredItems =
     selectedCategory === "All"
@@ -302,10 +362,8 @@ export default function NomadsShopSaoPaulo({ openLightbox }) {
       initial="hidden"
       animate="visible"
     >
-      <div className="absolute top-2 left-4 z-8">
-        <Link to="/home">
-          <Logo className="h-6 w-auto sm:h-9 drop-shadow-lg filter brightness-110" />
-        </Link>
+      <div className="mt-4 ml-4 z-50">
+        <Logo className="h-6 w-auto sm:h-9 drop-shadow-lg filter brightness-110" />
       </div>
 
       <div className="flex flex-col items-center mb-8 relative z-10 mt-14 sm:mt-8">

@@ -25,6 +25,10 @@ function Carnival() {
 
   return (
     <div className="relative min-h-screen pt-2">
+      {/* Logo */}
+      <div className="mt-4 ml-4 z-50">
+        <Logo className="h-6 w-auto sm:h-10" />
+      </div>
       {/* SEO */}
       <SEO
         title="Carnival in São Paulo | Nomad Scribbles"

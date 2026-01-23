@@ -10,7 +10,7 @@ export default function Logo({ className }) {
     e.preventDefault();
     trackEvent("click_logo", "Navigation", "Logo Click");
     setTimeout(() => {
-      navigate("/home");
+      navigate("/");
     }, 100);
   };
 
@@ -29,7 +29,7 @@ export default function Logo({ className }) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <Link to="/home" onClick={handleClick}>
+      <Link to="/" onClick={handleClick}>
         <img
           src="/images/LogoMain.png"
           alt="Site Logo"

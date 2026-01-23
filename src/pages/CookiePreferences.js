@@ -57,7 +57,7 @@ export default function CookiePreferences() {
   return (
     <div className="min-h-screen relative text-white">
       {/* Logo */}
-      <div className="absolute top-3 left-4 z-10">
+      <div className="mt-4 ml-4 z-50">
         <Logo className="h-6 w-auto sm:h-10" />
       </div>
 
@@ -79,8 +79,8 @@ export default function CookiePreferences() {
 
         <section>
           <p>
-            At Nomad Scribbles, we respect your privacy and are committed to protecting your personal data. 
-            Any personal information you provide, such as your email, will only be used to respond to your inquiries 
+            At Nomad Scribbles, we respect your privacy and are committed to protecting your personal data.
+            Any personal information you provide, such as your email, will only be used to respond to your inquiries
             or for newsletter communications if you opt in. We never sell or share your information with third parties.
           </p>
         </section>
@@ -88,12 +88,12 @@ export default function CookiePreferences() {
         <section>
           <h2 className="text-xl font-semibold mb-2">Cookies</h2>
           <p>
-            We use cookies to enhance your experience on our websites. These include essential cookies for core 
+            We use cookies to enhance your experience on our websites. These include essential cookies for core
             functionality and optional cookies for analytics or marketing. Our shop platform{" "}
             <a href="https://nomadscribbles.co.uk" className="underline text-blue-400 hover:text-blue-300">
               nomadscribbles.co.uk
             </a>{" "}
-            may also use additional cookies required by its eCommerce system. By accepting cookies, you allow us to 
+            may also use additional cookies required by its eCommerce system. By accepting cookies, you allow us to
             collect anonymised data to understand how our sites are used and improve your experience.
           </p>
         </section>
@@ -105,8 +105,8 @@ export default function CookiePreferences() {
             <a href="https://nomadscribbles.co.uk" className="underline text-blue-400 hover:text-blue-300">
               nomadscribbles.co.uk
             </a>{" "}
-            is operated by the same Nomad Scribbles team and follows the same data protection standards described in 
-            this policy. When you visit our shop, cookies or analytics may function slightly differently due to the 
+            is operated by the same Nomad Scribbles team and follows the same data protection standards described in
+            this policy. When you visit our shop, cookies or analytics may function slightly differently due to the
             platform’s technical setup, but your privacy rights remain the same.
           </p>
         </section>
@@ -114,7 +114,7 @@ export default function CookiePreferences() {
         <section>
           <h2 className="text-xl font-semibold mb-2">External Links & Recommendations</h2>
           <p>
-            Our site may include links to external recommended sites. These may use their own cookies or tracking 
+            Our site may include links to external recommended sites. These may use their own cookies or tracking
             technologies. We do not control these sites, so please review their privacy policies independently.
           </p>
         </section>
@@ -175,7 +175,7 @@ export default function CookiePreferences() {
         <section>
           <h2 className="text-xl font-semibold mb-2">Affiliate & Sponsored Content</h2>
           <p>
-            Some links may support Nomad Scribbles through affiliate programs. Clicking these links means you are 
+            Some links may support Nomad Scribbles through affiliate programs. Clicking these links means you are
             visiting a recommended site, and we may receive a small commission at no extra cost to you.
           </p>
         </section>

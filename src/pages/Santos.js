@@ -35,8 +35,7 @@ function Santos() {
       {/* Hidden H1 */}
       <h1 className="sr-only">Santos — Port City of Legends | Nomad Scribbles</h1>
 
-      {/* Logo */}
-      <div className="mt-4 ml-4 z-30">
+      <div className="mt-4 ml-4 z-50">
         <Logo className="h-6 w-auto sm:h-10" />
       </div>
 

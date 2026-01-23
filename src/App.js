@@ -7,6 +7,8 @@ import Home from "./pages/Home";
 import Adventures from "./pages/Adventures";
 import NomadsShop from "./pages/NomadsShop";
 import NomadsShopBrazil from "./pages/NomadsShopBrazil";
+import NomadsShopSaoPaulo from "./pages/NomadsShopSaoPaulo";
+import NomadsShopCategory from "./pages/NomadsShopCategory";
 import Brazil from "./pages/Brazil";
 import SaoPaulo from "./pages/SaoPaulo";
 import Parks from "./pages/Parks";
@@ -173,6 +175,8 @@ function App() {
               <Route path="/nomadsshop" element={<NomadsShop />} />
               <Route path="/nomads-shop" element={<NomadsShop />} />
               <Route path="/nomads-shop/brazil" element={<NomadsShopBrazil />} />
+              <Route path="/nomads-shop/brazil/saopaulo" element={<NomadsShopSaoPaulo openLightbox={openLightbox} />} />
+              <Route path="/nomads-shop/brazil/:city" element={<NomadsShopCategory openLightbox={openLightbox} />} />
               <Route path="/brazil" element={<Brazil openLightbox={openLightbox} />} />
               <Route path="/brazil/rio" element={<Rio />} />
               <Route path="/brazil/salvador" element={<Salvador />} />

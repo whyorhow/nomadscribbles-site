@@ -35,10 +35,8 @@ export default function NomadsGallery({ openLightbox }) {
         canonical="https://nomadscribbles.com/nomads-gallery"
       />
 
-      <div className="absolute top-2 left-4 z-20">
-        <Link to="/home">
-          <Logo className="h-6 w-auto sm:h-9 drop-shadow-lg filter brightness-110" />
-        </Link>
+      <div className="mt-4 ml-4 z-50">
+        <Logo className="h-6 w-auto sm:h-9 drop-shadow-lg filter brightness-110" />
       </div>
 
       <div className="flex flex-col items-center mb-10 relative z-10 mt-14 sm:mt-8">
@@ -96,6 +94,12 @@ export default function NomadsGallery({ openLightbox }) {
           );
         })}
       </motion.main>
+
+      <div className="flex justify-center my-10">
+        <Link to="/" className="text-white hover:text-[#eeda8d] underline decoration-1 underline-offset-4 text-sm">
+          ← Return Home
+        </Link>
+      </div>
     </div>
   );
 }

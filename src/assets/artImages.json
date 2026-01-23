@@ -8,7 +8,7 @@
     "lightboxImage": "/images/SaoPauloLanding/full/caparinha.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/oiloo",
     "category": "City Life",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=City Life"
   },
   {
     "id": "caparinhaDrawn",
@@ -19,7 +19,7 @@
     "lightboxImage": "/images/SaoPauloLanding/full/CaparinhaDrawn.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/byrhy",
     "category": "City Life",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=City Life"
   },
   {
     "id": "pizza",
@@ -30,7 +30,7 @@
     "lightboxImage": "/images/SaoPauloLanding/full/pizza.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/iechb",
     "category": "City Life",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=City Life"
   },
   {
     "id": "rain",
@@ -41,7 +41,7 @@
     "lightboxImage": "/images/SaoPauloLanding/full/rain.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/rpfnoe",
     "category": "City Life",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=City Life"
   },
   {
     "id": "street",
@@ -52,7 +52,7 @@
     "lightboxImage": "/images/SaoPauloLanding/full/street.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/tewkw",
     "category": "City Life",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=City Life"
   },
   {
     "id": "park1",
@@ -63,7 +63,7 @@
     "lightboxImage": "/images/SP-Parks/full/Park1.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/nmdpn",
     "category": "Parks",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Parks"
   },
   {
     "id": "park2",
@@ -74,7 +74,7 @@
     "lightboxImage": "/images/SP-Parks/full/Park2.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/zypszc",
     "category": "Parks",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Parks"
   },
   {
     "id": "park3",
@@ -85,7 +85,7 @@
     "lightboxImage": "/images/SP-Parks/full/Park3.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/wwpco",
     "category": "Parks",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Parks"
   },
   {
     "id": "park4",
@@ -96,7 +96,7 @@
     "lightboxImage": "/images/SP-Parks/full/Park4.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/pdlkl",
     "category": "Parks",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Parks"
   },
   {
     "id": "park5",
@@ -107,7 +107,7 @@
     "lightboxImage": "/images/SP-Parks/full/Park5.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/dqsmj",
     "category": "Parks",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Parks"
   },
   {
     "id": "park6",
@@ -118,7 +118,7 @@
     "lightboxImage": "/images/SP-Parks/full/Park6.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/lstekx",
     "category": "Parks",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Parks"
   },
   {
     "id": "park7",
@@ -129,7 +129,7 @@
     "lightboxImage": "/images/SP-Parks/full/Park7.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/vgmnwm",
     "category": "Parks",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Parks"
   },
   {
     "id": "graffiti1",
@@ -140,7 +140,7 @@
     "lightboxImage": "/images/Murals/full/Graffiti1.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/lyxdq",
     "category": "Murals",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Murals"
   },
   {
     "id": "graffiti2",
@@ -151,7 +151,7 @@
     "lightboxImage": "/images/Murals/full/Graffiti2.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/vxqtux",
     "category": "Murals",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Murals"
   },
   {
     "id": "graffiti3",
@@ -162,7 +162,7 @@
     "lightboxImage": "/images/Murals/full/Graffiti3.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/mztdgd",
     "category": "Murals",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Murals"
   },
   {
     "id": "graffiti4",
@@ -173,7 +173,7 @@
     "lightboxImage": "/images/Murals/full/Graffiti4.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/gipav",
     "category": "Murals",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Murals"
   },
   {
     "id": "graffiti5",
@@ -184,7 +184,7 @@
     "lightboxImage": "/images/Murals/full/Graffiti5.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/twbmh",
     "category": "Murals",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Murals"
   },
   {
     "id": "graffiti6",
@@ -195,7 +195,7 @@
     "lightboxImage": "/images/Murals/full/Graffiti6.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/mgmcf",
     "category": "Murals",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Murals"
   },
   {
     "id": "graffiti7",
@@ -206,7 +206,7 @@
     "lightboxImage": "/images/Murals/full/Graffiti7.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/sbhqbf",
     "category": "Murals",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Murals"
   },
   {
     "id": "graffiti8",
@@ -217,7 +217,7 @@
     "lightboxImage": "/images/Murals/full/Graffiti8.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/klcopp",
     "category": "Murals",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Murals"
   },
   {
     "id": "santos1",
@@ -228,7 +228,7 @@
     "lightboxImage": "/images/Santos/full/Santos1.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/imrcgs",
     "category": "Santos",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Santos"
   },
   {
     "id": "santos2",
@@ -239,7 +239,7 @@
     "lightboxImage": "/images/Santos/full/Santos2.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/felnv",
     "category": "Santos",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Santos"
   },
   {
     "id": "santos3",
@@ -250,7 +250,7 @@
     "lightboxImage": "/images/Santos/full/Santos3.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/epmgt",
     "category": "Santos",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Santos"
   },
   {
     "id": "santos4",
@@ -261,7 +261,7 @@
     "lightboxImage": "/images/Santos/full/Santos4.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/xhgdwdd",
     "category": "Santos",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Santos"
   },
   {
     "id": "santos5",
@@ -272,7 +272,7 @@
     "lightboxImage": "/images/Santos/full/Santos5.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/rswumv",
     "category": "Santos",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Santos"
   },
   {
     "id": "santos6",
@@ -283,7 +283,7 @@
     "lightboxImage": "/images/Santos/full/Santos5Drawn.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/ynvfwu",
     "category": "Santos",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Santos"
   },
   {
     "id": "carnival1",
@@ -294,7 +294,7 @@
     "lightboxImage": "/images/CarnivalSP/full/Carnival1.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/junhjy",
     "category": "Carnival",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Carnival"
   },
   {
     "id": "carnival2",
@@ -305,7 +305,7 @@
     "lightboxImage": "/images/CarnivalSP/full/Carnival2.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/htrdk",
     "category": "Carnival",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Carnival"
   },
   {
     "id": "carnival3",
@@ -316,7 +316,7 @@
     "lightboxImage": "/images/CarnivalSP/full/Carnival3.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/oktonph",
     "category": "Carnival",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Carnival"
   },
   {
     "id": "carnival4",
@@ -327,7 +327,7 @@
     "lightboxImage": "/images/CarnivalSP/full/Carnival4.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/hfnkpg",
     "category": "Carnival",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Carnival"
   },
   {
     "id": "carnival5",
@@ -338,7 +338,7 @@
     "lightboxImage": "/images/CarnivalSP/full/Carnival6.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/iuzniy",
     "category": "Carnival",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Carnival"
   },
   {
     "id": "carnival6",
@@ -349,7 +349,7 @@
     "lightboxImage": "/images/CarnivalSP/full/Carnival5.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/cgujou",
     "category": "Carnival",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Carnival"
   },
   {
     "id": "carnival7",
@@ -360,7 +360,7 @@
     "lightboxImage": "/images/CarnivalSP/full/Carnival7.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/mykatk",
     "category": "Carnival",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Carnival"
   },
   {
     "id": "artgallery1",
@@ -371,7 +371,7 @@
     "lightboxImage": "/images/ArtGallery/full/ArtGallery1.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/azpozv",
     "category": "Museums",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Museums"
   },
   {
     "id": "artgallery2",
@@ -382,7 +382,7 @@
     "lightboxImage": "/images/ArtGallery/full/ArtGallery2.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/vbggph",
     "category": "Museums",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Museums"
   },
   {
     "id": "artgallery4drawn",
@@ -393,7 +393,7 @@
     "lightboxImage": "/images/ArtGallery/full/ArtGallery4Drawn.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/rxtsgi",
     "category": "Museums",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Museums"
   },
   {
     "id": "artgallery3",
@@ -404,7 +404,7 @@
     "lightboxImage": "/images/ArtGallery/full/ArtGallery3.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/bltpzl",
     "category": "Museums",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Museums"
   },
   {
     "id": "artgallery4",
@@ -415,7 +415,7 @@
     "lightboxImage": "/images/ArtGallery/full/ArtGallery4.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/wkanbl",
     "category": "Museums",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Museums"
   },
   {
     "id": "artgallery5",
@@ -426,7 +426,7 @@
     "lightboxImage": "/images/ArtGallery/full/ArtGallery5.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/mshcaw",
     "category": "Museums",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Museums"
   },
   {
     "id": "pantanal1",
@@ -437,7 +437,7 @@
     "lightboxImage": "/images/Pantanal/full/PantanalW1.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Pantanal",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/pantanal"
   },
   {
     "id": "pantanal2",
@@ -448,7 +448,7 @@
     "lightboxImage": "/images/Pantanal/full/PantanalW2.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Pantanal",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/pantanal"
   },
   {
     "id": "pantanal3",
@@ -459,7 +459,7 @@
     "lightboxImage": "/images/Pantanal/full/PantanalW3.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Pantanal",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/pantanal"
   },
   {
     "id": "pantanal4",
@@ -470,7 +470,7 @@
     "lightboxImage": "/images/Pantanal/full/PantanalW4.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Pantanal",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/pantanal"
   },
   {
     "id": "pantanal5",
@@ -481,7 +481,7 @@
     "lightboxImage": "/images/Pantanal/full/PantanalW5.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Pantanal",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/pantanal"
   },
   {
     "id": "pantanal6",
@@ -492,7 +492,7 @@
     "lightboxImage": "/images/Pantanal/full/PantanalW6.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Pantanal",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/pantanal"
   },
   {
     "id": "pantanal7",
@@ -503,7 +503,7 @@
     "lightboxImage": "/images/Pantanal/full/PantanalW7.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Pantanal",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/pantanal"
   },
   {
     "id": "rio1",
@@ -514,7 +514,7 @@
     "lightboxImage": "/images/Rio/full/RioW1.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Rio",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/rio"
   },
   {
     "id": "rio2",
@@ -525,7 +525,7 @@
     "lightboxImage": "/images/Rio/full/RioW2.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Rio",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/rio"
   },
   {
     "id": "rio3",
@@ -536,7 +536,7 @@
     "lightboxImage": "/images/Rio/full/RioW3.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Rio",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/rio"
   },
   {
     "id": "rio4",
@@ -547,7 +547,7 @@
     "lightboxImage": "/images/Rio/full/RioW4.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Rio",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/rio"
   },
   {
     "id": "rio5",
@@ -558,7 +558,7 @@
     "lightboxImage": "/images/Rio/full/RioW5.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Rio",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/rio"
   },
   {
     "id": "rio6",
@@ -569,7 +569,7 @@
     "lightboxImage": "/images/Rio/full/RioW6.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Rio",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/rio"
   },
   {
     "id": "rio7",
@@ -580,7 +580,7 @@
     "lightboxImage": "/images/Rio/full/RioW7.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Rio",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/rio"
   },
   {
     "id": "rio8",
@@ -591,7 +591,7 @@
     "lightboxImage": "/images/Rio/full/RioW8.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Rio",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/rio"
   },
   {
     "id": "rio9",
@@ -602,7 +602,7 @@
     "lightboxImage": "/images/Rio/full/RioW9.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Rio",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/rio"
   },
   {
     "id": "rio10",
@@ -613,7 +613,7 @@
     "lightboxImage": "/images/Rio/full/RioW10.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Rio",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/rio"
   },
   {
     "id": "rio11",
@@ -624,7 +624,7 @@
     "lightboxImage": "/images/Rio/full/RioW11.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Rio",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/rio"
   },
   {
     "id": "salvador1",
@@ -635,7 +635,7 @@
     "lightboxImage": "/images/Salvador/full/SalvadorW1.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Salvador",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/salvador"
   },
   {
     "id": "salvador2",
@@ -646,7 +646,7 @@
     "lightboxImage": "/images/Salvador/full/SalvadorW2.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Salvador",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/salvador"
   },
   {
     "id": "salvador3",
@@ -657,7 +657,7 @@
     "lightboxImage": "/images/Salvador/full/SalvadorW3.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Salvador",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/salvador"
   },
   {
     "id": "salvador4",
@@ -668,7 +668,7 @@
     "lightboxImage": "/images/Salvador/full/SalvadorW4.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Salvador",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/salvador"
   },
   {
     "id": "salvador5",
@@ -679,7 +679,7 @@
     "lightboxImage": "/images/Salvador/full/SalvadorW5.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Salvador",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/salvador"
   },
   {
     "id": "salvador6",
@@ -690,7 +690,7 @@
     "lightboxImage": "/images/Salvador/full/SalvadorW6.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Salvador",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/salvador"
   },
   {
     "id": "salvador7",
@@ -701,7 +701,7 @@
     "lightboxImage": "/images/Salvador/full/SalvadorW7.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Salvador",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/salvador"
   },
   {
     "id": "salvador8",
@@ -712,7 +712,7 @@
     "lightboxImage": "/images/Salvador/full/SalvadorW8.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Salvador",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/salvador"
   },
   {
     "id": "salvador9",
@@ -723,7 +723,7 @@
     "lightboxImage": "/images/Salvador/full/SalvadorW9.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Salvador",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/salvador"
   },
   {
     "id": "salvador10",
@@ -734,7 +734,7 @@
     "lightboxImage": "/images/Salvador/full/SalvadorW10.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Salvador",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/salvador"
   },
   {
     "id": "salvador11",
@@ -745,7 +745,7 @@
     "lightboxImage": "/images/Salvador/full/SalvadorW11.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Salvador",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/salvador"
   },
   {
     "id": "salvador12",
@@ -756,7 +756,7 @@
     "lightboxImage": "/images/Salvador/full/SalvadorW12.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Salvador",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/salvador"
   },
   {
     "id": "salvador13",
@@ -767,7 +767,7 @@
     "lightboxImage": "/images/Salvador/full/SalvadorW13.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Salvador",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/salvador"
   },
   {
     "id": "salvador14",
@@ -778,7 +778,7 @@
     "lightboxImage": "/images/Salvador/full/SalvadorW14.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Salvador",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/salvador"
   },
   {
     "id": "salvador15",
@@ -789,7 +789,7 @@
     "lightboxImage": "/images/Salvador/full/SalvadorW15.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Salvador",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/salvador"
   },
   {
     "id": "salvador16",
@@ -800,7 +800,7 @@
     "lightboxImage": "/images/Salvador/full/SalvadorW16.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Salvador",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/salvador"
   },
   {
     "id": "salvador17",
@@ -811,7 +811,7 @@
     "lightboxImage": "/images/Salvador/full/SalvadorW17.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Salvador",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/salvador"
   },
   {
     "id": "salvador18",
@@ -822,7 +822,7 @@
     "lightboxImage": "/images/Salvador/full/SalvadorW18.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Salvador",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/salvador"
   },
   {
     "id": "salvador19",
@@ -833,7 +833,7 @@
     "lightboxImage": "/images/Salvador/full/SalvadorW19.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Salvador",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/salvador"
   },
   {
     "id": "salvador20",
@@ -844,7 +844,7 @@
     "lightboxImage": "/images/Salvador/full/SalvadorW20.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Salvador",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/salvador"
   },
   {
     "id": "salvador21",
@@ -855,7 +855,7 @@
     "lightboxImage": "/images/Salvador/full/SalvadorW21.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Salvador",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/salvador"
   },
   {
     "id": "salvador22",
@@ -866,6 +866,6 @@
     "lightboxImage": "/images/Salvador/full/SalvadorW22.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Salvador",
-    "shopLink": "https://nomadscribbles.co.uk/shop"
+    "shopLink": "/nomads-shop/brazil/salvador"
   }
 ]

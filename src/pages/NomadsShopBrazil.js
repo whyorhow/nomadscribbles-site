@@ -34,15 +34,25 @@ export default function NomadsShopBrazil() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const featuredItems = products.filter((p) => p.category === "City Life");
+  const [featuredItems, setFeaturedItems] = React.useState([]);
+
+  useEffect(() => {
+    // Categories to include in the random selection
+    const allowedCategories = ["Rio", "Salvador", "Pantanal", "City Life", "Parks", "Murals", "Santos", "Carnival", "Museums"];
+
+    // Filter products by allowed categories
+    const brazilProducts = products.filter(p => allowedCategories.includes(p.category));
+
+    // Shuffle and pick a few items (e.g., 15)
+    const shuffled = [...brazilProducts].sort(() => 0.5 - Math.random());
+    setFeaturedItems(shuffled.slice(0, 15));
+  }, []);
 
   return (
     <div className="min-h-screen relative">
       {/* Logo */}
-      <div className="absolute top-2 left-4 z-10">
-        <Link to="/home">
-          <Logo className="h-6 w-auto sm:h-9 drop-shadow-lg filter brightness-110" />
-        </Link>
+      <div className="mt-4 ml-4 z-50">
+        <Logo className="h-6 w-auto sm:h-9 drop-shadow-lg filter brightness-110" />
       </div>
 
       {/* Page Title */}
@@ -77,16 +87,16 @@ export default function NomadsShopBrazil() {
             loop={true}
             autoplay={{ delay: 4000, disableOnInteraction: false }}
           >
-            {featuredItems.map((item) => (
-              <SwiperSlide key={item.title}>
+            {featuredItems.map((item, idx) => (
+              <SwiperSlide key={`${item.id}-${idx}`}>
                 <div className="flex flex-col items-center bg-transparent rounded-lg p-2">
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-auto max-h-80 object-contain rounded-lg"
+                    className="w-full h-auto max-h-[640px] object-contain rounded-lg"
                     loading="lazy"
                   />
-                  <h2 className="mt-2 text-xl font-semibold text-white">
+                  <h2 className="mt-2 text-xl font-semibold text-white drop-shadow-md text-center">
                     {item.title}
                   </h2>
                   <a
@@ -152,6 +162,12 @@ export default function NomadsShopBrazil() {
             </Link>
           ))}
         </div>
+      </div>
+
+      <div className="flex justify-center mb-10">
+        <Link to="/nomadsshop" className="text-white hover:text-[#eeda8d] underline decoration-1 underline-offset-4 text-sm">
+          ← Return to Shop
+        </Link>
       </div>
     </div>
   );

@@ -37,7 +37,7 @@ function Parks() {
       <h1 className="sr-only">Parks of São Paulo | Nomad Scribbles</h1>
 
       {/* Logo */}
-      <div className="mt-4 ml-4 z-30">
+      <div className="mt-4 ml-4 z-50">
         <Logo className="h-6 w-auto sm:h-10" />
       </div>
 

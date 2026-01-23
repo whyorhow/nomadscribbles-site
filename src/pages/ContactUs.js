@@ -72,7 +72,7 @@ export default function ContactUs() {
       <h1 className="sr-only">Contact Us | Nomad Scribbles</h1>
 
       {/* Logo */}
-      <div className="absolute top-2 left-4 z-10">
+      <div className="mt-4 ml-4 z-50">
         <Logo className="h-6 w-auto sm:h-10" />
       </div>
 

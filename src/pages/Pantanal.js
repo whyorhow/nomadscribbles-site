@@ -65,11 +65,8 @@ function Pantanal() {
             {/* Hidden H1 */}
             <h1 className="sr-only">The Pantanal | Nomad Scribbles</h1>
 
-            {/* Logo */}
-            <div className="mt-4 ml-4 z-30">
-                <Link to="/home">
-                    <Logo className="h-6 w-auto sm:h-10" />
-                </Link>
+            <div className="mt-4 ml-4 z-50">
+                <Logo className="h-6 w-auto sm:h-10" />
             </div>
 
             {/* Hero Image removed temporarily */}

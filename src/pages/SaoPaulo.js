@@ -76,7 +76,7 @@ function SaoPaulo() {
         url="https://nomadscribbles.com/brazil/saopaulo"
       />
 
-      <div className="absolute top-3 left-4 z-10">
+      <div className="mt-4 ml-4 z-50">
         <Logo className="h-6 w-auto sm:h-10" />
       </div>
 
