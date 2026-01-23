@@ -51,7 +51,7 @@ function Home() {
   // Manual delay for Logo
   const [logoVisible, setLogoVisible] = useState(false);
   useEffect(() => {
-    const timer = setTimeout(() => setLogoVisible(true), 3500);
+    const timer = setTimeout(() => setLogoVisible(true), 1000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -130,7 +130,7 @@ function Home() {
     // Delay start slightly to allow load
     timeoutId = setTimeout(() => {
       animationFrameId = requestAnimationFrame(animateScroll);
-    }, 2000); // Start after 2s (after logo delay logic starts?)
+    }, 1500); // Start after 1.5s
 
     return () => {
       stopScroll();
@@ -284,7 +284,7 @@ function Home() {
             transition={{ duration: 1.5, ease: "easeOut" }}
           >
             <div className="text-lg sm:text-xl md:text-2xl font-handwriting drop-shadow-[0_4px_6px_rgba(0,0,0,0.4)] text-[hsl(49,70%,66%)] w-[90%] max-w-[1050px] mx-auto text-center opacity-90">
-              <HandwritingTagline duration={4} strokeColor="hsl(49, 70%, 66%)" strokeWidth={1.5} />
+              <HandwritingTagline duration={2.5} strokeColor="hsl(49, 70%, 66%)" strokeWidth={1.5} />
             </div>
           </motion.div>
 
