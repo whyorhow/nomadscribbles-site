@@ -47,17 +47,17 @@ function Adventures() {
         <img
           src={process.env.PUBLIC_URL + "/images/Adventures/Adventures.png"}
           alt="Adventures"
-          className="w-[250px] sm:w-[300px] md:w-[400px] h-auto"
+          className="w-[250px] sm:w-[300px] md:w-[400px] h-auto rounded-lg shadow-lg p-4"
         />
       </div>
 
-{/* Main Content */}
-<main className="px-2 py-0 max-w-screen-lg mx-auto text-center text-[#eeda8d] space-y-0">
-  <p className="text-lg sm:text-xl md:text-2xl font-cormorant italic leading-relaxed tracking-wide">
-    Explore the places we’ve journeyed through, each flag opening a window into new stories and adventures.
-  </p>
+      {/* Main Content */}
+      <main className="px-2 py-0 max-w-screen-lg mx-auto text-center text-[#eeda8d] space-y-0">
+        <p className="text-lg sm:text-xl md:text-2xl font-cormorant italic leading-relaxed tracking-wide">
+          Explore the places we’ve journeyed through, each flag opening a window into new stories and adventures.
+        </p>
 
-  {/*
+        {/*
   <p className="text-base sm:text-lg md:text-xl leading-relaxed tracking-wide">
     From bustling cities to quiet villages, follow along as we share moments of culture, nature, and everyday discovery.
   </p>

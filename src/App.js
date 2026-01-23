@@ -92,6 +92,15 @@ function PageViewTracker({ cookiesAccepted }) {
   return null;
 }
 
+// Scroll to top on route change
+function ScrollToTop() {
+  const location = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+  return null;
+}
+
 function App() {
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const [lightboxImages, setLightboxImages] = useState([]);

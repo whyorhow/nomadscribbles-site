@@ -72,15 +72,7 @@ function Pantanal() {
                 </Link>
             </div>
 
-            {/* Hero Image */}
-            <div className="flex justify-center mb-2 px-2">
-                <img
-                    src={process.env.PUBLIC_URL + "/images/Pantanal/small/Pantanal1F.webp"}
-                    alt="Pantanal landscape"
-                    loading="lazy"
-                    className="w-full max-w-[600px] sm:max-w-[700px] md:max-w-[800px] lg:max-w-[800px] h-auto rounded-lg shadow-lg"
-                />
-            </div>
+            {/* Hero Image removed temporarily */}
 
             {/* Pantanal Title */}
             <div className="flex justify-center mb-6 mt-4">
@@ -110,7 +102,7 @@ function Pantanal() {
                                 alt={img.title}
                                 loading="lazy"
                                 onClick={() => handleImageClick(block.imageId)}
-                                className="rounded-lg cursor-pointer w-full sm:w-3/4 md:w-2/3 lg:w-2/5 h-auto shadow-md hover:opacity-95 transition-opacity"
+                                className="rounded-lg cursor-pointer w-11/12 sm:w-3/4 md:w-2/3 lg:w-2/5 h-auto shadow-md hover:opacity-95 transition-opacity p-4 max-w-[350px]"
                             />
                             <div className="p-4 rounded-md flex-1 text-left text-sm sm:text-base">
                                 <h2 className="font-bold text-lg mb-2">{block.title}</h2>

@@ -21,7 +21,7 @@ export default function HandwritingTagline({
     <svg
       viewBox="0 0 303 18"
       xmlns="http://www.w3.org/2000/svg"
-      className="w-full max-w-[606px] h-auto mx-auto"
+      className="w-full max-w-[1212px] h-auto mx-auto"
     >
       <defs>
         <clipPath id="reveal-tagline">

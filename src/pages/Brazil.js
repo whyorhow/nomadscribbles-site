@@ -51,7 +51,7 @@ function Brazil() {
         <img
           src={process.env.PUBLIC_URL + "/images/Brazil/BrazilHero.webp"}
           alt="Brazilian landscape with city and nature"
-          className="w-full h-auto object-contain shadow-lg"
+          className="w-full h-auto object-contain shadow-lg rounded-lg p-4"
         />
         <img
           src={process.env.PUBLIC_URL + "/images/Brazil/BrazilPhoto.webp"}

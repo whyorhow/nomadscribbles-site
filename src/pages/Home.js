@@ -8,6 +8,12 @@ import { fadeScale, hoverScale, staggerContainer } from "../utils/animations"; /
 import HandwritingTagline from "../components/HandwritingTagline";
 import { trackEvent } from "../utils/analytics";
 
+// Swiper for simpler, smoother carousel
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+
 // Parallax background layers
 import { skyObjects } from "../components/Sky";
 import { sunsObjects } from "../components/Suns";
@@ -30,11 +36,14 @@ function Home() {
     { title: "Brazil", link: "/brazil", img: "/images/Home/Thumbnail.webp" },
   ];
 
-  const [cards, setCards] = useState([]);
-  const carouselRef = useRef(null);
+
+  const [cards, setCards] = useState(originalCards); // No need to duplicate for Swiper
+  // const carouselRef = useRef(null); // Removed manual carousel ref
 
   const [showMiniSP, setShowMiniSP] = useState(false);
   const [showMiniSantos, setShowMiniSantos] = useState(false);
+
+  const firstFeatureRef = useRef(null); // For autoscroll
 
   // ✅ responsive now
   const isMobile = viewportWidth <= 768;
@@ -42,7 +51,7 @@ function Home() {
   // Manual delay for Logo
   const [logoVisible, setLogoVisible] = useState(false);
   useEffect(() => {
-    const timer = setTimeout(() => setLogoVisible(true), 4000);
+    const timer = setTimeout(() => setLogoVisible(true), 3500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -64,41 +73,72 @@ function Home() {
     };
   }, []);
 
-  // Carousel init
+  // Ensure page starts at top on refresh
   useEffect(() => {
-    setCards([...originalCards, ...originalCards, ...originalCards]);
-
-    const alignTimeout = setTimeout(() => {
-      if (carouselRef.current && carouselRef.current.firstChild) {
-        const cardWidth = carouselRef.current.firstChild.offsetWidth;
-        carouselRef.current.scrollLeft = cardWidth * originalCards.length;
-      }
-    }, 50);
-
-    return () => clearTimeout(alignTimeout);
+    window.scrollTo(0, 0);
   }, []);
 
-  const scroll = (direction = "right") => {
-    const carousel = carouselRef.current;
-    if (!carousel || !carousel.firstChild) return;
+  // Autoscroll Feature
+  useEffect(() => {
+    let animationFrameId;
+    let timeoutId;
+    let isStopped = false;
 
-    const cardWidth = carousel.firstChild.offsetWidth;
-    const total = originalCards.length;
+    const stopScroll = () => {
+      isStopped = true;
+      cancelAnimationFrame(animationFrameId);
+      clearTimeout(timeoutId);
+    };
 
-    carousel.scrollBy({
-      left: direction === "right" ? cardWidth : -cardWidth,
-      behavior: "smooth",
-    });
+    // Listen for user interaction to stop autoscroll
+    window.addEventListener("wheel", stopScroll);
+    window.addEventListener("touchmove", stopScroll);
+    window.addEventListener("keydown", stopScroll);
 
-    setTimeout(() => {
-      const scrollIndex = Math.round(carousel.scrollLeft / cardWidth);
-      if (scrollIndex < total) {
-        carousel.scrollLeft += total * cardWidth;
-      } else if (scrollIndex >= total * 2) {
-        carousel.scrollLeft -= total * cardWidth;
+    const animateScroll = () => {
+      if (isStopped) return;
+
+      const target = firstFeatureRef.current;
+      if (!target) return;
+
+      const rect = target.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+
+      // Check if the element is effectively fully on screen (centered or fully visible)
+      // If the bottom is within the viewport and top is somewhat visible
+      // We aim to have it roughly centered or fully in view.
+      // Let's stop when the element's center is near the viewport center, or it's fully contained.
+      const elementCenter = rect.top + rect.height / 2;
+      const viewportCenter = viewportHeight / 2;
+
+      // Stop when the first feature's top edge reaches the middle of the viewport (above mid-screen)
+      if (rect.top <= viewportHeight / 2) {
+        return;
       }
-    }, 350);
-  };
+
+      // If we are close to bottom of page
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 2) return;
+
+      // Responsive Speed: Faster on mobile and a bit quicker overall
+      const speed = window.innerWidth <= 768 ? 3 : 2;
+      window.scrollBy(0, speed);
+
+
+      animationFrameId = requestAnimationFrame(animateScroll);
+    };
+
+    // Delay start slightly to allow load
+    timeoutId = setTimeout(() => {
+      animationFrameId = requestAnimationFrame(animateScroll);
+    }, 2000); // Start after 2s (after logo delay logic starts?)
+
+    return () => {
+      stopScroll();
+      window.removeEventListener("wheel", stopScroll);
+      window.removeEventListener("touchmove", stopScroll);
+      window.removeEventListener("keydown", stopScroll);
+    };
+  }, []);
 
   const handleSPClick = () => {
     if (isMobile) setShowMiniSP((prev) => !prev);
@@ -229,47 +269,53 @@ function Home() {
 
       <h1 className="sr-only">Nomad Scribbles | Travel Stories Across the World</h1>
 
-      {/* Tagline Section (Top) */}
-      <motion.div
-        className="relative z-20 text-center pt-20 sm:pt-24"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
-      >
-        <div className="text-lg sm:text-xl md:text-2xl font-handwriting drop-shadow-md text-[#eeda8d] w-3/4 sm:w-full max-w-2xl mx-auto text-center opacity-90">
-          <HandwritingTagline duration={4} />
-        </div>
-      </motion.div>
+      {/* Sticky Hero Section (Tagline + Logo) - Follows scroll, stops before features */}
+      <div className="absolute top-0 left-0 w-full h-[200vh] z-30 pointer-events-none flex flex-col items-center justify-start">
+        <div className="sticky top-[15vh] w-full flex flex-col items-center">
 
-      {/* Logo (Delayed & Lower, Size Doubled, Raised) */}
-      <motion.div
-        className="relative z-10 text-center pt-[6vh]"
-        initial="hidden"
-        animate={logoVisible ? "visible" : "hidden"}
-        variants={staggerContainer}
-        style={{ opacity: logoVisible ? 1 : 0, transition: 'opacity 1s ease-in-out' }}
-      >
-        <motion.div className="flex flex-col items-center" variants={fadeScale}>
-          <motion.div className="w-full sm:w-4/5 md:w-3/4 lg:w-3/4 max-w-4xl mx-auto" variants={fadeScale}>
-            <img
-              src={process.env.PUBLIC_URL + "/images/Home/LogoNew.png"}
-              alt="Nomad Scribbles Hand-drawn Logo"
-              className="w-full h-auto object-contain drop-shadow-lg"
-            />
+          {/* Tagline */}
+          <motion.div
+            className="text-center mb-2 w-full flex justify-center"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+          >
+            <div className="text-lg sm:text-xl md:text-2xl font-handwriting drop-shadow-[0_4px_6px_rgba(0,0,0,0.4)] text-[hsl(49,70%,66%)] w-[90%] max-w-[1050px] mx-auto text-center opacity-90">
+              <HandwritingTagline duration={4} strokeColor="hsl(49, 70%, 66%)" strokeWidth={1.5} />
+            </div>
           </motion.div>
-        </motion.div>
-      </motion.div>
+
+          {/* Logo */}
+          <motion.div
+            className="text-center w-full flex justify-center mt-[130px]"
+            initial="hidden"
+            animate={logoVisible ? "visible" : "hidden"}
+            variants={staggerContainer}
+            style={{ opacity: logoVisible ? 1 : 0, transition: 'opacity 1s ease-in-out' }}
+          >
+            <motion.div className="w-full sm:w-4/5 md:w-3/4 lg:w-3/4 max-w-4xl mx-auto" variants={fadeScale}>
+              <img
+                src={process.env.PUBLIC_URL + "/images/Home/LogoNew.png"}
+                alt="Nomad Scribbles Hand-drawn Logo"
+                className="w-full h-auto object-contain drop-shadow-lg"
+              />
+            </motion.div>
+          </motion.div>
+
+        </div>
+      </div>
 
       {/* Sao Paulo Feature */}
       <motion.div
+        ref={firstFeatureRef} // Targeted for autoscroll
         initial="hidden"
         whileInView="visible"
         viewport={{ amount: 0.3 }}
         variants={staggerContainer}
-        className="w-full mt-[85vh] px-2 sm:px-4 relative z-[9999]"
+        className="w-full mt-[85vh] px-2 sm:px-4 relative z-40"
       >
         <motion.div
-          className="relative block w-full max-w-[80%] sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden group transition-all duration-[2000ms]"
+          className="relative block w-full max-w-[80%] sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/20 group transition-all duration-[2000ms]"
           onMouseEnter={() => {
             if (!isMobile) setShowMiniSP(true);
             trackEvent("hover_feature", "Home Page", "São Paulo Feature");
@@ -287,7 +333,7 @@ function Home() {
             className="w-full h-full object-cover transition-transform duration-2000 group-hover:scale-105"
             variants={hoverScale}
           />
-          <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-0 transition-opacity duration-[2000ms]"></div>
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px] group-hover:bg-black/10 group-hover:backdrop-blur-none transition-all duration-[2000ms]"></div>
 
           <motion.img
             src={process.env.PUBLIC_URL + "/images/Home/SaoPauloScript1.webp"}
@@ -329,10 +375,10 @@ function Home() {
         whileInView="visible"
         viewport={{ amount: 0.3 }}
         variants={staggerContainer}
-        className="w-full mt-32 px-2 sm:px-4 relative z-[9999]"
+        className="w-full mt-32 px-2 sm:px-4 relative z-40"
       >
         <motion.div
-          className="relative block w-full max-w-[80%] sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden group transition-all duration-[2000ms]"
+          className="relative block w-full max-w-[80%] sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/20 group transition-all duration-[2000ms]"
           onMouseEnter={() => {
             setShowMiniSantos(true);
             trackEvent("hover_feature", "Home Page", "Santos Feature");
@@ -350,19 +396,19 @@ function Home() {
             className="w-full h-full object-cover transition-transform duration-2000 group-hover:scale-105"
             variants={hoverScale}
           />
-          <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-0 transition-opacity duration-[2000ms]"></div>
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px] group-hover:bg-black/10 group-hover:backdrop-blur-none transition-all duration-[2000ms]"></div>
 
           <motion.img
-            src={process.env.PUBLIC_URL + "/images/Home/SantosScript1.webp"}
+            src={process.env.PUBLIC_URL + "/images/Home/SantosScript1.png"}
             alt="Santos Script Detail"
-            className={`absolute top-2 sm:top-4 left-2 sm:left-4 w-24 sm:w-36 md:w-44 z-20 transition-opacity duration-[2000ms] ${!showMiniSantos ? "opacity-100" : "opacity-0"
+            className={`absolute top-2 sm:top-4 left-2 sm:left-4 w-48 sm:w-72 md:w-96 z-20 transition-opacity duration-[2000ms] ${!showMiniSantos ? "opacity-100" : "opacity-0"
               }`}
             variants={fadeScale}
           />
           <motion.img
-            src={process.env.PUBLIC_URL + "/images/Home/SantosScript2.webp"}
+            src={process.env.PUBLIC_URL + "/images/Home/SantosScript2.png"}
             alt="Santos Script Hover Detail"
-            className={`absolute bottom-2 sm:bottom-4 right-2 sm:right-4 w-24 sm:w-36 md:w-44 z-20 transition-opacity duration-[2000ms] ${showMiniSantos ? "opacity-100" : "opacity-0"
+            className={`absolute bottom-2 sm:bottom-4 right-2 sm:right-4 w-48 sm:w-72 md:w-96 z-20 transition-opacity duration-[2000ms] ${showMiniSantos ? "opacity-100" : "opacity-0"
               }`}
             variants={fadeScale}
           />
@@ -392,73 +438,79 @@ function Home() {
         </motion.div>
       </motion.div>
 
-      {/* Bottom Carousel */}
-      <div className="w-full max-w-screen-lg mx-auto py-8 relative px-2 sm:px-4 z-[9999]">
-        <button
-          onClick={() => scroll("left")}
-          aria-label="Scroll Left"
-          className="absolute left-0 top-1/2 -translate-y-1/2 bg-black bg-opacity-40 p-2 rounded-full z-10"
+      {/* Bottom Carousel - Swiper Implementation */}
+      <div className="w-full max-w-screen-xl mx-auto py-12 relative px-2 sm:px-4 z-40">
+        <Swiper
+          modules={[Navigation, Autoplay]}
+          spaceBetween={20}
+          slidesPerView={1.2}
+          centeredSlides={true}
+          navigation
+          autoplay={{ delay: 3500, disableOnInteraction: false, pauseOnMouseEnter: true }}
+          loop={true}
+          breakpoints={{
+            640: {
+              slidesPerView: 2.2,
+              centeredSlides: false,
+            },
+            1024: {
+              slidesPerView: 3.2,
+              centeredSlides: false,
+            },
+          }}
+          className="w-full h-full !pb-8"
         >
-          <img src={process.env.PUBLIC_URL + "/images/lftarrow.svg"} alt="Left Arrow" className="w-6 h-6" />
-        </button>
-        <button
-          onClick={() => scroll("right")}
-          aria-label="Scroll Right"
-          className="absolute right-0 top-1/2 -translate-y-1/2 bg-black bg-opacity-40 p-2 rounded-full z-10"
-        >
-          <img src={process.env.PUBLIC_URL + "/images/rtarrow.svg"} alt="Right Arrow" className="w-6 h-6" />
-        </button>
-
-        <div ref={carouselRef} className="flex overflow-x-auto overflow-y-hidden space-x-4 scrollbar-hide">
-          {cards.map((card, idx) =>
-            card.external ? (
-              <a
-                key={idx}
-                href={card.link}
-                target="_self"
-                rel="noopener noreferrer"
-                className="flex-shrink-0 w-[80vw] max-w-[16rem] aspect-[16/9]"
-              >
-                <motion.div
-                  className="relative shadow-lg group w-full h-full"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ amount: 0.2 }}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.8, ease: "easeInOut", delay: idx * 0.15 }}
+          {cards.map((card, idx) => (
+            <SwiperSlide key={idx} className="!h-auto flex items-stretch">
+              {card.external ? (
+                <a
+                  href={card.link}
+                  className="block w-full"
                 >
-                  <img
-                    src={process.env.PUBLIC_URL + card.img}
-                    alt={card.title + " - travel highlights"}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                </motion.div>
-              </a>
-            ) : (
-              <Link key={idx} to={card.link} className="flex-shrink-0 w-[80vw] max-w-[16rem] aspect-[16/9]">
-                <motion.div
-                  className="relative shadow-lg group w-full h-full"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ amount: 0.2 }}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.8, ease: "easeInOut", delay: idx * 0.15 }}
-                >
-                  <img
-                    src={process.env.PUBLIC_URL + card.img}
-                    alt={card.title + " - travel highlights"}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                </motion.div>
-              </Link>
-            )
-          )}
-        </div>
+                  <div className="relative shadow-xl hover:shadow-2xl transition-all duration-300 w-full h-full rounded-2xl overflow-hidden aspect-[16/9] group">
+                    <img
+                      src={process.env.PUBLIC_URL + card.img}
+                      alt={card.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
+                      <p className="text-white font-semibold text-lg drop-shadow-md">{card.title}</p>
+                    </div>
+                  </div>
+                </a>
+              ) : (
+                <Link to={card.link} className="block w-full">
+                  <div className="relative shadow-xl hover:shadow-2xl transition-all duration-300 w-full h-full rounded-2xl overflow-hidden aspect-[16/9] group">
+                    <img
+                      src={process.env.PUBLIC_URL + card.img}
+                      alt={card.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
+                      <p className="text-white font-semibold text-lg drop-shadow-md">{card.title}</p>
+                    </div>
+                  </div>
+                </Link>
+              )}
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
 
       <style>{`
-        .scrollbar-hide::-webkit-scrollbar { display: none; }
-        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        /* Custom swiper navigation buttons if needed, or rely on default */
+        .swiper-button-next, .swiper-button-prev {
+          color: rgba(255,255,255, 0.8);
+          background-color: rgba(0,0,0, 0.3);
+          padding: 24px;
+          border-radius: 50%;
+          width: 20px;
+          height: 20px;
+        }
+        .swiper-button-next:after, .swiper-button-prev:after {
+          font-size: 18px;
+          font-weight: bold;
+        }
       `}</style>
     </div>
   );

@@ -167,11 +167,12 @@ function Nav() {
       </div>
 
       <div
-        className="burger-menu-container fixed top-6 md:top-8 right-1 z-50 cursor-pointer"
+        className="burger-menu-container fixed top-6 md:top-8 right-1 z-[9999] cursor-pointer"
         role="button"
         aria-expanded={menuOpen}
         aria-controls="site-menu"
         onClick={toggleMenu}
+        style={{ zIndex: 9999 }}
       >
         <div
           className="w-14 h-7 sm:w-16 sm:h-11 md:w-18 md:h-17 flex items-center justify-center
