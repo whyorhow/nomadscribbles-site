@@ -31,7 +31,7 @@ export default function Logo({ className }) {
     >
       <Link to="/" onClick={handleClick}>
         <img
-          src="/images/LogoMain.png"
+          src="/images/Home/LogoSquare.png"
           alt="Site Logo"
           className={className}
         />
