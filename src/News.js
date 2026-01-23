@@ -9,8 +9,8 @@ function News() {
       style={{ backgroundImage: `url(${process.env.PUBLIC_URL + "/images/PlacesetterBackground.jpg"})` }}
     >
       {/* Logo at top-left, scrolls with page */}
-      <div className="absolute top-3 left-4 z-8">
-  <Logo className="h-6 w-auto sm:h-10" />
+      <div className="mt-2 ml-4 z-50">
+        <Logo className="h-9 w-auto sm:h-15" />
       </div>
 
       {/* Hero Image */}

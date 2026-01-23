@@ -57,8 +57,8 @@ export default function CookiePreferences() {
   return (
     <div className="min-h-screen relative text-white">
       {/* Logo */}
-      <div className="mt-4 ml-4 z-50">
-        <Logo className="h-6 w-auto sm:h-10" />
+      <div className="mt-2 ml-4 z-50">
+        <Logo className="h-9 w-auto sm:h-15" />
       </div>
 
       <main className="px-4 py-8 max-w-4xl mx-auto space-y-12">

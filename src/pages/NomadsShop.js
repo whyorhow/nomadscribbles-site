@@ -38,8 +38,8 @@ export default function NomadsShop() {
       />
 
       {/* Logo */}
-      <div className="mt-4 ml-4 z-50">
-        <Logo className="h-6 w-auto sm:h-9 drop-shadow-lg filter brightness-110" />
+      <div className="mt-2 ml-4 z-50">
+        <Logo className="h-9 w-auto sm:h-15 drop-shadow-lg filter brightness-110" />
       </div>
 
       {/* Hero / Title Image */}

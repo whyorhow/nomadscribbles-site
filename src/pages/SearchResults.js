@@ -77,8 +77,8 @@ function SearchResults() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-start py-12 px-4 bg-gray-50">
       {/* Logo */}
-      <div className="mt-4 ml-4 z-50">
-        <Logo className="h-6 w-auto sm:h-10" />
+      <div className="mt-2 ml-4 z-50">
+        <Logo className="h-9 w-auto sm:h-15" />
       </div>
       <h1 className="text-3xl font-semibold mb-6">Search Results for "{query}"</h1>
 

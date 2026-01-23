@@ -35,8 +35,8 @@ export default function NomadsGallery({ openLightbox }) {
         canonical="https://nomadscribbles.com/nomads-gallery"
       />
 
-      <div className="mt-4 ml-4 z-50">
-        <Logo className="h-6 w-auto sm:h-9 drop-shadow-lg filter brightness-110" />
+      <div className="mt-2 ml-4 z-50">
+        <Logo className="h-9 w-auto sm:h-15 drop-shadow-lg filter brightness-110" />
       </div>
 
       <div className="flex flex-col items-center mb-10 relative z-10 mt-14 sm:mt-8">
