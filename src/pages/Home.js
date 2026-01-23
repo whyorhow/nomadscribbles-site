@@ -141,8 +141,11 @@ function Home() {
   }, []);
 
   const handleSPClick = () => {
-    if (isMobile) setShowMiniSP((prev) => !prev);
-    else navigate("/brazil/saopaulo");
+    setShowMiniSP((prev) => {
+      if (!prev && isMobile) return true;
+      navigate("/brazil/saopaulo");
+      return prev;
+    });
   };
 
   const handleSantosClick = () => {
@@ -312,7 +315,7 @@ function Home() {
         whileInView="visible"
         viewport={{ amount: 0.3 }}
         variants={staggerContainer}
-        className="w-full mt-[85vh] px-2 sm:px-4 relative z-40"
+        className="w-full mt-[120vh] px-2 sm:px-4 relative z-40"
       >
         <motion.div
           className="relative block w-full max-w-[80%] sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/20 group transition-all duration-[2000ms]"
@@ -375,7 +378,7 @@ function Home() {
         whileInView="visible"
         viewport={{ amount: 0.3 }}
         variants={staggerContainer}
-        className="w-full mt-32 px-2 sm:px-4 relative z-40"
+        className="w-full mt-48 px-2 sm:px-4 relative z-40"
       >
         <motion.div
           className="relative block w-full max-w-[80%] sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/20 group transition-all duration-[2000ms]"
@@ -439,7 +442,7 @@ function Home() {
       </motion.div>
 
       {/* Bottom Carousel - Swiper Implementation */}
-      <div className="w-full max-w-screen-xl mx-auto py-12 relative px-2 sm:px-4 z-40">
+      <div className="w-full max-w-screen-xl mx-auto py-12 mt-48 relative px-2 sm:px-4 z-40">
         <Swiper
           modules={[Navigation, Autoplay]}
           spaceBetween={20}
