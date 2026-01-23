@@ -19,7 +19,7 @@ function Brazil() {
 
   return (
     <motion.div
-      className="relative min-h-screen"
+      className="relative min-h-screen pb-20"
       variants={staggerContainer}
       initial="hidden"
       animate="visible"
@@ -40,7 +40,7 @@ function Brazil() {
 
       {/* Hero Image with Overlay */}
       <motion.div
-        className="relative w-full max-w-3xl mx-auto mt-14 mb-6 cursor-pointer"
+        className="relative w-full max-w-3xl mx-auto mt-24 mb-20 cursor-pointer"
         onMouseEnter={() => setShowOverlay(true)}
         onMouseLeave={() => setShowOverlay(false)}
         onClick={() => setShowOverlay(!showOverlay)}
@@ -61,7 +61,7 @@ function Brazil() {
 
       {/* Feature Image: São Paulo */}
       <motion.div
-        className="w-full max-w-2xl mb-6 mx-auto"
+        className="w-full max-w-2xl mb-20 mx-auto"
         variants={fadeScale}
       >
         <Link to="/brazil/saopaulo">

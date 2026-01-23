@@ -49,15 +49,14 @@ export default function NomadsShopBrazil() {
   }, []);
 
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative pb-24 sm:pb-32">
       {/* Logo */}
       <div className="mt-4 ml-4 z-50">
         <Logo className="h-6 w-auto sm:h-9 drop-shadow-lg filter brightness-110" />
       </div>
 
       {/* Page Title */}
-      {/* Page Title */}
-      <div className="flex flex-col items-center mb-8 relative z-10 mt-14 sm:mt-8">
+      <div className="flex flex-col items-center mb-12 relative z-10 mt-20 sm:mt-8">
         <img
           src="/images/NomadsShop/NomadsShopTitle.webp"
           alt="NomadsShop Title"
@@ -70,16 +69,16 @@ export default function NomadsShopBrazil() {
       </div>
 
       {/* Flag + Carousel */}
-      <div className="relative flex justify-center mb-8 sm:mb-10 md:mb-12">
+      <div className="relative flex justify-center mb-32 sm:mb-12">
         <img
           ref={flagRef}
           src="/images/Adventures/BrazilFlag.webp"
           alt="Brazil flag"
-          className="w-[90%] sm:w-[85%] md:w-[80%] lg:w-[75%] h-auto rounded-lg shadow-lg"
+          className="w-[82%] sm:w-[85%] md:w-[80%] lg:w-[75%] h-auto rounded-lg shadow-lg"
           loading="lazy"
         />
 
-        <div className="absolute inset-0 flex justify-center items-center w-[90%] sm:w-[85%] md:w-[80%] lg:w-[75%] mx-auto">
+        <div className="absolute inset-0 flex justify-center items-center w-[82%] sm:w-[85%] md:w-[80%] lg:w-[75%] mx-auto">
           <Swiper
             onSwiper={(swiper) => (swiperRef.current = swiper)}
             spaceBetween={20}
@@ -93,7 +92,7 @@ export default function NomadsShopBrazil() {
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-auto max-h-[640px] object-contain rounded-lg"
+                    className="w-full h-auto max-h-[220px] sm:max-h-[400px] md:max-h-[640px] object-contain rounded-lg"
                     loading="lazy"
                   />
                   <h2 className="mt-2 text-xl font-semibold text-white drop-shadow-md text-center">
