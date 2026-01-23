@@ -88,7 +88,7 @@ function SaoPaulo() {
         />
       </div>
 
-      <section className="max-w-screen-lg mx-auto px-6 py-8 bg-white/10 rounded-lg space-y-8 mb-12 text-[#e2e1dc] leading-relaxed">
+      <section className="max-w-screen-lg mx-auto px-6 py-8 space-y-8 mb-12 text-[#e2e1dc] leading-relaxed">
         <div className="flex justify-center mb-4">
           <img
             src={`${process.env.PUBLIC_URL}/images/SaoPauloLanding/heading2.webp`}
@@ -116,7 +116,7 @@ function SaoPaulo() {
                 onClick={() =>
                   setCurrentIndex(inlineImages.findIndex((img) => img.id === "pizza"))
                 }
-                style={{ opacity: revealed["pizza"] ? 1 : 0.5 }}
+                style={{ opacity: revealed["pizza"] ? 1 : 0.8 }}
               />
             </div>
             <p className="flex-1">
@@ -140,7 +140,7 @@ function SaoPaulo() {
                     onClick={() =>
                       setCurrentIndex(inlineImages.findIndex((img) => img.id === id))
                     }
-                    style={{ opacity: revealed[id] ? 1 : 0.5 }}
+                    style={{ opacity: revealed[id] ? 1 : 0.8 }}
                   />
                 </div>
               );
@@ -166,7 +166,7 @@ function SaoPaulo() {
                     onClick={() =>
                       setCurrentIndex(inlineImages.findIndex((img) => img.id === id))
                     }
-                    style={{ opacity: revealed[id] ? 1 : 0.5 }}
+                    style={{ opacity: revealed[id] ? 1 : 0.8 }}
                   />
                 </div>
               );

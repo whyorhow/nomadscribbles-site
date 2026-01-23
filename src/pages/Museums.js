@@ -15,7 +15,7 @@ export default function Museums() {
     .filter((item) => item.category === "Museums")
     .map((item) => ({
       ...item,
-      image: item.blogImage.replace(/\.(jpg|jpeg|png)$/, ".webp"),
+      // image: item.blogImage.replace(/\.(jpg|jpeg|png)$/, ".webp"), // Use the raw item.image from JSON
     }));
 
   const galleryAlts = [
@@ -55,7 +55,8 @@ export default function Museums() {
       </div>
 
       {/* Hero Image */}
-      <div className="flex justify-center mb-2 px-2">
+      {/* Hero Image */}
+      <div className="flex justify-center mb-6 px-4">
         <img
           src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/SaoPauloFeature.webp"}
           alt="São Paulo city skyline"
@@ -65,7 +66,7 @@ export default function Museums() {
       </div>
 
       {/* Title Image */}
-      <div className="flex justify-center mb-2 px-2">
+      <div className="flex justify-center mb-6 px-4">
         <img
           src={process.env.PUBLIC_URL + "/images/ArtGallery/GalleryTitle.webp"}
           alt="Art Galleries"
@@ -74,13 +75,10 @@ export default function Museums() {
         />
       </div>
 
-      {/* Intro text */}
-      <p className="text-center text-sm sm:text-base lg:text-lg mb-8">
-        São Paulo’s art galleries reveal the soul of a city in conversation with itself — modernism meets history, and every wall holds a story of innovation, rebellion, and light. Visitors are invited to immerse themselves fully, letting the rhythm of exhibitions guide their experience, observing details, textures, and the subtle narratives embedded in each work.
-      </p>
-
-      {/* Gallery section */}
-      <main className="px-2 py-2 max-w-screen-lg mx-auto space-y-6">
+      <main className="px-2 py-2 max-w-screen-lg mx-auto space-y-6 font-cormorant text-primaryText leading-relaxed">
+        <p className="text-center text-sm sm:text-base">
+          São Paulo’s art galleries reveal the soul of a city in conversation with itself — modernism meets history, and every wall holds a story of innovation, rebellion, and light. Visitors are invited to immerse themselves fully, letting the rhythm of exhibitions guide their experience, observing details, textures, and the subtle narratives embedded in each work.
+        </p>
         {museumImages.map((item, idx) => (
           <div
             key={idx}
@@ -92,7 +90,7 @@ export default function Museums() {
               alt={galleryAlts[idx] || item.title}
               loading="lazy"
               onClick={() => setCurrentIndex(idx)}
-              className="rounded-lg cursor-pointer w-full sm:w-3/4 md:w-2/3 lg:w-2/5 shadow-lg"
+              className="rounded-lg cursor-pointer w-10/12 sm:w-3/4 md:w-2/3 lg:w-2/5 h-auto shadow-md hover:opacity-95 transition-opacity p-4 max-w-[350px]"
             />
             <div className="p-4 rounded-md flex-1 text-left text-sm sm:text-base lg:text-lg">
               <h2 className="font-bold text-lg mb-2">{item.title}</h2>

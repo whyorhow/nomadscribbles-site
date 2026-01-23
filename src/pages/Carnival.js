@@ -42,7 +42,8 @@ function Carnival() {
       </div>
 
       {/* Hero Image */}
-      <div className="flex justify-center mb-2 px-2">
+      {/* Hero Image */}
+      <div className="flex justify-center mb-6 px-4">
         <img
           src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/SaoPauloFeature.webp"}
           alt="São Paulo city skyline"
@@ -52,7 +53,7 @@ function Carnival() {
       </div>
 
       {/* Carnival Title */}
-      <div className="flex justify-center mb-2 px-2">
+      <div className="flex justify-center mb-6 px-4">
         <img
           src={process.env.PUBLIC_URL + "/images/CarnivalSP/CarnivalTitle.webp"}
           alt="Carnival in São Paulo"
@@ -73,11 +74,11 @@ function Carnival() {
               }`}
           >
             <img
-              src={img.blogimage}
+              src={img.image}
               alt={img.title}
               loading="lazy"
               onClick={() => setCurrentIndex(idx)}
-              className="rounded-lg cursor-pointer w-full sm:w-3/4 md:w-2/3 lg:w-2/5 h-auto"
+              className="rounded-lg cursor-pointer w-10/12 sm:w-3/4 md:w-2/3 lg:w-2/5 h-auto shadow-md hover:opacity-95 transition-opacity p-4 max-w-[350px]"
             />
             <div className="p-4 rounded-md flex-1 text-left text-sm sm:text-base">
               <h2 className="font-bold text-lg mb-2">{img.title}</h2>
