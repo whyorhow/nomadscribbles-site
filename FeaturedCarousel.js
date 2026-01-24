@@ -1,5 +1,5 @@
 // FeaturedCarousel.js
-import React from "react";
+import React, { useMemo } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -9,7 +9,10 @@ import products from "./artImages.json";
 
 export default function FeaturedCarousel({ category }) {
   // Filter products for this category
-  const featuredItems = products.filter(p => p.category === category);
+  const featuredItems = useMemo(
+    () => products.filter(p => p.category === category),
+    [category]
+  );
 
   if (!featuredItems.length) return null;
 
