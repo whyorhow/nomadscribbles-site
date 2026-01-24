@@ -1,5 +1,21 @@
 import nodemailer from 'nodemailer';
 
+// Gmail SMTP transporter using port 587 and TLS
+const transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  port: 587,
+  secure: false, // TLS
+  auth: {
+    user: 'nomadscribbles20@gmail.com',
+    pass: process.env.GMAIL_APP_PASSWORD || process.env.REACT_APP_GMAIL_APP_PASSWORD,
+  },
+  tls: {
+    rejectUnauthorized: false,
+  },
+});
+
+let isVerified = false;
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
@@ -9,27 +25,16 @@ export default async function handler(req, res) {
 
   console.log("Form data received:", { name, email, message });
 
-  // Gmail SMTP transporter using port 587 and TLS
-  const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false, // TLS
-    auth: {
-      user: 'nomadscribbles20@gmail.com',
-      pass: process.env.GMAIL_APP_PASSWORD,
-    },
-    tls: {
-      rejectUnauthorized: false,
-    },
-  });
-
-  // Verify SMTP connection
-  try {
-    await transporter.verify();
-    console.log("SMTP server is ready to take messages");
-  } catch (verifyError) {
-    console.error("SMTP verification error:", verifyError);
-    return res.status(500).json({ message: "SMTP verification failed" });
+  // Verify SMTP connection (only once)
+  if (!isVerified) {
+    try {
+      await transporter.verify();
+      isVerified = true;
+      console.log("SMTP server is ready to take messages");
+    } catch (verifyError) {
+      console.error("SMTP verification error:", verifyError);
+      return res.status(500).json({ message: "SMTP verification failed" });
+    }
   }
 
   // Send email
