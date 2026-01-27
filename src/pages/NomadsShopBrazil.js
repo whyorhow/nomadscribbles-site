@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../components/Logo"; // FIX
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import products from "../assets/artImages.json"; // FIX
@@ -50,10 +49,6 @@ export default function NomadsShopBrazil() {
 
   return (
     <div className="min-h-screen relative pb-24 sm:pb-32">
-      {/* Logo */}
-      <div className="mt-4 ml-4 z-50">
-        <Logo className="h-6 w-auto sm:h-9 drop-shadow-lg filter brightness-110" />
-      </div>
 
       {/* Page Title */}
       <div className="flex flex-col items-center mb-12 relative z-10 mt-20 sm:mt-8">

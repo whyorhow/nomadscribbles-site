@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import artImages from "../assets/artImages.json"; // FIX: now in assets
-import Logo from "../components/Logo";            // FIX: now in components
 import SEO from "../components/SEO";              // FIX: now in components
 import { fadeScale, hoverScale, staggerContainer } from "../utils/animations"; // FIX: now in utils
 import { trackEvent } from "../utils/analytics";  // FIX: now in utils
@@ -35,9 +34,6 @@ export default function NomadsGallery({ openLightbox }) {
         canonical="https://nomadscribbles.com/nomads-gallery"
       />
 
-      <div className="mt-2 ml-4 z-50">
-        <Logo className="h-9 w-auto sm:h-15 drop-shadow-lg filter brightness-110" />
-      </div>
 
       <div className="flex flex-col items-center mb-10 relative z-10 mt-14 sm:mt-8">
         <img

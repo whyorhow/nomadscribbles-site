@@ -31,7 +31,7 @@ export default function Logo({ className }) {
     >
       <Link to="/" onClick={handleClick}>
         <img
-          src="/images/Home/LogoSquare.png"
+          src="/images/Home/LogoV5.webp"
           alt="Site Logo"
           className={className}
         />

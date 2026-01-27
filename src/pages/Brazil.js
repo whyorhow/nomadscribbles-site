@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../components/Logo";
 import SEO from "../components/SEO";
 import { motion } from "framer-motion";
 import { fadeScale, staggerContainer } from "../utils/animations";
@@ -34,9 +33,6 @@ function Brazil() {
 
       <h1 className="sr-only">Nomad Scribbles | Travel Adventures in Brazil</h1>
 
-      <div className="mt-4 ml-4 z-50">
-        <Logo className="h-6 w-auto sm:h-10" />
-      </div>
 
       {/* Hero Image with Overlay */}
       <motion.div

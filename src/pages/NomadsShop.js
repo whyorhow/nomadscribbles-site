@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from "../components/Logo";
 import SEO from "../components/SEO";
 import { trackEvent } from "../utils/analytics";
 
@@ -37,10 +36,6 @@ export default function NomadsShop() {
         canonical="https://yourdomain.com/adventures"
       />
 
-      {/* Logo */}
-      <div className="mt-2 ml-4 z-50">
-        <Logo className="h-9 w-auto sm:h-15 drop-shadow-lg filter brightness-110" />
-      </div>
 
       {/* Hero / Title Image */}
       <div className="flex flex-col items-center mb-8 relative z-10 mt-14 sm:mt-8">

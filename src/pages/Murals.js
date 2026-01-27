@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-
 import SEO from "../components/SEO";
-import Logo from "../components/Logo";
 import Lightbox from "../components/Lightbox";
 import artImages from "../assets/artImages.json";
 import { fadeScale, staggerContainer } from "../utils/animations";
@@ -37,10 +35,6 @@ export default function Murals() {
       {/* Hidden H1 */}
       <h1 className="sr-only">São Paulo Murals | Nomad Scribbles</h1>
 
-      {/* Logo */}
-      <div className="mt-2 ml-4 z-50">
-        <Logo className="h-9 w-auto sm:h-15" />
-      </div>
 
       {/* Hero Image */}
       {/* Hero Image */}
@@ -63,7 +57,7 @@ export default function Murals() {
         />
       </div>
 
-      <main className="px-2 py-2 max-w-screen-lg mx-auto space-y-6 font-cormorant text-primaryText leading-relaxed">
+      <main className="px-2 py-2 max-w-screen-lg mx-auto space-y-6 font-cormorant text-darkText leading-relaxed">
         <p className="text-center text-sm sm:text-base">
           São Paulo’s streets speak in colour. Each mural tells a story — of resistance, joy, identity, and change. Walk through these walls and see the city as an open-air gallery.
         </p>

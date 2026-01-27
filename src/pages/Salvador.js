@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-
 import SEO from "../components/SEO";
-import Logo from "../components/Logo";
 import Lightbox from "../components/Lightbox";
 import artImages from "../assets/artImages.json";
 import { fadeScale, staggerContainer } from "../utils/animations";
@@ -117,9 +115,6 @@ function Salvador() {
             {/* Hidden H1 */}
             <h1 className="sr-only">Salvador | Nomad Scribbles</h1>
 
-            <div className="mt-2 ml-4 z-50">
-                <Logo className="h-9 w-auto sm:h-15" />
-            </div>
 
             {/* Hero Image removed temporarily */}
 
@@ -129,13 +124,13 @@ function Salvador() {
                     <h2 className="text-4xl sm:text-5xl font-bold text-[#E5CF6B] font-cormorant">
                         Salvador
                     </h2>
-                    <p className="text-primaryText font-cormorant italic mt-2 text-lg sm:text-xl max-w-3xl mx-auto">
+                    <p className="text-darkText font-cormorant italic mt-2 text-lg sm:text-xl max-w-3xl mx-auto">
                         A city where history does not recede into the background — it moves, sings, resists, and remembers.
                     </p>
                 </div>
             </div>
 
-            <main className="px-2 py-2 max-w-screen-lg mx-auto space-y-8 font-cormorant text-primaryText leading-relaxed">
+            <main className="px-2 py-2 max-w-screen-lg mx-auto space-y-8 font-cormorant text-darkText leading-relaxed">
                 {contentBlocks.map((block, idx) => {
                     const img = salvadorImages.find(i => i.id === block.imageId);
                     // Fallback if image isn't found

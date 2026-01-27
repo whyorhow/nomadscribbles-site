@@ -5,7 +5,38 @@ module.exports = {
     "./public/index.html"          // main HTML entry
   ],
   theme: {
-    extend: {},                    // leave empty for now, you can add custom colors, fonts, etc.
+    extend: {
+      colors: {
+        darkText: '#E5CF6B',   // text on dark backgrounds
+        lightText: '#101E0E',  // text on light backgrounds
+        primaryText: '#0e1406', // existing soft dark green
+      },
+      fontFamily: {
+        cormorant: ['Cormorant', 'serif'],      // existing font
+        handwriting: ['Dancing Script', 'cursive'], // new handwriting font
+      },
+      backgroundImage: {
+        'main-gradient': 'linear-gradient(to bottom, #575E38, #292D18)', // new global gradient
+        'paper-texture': "url('./assets/Backgrounds/PaperTexture.jpg')",
+        'art-gallery': "url('/images/ArtGalleryBackground.jpg')",
+        'carnival': "url('/images/CarnivalBackground.jpg')",
+        'murals': "url('/images/muralbackground.jpg')",
+        'parks': "url('/images/ParkBackdrop.jpg')",
+        'beach': "url('/images/beach.jpg')",
+        'brazil-tiles': "url('/images/BrazilFlag2.jpg')",
+        'brazil-main': "url('/images/Brazil/BrazilBack.png')",
+      },
+      keyframes: {
+        slideBounce: {
+          '0%': { transform: 'translateY(100%)', opacity: '0' },
+          '80%': { transform: 'translateY(-10px)', opacity: '1' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+      },
+      animation: {
+        slideBounce: 'slideBounce 0.6s ease-out',
+      },
+    },
   },
   plugins: [],
 };

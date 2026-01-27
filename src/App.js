@@ -27,6 +27,7 @@ import CookiePreferences from "./pages/CookiePreferences";
 
 // --- Components ---
 import Nav from "./components/Nav";
+import VisualHeader from "./components/VisualHeader";
 import Footer from "./components/Footer";
 import Lightbox from "./components/Lightbox";
 import CookieConsent from "./components/CookieConsent";
@@ -103,6 +104,92 @@ function ScrollToTop() {
   return null;
 }
 
+function MainContent({
+  openLightbox,
+  cookiesAccepted,
+  handleConsentChange,
+  lightboxImages,
+  lightboxAlts,
+  lightboxPurchaseLinks,
+  lightboxIndex,
+  setLightboxIndex
+}) {
+  const location = useLocation();
+  const isHome = location.pathname === "/" || location.pathname === "/home";
+
+  return (
+    <div className={`min-h-screen flex flex-col transition-colors duration-500 ${isHome
+      ? "bg-main-gradient text-darkText"
+      : "bg-stony-paper text-darkText"
+      }`}>
+      <PageTitleManager />
+      <PageViewTracker cookiesAccepted={cookiesAccepted} />
+      <Nav />
+      {!isHome && <VisualHeader />}
+
+      <div className={`flex-grow ${!isHome ? "pt-12" : ""}`}>
+        <Routes>
+          <Route path="/" element={<Home openLightbox={openLightbox} />} />
+          <Route path="/home" element={<Home openLightbox={openLightbox} />} />
+          <Route path="/adventures" element={<Adventures openLightbox={openLightbox} />} />
+          <Route path="/nomadsshop" element={<NomadsShop />} />
+          <Route path="/nomads-shop" element={<NomadsShop />} />
+          <Route path="/nomads-shop/brazil" element={<NomadsShopBrazil />} />
+          <Route path="/nomads-shop/brazil/saopaulo" element={<NomadsShopSaoPaulo openLightbox={openLightbox} />} />
+          <Route path="/nomads-shop/brazil/:city" element={<NomadsShopCategory openLightbox={openLightbox} />} />
+          <Route path="/brazil" element={<Brazil openLightbox={openLightbox} />} />
+          <Route path="/brazil/rio" element={<Rio />} />
+          <Route path="/brazil/salvador" element={<Salvador />} />
+          <Route path="/brazil/pantanal" element={<Pantanal />} />
+          <Route path="/brazil/saopaulo" element={<SaoPaulo openLightbox={openLightbox} />} />
+          <Route path="/brazil/saopaulo/parks" element={<Parks openLightbox={openLightbox} />} />
+          <Route path="/brazil/saopaulo/museums" element={<Museums openLightbox={openLightbox} />} />
+          <Route path="/brazil/saopaulo/carnival" element={<Carnival openLightbox={openLightbox} />} />
+          <Route path="/brazil/saopaulo/murals" element={<Murals openLightbox={openLightbox} />} />
+          <Route path="/brazil/saopaulo/santos" element={<Santos openLightbox={openLightbox} />} />
+          <Route path="/nomads-gallery" element={<NomadsGallery openLightbox={openLightbox} />} />
+          <Route path="/contact-us" element={<ContactUs openLightbox={openLightbox} />} />
+          <Route path="/search" element={<SearchResults openLightbox={openLightbox} />} />
+          <Route path="*" element={<NotFound />} />
+          <Route
+            path="/cookie-preferences"
+            element={
+              <CookiePreferences
+                cookiesAccepted={cookiesAccepted}
+                onConsentChange={handleConsentChange}
+              />
+            }
+          />
+        </Routes>
+      </div>
+
+      {/* Cookie Consent Popup */}
+      {cookiesAccepted === null && location.pathname !== "/cookie-preferences" && (
+        <CookieConsent
+          onAccept={() => handleConsentChange(true)}
+          onReject={() => handleConsentChange(false)}
+        />
+      )}
+
+      <Footer cookiesAccepted={cookiesAccepted} />
+      <Lightbox
+        images={lightboxImages}
+        alts={lightboxAlts}
+        purchaseLinks={lightboxPurchaseLinks}
+        storeLink="https://nomadscribbles.co.uk/shop"
+        currentIndex={lightboxIndex}
+        setCurrentIndex={setLightboxIndex}
+        showPrev={() =>
+          setLightboxIndex((prev) => (prev - 1 + lightboxImages.length) % lightboxImages.length)
+        }
+        showNext={() =>
+          setLightboxIndex((prev) => (prev + 1) % lightboxImages.length)
+        }
+      />
+    </div>
+  );
+}
+
 function App() {
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const [lightboxImages, setLightboxImages] = useState([]);
@@ -161,71 +248,15 @@ function App() {
           </Helmet>
         )}
 
-        {/* --- Global wrapper with gradient using Tailwind arbitrary values --- */}
-        <div className="min-h-screen flex flex-col bg-[linear-gradient(to_bottom,#575E38,#292D18)] text-[#E5CF6B]">
-          <PageTitleManager />
-          <PageViewTracker cookiesAccepted={cookiesAccepted} />
-          <Nav />
-
-          <div className="flex-grow">
-            <Routes>
-              <Route path="/" element={<Home openLightbox={openLightbox} />} />
-              <Route path="/home" element={<Home openLightbox={openLightbox} />} />
-              <Route path="/adventures" element={<Adventures openLightbox={openLightbox} />} />
-              <Route path="/nomadsshop" element={<NomadsShop />} />
-              <Route path="/nomads-shop" element={<NomadsShop />} />
-              <Route path="/nomads-shop/brazil" element={<NomadsShopBrazil />} />
-              <Route path="/nomads-shop/brazil/saopaulo" element={<NomadsShopSaoPaulo openLightbox={openLightbox} />} />
-              <Route path="/nomads-shop/brazil/:city" element={<NomadsShopCategory openLightbox={openLightbox} />} />
-              <Route path="/brazil" element={<Brazil openLightbox={openLightbox} />} />
-              <Route path="/brazil/rio" element={<Rio />} />
-              <Route path="/brazil/salvador" element={<Salvador />} />
-              <Route path="/brazil/pantanal" element={<Pantanal />} />
-              <Route path="/brazil/saopaulo" element={<SaoPaulo openLightbox={openLightbox} />} />
-              <Route path="/brazil/saopaulo/parks" element={<Parks openLightbox={openLightbox} />} />
-              <Route path="/brazil/saopaulo/museums" element={<Museums openLightbox={openLightbox} />} />
-              <Route path="/brazil/saopaulo/carnival" element={<Carnival openLightbox={openLightbox} />} />
-              <Route path="/brazil/saopaulo/murals" element={<Murals openLightbox={openLightbox} />} />
-              <Route path="/brazil/saopaulo/santos" element={<Santos openLightbox={openLightbox} />} />
-              <Route path="/nomads-gallery" element={<NomadsGallery openLightbox={openLightbox} />} />
-              <Route path="/contact-us" element={<ContactUs openLightbox={openLightbox} />} />
-              <Route path="/search" element={<SearchResults openLightbox={openLightbox} />} />
-              <Route path="*" element={<NotFound />} />
-              <Route
-                path="/cookie-preferences"
-                element={
-                  <CookiePreferences
-                    cookiesAccepted={cookiesAccepted}
-                    onConsentChange={handleConsentChange}
-                  />
-                }
-              />
-            </Routes>
-          </div>
-        </div>
-
-        {/* Cookie Consent Popup */}
-        {cookiesAccepted === null && window.location.pathname !== "/cookie-preferences" && (
-          <CookieConsent
-            onAccept={() => handleConsentChange(true)}
-            onReject={() => handleConsentChange(false)}
-          />
-        )}
-
-        <Footer cookiesAccepted={cookiesAccepted} />
-        <Lightbox
-          images={lightboxImages}
-          alts={lightboxAlts}
-          purchaseLinks={lightboxPurchaseLinks}
-          storeLink="https://nomadscribbles.co.uk/shop"
-          currentIndex={lightboxIndex}
-          setCurrentIndex={setLightboxIndex}
-          showPrev={() =>
-            setLightboxIndex((prev) => (prev - 1 + lightboxImages.length) % lightboxImages.length)
-          }
-          showNext={() =>
-            setLightboxIndex((prev) => (prev + 1) % lightboxImages.length)
-          }
+        <MainContent
+          openLightbox={openLightbox}
+          cookiesAccepted={cookiesAccepted}
+          handleConsentChange={handleConsentChange}
+          lightboxImages={lightboxImages}
+          lightboxAlts={lightboxAlts}
+          lightboxPurchaseLinks={lightboxPurchaseLinks}
+          lightboxIndex={lightboxIndex}
+          setLightboxIndex={setLightboxIndex}
         />
       </Router>
     </HelmetProvider>

@@ -257,7 +257,7 @@ function Nav() {
         id="site-menu"
         className={`fixed top-0 right-0 h-full w-64 z-40 flex flex-col pt-12 p-4 gap-2 text-lg overflow-y-auto
     transform transition-transform duration-300
-    bg-[#e8eac7]/40
+    bg-[#e8eac7]/80
     ${menuOpen ? "translate-x-0 pointer-events-auto" : "translate-x-full pointer-events-none"}`}
       >
         <Link className="text-[#38350b] text-lg hover:text-[#0c0b01]" to="/home" onClick={() => setMenuOpen(false)}>Home</Link>

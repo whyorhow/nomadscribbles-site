@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from "../components/Logo";
+import { motion } from "framer-motion";
 import SEO from "../components/SEO";
 
 export default function NotFound() {
@@ -17,10 +17,6 @@ export default function NotFound() {
       {/* Hidden H1 for accessibility */}
       <h1 className="sr-only">404 Not Found | Nomad Scribbles</h1>
 
-      {/* Logo */}
-      <div className="mt-2 ml-4 z-50">
-        <Logo className="h-9 w-auto sm:h-15" />
-      </div>
 
       {/* Page Title */}
       <div className="relative z-10 mt-20 mb-6 text-center">

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { trackEvent } from "../utils/analytics";
 
-import Logo from "../components/Logo";
 import SEO from "../components/SEO";
 
 // Import analytics helper
@@ -71,10 +70,7 @@ export default function ContactUs() {
       {/* Hidden H1 for accessibility */}
       <h1 className="sr-only">Contact Us | Nomad Scribbles</h1>
 
-      {/* Logo */}
-      <div className="mt-2 ml-4 z-50">
-        <Logo className="h-9 w-auto sm:h-15" />
-      </div>
+
 
       {/* Page Title */}
       <div className="relative z-10 mt-14 mb-6 text-center">

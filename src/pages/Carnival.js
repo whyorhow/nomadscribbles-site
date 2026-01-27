@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-
 import SEO from "../components/SEO";
-import Logo from "../components/Logo";
 import Lightbox from "../components/Lightbox";
 import artImages from "../assets/artImages.json";
 import { fadeScale, staggerContainer } from "../utils/animations";
@@ -25,10 +23,6 @@ function Carnival() {
 
   return (
     <div className="relative min-h-screen pt-2">
-      {/* Logo */}
-      <div className="mt-2 ml-4 z-50">
-        <Logo className="h-9 w-auto sm:h-15" />
-      </div>
       {/* SEO */}
       <SEO
         title="Carnival in São Paulo | Nomad Scribbles"
@@ -40,10 +34,6 @@ function Carnival() {
       {/* Hidden H1 */}
       <h1 className="sr-only">Carnival in São Paulo | Nomad Scribbles</h1>
 
-      {/* Logo */}
-      <div className="mt-4 ml-4 z-30">
-        <Logo className="h-6 w-auto sm:h-10" />
-      </div>
 
       {/* Hero Image */}
       {/* Hero Image */}
@@ -66,7 +56,7 @@ function Carnival() {
         />
       </div>
 
-      <main className="px-2 py-2 max-w-screen-lg mx-auto space-y-6 font-cormorant text-primaryText leading-relaxed">
+      <main className="px-2 py-2 max-w-screen-lg mx-auto space-y-6 font-cormorant text-darkText leading-relaxed">
         <p className="text-center text-sm sm:text-base">
           Experience the rhythm, colors, and energy of Brazilian Carnival, from the Sambódromo to local street blocos.
         </p>

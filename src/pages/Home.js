@@ -1,7 +1,7 @@
 // src/Home.js
 import React, { useRef, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 // UPDATED IMPORTS
 import SEO from "../components/SEO"; // Moved up one level
 import { fadeScale, hoverScale, staggerContainer } from "../utils/animations"; // Moved up and into utils
@@ -25,9 +25,15 @@ function Home() {
   const navigate = useNavigate();
 
   // Parallax tracking
-  const [scrollY, setScrollY] = useState(0);
+  const [scrollY, setScrollY] = useState(window.scrollY);
   const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+
+  // Framer Motion useScroll for high-performance logo animation
+  const { scrollY: scrollYMotion } = useScroll();
+  const logoOpacity = useTransform(scrollYMotion, [100, 300], [0, 1]);
+
+  const [logoReady, setLogoReady] = useState(false);
 
   const originalCards = [
     { title: "Nomads Shop", link: "/nomadsshop", img: "/images/Home/ThumbnailNS.webp" },
@@ -49,13 +55,12 @@ function Home() {
   const isMobile = viewportWidth <= 768;
 
   // Manual delay for Logo
-  const [logoVisible, setLogoVisible] = useState(false);
   useEffect(() => {
-    const timer = setTimeout(() => setLogoVisible(true), 1000);
+    const timer = setTimeout(() => setLogoReady(true), 1000);
     return () => clearTimeout(timer);
   }, []);
 
-  // Scroll + resize listeners (for parallax)
+  // Scroll + resize listeners
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     const handleResize = () => {
@@ -63,7 +68,6 @@ function Home() {
       setViewportWidth(window.innerWidth);
     };
 
-    // ✅ passive scroll
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleResize);
 
@@ -99,19 +103,15 @@ function Home() {
       if (isStopped) return;
 
       const target = firstFeatureRef.current;
-      if (!target) return;
+      if (!target) {
+        animationFrameId = requestAnimationFrame(animateScroll);
+        return;
+      }
 
       const rect = target.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
 
-      // Check if the element is effectively fully on screen (centered or fully visible)
-      // If the bottom is within the viewport and top is somewhat visible
-      // We aim to have it roughly centered or fully in view.
-      // Let's stop when the element's center is near the viewport center, or it's fully contained.
-      const elementCenter = rect.top + rect.height / 2;
-      const viewportCenter = viewportHeight / 2;
-
-      // Stop when the first feature's top edge reaches the middle of the viewport (above mid-screen)
+      // Stop when the first feature's top edge reaches the middle of the viewport
       if (rect.top <= viewportHeight / 2) {
         return;
       }
@@ -119,10 +119,13 @@ function Home() {
       // If we are close to bottom of page
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 2) return;
 
-      // Responsive Speed: Faster on mobile and a bit quicker overall
-      const speed = window.innerWidth <= 768 ? 3 : 2;
-      window.scrollBy(0, speed);
-
+      // Consistent scrolling speed
+      const speed = window.innerWidth <= 768 ? 2.5 : 1.5;
+      window.scrollBy({
+        top: speed,
+        left: 0,
+        behavior: 'auto' // Use auto for precise frame-by-frame control
+      });
 
       animationFrameId = requestAnimationFrame(animateScroll);
     };
@@ -157,110 +160,119 @@ function Home() {
   };
 
   // ---- Parallax Layer Renderer (responsive) ----
-  const renderLayer = (layer, index) => {
-    const isMobileBp = viewportWidth <= 640;
-    const isTabletBp = viewportWidth > 640 && viewportWidth <= 1024;
+  // Parallax Layer Renderer moved to a separate component to prevent Home re-renders
+  const ParallaxBackground = React.memo(({ scrollY, viewportHeight, viewportWidth }) => {
+    const renderLayer = (layer, index) => {
+      const isMobileBp = viewportWidth <= 640;
+      const isTabletBp = viewportWidth > 640 && viewportWidth <= 1024;
 
-    const pick = (mobileVal, tabletVal, desktopVal, fallbackVal) => {
-      if (isMobileBp && mobileVal !== undefined) return mobileVal;
-      if (isTabletBp && tabletVal !== undefined) return tabletVal;
-      if (desktopVal !== undefined) return desktopVal;
-      return fallbackVal;
-    };
+      const pick = (mobileVal, tabletVal, desktopVal, fallbackVal) => {
+        if (isMobileBp && mobileVal !== undefined) return mobileVal;
+        if (isTabletBp && tabletVal !== undefined) return tabletVal;
+        if (desktopVal !== undefined) return desktopVal;
+        return fallbackVal;
+      };
 
-    const width = pick(layer.widthMobile, layer.widthTablet, layer.widthDesktop, layer.width || "100%");
-    const speed = pick(layer.speedMobile, layer.speedTablet, layer.speedDesktop, layer.speed ?? 0.05);
-    const xSpeed = pick(layer.xSpeedMobile, layer.xSpeedTablet, layer.xSpeedDesktop, layer.xSpeed ?? 0);
+      const width = pick(layer.widthMobile, layer.widthTablet, layer.widthDesktop, layer.width || "100%");
+      const speed = pick(layer.speedMobile, layer.speedTablet, layer.speedDesktop, layer.speed ?? 0.05);
+      const xSpeed = pick(layer.xSpeedMobile, layer.xSpeedTablet, layer.xSpeedDesktop, layer.xSpeed ?? 0);
 
-    const baseTopPercent = pick(
-      layer.baseTopPercentMobile,
-      layer.baseTopPercentTablet,
-      layer.baseTopPercentDesktop,
-      layer.baseTopPercent
-    );
+      const baseTopPercent = pick(
+        layer.baseTopPercentMobile,
+        layer.baseTopPercentTablet,
+        layer.baseTopPercentDesktop,
+        layer.baseTopPercent
+      );
 
-    const baseBottomPercent = pick(
-      layer.baseBottomPercentMobile,
-      layer.baseBottomPercentTablet,
-      layer.baseBottomPercentDesktop,
-      layer.baseBottomPercent
-    );
+      const baseBottomPercent = pick(
+        layer.baseBottomPercentMobile,
+        layer.baseBottomPercentTablet,
+        layer.baseBottomPercentDesktop,
+        layer.baseBottomPercent
+      );
 
-    const baseLeftPercent = pick(
-      layer.baseLeftPercentMobile,
-      layer.baseLeftPercentTablet,
-      layer.baseLeftPercentDesktop,
-      layer.baseLeftPercent || 0
-    );
+      const baseLeftPercent = pick(
+        layer.baseLeftPercentMobile,
+        layer.baseLeftPercentTablet,
+        layer.baseLeftPercentDesktop,
+        layer.baseLeftPercent || 0
+      );
 
-    let parallaxY = 0;
-    if (baseTopPercent !== undefined) {
-      const basePx = viewportHeight * (baseTopPercent / 100);
-      parallaxY = basePx - scrollY * speed * 20;
-    } else if (baseBottomPercent !== undefined) {
-      const distanceFromBottom = viewportHeight * (baseBottomPercent / 100);
-      parallaxY = viewportHeight - distanceFromBottom - scrollY * speed * 20;
-    }
-
-    const layerStyle = {
-      position: "absolute",
-      width,
-      height: layer.height || "auto",
-      zIndex: layer.zIndex ?? 0,
-      top: `${parallaxY}px`,
-      left: `${baseLeftPercent}%`, // Use the calculated baseLeftPercent
-
-      pointerEvents: "none",
-      maxWidth: "none",
-      willChange: "transform, top, left",
-      opacity: layer.opacity ?? 1,
-    };
-
-    if (layer.centerHorizontally) {
-      layerStyle.left = "50%";
-      layerStyle.transform = "translateX(-50%)";
-
-      if (xSpeed) {
-        const parallaxX = scrollY * (xSpeed * 10);
-        layerStyle.transform = `translateX(calc(-50% + ${parallaxX}px))`;
+      let parallaxY = 0;
+      if (baseTopPercent !== undefined) {
+        const basePx = viewportHeight * (baseTopPercent / 100);
+        parallaxY = basePx - scrollY * speed * 20;
+      } else if (baseBottomPercent !== undefined) {
+        const distanceFromBottom = viewportHeight * (baseBottomPercent / 100);
+        parallaxY = viewportHeight - distanceFromBottom - scrollY * speed * 20;
       }
 
-      if (layer.sway) {
-        layerStyle.animation = `sway ${layer.swayDuration || 2}s ease-in-out infinite alternate`;
+      const layerStyle = {
+        position: "absolute",
+        width,
+        height: layer.height || "auto",
+        zIndex: layer.zIndex ?? 0,
+        top: `${parallaxY}px`,
+        left: `${baseLeftPercent}%`,
+
+        pointerEvents: "none",
+        maxWidth: "none",
+        willChange: "transform, top, left",
+        opacity: layer.opacity ?? 1,
+      };
+
+      if (layer.centerHorizontally) {
+        layerStyle.left = "50%";
+        layerStyle.transform = "translateX(-50%)";
+
+        if (xSpeed) {
+          const parallaxX = scrollY * (xSpeed * 10);
+          layerStyle.transform = `translateX(calc(-50% + ${parallaxX}px))`;
+        }
+
+        if (layer.sway) {
+          layerStyle.animation = `sway ${layer.swayDuration || 2}s ease-in-out infinite alternate`;
+        }
+      } else {
+        const parallaxX = (baseLeftPercent / 100) * viewportWidth + scrollY * (xSpeed * 20);
+        layerStyle.left = `${parallaxX}px`;
       }
-    } else {
-      const parallaxX = (baseLeftPercent / 100) * viewportWidth + scrollY * (xSpeed * 20);
-      layerStyle.left = `${parallaxX}px`;
-    }
+
+      return (
+        <svg
+          key={layer.id || index}
+          viewBox={layer.viewBox || "0 0 800 400"}
+          preserveAspectRatio={layer.preserveAspectRatio || "xMidYMid meet"}
+          style={layerStyle}
+        >
+          {layer.path && (
+            <path d={layer.path} fill={layer.fill} stroke={layer.stroke} strokeWidth={layer.strokeWidth} />
+          )}
+        </svg>
+      );
+    };
+
+    const sky = skyObjects.map((layer) => ({ ...layer, zIndex: layer.zIndex ?? 1 }));
+    const suns = sunsObjects.map((layer) => ({ ...layer, zIndex: layer.zIndex ?? 10 }));
+    const water = waterObjects.map((layer) => ({ ...layer, zIndex: layer.zIndex ?? 15 }));
+    const soil = soilObjects.map((layer) => ({ ...layer, zIndex: layer.zIndex ?? 20 }));
+    const grass = grassObjects.map((layer) => ({ ...layer, zIndex: layer.zIndex ?? 25 }));
 
     return (
-      <svg
-        key={layer.id || index}
-        viewBox={layer.viewBox || "0 0 800 400"}
-        preserveAspectRatio={layer.preserveAspectRatio || "xMidYMid meet"}
-        style={layerStyle}
-      >
-        {layer.path && (
-          <path d={layer.path} fill={layer.fill} stroke={layer.stroke} strokeWidth={layer.strokeWidth} />
-        )}
-      </svg>
+      <>
+        {sky.map(renderLayer)}
+        {suns.map(renderLayer)}
+        {water.map(renderLayer)}
+        {soil.map(renderLayer)}
+        {grass.map(renderLayer)}
+      </>
     );
-  };
-
-  const sky = skyObjects.map((layer) => ({ ...layer, zIndex: layer.zIndex ?? 1 }));
-  const suns = sunsObjects.map((layer) => ({ ...layer, zIndex: layer.zIndex ?? 10 }));
-  const water = waterObjects.map((layer) => ({ ...layer, zIndex: layer.zIndex ?? 15 }));
-  const soil = soilObjects.map((layer) => ({ ...layer, zIndex: layer.zIndex ?? 20 }));
-  const grass = grassObjects.map((layer) => ({ ...layer, zIndex: layer.zIndex ?? 25 }));
+  });
 
   return (
     <div className="relative w-screen min-h-[250vh] overflow-hidden bg-[#342508ff]">
-      {/* Parallax background */}
-      {sky.map(renderLayer)}
-      {suns.map(renderLayer)}
-      {water.map(renderLayer)}
-      {soil.map(renderLayer)}
-      {grass.map(renderLayer)}
+      {/* Parallax background - separated to keep Home component static during scroll */}
+      <ParallaxBackground scrollY={scrollY} viewportHeight={viewportHeight} viewportWidth={viewportWidth} />
 
       {/* Existing SEO + content */}
       <SEO
@@ -272,11 +284,11 @@ function Home() {
 
       <h1 className="sr-only">Nomad Scribbles | Travel Stories Across the World</h1>
 
-      {/* Sticky Hero Section (Tagline + Logo) - Follows scroll, stops before features */}
-      <div className="absolute top-0 left-0 w-full h-[200vh] z-30 pointer-events-none flex flex-col items-center justify-start">
-        <div className="sticky top-[15vh] w-full flex flex-col items-center">
+      {/* Sticky Hero Section - Individual Sticky Layers */}
+      <div className="absolute top-0 left-0 w-full h-[200vh] z-30 pointer-events-none flex flex-col items-center">
 
-          {/* Tagline */}
+        {/* Tagline Sticky Layer */}
+        <div className="sticky top-[10vh] w-full flex flex-col items-center">
           <motion.div
             className="text-center mb-2 w-full flex justify-center"
             initial={{ opacity: 0, y: -20 }}
@@ -287,16 +299,23 @@ function Home() {
               <HandwritingTagline duration={2.5} strokeColor="hsl(49, 70%, 66%)" strokeWidth={1.5} />
             </div>
           </motion.div>
+        </div>
 
-          {/* Logo */}
+        {/* Logo Sticky Layer - Positioned lower (75vh), hidden at scroll 0 */}
+        <div className="sticky top-[75vh] w-full flex flex-col items-center">
           <motion.div
-            className="text-center w-full flex justify-center mt-[130px]"
-            initial="hidden"
-            animate={logoVisible ? "visible" : "hidden"}
-            variants={staggerContainer}
-            style={{ opacity: logoVisible ? 1 : 0, transition: 'opacity 1s ease-in-out' }}
+            className="text-center w-full flex justify-center"
+            style={{
+              opacity: logoOpacity,
+              display: logoReady ? "flex" : "none" // Only show after initial delay
+            }}
           >
-            <motion.div className="w-full sm:w-4/5 md:w-3/4 lg:w-3/4 max-w-4xl mx-auto" variants={fadeScale}>
+            <motion.div
+              className="w-full sm:w-4/5 md:w-3/4 lg:w-3/4 max-w-4xl mx-auto"
+              variants={fadeScale}
+              initial="hidden"
+              animate={logoReady ? "visible" : "hidden"}
+            >
               <img
                 src={process.env.PUBLIC_URL + "/images/Home/LogoNew.png"}
                 alt="Nomad Scribbles Hand-drawn Logo"
@@ -304,11 +323,10 @@ function Home() {
               />
             </motion.div>
           </motion.div>
-
         </div>
+
       </div>
 
-      {/* Sao Paulo Feature */}
       <motion.div
         ref={firstFeatureRef} // Targeted for autoscroll
         initial="hidden"

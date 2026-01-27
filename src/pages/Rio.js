@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-
 import SEO from "../components/SEO";
-import Logo from "../components/Logo";
 import Lightbox from "../components/Lightbox";
 import artImages from "../assets/artImages.json";
 import { fadeScale, staggerContainer } from "../utils/animations";
@@ -82,9 +80,6 @@ function Rio() {
             {/* Hidden H1 */}
             <h1 className="sr-only">Rio de Janeiro | Nomad Scribbles</h1>
 
-            <div className="mt-2 ml-4 z-50">
-                <Logo className="h-9 w-auto sm:h-15" />
-            </div>
 
             {/* Hero Image removed temporarily */}
 
@@ -94,13 +89,13 @@ function Rio() {
                     <h2 className="text-4xl sm:text-5xl font-bold text-[#E5CF6B] font-cormorant">
                         Rio de Janeiro
                     </h2>
-                    <p className="text-primaryText font-cormorant italic mt-2 text-lg sm:text-xl">
+                    <p className="text-darkText font-cormorant italic mt-2 text-lg sm:text-xl">
                         Where stone, sea, and belief shape the skyline.
                     </p>
                 </div>
             </div>
 
-            <main className="px-2 py-2 max-w-screen-lg mx-auto space-y-6 font-cormorant text-primaryText leading-relaxed">
+            <main className="px-2 py-2 max-w-screen-lg mx-auto space-y-6 font-cormorant text-darkText leading-relaxed">
                 {contentBlocks.map((block, idx) => {
                     const img = rioImages.find(i => i.id === block.imageId);
                     if (!img) return null;

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../components/Logo";
 
 export default function CookiePreferences() {
   const navigate = useNavigate();
@@ -56,10 +55,6 @@ export default function CookiePreferences() {
 
   return (
     <div className="min-h-screen relative text-white">
-      {/* Logo */}
-      <div className="mt-2 ml-4 z-50">
-        <Logo className="h-9 w-auto sm:h-15" />
-      </div>
 
       <main className="px-4 py-8 max-w-4xl mx-auto space-y-12">
         <h1 className="text-3xl font-bold mb-6">Privacy & Cookie Policy</h1>

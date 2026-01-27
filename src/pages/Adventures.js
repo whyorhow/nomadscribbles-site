@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// FIX: .. to go up to components
 import SEO from "../components/SEO";
-import Logo from "../components/Logo";
 
 function Adventures() {
   const countries = [
@@ -34,9 +32,6 @@ function Adventures() {
         slug="adventures"
       />
 
-      <div className="mt-2 ml-4 z-50">
-        <Logo className="h-9 w-auto sm:h-15" />
-      </div>
 
       {/* Hidden H1 for accessibility */}
       <h1 className="sr-only">Nomad Scribbles | Adventures Around the World</h1>

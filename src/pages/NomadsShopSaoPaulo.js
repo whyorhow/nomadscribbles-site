@@ -1,7 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import Logo from "../components/Logo";
 import { fadeScale, hoverScale, staggerContainer } from "../utils/animations";
 
 // import analytics function
@@ -362,9 +361,6 @@ export default function NomadsShopSaoPaulo({ openLightbox }) {
       initial="hidden"
       animate="visible"
     >
-      <div className="mt-2 ml-4 z-50">
-        <Logo className="h-9 w-auto sm:h-14 drop-shadow-lg filter brightness-110" />
-      </div>
 
       <div className="flex flex-col items-center mb-8 relative z-10 mt-14 sm:mt-8">
         <img

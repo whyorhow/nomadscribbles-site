@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-
 import SEO from "../components/SEO";
-import Logo from "../components/Logo";
 import Lightbox from "../components/Lightbox";
 import artImages from "../assets/artImages.json";
 import { fadeScale, staggerContainer } from "../utils/animations";
@@ -76,9 +74,6 @@ function SaoPaulo() {
         url="https://nomadscribbles.com/brazil/saopaulo"
       />
 
-      <div className="mt-2 ml-4 z-50">
-        <Logo className="h-9 w-auto sm:h-15" />
-      </div>
 
       <div className="flex justify-center mt-2 mb-2">
         <img
