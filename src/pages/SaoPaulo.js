@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import SEO from "../components/SEO";
 import Lightbox from "../components/Lightbox";
 import artImages from "../assets/artImages.json";
 import { fadeScale, staggerContainer } from "../utils/animations";
 
 function SaoPaulo() {
+  const shouldReduceMotion = useReducedMotion();
   const top5 = [
     {
       title: "1. Explore São Paulo’s Parks",
@@ -101,18 +102,26 @@ function SaoPaulo() {
           {/* Pizza Block */}
           <div className="flex flex-col sm:flex-row items-start gap-2">
             <div className="relative w-1/2 sm:w-1/5">
-              <img
-                src={`${process.env.PUBLIC_URL}/images/SaoPauloLanding/pizza.webp`}
-                alt="São Paulo-style pizza"
-                loading="lazy"
-                className="rounded-lg shadow-md flex-shrink-0 cursor-pointer transition-opacity duration-[2000ms]"
+              <button
+                type="button"
+                className="block w-full border-none p-0 bg-transparent"
                 onMouseEnter={() => handleToggle("pizza")}
                 onMouseLeave={() => handleToggle("pizza")}
+                onFocus={() => handleToggle("pizza")}
+                onBlur={() => handleToggle("pizza")}
                 onClick={() =>
                   setCurrentIndex(inlineImages.findIndex((img) => img.id === "pizza"))
                 }
-                style={{ opacity: revealed["pizza"] ? 1 : 0.8 }}
-              />
+                aria-label="View pizza image in lightbox"
+              >
+                <img
+                  src={`${process.env.PUBLIC_URL}/images/SaoPauloLanding/pizza.webp`}
+                  alt="São Paulo-style pizza"
+                  loading="lazy"
+                  className="rounded-lg shadow-md flex-shrink-0 cursor-pointer transition-opacity duration-[2000ms]"
+                  style={{ opacity: revealed["pizza"] ? 1 : 0.8 }}
+                />
+              </button>
             </div>
             <p className="flex-1">
               Pizza here is a quiet religion. Born from Italian ovens, thin and soft, eaten late — sometimes after midnight. Every neighbourhood claims the best slice. The crust cracks softly under your teeth, the cheese stretches like warm sunlight, and each topping tells a story of local tastes and seasonal produce. Sharing a pizza feels like sharing a little piece of São Paulo itself.
@@ -125,18 +134,26 @@ function SaoPaulo() {
               const img = inlineImages.find((img) => img.id === id);
               return (
                 <div key={id} className="relative w-1/2 sm:w-1/5">
-                  <img
-                    src={img.blogimage}
-                    alt={img.alt}
-                    loading="lazy"
-                    className="rounded-lg shadow-md flex-shrink-0 cursor-pointer transition-opacity duration-[2000ms]"
+                  <button
+                    type="button"
+                    className="block w-full border-none p-0 bg-transparent"
                     onMouseEnter={() => handleToggle(id)}
                     onMouseLeave={() => handleToggle(id)}
+                    onFocus={() => handleToggle(id)}
+                    onBlur={() => handleToggle(id)}
                     onClick={() =>
                       setCurrentIndex(inlineImages.findIndex((img) => img.id === id))
                     }
-                    style={{ opacity: revealed[id] ? 1 : 0.8 }}
-                  />
+                    aria-label={`View ${img.alt} in lightbox`}
+                  >
+                    <img
+                      src={img.blogimage}
+                      alt={img.alt}
+                      loading="lazy"
+                      className="rounded-lg shadow-md flex-shrink-0 cursor-pointer transition-opacity duration-[2000ms]"
+                      style={{ opacity: revealed[id] ? 1 : 0.8 }}
+                    />
+                  </button>
                 </div>
               );
             })}
@@ -151,18 +168,26 @@ function SaoPaulo() {
               const img = inlineImages.find((img) => img.id === id);
               return (
                 <div key={id} className="relative w-1/2 sm:w-1/5">
-                  <img
-                    src={img.blogimage}
-                    alt={img.alt}
-                    loading="lazy"
-                    className="rounded-lg shadow-md flex-shrink-0 cursor-pointer transition-opacity duration-[2000ms]"
+                  <button
+                    type="button"
+                    className="block w-full border-none p-0 bg-transparent"
                     onMouseEnter={() => handleToggle(id)}
                     onMouseLeave={() => handleToggle(id)}
+                    onFocus={() => handleToggle(id)}
+                    onBlur={() => handleToggle(id)}
                     onClick={() =>
                       setCurrentIndex(inlineImages.findIndex((img) => img.id === id))
                     }
-                    style={{ opacity: revealed[id] ? 1 : 0.8 }}
-                  />
+                    aria-label={`View ${img.alt} in lightbox`}
+                  >
+                    <img
+                      src={img.blogimage}
+                      alt={img.alt}
+                      loading="lazy"
+                      className="rounded-lg shadow-md flex-shrink-0 cursor-pointer transition-opacity duration-[2000ms]"
+                      style={{ opacity: revealed[id] ? 1 : 0.8 }}
+                    />
+                  </button>
                 </div>
               );
             })}
@@ -177,7 +202,7 @@ function SaoPaulo() {
         </p>
       </section>
 
-      <main className="px-4 py-8 max-w-screen-lg mx-auto space-y-6">
+      <section aria-label="Top Things to Do" className="px-4 py-8 max-w-screen-lg mx-auto space-y-6">
         <div className="flex justify-center mb-6">
           <img
             src={`${process.env.PUBLIC_URL}/images/SaoPauloLanding/heading3.webp`}
@@ -190,16 +215,15 @@ function SaoPaulo() {
         {top5.map((item, idx) => (
           <motion.div
             key={idx}
-            initial={{ opacity: 0, y: 20 }}
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true }}
             className={`flex flex-col lg:flex-row items-center gap-6 ${top5BgColors[idx]} rounded-lg p-4 shadow-md ${idx % 2 === 1 ? "lg:flex-row-reverse" : ""
               }`}
           >
-            <a
-              href={item.link}
-              rel="noopener noreferrer"
+            <Link
+              to={item.link}
               className="w-full sm:w-3/4 lg:w-2/5 flex-shrink-0"
             >
               <img
@@ -208,21 +232,20 @@ function SaoPaulo() {
                 loading="lazy"
                 className="rounded-lg w-full shadow-md hover:opacity-90 transition-opacity"
               />
-            </a>
+            </Link>
             <div className="flex-1">
               <h3 className="font-bold text-lg mb-2">{item.title}</h3>
               <p className="mb-3">{item.text}</p>
-              <a
-                href={item.link}
-                rel="noopener noreferrer"
+              <Link
+                to={item.link}
                 className="inline-block text-[#edd98d] font-semibold hover:underline"
               >
                 Read more →
-              </a>
+              </Link>
             </div>
           </motion.div>
         ))}
-      </main>
+      </section>
 
       {currentIndex !== null && (
         <Lightbox

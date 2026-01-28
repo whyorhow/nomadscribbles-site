@@ -130,7 +130,7 @@ function Salvador() {
                 </div>
             </div>
 
-            <main className="px-2 py-2 max-w-screen-lg mx-auto space-y-8 font-cormorant text-darkText leading-relaxed">
+            <section aria-label="Gallery" className="px-2 py-2 max-w-screen-lg mx-auto space-y-8 font-cormorant text-darkText leading-relaxed">
                 {contentBlocks.map((block, idx) => {
                     const img = salvadorImages.find(i => i.id === block.imageId);
                     // Fallback if image isn't found
@@ -142,13 +142,19 @@ function Salvador() {
                             className={`flex flex-col lg:flex-row items-center justify-center gap-6 ${idx % 2 === 1 ? "lg:flex-row-reverse" : ""
                                 }`}
                         >
-                            <img
-                                src={img.blogimage}
-                                alt={img.title}
-                                loading="lazy"
+                            <button
+                                type="button"
                                 onClick={() => handleImageClick(block.imageId)}
-                                className="rounded-lg cursor-pointer w-11/12 sm:w-3/4 md:w-2/3 lg:w-2/5 h-auto shadow-md hover:opacity-95 transition-opacity p-4 max-w-[350px]"
-                            />
+                                className="w-11/12 sm:w-3/4 md:w-2/3 lg:w-2/5 max-w-[350px] border-none bg-transparent p-0"
+                                aria-label={`View ${block.title} image in lightbox`}
+                            >
+                                <img
+                                    src={img.blogimage}
+                                    alt={img.title}
+                                    loading="lazy"
+                                    className="rounded-lg cursor-pointer w-full h-auto shadow-md hover:opacity-95 transition-opacity p-4"
+                                />
+                            </button>
                             <div className="p-4 rounded-md flex-1 text-left text-sm sm:text-base">
                                 <h2 className="font-bold text-lg mb-2">{block.title}</h2>
                                 <p>{block.text}</p>
@@ -156,7 +162,7 @@ function Salvador() {
                         </div>
                     );
                 })}
-            </main>
+            </section>
 
             {/* Lightbox */}
             {currentIndex !== null && (

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { fadeScale, staggerContainer } from "../utils/animations";
 
 function Brazil() {
+  const shouldReduceMotion = useReducedMotion();
   const cities = [
     { name: "Rio de Janeiro", path: "/brazil/rio" },
     { name: "Salvador", path: "/brazil/salvador" },
@@ -19,7 +20,7 @@ function Brazil() {
   return (
     <motion.div
       className="relative min-h-screen pb-20"
-      variants={staggerContainer}
+      variants={shouldReduceMotion ? {} : staggerContainer}
       initial="hidden"
       animate="visible"
       exit="hidden"
@@ -35,12 +36,22 @@ function Brazil() {
 
 
       {/* Hero Image with Overlay */}
-      <motion.div
-        className="relative w-full max-w-3xl mx-auto mt-24 mb-20 cursor-pointer"
+      <motion.button
+        type="button"
+        className="relative w-full max-w-3xl mx-auto mt-24 mb-20 cursor-pointer block border-none bg-transparent p-0"
         onMouseEnter={() => setShowOverlay(true)}
         onMouseLeave={() => setShowOverlay(false)}
+        onFocus={() => setShowOverlay(true)}
+        onBlur={() => setShowOverlay(false)}
         onClick={() => setShowOverlay(!showOverlay)}
-        variants={fadeScale}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            setShowOverlay(!showOverlay);
+          }
+        }}
+        variants={shouldReduceMotion ? {} : fadeScale}
+        aria-label="Toggle Brazil landscape overlay"
       >
         <img
           src={process.env.PUBLIC_URL + "/images/Brazil/BrazilHero.webp"}
@@ -53,12 +64,12 @@ function Brazil() {
           className={`absolute inset-0 w-full h-full object-contain shadow-lg transition-opacity duration-500 ${showOverlay ? "opacity-100" : "opacity-0"
             }`}
         />
-      </motion.div>
+      </motion.button>
 
       {/* Feature Image: São Paulo */}
       <motion.div
         className="w-full max-w-2xl mb-20 mx-auto"
-        variants={fadeScale}
+        variants={shouldReduceMotion ? {} : fadeScale}
       >
         <Link to="/brazil/saopaulo">
           <img
@@ -72,12 +83,12 @@ function Brazil() {
       {/* Other Cities */}
       <motion.div
         className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-lg w-full mx-auto mb-12"
-        variants={staggerContainer}
+        variants={shouldReduceMotion ? {} : staggerContainer}
       >
         {cities.map((city) => (
           <motion.div
             key={city.name}
-            variants={fadeScale}
+            variants={shouldReduceMotion ? {} : fadeScale}
           >
             {["/brazil/saopaulo", "/brazil/pantanal", "/brazil/rio", "/brazil/salvador"].includes(city.path) ? (
               <Link
@@ -87,7 +98,7 @@ function Brazil() {
                 {city.name}
               </Link>
             ) : (
-              <div className="bg-white/50 text-gray-600 backdrop-blur-md rounded-xl py-3 text-center cursor-not-allowed">
+              <div className="bg-white/50 text-gray-600 backdrop-blur-md rounded-xl py-3 text-center cursor-not-allowed" aria-disabled="true">
                 {city.name}
               </div>
             )}
