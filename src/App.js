@@ -127,7 +127,7 @@ function MainContent({
       <Nav />
       {!isHome && <VisualHeader />}
 
-      <div className={`flex-grow ${!isHome ? "pt-12" : ""}`}>
+      <main role="main" className={`flex-grow ${!isHome ? "pt-12" : ""}`}>
         <Routes>
           <Route path="/" element={<Home openLightbox={openLightbox} />} />
           <Route path="/home" element={<Home openLightbox={openLightbox} />} />
@@ -161,7 +161,7 @@ function MainContent({
             }
           />
         </Routes>
-      </div>
+      </main>
 
       {/* Cookie Consent Popup */}
       {cookiesAccepted === null && location.pathname !== "/cookie-preferences" && (

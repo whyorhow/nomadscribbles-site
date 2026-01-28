@@ -1,7 +1,7 @@
 // src/Home.js
 import React, { useRef, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValueEvent, useReducedMotion } from "framer-motion";
 // UPDATED IMPORTS
 import SEO from "../components/SEO"; // Moved up one level
 import { fadeScale, hoverScale, staggerContainer } from "../utils/animations"; // Moved up and into utils
@@ -21,8 +21,11 @@ import { waterObjects } from "../components/Water";
 import { soilObjects } from "../components/Soil";
 import { grassObjects } from "../components/Grass";
 
+const MotionLink = motion.create(Link);
+
 function Home() {
   const navigate = useNavigate();
+  const shouldReduceMotion = useReducedMotion();
 
   // Parallax tracking
   const [scrollY, setScrollY] = useState(window.scrollY);
@@ -100,6 +103,7 @@ function Home() {
     window.addEventListener("keydown", stopScroll);
 
     const animateScroll = () => {
+      if (shouldReduceMotion) return;
       if (isStopped) return;
 
       const target = firstFeatureRef.current;
@@ -132,7 +136,9 @@ function Home() {
 
     // Delay start slightly to allow load
     timeoutId = setTimeout(() => {
-      animationFrameId = requestAnimationFrame(animateScroll);
+      if (!shouldReduceMotion) {
+        animationFrameId = requestAnimationFrame(animateScroll);
+      }
     }, 1500); // Start after 1.5s
 
     return () => {
@@ -161,7 +167,7 @@ function Home() {
 
   // ---- Parallax Layer Renderer (responsive) ----
   // Parallax Layer Renderer moved to a separate component to prevent Home re-renders
-  const ParallaxBackground = React.memo(({ scrollY, viewportHeight, viewportWidth }) => {
+  const ParallaxBackground = React.memo(({ scrollY, viewportHeight, viewportWidth, shouldReduceMotion }) => {
     const renderLayer = (layer, index) => {
       const isMobileBp = viewportWidth <= 640;
       const isTabletBp = viewportWidth > 640 && viewportWidth <= 1024;
@@ -230,7 +236,7 @@ function Home() {
           layerStyle.transform = `translateX(calc(-50% + ${parallaxX}px))`;
         }
 
-        if (layer.sway) {
+        if (layer.sway && !shouldReduceMotion) {
           layerStyle.animation = `sway ${layer.swayDuration || 2}s ease-in-out infinite alternate`;
         }
       } else {
@@ -272,7 +278,12 @@ function Home() {
   return (
     <div className="relative w-screen min-h-[250vh] overflow-hidden bg-[#342508ff]">
       {/* Parallax background - separated to keep Home component static during scroll */}
-      <ParallaxBackground scrollY={scrollY} viewportHeight={viewportHeight} viewportWidth={viewportWidth} />
+      <ParallaxBackground
+        scrollY={shouldReduceMotion ? 0 : scrollY}
+        viewportHeight={viewportHeight}
+        viewportWidth={viewportWidth}
+        shouldReduceMotion={shouldReduceMotion}
+      />
 
       {/* Existing SEO + content */}
       <SEO
@@ -285,7 +296,7 @@ function Home() {
       <h1 className="sr-only">Nomad Scribbles | Travel Stories Across the World</h1>
 
       {/* Sticky Hero Section - Individual Sticky Layers */}
-      <div className="absolute top-0 left-0 w-full h-[200vh] z-30 pointer-events-none flex flex-col items-center">
+      <section aria-label="Hero" className="absolute top-0 left-0 w-full h-[200vh] z-30 pointer-events-none flex flex-col items-center">
 
         {/* Tagline Sticky Layer */}
         <div className="sticky top-[10vh] w-full flex flex-col items-center">
@@ -325,8 +336,9 @@ function Home() {
           </motion.div>
         </div>
 
-      </div>
+      </section>
 
+      <section aria-label="São Paulo Feature">
       <motion.div
         ref={firstFeatureRef} // Targeted for autoscroll
         initial="hidden"
@@ -335,16 +347,21 @@ function Home() {
         variants={staggerContainer}
         className="w-full mt-[120vh] px-2 sm:px-4 relative z-40"
       >
-        <motion.div
+        <MotionLink
+          to="/brazil/saopaulo"
           className="relative block w-full max-w-full sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/20 group transition-all duration-[2000ms]"
           onMouseEnter={() => {
             if (!isMobile) setShowMiniSP(true);
             trackEvent("hover_feature", "Home Page", "São Paulo Feature");
           }}
           onMouseLeave={() => !isMobile && setShowMiniSP(false)}
-          onClick={() => {
-            handleSPClick();
-            trackEvent("click_feature", "Home Page", "São Paulo Feature");
+          onClick={(e) => {
+             if (isMobile && !showMiniSP) {
+               e.preventDefault();
+               setShowMiniSP(true);
+               return;
+             }
+             trackEvent("click_feature", "Home Page", "São Paulo Feature");
           }}
           variants={fadeScale}
         >
@@ -387,10 +404,12 @@ function Home() {
               />
             </motion.div>
           )}
-        </motion.div>
+        </MotionLink>
       </motion.div>
+      </section>
 
       {/* Santos Feature */}
+      <section aria-label="Santos Feature">
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -398,16 +417,21 @@ function Home() {
         variants={staggerContainer}
         className="w-full mt-48 px-2 sm:px-4 relative z-40"
       >
-        <motion.div
+        <MotionLink
+          to="/brazil/saopaulo/santos"
           className="relative block w-full max-w-full sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/20 group transition-all duration-[2000ms]"
           onMouseEnter={() => {
             setShowMiniSantos(true);
             trackEvent("hover_feature", "Home Page", "Santos Feature");
           }}
           onMouseLeave={() => setShowMiniSantos(false)}
-          onClick={() => {
-            handleSantosClick();
-            trackEvent("click_feature", "Home Page", "Santos Feature");
+          onClick={(e) => {
+             if (isMobile && !showMiniSantos) {
+               e.preventDefault();
+               setShowMiniSantos(true);
+               return;
+             }
+             trackEvent("click_feature", "Home Page", "Santos Feature");
           }}
           variants={fadeScale}
         >
@@ -456,11 +480,12 @@ function Home() {
               />
             </>
           )}
-        </motion.div>
+        </MotionLink>
       </motion.div>
+      </section>
 
       {/* Bottom Carousel - Swiper Implementation */}
-      <div className="w-full max-w-screen-xl mx-auto py-12 mt-48 relative px-2 sm:px-4 z-40">
+      <section aria-label="Featured Stories" className="w-full max-w-screen-xl mx-auto py-12 mt-48 relative px-2 sm:px-4 z-40">
         <Swiper
           modules={[Navigation, Autoplay]}
           spaceBetween={20}
@@ -516,7 +541,7 @@ function Home() {
             </SwiperSlide>
           ))}
         </Swiper>
-      </div>
+      </section>
 
       <style>{`
         /* Custom swiper navigation buttons if needed, or rely on default */
