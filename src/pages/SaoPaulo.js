@@ -5,8 +5,11 @@ import SEO from "../components/SEO";
 import Lightbox from "../components/Lightbox";
 import artImages from "../assets/artImages.json";
 import { fadeScale, staggerContainer } from "../utils/animations";
+import ContextMap from "../components/ContextMap";
+import destinations from "../assets/destinations.json";
 
 function SaoPaulo() {
+  const saopauloCoords = destinations.find(d => d.id === "saopaulo");
   const top5 = [
     {
       title: "1. Explore São Paulo’s Parks",
@@ -175,6 +178,12 @@ function SaoPaulo() {
         <p className="text-center mt-4">
           These glimpses capture just the first layer of São Paulo — now let’s dive into the city’s top five experiences.
         </p>
+
+        <ContextMap
+          markers={[saopauloCoords].filter(Boolean)}
+          zoomToId="saopaulo"
+          title="Where is São Paulo?"
+        />
       </section>
 
       <main className="px-4 py-8 max-w-screen-lg mx-auto space-y-6">

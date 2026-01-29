@@ -1,0 +1,74 @@
+[
+    {
+        "id": "saopaulo",
+        "name": "São Paulo",
+        "lat": -23.5505,
+        "lng": -46.6333,
+        "path": "/brazil/saopaulo",
+        "googleMapsUrl": "https://www.google.com/maps/place/S%C3%A3o+Paulo,+S%C3%A3o+Paulo,+Brazil"
+    },
+    {
+        "id": "rio",
+        "name": "Rio de Janeiro",
+        "lat": -22.9068,
+        "lng": -43.1729,
+        "path": "/brazil/rio",
+        "googleMapsUrl": "https://www.google.com/maps/place/Rio+de+Janeiro,+State+of+Rio+de+Janeiro,+Brazil/@-22.9137295,-43.6107922,11z/data=!3m1!4b1!4m6!3m5!1s0x9bde559108a05b:0x50dc426c672fd24e!8m2!3d-22.9068467!4d-43.1728965!16zL20vMDZnbXI?entry=ttu&g_ep=EgoyMDI2MDEyNi4wIKXMDSoASAFQAw%3D%3D"
+    },
+    {
+        "id": "salvador",
+        "name": "Salvador",
+        "lat": -12.9714,
+        "lng": -38.5014,
+        "path": "/brazil/salvador",
+        "googleMapsUrl": "https://www.google.com/maps/place/Salvador+-+State+of+Bahia,+Brazil/"
+    },
+    {
+        "id": "pantanal",
+        "name": "The Pantanal",
+        "lat": -18.0,
+        "lng": -56.5,
+        "path": "/brazil/pantanal",
+        "googleMapsUrl": "https://www.google.com/maps/place/Pantanal+Matogrossense+National+Park/"
+    },
+    {
+        "id": "santos",
+        "name": "Santos",
+        "lat": -23.9608,
+        "lng": -46.3339,
+        "path": "/brazil/saopaulo/santos",
+        "googleMapsUrl": "https://www.google.com/maps/place/Santos,+SP,+Brazil/"
+    },
+    {
+        "id": "florianopolis",
+        "name": "Florianópolis",
+        "lat": -27.5967,
+        "lng": -48.5492,
+        "path": "/brazil/florianopolis",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=-27.5967,-48.5492"
+    },
+    {
+        "id": "manaus",
+        "name": "Manaus",
+        "lat": -3.1019,
+        "lng": -60.0250,
+        "path": "/brazil/manaus",
+        "googleMapsUrl": "https://www.google.com/maps/place/Manaus,+AM,+Brazil/"
+    },
+    {
+        "id": "foz",
+        "name": "Foz do Iguaçu",
+        "lat": -25.5478,
+        "lng": -54.5881,
+        "path": "/brazil/foz",
+        "googleMapsUrl": "https://www.google.com/maps/place/Foz+do+Igua%C3%A7u,+PR,+Brazil/"
+    },
+    {
+        "id": "bonito",
+        "name": "Bonito",
+        "lat": -21.1211,
+        "lng": -56.4819,
+        "path": "/brazil/bonito",
+        "googleMapsUrl": "https://www.google.com/maps/place/Bonito,+MS,+Brazil/"
+    }
+]

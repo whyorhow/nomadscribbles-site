@@ -5,8 +5,11 @@ import SEO from "../components/SEO";
 import Lightbox from "../components/Lightbox";
 import artImages from "../assets/artImages.json";
 import { fadeScale, staggerContainer } from "../utils/animations";
+import ContextMap from "../components/ContextMap";
+import destinations from "../assets/destinations.json";
 
 function Pantanal() {
+    const pantanalCoords = destinations.find(d => d.id === "pantanal");
     // Get all Pantanal images from the JSON
     const allPantanalImages = artImages.filter(img => img.category === "Pantanal");
 
@@ -77,6 +80,12 @@ function Pantanal() {
                 <p className="text-center text-sm sm:text-base mb-8 max-w-2xl mx-auto">
                     Immerse yourself in the wild heart of Brazil, where nature reigns supreme and every moment is a brush with the extraordinary.
                 </p>
+
+                <ContextMap
+                    markers={[pantanalCoords].filter(Boolean)}
+                    zoomToId="pantanal"
+                    title="Where is the Pantanal?"
+                />
 
                 {contentBlocks.map((block, idx) => {
                     const img = allPantanalImages.find(i => i.id === block.imageId);

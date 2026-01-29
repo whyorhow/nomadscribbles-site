@@ -5,8 +5,11 @@ import SEO from "../components/SEO";
 import Lightbox from "../components/Lightbox";
 import artImages from "../assets/artImages.json";
 import { fadeScale, staggerContainer } from "../utils/animations";
+import ContextMap from "../components/ContextMap";
+import destinations from "../assets/destinations.json";
 
 function Santos() {
+  const santosCoords = destinations.find(d => d.id === "santos");
   const santosImages = artImages.filter(img => img.category === "Santos");
 
   const galleryTexts = [
@@ -59,6 +62,12 @@ function Santos() {
         <p className="text-center text-sm sm:text-base">
           Visit the port city of Santos, where history, beaches, and football legends meet in sunlit harmony.
         </p>
+
+        <ContextMap
+          markers={[santosCoords].filter(Boolean)}
+          zoomToId="santos"
+          title="Where is Santos?"
+        />
 
         {santosImages.map((img, idx) => (
           <div

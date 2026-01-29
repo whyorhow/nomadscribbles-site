@@ -5,8 +5,11 @@ import SEO from "../components/SEO";
 import Lightbox from "../components/Lightbox";
 import artImages from "../assets/artImages.json";
 import { fadeScale, staggerContainer } from "../utils/animations";
+import ContextMap from "../components/ContextMap";
+import destinations from "../assets/destinations.json";
 
 function Salvador() {
+    const salvadorCoords = destinations.find(d => d.id === "salvador");
     const salvadorImages = artImages.filter(img => img.category === "Salvador");
 
     const [currentIndex, setCurrentIndex] = useState(null);
@@ -129,6 +132,12 @@ function Salvador() {
                     </p>
                 </div>
             </div>
+
+            <ContextMap
+                markers={[salvadorCoords].filter(Boolean)}
+                zoomToId="salvador"
+                title="Where is Salvador?"
+            />
 
             <main className="px-2 py-2 max-w-screen-lg mx-auto space-y-8 font-cormorant text-darkText leading-relaxed">
                 {contentBlocks.map((block, idx) => {

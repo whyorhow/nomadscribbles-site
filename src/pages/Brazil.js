@@ -3,16 +3,12 @@ import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 import { motion } from "framer-motion";
 import { fadeScale, staggerContainer } from "../utils/animations";
+import ContextMap from "../components/ContextMap";
+import destinations from "../assets/destinations.json";
 
 function Brazil() {
-  const cities = [
-    { name: "Rio de Janeiro", path: "/brazil/rio" },
-    { name: "Salvador", path: "/brazil/salvador" },
-    { name: "Foz do Iguaçu", path: "/brazil/foz" },
-    { name: "Pantanal", path: "/brazil/pantanal" },
-    { name: "Bonito", path: "/brazil/bonito" },
-    { name: "Manaus", path: "/brazil/manaus" },
-  ];
+  // Destinations for the grid (excluding São Paulo as it's the main feature)
+  const gridCities = destinations.filter(d => d.id !== 'saopaulo');
 
   const [showOverlay, setShowOverlay] = useState(false);
 
@@ -69,28 +65,31 @@ function Brazil() {
         </Link>
       </motion.div>
 
+      {/* Map Context */}
+      <motion.div variants={fadeScale}>
+        <ContextMap
+          markers={destinations}
+          title="Explore Our Journey Across Brazil"
+          variant="overview"
+        />
+      </motion.div>
+
       {/* Other Cities */}
       <motion.div
         className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-lg w-full mx-auto mb-12"
         variants={staggerContainer}
       >
-        {cities.map((city) => (
+        {gridCities.map((city) => (
           <motion.div
-            key={city.name}
+            key={city.id}
             variants={fadeScale}
           >
-            {["/brazil/saopaulo", "/brazil/pantanal", "/brazil/rio", "/brazil/salvador"].includes(city.path) ? (
-              <Link
-                to={city.path}
-                className="block w-full bg-white/80 text-gray-900 backdrop-blur-md rounded-xl py-3 text-center hover:bg-white hover:shadow-lg transition duration-300"
-              >
-                {city.name}
-              </Link>
-            ) : (
-              <div className="bg-white/50 text-gray-600 backdrop-blur-md rounded-xl py-3 text-center cursor-not-allowed">
-                {city.name}
-              </div>
-            )}
+            <Link
+              to={city.path}
+              className="block w-full bg-white/80 text-gray-900 backdrop-blur-md rounded-xl py-3 text-center hover:bg-white hover:shadow-lg transition duration-300"
+            >
+              {city.name}
+            </Link>
           </motion.div>
         ))}
       </motion.div>
