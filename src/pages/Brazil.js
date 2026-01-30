@@ -1,16 +1,56 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 import { motion } from "framer-motion";
 import { fadeScale, staggerContainer } from "../utils/animations";
 import ContextMap from "../components/ContextMap";
 import destinations from "../assets/destinations.json";
+import paperTexture from '../assets/Backgrounds/PaperTexture.jpg';
+
+// Swiper for locations carousel
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 function Brazil() {
-  // Destinations for the grid (excluding São Paulo as it's the main feature)
+  // Destinations for the carousel/grid
   const gridCities = destinations.filter(d => d.id !== 'saopaulo');
 
+  // Featured destinations for the carousel
+  const featuredDestinations = [
+    { id: "saopaulo", name: "São Paulo", img: "/images/SaoPauloLanding/small/street.jpg", path: "/brazil/saopaulo" },
+    { id: "rio", name: "Rio de Janeiro", img: "/images/Rio/small/Rio9.webp", path: "/brazil/rio" },
+    { id: "salvador", name: "Salvador", img: "/images/Salvador/small/Salvador5.webp", path: "/brazil/salvador" },
+    { id: "pantanal", name: "The Pantanal", img: "/images/Pantanal/small/Pantanal5.webp", path: "/brazil/pantanal" }
+  ];
+
+  // Map markers (excluding Santos as it's within São Paulo)
+  const mapMarkers = destinations.filter(d => d.id !== 'santos');
+
   const [showOverlay, setShowOverlay] = useState(false);
+  const [hoveredDestId, setHoveredDestId] = useState(null);
+  const swiperRef = useRef(null);
+
+  const spreadBackgroundStyle = {
+    backgroundImage: `url(${paperTexture})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    filter: "url(#torn-paper-filter)",
+    opacity: 0.95,
+  };
+
+
+  // Programmatically slide swiper when map pin is hovered
+  useEffect(() => {
+    if (swiperRef.current && hoveredDestId) {
+      const index = featuredDestinations.findIndex(d => d.id === hoveredDestId);
+      if (index !== -1) {
+        swiperRef.current.slideToLoop(index);
+      }
+    }
+  }, [hoveredDestId, featuredDestinations]);
 
   return (
     <motion.div
@@ -32,7 +72,7 @@ function Brazil() {
 
       {/* Hero Image with Overlay */}
       <motion.div
-        className="relative w-full max-w-3xl mx-auto mt-24 mb-20 cursor-pointer"
+        className="relative w-full max-w-3xl mx-auto mt-24 mb-4 px-4 cursor-pointer"
         onMouseEnter={() => setShowOverlay(true)}
         onMouseLeave={() => setShowOverlay(false)}
         onClick={() => setShowOverlay(!showOverlay)}
@@ -41,58 +81,112 @@ function Brazil() {
         <img
           src={process.env.PUBLIC_URL + "/images/Brazil/BrazilHero.webp"}
           alt="Brazilian landscape with city and nature"
-          className="w-full h-auto object-contain shadow-lg rounded-lg p-4"
+          className="w-full h-auto object-contain shadow-lg rounded-lg p-3 sm:p-4"
         />
         <img
           src={process.env.PUBLIC_URL + "/images/Brazil/BrazilPhoto.webp"}
           alt="Overlay Brazil photo"
-          className={`absolute inset-0 w-full h-full object-contain shadow-lg transition-opacity duration-500 ${showOverlay ? "opacity-100" : "opacity-0"
+          className={`absolute inset-0 w-full h-full object-contain shadow-lg transition-opacity duration-500 scale-[0.9] sm:scale-100 ${showOverlay ? "opacity-100" : "opacity-0"
             }`}
         />
       </motion.div>
 
-      {/* Feature Image: São Paulo */}
-      <motion.div
-        className="w-full max-w-2xl mb-20 mx-auto"
-        variants={fadeScale}
-      >
-        <Link to="/brazil/saopaulo">
-          <img
-            src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/SaoPauloFeature.webp"}
-            alt="São Paulo city"
-            className="w-full h-auto object-cover rounded-xl shadow-lg hover:scale-105 transition-transform duration-300"
-          />
-        </Link>
-      </motion.div>
-
-      {/* Map Context */}
-      <motion.div variants={fadeScale}>
-        <ContextMap
-          markers={destinations}
-          title="Explore Our Journey Across Brazil"
-          variant="overview"
+      {/* Side-by-Side Swiper and Map Section (Full-Width Spread) */}
+      <div className="relative w-full mb-8 lg:mt-8 overflow-hidden">
+        {/* Unified Background spread across BOTH — bleeding off screen edges */}
+        <div
+          className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[110vw] pointer-events-none z-0"
+          style={spreadBackgroundStyle}
         />
-      </motion.div>
 
-      {/* Other Cities */}
-      <motion.div
-        className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-lg w-full mx-auto mb-12"
-        variants={staggerContainer}
-      >
-        {gridCities.map((city) => (
+        <div className="relative z-10 max-w-7xl mx-auto px-4 py-8 flex flex-col items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center w-full mb-8 text-darkText">
+            {/* Swiper Carousel (Left) */}
+            <motion.section
+              className="w-full flex justify-center lg:justify-end"
+              variants={fadeScale}
+            >
+              <div className="relative w-full max-w-[450px] aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
+                <Swiper
+                  modules={[Navigation, Autoplay, Pagination]}
+                  onSwiper={(swiper) => (swiperRef.current = swiper)}
+                  spaceBetween={0}
+                  slidesPerView={1}
+                  navigation
+                  pagination={{ clickable: true }}
+                  autoplay={{ delay: 5000, disableOnInteraction: true }}
+                  loop={true}
+                  className="w-full h-full"
+                >
+                  {featuredDestinations.map((city) => (
+                    <SwiperSlide key={city.id}>
+                      <Link to={city.path} className="block w-full h-full group relative">
+                        <img
+                          src={process.env.PUBLIC_URL + city.img.replace(/small\//, 'small/').replace(/F\.webp$/, '.webp')}
+                          alt={city.name}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex flex-col justify-end p-8 pt-20">
+                          <h3 className="text-white text-3xl font-bold font-cormorant tracking-tight">{city.name}</h3>
+                          <p className="text-[#E5CF6B] text-sm italic font-cormorant mt-1">View Full Story &rarr;</p>
+                        </div>
+                      </Link>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
+            </motion.section>
+
+            {/* Map Section (Right) */}
+            <motion.div variants={fadeScale} className="w-full flex justify-center lg:justify-start">
+              <div className="w-full max-w-[450px] overflow-visible">
+                <ContextMap
+                  markers={mapMarkers}
+                  variant="overview"
+                  showTitle={false}
+                  geography={true} // Enable high-contrast ink mode
+                  transparent={true} // Map floats on the main banner spread
+                  onHoverMarker={setHoveredDestId}
+                />
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Centralized Landscape Summary below Map and Carousel */}
           <motion.div
-            key={city.id}
+            className="w-full max-w-2xl text-center flex flex-col items-center gap-2"
             variants={fadeScale}
           >
-            <Link
-              to={city.path}
-              className="block w-full bg-white/80 text-gray-900 backdrop-blur-md rounded-xl py-3 text-center hover:bg-white hover:shadow-lg transition duration-300"
-            >
-              {city.name}
-            </Link>
+            <h3 className="text-xl font-bold font-cormorant text-[#101E0E] tracking-tight mb-0">Across the Plateau & Coast</h3>
+            <p className="text-base sm:text-lg font-cormorant text-[#101E0E]/90 leading-relaxed italic">
+              From the thunderous falls in the south to the flooded savannas of the west, Brazil is defined by its scale. Urban peaks and coastal plains meet massive river basins, creating a landscape that shifts between the density of granite mountains and the vastness of the tropical interior.
+            </p>
           </motion.div>
-        ))}
-      </motion.div>
+        </div>
+      </div>
+
+      {/* Other Cities Grid */}
+      <div className="max-w-4xl mx-auto px-4 mt-12 mb-20">
+        <h2 className="text-lg font-bold font-cormorant text-[#E5CF6B]/60 mb-6 text-center uppercase tracking-widest">More Destinations</h2>
+        <motion.div
+          className="grid grid-cols-2 md:grid-cols-4 gap-4"
+          variants={staggerContainer}
+        >
+          {gridCities.map((city) => (
+            <motion.div
+              key={city.id}
+              variants={fadeScale}
+            >
+              <Link
+                to={city.path}
+                className="block w-full bg-white/5 border border-white/10 text-white/80 backdrop-blur-md rounded-lg py-3 text-center hover:bg-white/10 hover:text-white transition duration-300 text-sm font-medium"
+              >
+                {city.name}
+              </Link>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
     </motion.div>
   );
 }

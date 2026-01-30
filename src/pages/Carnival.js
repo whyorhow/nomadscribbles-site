@@ -6,7 +6,7 @@ import Lightbox from "../components/Lightbox";
 import artImages from "../assets/artImages.json";
 import { fadeScale, staggerContainer } from "../utils/animations";
 
-function Carnival() {
+function Carnival({ openLightbox }) {
   const carnivalImages = artImages.filter(img => img.category === "Carnival");
 
   const galleryTexts = [
@@ -19,7 +19,6 @@ function Carnival() {
     "Sunlight floods Ibirapuera Park as a sea of people moves together in celebration. The streets pulse with energy, each dancer adding to the collective rhythm, bodies swaying and feet stepping in joyous abandon. Laughter and music mingle in the air, carrying the sense of freedom and community that defines these blocos. Here, the city’s green heart becomes a stage, where locals and visitors alike let go, moving through space and time in a vibrant, sunlit expression of São Paulo’s spirited culture."
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(null);
 
   return (
     <div className="relative min-h-screen pt-2">
@@ -47,13 +46,8 @@ function Carnival() {
       </div>
 
       {/* Carnival Title */}
-      <div className="flex justify-center mb-6 px-4">
-        <img
-          src={process.env.PUBLIC_URL + "/images/CarnivalSP/CarnivalTitle.webp"}
-          alt="Carnival in São Paulo"
-          loading="lazy"
-          className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg h-auto"
-        />
+      <div className="flex justify-center mb-6 px-4 mt-8">
+        <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-darkText tracking-tight text-center">Carnival</h1>
       </div>
 
       <main className="px-2 py-2 max-w-screen-lg mx-auto space-y-6 font-cormorant text-darkText leading-relaxed">
@@ -71,7 +65,7 @@ function Carnival() {
               src={img.image}
               alt={img.title}
               loading="lazy"
-              onClick={() => setCurrentIndex(idx)}
+              onClick={() => openLightbox(idx, carnivalImages.map(i => i.image), carnivalImages.map(i => i.title))}
               className="rounded-lg cursor-pointer w-10/12 sm:w-3/4 md:w-2/3 lg:w-2/5 h-auto shadow-md hover:opacity-95 transition-opacity p-4 max-w-[350px]"
             />
             <div className="p-4 rounded-md flex-1 text-left text-sm sm:text-base">
@@ -82,14 +76,6 @@ function Carnival() {
         ))}
       </main>
 
-      {/* Lightbox */}
-      {currentIndex !== null && (
-        <Lightbox
-          images={carnivalImages}
-          currentIndex={currentIndex}
-          setCurrentIndex={setCurrentIndex}
-        />
-      )}
     </div>
   );
 }

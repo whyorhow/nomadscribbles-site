@@ -7,11 +7,19 @@ import artImages from "../assets/artImages.json";
 import { fadeScale, staggerContainer } from "../utils/animations";
 import ContextMap from "../components/ContextMap";
 import destinations from "../assets/destinations.json";
+import paperTexture from '../assets/Backgrounds/PaperTexture.jpg';
 
-function Pantanal() {
+function Pantanal({ openLightbox }) {
     const pantanalCoords = destinations.find(d => d.id === "pantanal");
-    // Get all Pantanal images from the JSON
-    const allPantanalImages = artImages.filter(img => img.category === "Pantanal");
+    const pantanalImages = artImages.filter(img => img.category === "Pantanal");
+
+    const spreadBackgroundStyle = {
+        backgroundImage: `url(${paperTexture})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        filter: "url(#torn-paper-filter)",
+        opacity: 0.95,
+    };
 
     // Define the content blocks provided by the user
     // We will attempt to map specific images to these blocks.
@@ -43,13 +51,11 @@ function Pantanal() {
         }
     ];
 
-    const [currentIndex, setCurrentIndex] = useState(null);
-
     // Helper to open lightbox with correct index from the full list
     const handleImageClick = (imageId) => {
-        const index = allPantanalImages.findIndex(img => img.id === imageId);
+        const index = pantanalImages.findIndex(img => img.id === imageId);
         if (index !== -1) {
-            setCurrentIndex(index);
+            openLightbox(index, pantanalImages.map(img => img.blogimage), pantanalImages.map(img => img.title));
         }
     };
 
@@ -69,11 +75,29 @@ function Pantanal() {
 
             {/* Hero Image removed temporarily */}
 
-            {/* Pantanal Title */}
-            <div className="flex justify-center mb-6 mt-4">
-                <h2 className="text-4xl sm:text-5xl font-bold text-center text-[#E5CF6B] font-cormorant">
-                    The Pantanal
-                </h2>
+            {/* Title Section */}
+            <div className="flex justify-center mb-6 px-4 mt-8">
+                <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-darkText tracking-tight text-center">The Pantanal</h1>
+            </div>
+
+            {/* Banner Spread with Map */}
+            <div className="relative w-full mb-16 overflow-hidden">
+                <div
+                    className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[110vw] pointer-events-none z-0"
+                    style={spreadBackgroundStyle}
+                />
+
+                <div className="relative z-20 max-w-5xl mx-auto px-4 py-8 flex flex-col items-center mt-[-10px]">
+                    <div className="w-full max-w-4xl overflow-visible mb-[-10px]">
+                        <ContextMap
+                            markers={[pantanalCoords].filter(Boolean)}
+                            zoomToId="pantanal"
+                            title="Where is the Pantanal?"
+                            geography={pantanalCoords?.geography}
+                            transparent={true}
+                        />
+                    </div>
+                </div>
             </div>
 
             <main className="px-2 py-2 max-w-screen-lg mx-auto space-y-6 font-cormorant text-darkText leading-relaxed">
@@ -81,14 +105,9 @@ function Pantanal() {
                     Immerse yourself in the wild heart of Brazil, where nature reigns supreme and every moment is a brush with the extraordinary.
                 </p>
 
-                <ContextMap
-                    markers={[pantanalCoords].filter(Boolean)}
-                    zoomToId="pantanal"
-                    title="Where is the Pantanal?"
-                />
 
                 {contentBlocks.map((block, idx) => {
-                    const img = allPantanalImages.find(i => i.id === block.imageId);
+                    const img = pantanalImages.find(i => i.id === block.imageId);
                     // Fallback if image isn't found (shouldn't happen if IDs are correct)
                     if (!img) return null;
 
@@ -114,14 +133,6 @@ function Pantanal() {
                 })}
             </main>
 
-            {/* Lightbox */}
-            {currentIndex !== null && (
-                <Lightbox
-                    images={allPantanalImages}
-                    currentIndex={currentIndex}
-                    setCurrentIndex={setCurrentIndex}
-                />
-            )}
         </div>
     );
 }

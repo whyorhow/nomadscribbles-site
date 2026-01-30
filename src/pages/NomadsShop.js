@@ -37,13 +37,11 @@ export default function NomadsShop() {
       />
 
 
-      {/* Hero / Title Image */}
+      {/* Hero / Title */}
       <div className="flex flex-col items-center mb-8 relative z-10 mt-14 sm:mt-8">
-        <img
-          src="/images/NomadsShop/NomadsShopTitle.webp"
-          alt="NomadsShop Hero"
-          className="w-1/2 max-w-[8rem] sm:max-w-xs md:max-w-md lg:max-w-lg h-auto rounded-lg"
-        />
+        <div className="flex justify-center mb-4 px-4">
+          <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-darkText tracking-tight text-center">Nomads Shop</h1>
+        </div>
         {/* Instruction heading */}
         <h1 className="text-center text-xs sm:text-lg font-bold mt-2 text-[#eeda8d] drop-shadow-md opacity-80">
           click a country below to explore our collections.

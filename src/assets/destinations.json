@@ -5,7 +5,9 @@
         "lat": -23.5505,
         "lng": -46.6333,
         "path": "/brazil/saopaulo",
-        "googleMapsUrl": "https://www.google.com/maps/place/S%C3%A3o+Paulo,+S%C3%A3o+Paulo,+Brazil"
+        "googleMapsUrl": "https://www.google.com/maps/place/S%C3%A3o+Paulo,+S%C3%A3o+Paulo,+Brazil",
+        "locationContext": "São Paulo State, Southeast Brazil",
+        "geography": "Located on a high plateau in Brazil's Southeast, São Paulo sits between the river valleys of the interior and the Serra do Mar mountains that drop sharply to the Atlantic coast."
     },
     {
         "id": "rio",
@@ -13,7 +15,9 @@
         "lat": -22.9068,
         "lng": -43.1729,
         "path": "/brazil/rio",
-        "googleMapsUrl": "https://www.google.com/maps/place/Rio+de+Janeiro,+State+of+Rio+de+Janeiro,+Brazil/@-22.9137295,-43.6107922,11z/data=!3m1!4b1!4m6!3m5!1s0x9bde559108a05b:0x50dc426c672fd24e!8m2!3d-22.9068467!4d-43.1728965!16zL20vMDZnbXI?entry=ttu&g_ep=EgoyMDI2MDEyNi4wIKXMDSoASAFQAw%3D%3D"
+        "googleMapsUrl": "https://www.google.com/maps/place/Rio+de+Janeiro,+State+of+Rio+de+Janeiro,+Brazil/@-22.9137295,-43.6107922,11z/data=!3m1!4b1!4m6!3m5!1s0x9bde559108a05b:0x50dc426c672fd24e!8m2!3d-22.9068467!4d-43.1728965!16zL20vMDZnbXI?entry=ttu&g_ep=EgoyMDI2MDEyNi4wIKXMDSoASAFQAw%3D%3D",
+        "locationContext": "Rio de Janeiro State, Southeast Brazil",
+        "geography": "Squeezed between the lush Tijuca rainforest and the Atlantic Ocean, Rio’s dramatic geography is defined by its granite peaks—like Sugarloaf and Corcovado—rising abruptly from the sea."
     },
     {
         "id": "salvador",
@@ -21,7 +25,9 @@
         "lat": -12.9714,
         "lng": -38.5014,
         "path": "/brazil/salvador",
-        "googleMapsUrl": "https://www.google.com/maps/place/Salvador+-+State+of+Bahia,+Brazil/"
+        "googleMapsUrl": "https://www.google.com/maps/place/Salvador+-+State+of+Bahia,+Brazil/",
+        "locationContext": "Bahia State, Northeast Brazil",
+        "geography": "Perched on a peninsula overlooking the Bay of All Saints, Salvador is split by a 70-meter cliff into the 'Upper City' (historic centre) and the 'Lower City' (port and commercial areas)."
     },
     {
         "id": "pantanal",
@@ -29,7 +35,9 @@
         "lat": -18.0,
         "lng": -56.5,
         "path": "/brazil/pantanal",
-        "googleMapsUrl": "https://www.google.com/maps/place/Pantanal+Matogrossense+National+Park/"
+        "googleMapsUrl": "https://www.google.com/maps/place/Pantanal+Matogrossense+National+Park/",
+        "locationContext": "Mato Grosso/Mato Grosso do Sul, Central-West Brazil",
+        "geography": "The world's largest tropical wetland, the Pantanal is a vast, seasonal floodplain in central-west Brazil, fed by the Paraguay River and surrounded by the dry forests and savannas of the Cerrado."
     },
     {
         "id": "santos",
@@ -37,7 +45,9 @@
         "lat": -23.9608,
         "lng": -46.3339,
         "path": "/brazil/saopaulo/santos",
-        "googleMapsUrl": "https://www.google.com/maps/place/Santos,+SP,+Brazil/"
+        "googleMapsUrl": "https://www.google.com/maps/place/Santos,+SP,+Brazil/",
+        "locationContext": "São Paulo Coast, Southeast Brazil",
+        "geography": "Set on the island of São Vicente, Santos is Brazil's premier port city, built on a flat coastal plain between mountain estuaries and the expansive beaches of the South Atlantic."
     },
     {
         "id": "florianopolis",
@@ -45,7 +55,9 @@
         "lat": -27.5967,
         "lng": -48.5492,
         "path": "/brazil/florianopolis",
-        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=-27.5967,-48.5492"
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=-27.5967,-48.5492",
+        "locationContext": "Santa Catarina State, South Brazil",
+        "geography": "An island city on Brazil's southern coast, Florianópolis is known for its diverse geography, featuring lush hills, freshwater lagoons, and over 40 distinct beaches."
     },
     {
         "id": "manaus",
@@ -53,7 +65,9 @@
         "lat": -3.1019,
         "lng": -60.0250,
         "path": "/brazil/manaus",
-        "googleMapsUrl": "https://www.google.com/maps/place/Manaus,+AM,+Brazil/"
+        "googleMapsUrl": "https://www.google.com/maps/place/Manaus,+AM,+Brazil/",
+        "locationContext": "Amazonas State, North Brazil",
+        "geography": "Deep in the heart of the Amazon, Manaus sits at the 'Meeting of Waters,' where the dark Negro and sandy Solimões rivers collide to form the mighty Amazon River."
     },
     {
         "id": "foz",
@@ -61,7 +75,9 @@
         "lat": -25.5478,
         "lng": -54.5881,
         "path": "/brazil/foz",
-        "googleMapsUrl": "https://www.google.com/maps/place/Foz+do+Igua%C3%A7u,+PR,+Brazil/"
+        "googleMapsUrl": "https://www.google.com/maps/place/Foz+do+Igua%C3%A7u,+PR,+Brazil/",
+        "locationContext": "Paraná State, South Brazil",
+        "geography": "Located at the triple border of Brazil, Argentina, and Paraguay, this region is defined by the thunderous Iguaçu Falls, set within a vast subtropical rainforest."
     },
     {
         "id": "bonito",
@@ -69,6 +85,8 @@
         "lat": -21.1211,
         "lng": -56.4819,
         "path": "/brazil/bonito",
-        "googleMapsUrl": "https://www.google.com/maps/place/Bonito,+MS,+Brazil/"
+        "googleMapsUrl": "https://www.google.com/maps/place/Bonito,+MS,+Brazil/",
+        "locationContext": "Mato Grosso do Sul, Central-West Brazil",
+        "geography": "A hub for ecotourism, Bonito is famous for its karst landscape, where crystal-clear rivers emerge from limestone caves and flow through the lush Cerrado plateau."
     }
 ]

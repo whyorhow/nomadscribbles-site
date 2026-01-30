@@ -6,8 +6,7 @@ import Lightbox from "../components/Lightbox";
 import artImages from "../assets/artImages.json";
 import { fadeScale, staggerContainer } from "../utils/animations";
 
-export default function Museums() {
-  const [currentIndex, setCurrentIndex] = useState(null);
+export default function Museums({ openLightbox }) {
 
   const museumImages = artImages
     .filter((item) => item.category === "Museums")
@@ -59,14 +58,9 @@ export default function Museums() {
         />
       </div>
 
-      {/* Title Image */}
-      <div className="flex justify-center mb-6 px-4">
-        <img
-          src={process.env.PUBLIC_URL + "/images/ArtGallery/GalleryTitle.webp"}
-          alt="Art Galleries"
-          loading="lazy"
-          className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg h-auto"
-        />
+      {/* Art Galleries Title */}
+      <div className="flex justify-center mb-6 px-4 mt-8">
+        <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-darkText tracking-tight text-center">Art Galleries</h1>
       </div>
 
       <main className="px-2 py-2 max-w-screen-lg mx-auto space-y-6 font-cormorant text-darkText leading-relaxed">
@@ -83,7 +77,7 @@ export default function Museums() {
               src={item.image}
               alt={galleryAlts[idx] || item.title}
               loading="lazy"
-              onClick={() => setCurrentIndex(idx)}
+              onClick={() => openLightbox(idx, museumImages.map(i => i.image), museumImages.map(i => i.title))}
               className="rounded-lg cursor-pointer w-10/12 sm:w-3/4 md:w-2/3 lg:w-2/5 h-auto shadow-md hover:opacity-95 transition-opacity p-4 max-w-[350px]"
             />
             <div className="p-4 rounded-md flex-1 text-left text-sm sm:text-base lg:text-lg">
@@ -94,14 +88,6 @@ export default function Museums() {
         ))}
       </main>
 
-      {/* Lightbox */}
-      {currentIndex !== null && (
-        <Lightbox
-          images={museumImages}
-          currentIndex={currentIndex}
-          setCurrentIndex={setCurrentIndex}
-        />
-      )}
     </div>
   );
 }

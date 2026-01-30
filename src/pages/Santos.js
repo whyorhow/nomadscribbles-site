@@ -5,11 +5,10 @@ import SEO from "../components/SEO";
 import Lightbox from "../components/Lightbox";
 import artImages from "../assets/artImages.json";
 import { fadeScale, staggerContainer } from "../utils/animations";
-import ContextMap from "../components/ContextMap";
-import destinations from "../assets/destinations.json";
 
-function Santos() {
-  const santosCoords = destinations.find(d => d.id === "santos");
+
+function Santos({ openLightbox }) {
+
   const santosImages = artImages.filter(img => img.category === "Santos");
 
   const galleryTexts = [
@@ -21,7 +20,6 @@ function Santos() {
     "Transformed onto paper, the building becomes both memory and imagination. Lines and shading capture the slow encroachment of nature, turning bricks and branches into a delicate dance. The artwork reveals the poetry hidden in Santos’ architecture, celebrating the quiet tension between the urban and the organic."
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(null);
 
   return (
     <div className="relative min-h-screen pt-2">
@@ -48,14 +46,9 @@ function Santos() {
         />
       </div>
 
-      {/* Title Image */}
-      <div className="flex justify-center mb-6 px-4">
-        <img
-          src={process.env.PUBLIC_URL + "/images/Santos/SantosTitle.webp"}
-          alt="Santos page title"
-          loading="lazy"
-          className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg h-auto"
-        />
+      {/* Santos Title */}
+      <div className="flex justify-center mb-6 px-4 mt-8">
+        <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-darkText tracking-tight text-center">Santos</h1>
       </div>
 
       <main className="px-2 py-2 max-w-screen-lg mx-auto space-y-6 font-cormorant text-darkText leading-relaxed">
@@ -63,11 +56,7 @@ function Santos() {
           Visit the port city of Santos, where history, beaches, and football legends meet in sunlit harmony.
         </p>
 
-        <ContextMap
-          markers={[santosCoords].filter(Boolean)}
-          zoomToId="santos"
-          title="Where is Santos?"
-        />
+
 
         {santosImages.map((img, idx) => (
           <div
@@ -79,7 +68,7 @@ function Santos() {
               src={img.image}
               alt={img.title}
               loading="lazy"
-              onClick={() => setCurrentIndex(idx)}
+              onClick={() => openLightbox(idx, santosImages.map(i => i.image), santosImages.map(i => i.title))}
               className="rounded-lg cursor-pointer w-10/12 sm:w-3/4 md:w-2/3 lg:w-2/5 h-auto shadow-md hover:opacity-95 transition-opacity p-4 max-w-[350px]"
             />
             <div className="p-4 rounded-md flex-1 text-left text-sm sm:text-base lg:text-lg leading-relaxed">
@@ -90,14 +79,6 @@ function Santos() {
         ))}
       </main>
 
-      {/* Lightbox */}
-      {currentIndex !== null && (
-        <Lightbox
-          images={santosImages}
-          currentIndex={currentIndex}
-          setCurrentIndex={setCurrentIndex}
-        />
-      )}
     </div>
   );
 }

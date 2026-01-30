@@ -54,19 +54,16 @@ export default function NomadsGallery({ openLightbox }) {
       </div>
 
       <motion.main
-        className="px-2 sm:px-4 max-w-screen-xl mx-auto columns-3 sm:columns-3 md:columns-4 gap-2 sm:gap-4 relative z-10"
+        className="px-4 sm:px-8 max-w-screen-2xl mx-auto columns-1 sm:columns-2 md:columns-3 gap-12 sm:gap-16 md:gap-24 relative z-10"
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
       >
         {shuffledImages.map((img, index) => {
-          const isLarge = img.size || Math.random() > 0.7;
-
           return (
             <motion.div
               key={img.id}
-              className={`mb-2 sm:mb-4 break-inside-avoid relative cursor-pointer ${isLarge ? "h-48 sm:h-[28rem]" : "h-32 sm:h-[20rem]"
-                }`}
+              className="mb-16 sm:mb-24 break-inside-avoid relative flex flex-col group"
               variants={fadeScale}
               onClick={() => handleClick(index)}
               onMouseEnter={() => trackEvent("hover_gallery_image", "Nomads Gallery", img.title)}
@@ -75,17 +72,33 @@ export default function NomadsGallery({ openLightbox }) {
                 if (e.key === "Enter") handleClick(index);
               }}
               whileHover="hover"
-              transition={{ type: "spring", stiffness: 200, damping: 30 }}
-              animate={fadeScale.visible}
-              initial={fadeScale.hidden}
-              exit={fadeScale.exit}
             >
-              <img
-                src={img.image.replace(/\.(jpg|jpeg|png)$/, ".webp")}
-                alt={img.title}
-                className="w-full h-full object-contain block drop-shadow-[0_30px_30px_rgba(0,0,0,0.35)]"
-                loading="lazy"
-              />
+              {/* Frame Container */}
+              <div className="relative group-hover:scale-[1.02] transition-transform duration-500 cursor-pointer">
+                <img
+                  src={img.image.replace(/\.(jpg|jpeg|png)$/, ".webp")}
+                  alt={img.title}
+                  className="w-full h-auto block drop-shadow-2xl rounded-sm"
+                  loading="lazy"
+                />
+              </div>
+
+              {/* Museum Label */}
+              <motion.div
+                className="mt-6 ml-auto max-w-[180px] p-3 bg-white/40 backdrop-blur-md self-end transform transition-all duration-500 group-hover:translate-x-1 border-l border-[#eeda8d]/30"
+                initial={{ opacity: 0.6, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                <h4 className="text-gray-900 text-xs font-bold uppercase tracking-widest mb-1 font-cormorant">
+                  {img.title}
+                </h4>
+                {img.category && (
+                  <p className="text-gray-600 text-[10px] italic font-serif leading-tight">
+                    {img.category}
+                  </p>
+                )}
+                <div className="mt-2 w-4 h-[1px] bg-[#eeda8d]/50" />
+              </motion.div>
             </motion.div>
           );
         })}

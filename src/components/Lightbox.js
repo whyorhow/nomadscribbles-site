@@ -18,7 +18,7 @@ function getTextColorForBg(hexColor) {
   return luminance < 128 ? "text-darkText" : "text-lightText";
 }
 
-export default function Lightbox({ images = [], currentIndex, setCurrentIndex }) {
+export default function Lightbox({ images = [], currentIndex, setCurrentIndex, description: descriptionProp }) {
   const containerRef = useRef(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -42,9 +42,11 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex })
   const current = images[currentIndex];
   const isObject = typeof current === "object";
 
-  const imageSrc = isObject ? current.lightboxImage || current.image : current;
+  const imageSrc = isObject
+    ? (current.lightboxImage || current.image).replace(/F\.webp$/, '.webp')
+    : current.replace(/F\.webp$/, '.webp');
   const title = isObject ? current.title : "";
-  const description = isObject ? current.shortDescription || "" : "";
+  const description = isObject ? current.shortDescription || descriptionProp || "" : "";
   const gumroadLink = isObject ? current.gumroadLink : null;
   const shopLink = isObject ? current.shopLink : null;
 
@@ -109,11 +111,10 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex })
               src={imageSrc}
               alt={title}
               loading="lazy"
-              className={`rounded-sm cursor-pointer object-contain block ${
-                isFullscreen
+              className={`rounded-sm cursor-pointer object-contain block ${isFullscreen
                   ? "max-w-[100vw] max-h-[100vh]"
                   : "max-w-[90vw] md:max-w-[80vw] lg:max-w-[70vw] max-h-[80vh] sm:max-h-[75vh] md:max-h-[70vh] lg:max-h-[65vh]"
-              }`}
+                }`}
               onClick={toggleFullscreen}
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1, transition: { duration: 0.5, ease: "easeInOut" } }}
@@ -179,17 +180,16 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex })
           </div>
 
           {!isFullscreen && (
-            <div className={`w-full max-w-[95vw] mt-1 p-1 pb-2 shadow flex flex-col items-start ${overlayTextClass}`} style={{ backgroundColor: "#e1e5e1" }}>
-              {title && <h2 className={`font-bold text-lg mb-1 ${overlayTextClass}`}>{title}</h2>}
-              {description && <p className={`text-sm mb-2 ${overlayTextClass}`}>{description}</p>}
-              <div className="flex space-x-1">
+            <div className="w-full max-w-[95vw] mt-2 p-4 pt-4 pb-6 shadow-xl flex flex-col items-start backdrop-blur-md rounded-lg" style={{ backgroundColor: "#e1e5e1", border: "1px solid rgba(0,0,0,0.1)" }}>
+              {title && <h2 className="font-bold text-xl mb-2 text-[#101E0E] font-cormorant">{title}</h2>}
+              {description && <p className="text-base mb-4 text-[#101E0E]/80 font-cormorant leading-relaxed">{description}</p>}
+              <div className="flex space-x-3">
                 {gumroadLink && (
                   <a
                     href={gumroadLink}
                     onClick={() => handlePurchaseClick(gumroadLink, "lightbox_purchase")}
-                    className={`px-4 py-2 font-medium rounded-sm shadow hover:opacity-90 transition-opacity ${
-                      overlayTextClass === "text-darkText" ? "bg-[#5F7536] text-white" : "bg-[#c5d89b] text-[#101E0E]"
-                    }`}
+                    className={`px-4 py-2 font-medium rounded-sm shadow hover:opacity-90 transition-opacity ${overlayTextClass === "text-darkText" ? "bg-[#5F7536] text-white" : "bg-[#c5d89b] text-[#101E0E]"
+                      }`}
                   >
                     Purchase
                   </a>
@@ -198,9 +198,8 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex })
                   <a
                     href={shopLink}
                     onClick={() => handlePurchaseClick(shopLink, "lightbox_shop")}
-                    className={`px-4 py-2 font-medium rounded-sm shadow hover:opacity-90 transition-opacity ${
-                      overlayTextClass === "text-darkText" ? "bg-[#634E39] text-white" : "bg-[#d8c9b5] text-[#101E0E]"
-                    }`}
+                    className={`px-4 py-2 font-medium rounded-sm shadow hover:opacity-90 transition-opacity ${overlayTextClass === "text-darkText" ? "bg-[#634E39] text-white" : "bg-[#d8c9b5] text-[#101E0E]"
+                      }`}
                   >
                     Shop
                   </a>

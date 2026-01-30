@@ -35,54 +35,6 @@ import CookieConsent from "./components/CookieConsent";
 // --- Utilities ---
 import { trackEvent, trackPageView } from "./utils/analytics";
 
-// Page title manager
-function PageTitleManager() {
-  const location = useLocation();
-  useEffect(() => {
-    switch (location.pathname) {
-      case "/":
-      case "/home":
-        document.title = "Nomad Scribbles | Travel & Stories";
-        break;
-      case "/brazil/saopaulo":
-        document.title = "Nomad Scribbles | São Paulo Carnival";
-        break;
-      case "/brazil/saopaulo/parks":
-        document.title = "Nomad Scribbles | São Paulo Parks";
-        break;
-      case "/brazil/saopaulo/museums":
-        document.title = "Nomad Scribbles | São Paulo Museums";
-        break;
-      case "/brazil/saopaulo/carnival":
-        document.title = "Nomad Scribbles | São Paulo Carnival";
-        break;
-      case "/brazil/saopaulo/murals":
-        document.title = "Nomad Scribbles | São Paulo Murals";
-        break;
-      case "/brazil/saopaulo/santos":
-        document.title = "Nomad Scribbles | Santos";
-        break;
-      case "/nomads-gallery":
-        document.title = "Nomad Scribbles | Gallery";
-        break;
-      case "/adventures":
-        document.title = "Nomad Scribbles | Adventures";
-        break;
-      case "/contact-us":
-        document.title = "Nomad Scribbles | Contact Us";
-        break;
-      case "/search":
-        document.title = "Nomad Scribbles | Search Results";
-        break;
-      case "/cookie-preferences":
-        document.title = "Nomad Scribbles | Cookie Preferences";
-        break;
-      default:
-        document.title = "Nomad Scribbles";
-    }
-  }, [location]);
-  return null;
-}
 
 // Page view tracker
 function PageViewTracker({ cookiesAccepted }) {
@@ -116,13 +68,16 @@ function MainContent({
 }) {
   const location = useLocation();
   const isHome = location.pathname === "/" || location.pathname === "/home";
+  const lightenedRoutes = ["/brazil", "/brazil/rio", "/brazil/salvador", "/brazil/pantanal", "/brazil/saopaulo"];
+  const isLightenedPage = lightenedRoutes.includes(location.pathname) || location.pathname.includes("/saopaulo/santos");
 
   return (
     <div className={`min-h-screen flex flex-col transition-colors duration-500 ${isHome
       ? "bg-main-gradient text-darkText"
-      : "bg-stony-paper text-darkText"
+      : isLightenedPage
+        ? "bg-stony-paper-light text-darkText"
+        : "bg-stony-paper text-darkText"
       }`}>
-      <PageTitleManager />
       <PageViewTracker cookiesAccepted={cookiesAccepted} />
       <Nav />
       {!isHome && <VisualHeader />}
@@ -138,9 +93,9 @@ function MainContent({
           <Route path="/nomads-shop/brazil/saopaulo" element={<NomadsShopSaoPaulo openLightbox={openLightbox} />} />
           <Route path="/nomads-shop/brazil/:city" element={<NomadsShopCategory openLightbox={openLightbox} />} />
           <Route path="/brazil" element={<Brazil openLightbox={openLightbox} />} />
-          <Route path="/brazil/rio" element={<Rio />} />
-          <Route path="/brazil/salvador" element={<Salvador />} />
-          <Route path="/brazil/pantanal" element={<Pantanal />} />
+          <Route path="/brazil/rio" element={<Rio openLightbox={openLightbox} />} />
+          <Route path="/brazil/salvador" element={<Salvador openLightbox={openLightbox} />} />
+          <Route path="/brazil/pantanal" element={<Pantanal openLightbox={openLightbox} />} />
           <Route path="/brazil/saopaulo" element={<SaoPaulo openLightbox={openLightbox} />} />
           <Route path="/brazil/saopaulo/parks" element={<Parks openLightbox={openLightbox} />} />
           <Route path="/brazil/saopaulo/museums" element={<Museums openLightbox={openLightbox} />} />
@@ -233,6 +188,7 @@ function App() {
   return (
     <HelmetProvider>
       <Router>
+        <ScrollToTop />
         {/* GA script */}
         {cookiesAccepted && (
           <Helmet>

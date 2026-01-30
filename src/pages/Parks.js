@@ -4,7 +4,7 @@ import SEO from "../components/SEO";
 import Lightbox from "../components/Lightbox";
 import artImages from "../assets/artImages.json";
 
-function Parks() {
+function Parks({ openLightbox }) {
   const parksImages = artImages.filter(img => img.category === "Parks");
 
   const galleryTexts = [
@@ -17,7 +17,6 @@ function Parks() {
     "Echoes in Concrete: Burle Marx used sweeping native curves and vegetation to mimic the movement of sound, turning the park into a living artwork where nature meets design. Pathways curve gracefully, water features echo with gentle trickles, and sculptures integrate seamlessly into the landscape. Each area feels like a narrative, connecting movement, light, and color in ways that celebrate both the artistry of the park’s creator and the natural beauty of the environment. It’s a space where imagination meets reality, and every visitor can trace their own story through the carefully orchestrated design."
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(null);
 
   return (
     <div className="relative min-h-screen pt-2">
@@ -44,14 +43,9 @@ function Parks() {
         />
       </div>
 
-      {/* Parks Title Image */}
-      <div className="flex justify-center mb-6 px-4">
-        <img
-          src={process.env.PUBLIC_URL + "/images/SP-Parks/ParksTitle.webp"}
-          alt="Parks of São Paulo"
-          loading="lazy"
-          className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg h-auto"
-        />
+      {/* Parks Title */}
+      <div className="flex justify-center mb-6 px-4 mt-8">
+        <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-darkText tracking-tight text-center">Parks</h1>
       </div>
 
       <main className="px-2 py-2 max-w-screen-lg mx-auto space-y-6 font-cormorant text-darkText leading-relaxed">
@@ -69,7 +63,7 @@ function Parks() {
               src={img.image}
               alt={img.title}
               loading="lazy"
-              onClick={() => setCurrentIndex(idx)}
+              onClick={() => openLightbox(idx, parksImages.map(i => i.image), parksImages.map(i => i.title))}
               className="rounded-lg cursor-pointer w-10/12 sm:w-3/4 md:w-2/3 lg:w-2/5 h-auto shadow-md hover:opacity-95 transition-opacity p-4 max-w-[350px]"
             />
             <div className="p-4 rounded-md flex-1 text-left text-sm sm:text-base lg:text-lg">
@@ -80,14 +74,6 @@ function Parks() {
         ))}
       </main>
 
-      {/* Lightbox */}
-      {currentIndex !== null && (
-        <Lightbox
-          images={parksImages}
-          currentIndex={currentIndex}
-          setCurrentIndex={setCurrentIndex}
-        />
-      )}
     </div>
   );
 }

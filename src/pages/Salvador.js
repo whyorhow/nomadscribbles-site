@@ -7,12 +7,19 @@ import artImages from "../assets/artImages.json";
 import { fadeScale, staggerContainer } from "../utils/animations";
 import ContextMap from "../components/ContextMap";
 import destinations from "../assets/destinations.json";
+import paperTexture from '../assets/Backgrounds/PaperTexture.jpg';
 
-function Salvador() {
+function Salvador({ openLightbox }) {
     const salvadorCoords = destinations.find(d => d.id === "salvador");
     const salvadorImages = artImages.filter(img => img.category === "Salvador");
 
-    const [currentIndex, setCurrentIndex] = useState(null);
+    const spreadBackgroundStyle = {
+        backgroundImage: `url(${paperTexture})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        filter: "url(#torn-paper-filter)",
+        opacity: 0.95,
+    };
 
     const contentBlocks = [
         {
@@ -101,7 +108,7 @@ function Salvador() {
     const handleImageClick = (imageId) => {
         const index = salvadorImages.findIndex(img => img.id === imageId);
         if (index !== -1) {
-            setCurrentIndex(index);
+            openLightbox(index, salvadorImages.map(img => img.blogimage), salvadorImages.map(img => img.title));
         }
     };
 
@@ -119,25 +126,30 @@ function Salvador() {
             <h1 className="sr-only">Salvador | Nomad Scribbles</h1>
 
 
-            {/* Hero Image removed temporarily */}
-
-            {/* Salvador Title */}
-            <div className="flex justify-center mb-6 mt-4">
-                <div className="text-center px-4">
-                    <h2 className="text-4xl sm:text-5xl font-bold text-[#E5CF6B] font-cormorant">
-                        Salvador
-                    </h2>
-                    <p className="text-darkText font-cormorant italic mt-2 text-lg sm:text-xl max-w-3xl mx-auto">
-                        A city where history does not recede into the background — it moves, sings, resists, and remembers.
-                    </p>
-                </div>
+            {/* Title Section */}
+            <div className="flex justify-center mb-6 px-4 mt-8">
+                <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-darkText tracking-tight text-center">Salvador</h1>
             </div>
 
-            <ContextMap
-                markers={[salvadorCoords].filter(Boolean)}
-                zoomToId="salvador"
-                title="Where is Salvador?"
-            />
+            {/* Banner Spread with Map */}
+            <div className="relative w-full mb-16 overflow-hidden">
+                <div
+                    className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[110vw] pointer-events-none z-0"
+                    style={spreadBackgroundStyle}
+                />
+
+                <div className="relative z-20 max-w-5xl mx-auto px-4 py-8 flex flex-col items-center mt-[-10px]">
+                    <div className="w-full max-w-4xl overflow-visible mb-[-10px]"> {/* Ensure labels aren't clipped */}
+                        <ContextMap
+                            markers={[salvadorCoords].filter(Boolean)}
+                            zoomToId="salvador"
+                            title="Where is Salvador?"
+                            geography={salvadorCoords?.geography}
+                            transparent={true}
+                        />
+                    </div>
+                </div>
+            </div>
 
             <main className="px-2 py-2 max-w-screen-lg mx-auto space-y-8 font-cormorant text-darkText leading-relaxed">
                 {contentBlocks.map((block, idx) => {
@@ -167,14 +179,6 @@ function Salvador() {
                 })}
             </main>
 
-            {/* Lightbox */}
-            {currentIndex !== null && (
-                <Lightbox
-                    images={salvadorImages}
-                    currentIndex={currentIndex}
-                    setCurrentIndex={setCurrentIndex}
-                />
-            )}
         </div>
     );
 }

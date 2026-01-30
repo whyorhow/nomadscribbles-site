@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import SEO from "../components/SEO";
@@ -6,7 +6,10 @@ import Lightbox from "../components/Lightbox";
 import artImages from "../assets/artImages.json";
 import { fadeScale, staggerContainer } from "../utils/animations";
 import ContextMap from "../components/ContextMap";
+import paperTexture from '../assets/Backgrounds/PaperTexture.jpg';
 import destinations from "../assets/destinations.json";
+
+
 
 function SaoPaulo() {
   const saopauloCoords = destinations.find(d => d.id === "saopaulo");
@@ -60,12 +63,62 @@ function SaoPaulo() {
     ["pizza", "street", "rain", "caparinhaPhoto", "caparinhaDrawn"].includes(img.id)
   );
 
+
+
+  const spreadBackgroundStyle = {
+    backgroundImage: `url(${paperTexture})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    filter: "url(#torn-paper-filter) drop-shadow(0 0 3px rgba(0,0,0,0.15))",
+    opacity: 1,
+  };
+
   const [currentIndex, setCurrentIndex] = useState(null);
   const [revealed, setRevealed] = useState({}); // tracks which images are revealed on mobile
 
   const handleToggle = (id) => {
     setRevealed((prev) => ({ ...prev, [id]: !prev[id] }));
   };
+
+  const neighborhoods = [
+    {
+      id: "vila-madalena",
+      name: "Vila Madalena",
+      img: "/images/SaoPauloLanding/VilaMadalenaF.webp",
+      coords: [-23.555, -46.693],
+    },
+    {
+      id: "pinheiros",
+      name: "Pinheiros",
+      img: "/images/SaoPauloLanding/PinheirosF.webp",
+      coords: [-23.563, -46.698],
+    },
+    {
+      id: "jardins",
+      name: "Jardins",
+      img: "/images/SaoPauloLanding/JardinsF.webp",
+      coords: [-23.565, -46.668],
+    },
+    {
+      id: "liberdade",
+      name: "Liberdade",
+      img: "/images/SaoPauloLanding/LiberdadeF.webp",
+      coords: [-23.558, -46.636],
+    },
+    {
+      id: "centro",
+      name: "Centro",
+      img: "/images/SaoPauloLanding/CentroF.webp",
+      coords: [-23.548, -46.633],
+    },
+  ];
+
+  const mapMarkers = neighborhoods.map((dest) => ({
+    id: dest.id,
+    name: dest.name,
+    coordinates: dest.coords,
+    link: `/nomads-shop/brazil/saopaulo?category=${dest.name}`,
+  }));
 
   return (
     <div className="relative min-h-screen flex flex-col">
@@ -86,7 +139,7 @@ function SaoPaulo() {
         />
       </div>
 
-      <section className="max-w-screen-lg mx-auto px-6 py-8 space-y-8 mb-12 text-[#e2e1dc] leading-relaxed">
+      <section className="max-w-screen-lg mx-auto px-6 pt-8 pb-4 text-[#e2e1dc] leading-relaxed">
         <div className="flex justify-center mb-4">
           <img
             src={`${process.env.PUBLIC_URL}/images/SaoPauloLanding/heading2.webp`}
@@ -95,7 +148,32 @@ function SaoPaulo() {
             loading="lazy"
           />
         </div>
+      </section>
 
+      {/* Banner Spread with Map */}
+      <div className="relative w-full mb-8 overflow-hidden">
+        <div
+          className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[110vw] pointer-events-none z-10"
+          style={{
+            ...spreadBackgroundStyle,
+            filter: "url(#torn-paper-filter) drop-shadow(0 0 12px rgba(0,0,0,0.4))",
+            opacity: 1
+          }}
+        />
+        <div className="relative z-20 max-w-5xl mx-auto px-4 py-8 flex flex-col items-center mt-[-10px]">
+          <div className="w-full max-w-4xl overflow-visible mb-[-10px]">
+            <ContextMap
+              markers={saopauloCoords ? [saopauloCoords] : []}
+              zoomToId="saopaulo"
+              title="Where is São Paulo?"
+              geography={saopauloCoords?.geography}
+              transparent={true}
+            />
+          </div>
+        </div>
+      </div>
+
+      <section className="max-w-screen-lg mx-auto px-6 py-8 space-y-8 mb-8 text-[#e2e1dc] leading-relaxed">
         <p>
           São Paulo moves with a rhythm that’s hard to pin down — part jazz, part traffic, part heartbeat. Rain on concrete smells faintly of roasted coffee, and music leaks from apartment windows. The energy hums beneath everything.
         </p>
@@ -178,12 +256,6 @@ function SaoPaulo() {
         <p className="text-center mt-4">
           These glimpses capture just the first layer of São Paulo — now let’s dive into the city’s top five experiences.
         </p>
-
-        <ContextMap
-          markers={[saopauloCoords].filter(Boolean)}
-          zoomToId="saopaulo"
-          title="Where is São Paulo?"
-        />
       </section>
 
       <main className="px-4 py-8 max-w-screen-lg mx-auto space-y-6">

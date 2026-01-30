@@ -75,29 +75,34 @@ function SearchResults() {
   );
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-start py-12 px-4 bg-gray-50">
-      <h1 className="text-3xl font-semibold mb-6">Search Results for "{query}"</h1>
+    <div className="min-h-screen flex flex-col items-center justify-start py-12 px-4 bg-stony-paper-light font-cormorant">
+      <h1 className="text-3xl font-bold mb-8 text-[#101E0E] tracking-tight">Search Results for "{query}"</h1>
 
       {results.length > 0 ? (
-        <div className="flex flex-col items-center gap-4 w-full max-w-md">
+        <div className="flex flex-col items-center gap-6 w-full max-w-2xl">
           {results.map((item, index) => (
             <Link
               key={index}
               to={item.path}
-              className="w-full bg-white rounded-md p-4 shadow hover:bg-gray-100 transition"
+              className="w-full bg-white/40 backdrop-blur-sm border border-black/5 rounded-lg p-6 shadow-sm hover:bg-white/60 transition-all duration-300 group"
             >
-              <h2 className="text-xl font-medium">{highlightMatch(item.title, query)}</h2>
-              <p className="text-gray-700">{highlightMatch(item.description, query)}</p>
+              <h2 className="text-2xl font-bold text-[#101E0E] mb-2 group-hover:text-[#5F7536] transition-colors">{highlightMatch(item.title, query)}</h2>
+              <p className="text-[#101E0E]/80 text-lg leading-relaxed">{highlightMatch(item.description, query)}</p>
+              <div className="mt-3 text-sm text-[#5F7536] font-semibold opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest">
+                Explore &rarr;
+              </div>
             </Link>
           ))}
         </div>
       ) : (
-        <p className="text-gray-700 text-lg mb-4">No results found.</p>
+        <div className="text-center bg-white/40 backdrop-blur-sm p-8 rounded-lg border border-black/5">
+          <p className="text-[#101E0E]/70 text-xl font-medium mb-4 italic">Alas, no matches found in our journals.</p>
+        </div>
       )}
 
       <Link
         to="/"
-        className="mt-8 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+        className="mt-12 px-8 py-3 bg-[#101E0E] text-[#E5CF6B] rounded-full hover:bg-[#101E0E]/90 transition-all transform hover:scale-105 font-bold uppercase tracking-widest text-sm shadow-md"
       >
         ← Return Home
       </Link>

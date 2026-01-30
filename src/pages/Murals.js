@@ -6,7 +6,7 @@ import Lightbox from "../components/Lightbox";
 import artImages from "../assets/artImages.json";
 import { fadeScale, staggerContainer } from "../utils/animations";
 
-export default function Murals() {
+export default function Murals({ openLightbox }) {
   const muralImages = artImages.filter((img) => img.category === "Murals");
 
   const galleryTexts = [
@@ -20,7 +20,6 @@ export default function Murals() {
     "The Open-Air Gallery of São Paulo continues to evolve with each passing year. From tiny corners to sprawling walls, murals reflect current events, neighbourhood culture, and artists’ personal journeys. Walking these streets is a journey through the city’s collective imagination, where public space transforms into a living, breathing exhibition — a testament to São Paulo’s energy, adaptability, and love for visual storytelling."
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(null);
 
   return (
     <div className="relative min-h-screen pt-2">
@@ -48,13 +47,8 @@ export default function Murals() {
       </div>
 
       {/* Murals Title */}
-      <div className="flex justify-center mb-6 px-4">
-        <img
-          src={process.env.PUBLIC_URL + "/images/Murals/MuralsTitle.webp"}
-          alt="Murals of São Paulo"
-          loading="lazy"
-          className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg h-auto"
-        />
+      <div className="flex justify-center mb-6 px-4 mt-8">
+        <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-darkText tracking-tight text-center">Street Murals</h1>
       </div>
 
       <main className="px-2 py-2 max-w-screen-lg mx-auto space-y-6 font-cormorant text-darkText leading-relaxed">
@@ -72,7 +66,7 @@ export default function Murals() {
               src={img.image}
               alt={`${img.title} mural in São Paulo`}
               loading="lazy"
-              onClick={() => setCurrentIndex(idx)}
+              onClick={() => openLightbox(idx, muralImages.map(i => i.image), muralImages.map(i => i.title))}
               className="rounded-lg cursor-pointer w-10/12 sm:w-3/4 md:w-2/3 lg:w-2/5 h-auto shadow-md hover:opacity-95 transition-opacity p-4 max-w-[350px]"
             />
             <div className="p-4 rounded-md flex-1 text-left text-sm sm:text-base lg:text-lg leading-relaxed">
@@ -83,14 +77,6 @@ export default function Murals() {
         ))}
       </main>
 
-      {/* Lightbox */}
-      {currentIndex !== null && (
-        <Lightbox
-          images={muralImages}
-          currentIndex={currentIndex}
-          setCurrentIndex={setCurrentIndex}
-        />
-      )}
     </div>
   );
 }

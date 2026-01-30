@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import paperTexture from '../assets/Backgrounds/PaperTexture.jpg';
 
-const ContextMap = ({ markers = [], zoomToId = null, title = "Location Context", variant = "detail" }) => {
+const ContextMap = ({ markers = [], zoomToId = null, title = "Location Context", variant = "detail", locationContext = null, onHoverMarker = null, showTitle = true, geography = null, transparent = false }) => {
     const [hoveredId, setHoveredId] = useState(null);
 
     // User-provided SVG Path for Brazil (cls-1)
@@ -45,130 +46,216 @@ const ContextMap = ({ markers = [], zoomToId = null, title = "Location Context",
     };
 
     // Determine viewBox based on variant
-    const viewBox = variant === "overview" ? "190 20 420 620" : "220 25 420 420";
+    const viewBox = variant === "overview" ? "190 20 420 610" : "260 40 340 380";
+
+    const displayContext = locationContext || (markers.length === 1 && markers[0].locationContext ? markers[0].locationContext : null);
+
+    // Site Standard Charcoal
+    const siteCharcoal = "#101E0E";
+
+    // Organic Torn & Burned Paper Style Variables
+    const bannerTopCarbon = "#2D1802";
+    const bannerBottomCarbon = "#2D1802";
+
+    const bannerBackgroundStyle = geography ? {
+        backgroundImage: `
+            linear-gradient(to bottom, ${bannerTopCarbon} 0px, transparent 3px), 
+            linear-gradient(to top, ${bannerBottomCarbon} 0px, transparent 3px),
+            url(${paperTexture})
+        `,
+        backgroundBlendMode: 'normal, normal, multiply',
+        backgroundColor: 'rgba(255, 248, 230, 0.45)', // Internal background stays subtle
+        boxShadow: `
+            inset 0 0 40px rgba(139, 69, 19, 0.2), 
+            inset 0 0 100px rgba(0, 0, 0, 0.1),
+            0 10px 30px rgba(0, 0, 0, 0.2)
+        `,
+        filter: 'url(#torn-paper-filter)',
+        WebkitFilter: 'url(#torn-paper-filter)',
+        maskImage: 'linear-gradient(black, black)',
+        WebkitMaskImage: 'linear-gradient(black, black)',
+        maskSize: '100% 100%',
+        WebkitMaskSize: '100% 100%',
+    } : {};
 
     return (
-        <div className="flex flex-col items-center my-12 px-4">
-            <h3 className="text-2xl font-bold mb-6 font-cormorant text-[#E5CF6B]">{title}</h3>
+        <div className="flex flex-col items-center w-full">
+            {/* Hidden SVG Filter for Paper Distortion */}
+            {geography && (
+                <svg className="absolute w-0 h-0 invisible" aria-hidden="true" focusable="false">
+                    <defs>
+                        <filter id="torn-paper-filter" x="-20%" y="-20%" width="140%" height="140%">
+                            <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" seed="5" result="noise" />
+                            <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G" />
+                        </filter>
+                    </defs>
+                </svg>
+            )}
 
-            <div className={`relative w-full ${variant === 'overview' ? 'max-w-[500px] aspect-[4/5]' : 'max-w-[400px] aspect-square'} bg-white/5 rounded-2xl p-6 backdrop-blur-sm shadow-xl border border-white/10`}>
-                <svg viewBox={viewBox} className="w-full h-full drop-shadow-2xl">
-                    {/* Other Countries (Subtle Context) - Only in Overview */}
-                    {variant === "overview" && otherPaths.map((path, idx) => (
-                        <path
-                            key={idx}
-                            d={path}
-                            fill="none"
-                            stroke="#E5CF6B"
-                            strokeWidth="1"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="opacity-10"
-                        />
-                    ))}
+            {showTitle && !geography && (
+                <div className="text-center mb-6">
+                    <h3 className="text-2xl font-bold font-cormorant text-[#E5CF6B]">{title}</h3>
+                    {displayContext && (
+                        <p className="text-sm text-[#E5CF6B]/60 font-cormorant italic mt-1">
+                            {displayContext}
+                        </p>
+                    )}
+                </div>
+            )}
 
-                    {/* Brazil Outline (Highlighted) */}
-                    <path
-                        d={brazilPath}
-                        fill="rgba(229, 207, 107, 0.05)"
-                        stroke="#E5CF6B"
-                        strokeWidth="3"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="opacity-50"
+            <div className={`relative w-full my-0 text-center`}>
+                {geography && !transparent && (
+                    <div
+                        className="absolute inset-x-0 inset-y-[-10px] backdrop-blur-xl pointer-events-none z-0"
+                        style={bannerBackgroundStyle}
                     />
+                )}
 
-                    {/* Markers */}
-                    {markers.map((marker, index) => {
-                        const x = getX(marker.lng);
-                        const y = getY(marker.lat);
-                        const isHighlighted = zoomToId === marker.id;
-                        const isHovered = hoveredId === marker.id;
+                <div className="relative z-10 py-8">
+                    <div className="flex flex-col lg:flex-row items-center justify-center gap-4 w-full max-w-5xl mx-auto px-4">
+                        {geography && typeof geography === 'string' && (
+                            <div className="flex-1 text-left py-6 max-w-2xl flex flex-col justify-center">
+                                {showTitle && (
+                                    <div className="mb-2">
+                                        <h3 className="text-xl font-bold font-cormorant text-[#101E0E] leading-tight mb-0 tracking-tight">{title}</h3>
+                                        {displayContext && (
+                                            <p className="text-[10px] text-[#101E0E]/60 font-cormorant italic">
+                                                {displayContext}
+                                            </p>
+                                        )}
+                                    </div>
+                                )}
+                                <div className="pl-0">
+                                    <p className="text-base sm:text-lg font-cormorant text-[#101E0E]/90 leading-relaxed italic">
+                                        {geography}
+                                    </p>
+                                </div>
+                            </div>
+                        )}
 
-                        return (
-                            <g
-                                key={marker.id || index}
-                                onMouseEnter={() => setHoveredId(marker.id)}
-                                onMouseLeave={() => setHoveredId(null)}
-                            >
-                                {/* Pulse Animation */}
-                                <motion.circle
-                                    cx={x}
-                                    cy={y}
-                                    r={isHighlighted ? 12 : 8}
-                                    fill="#E5CF6B"
-                                    initial={{ scale: 0.8, opacity: 0.3 }}
-                                    animate={{
-                                        scale: [0.8, 1.5, 0.8],
-                                        opacity: [0.3, 0.1, 0.3]
-                                    }}
-                                    transition={{
-                                        duration: 2,
-                                        repeat: Infinity,
-                                        ease: "easeInOut"
-                                    }}
+                        <div className={`relative w-full ${typeof geography === 'string' ? 'lg:w-[180px]' : (variant === 'overview' ? 'max-w-[1200px]' : 'max-w-[400px]') + ' flex items-center justify-center'}`}>
+                            <svg viewBox={viewBox} className="w-full h-full drop-shadow-2xl">
+                                {variant === "overview" && otherPaths.map((path, idx) => (
+                                    <path
+                                        key={idx}
+                                        d={path}
+                                        fill="none"
+                                        stroke={geography ? siteCharcoal : "#DCD7C9"}
+                                        strokeWidth="1.8"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        style={{ opacity: 1 }}
+                                    />
+                                ))}
+
+                                <path
+                                    d={brazilPath}
+                                    fill={geography ? "rgba(16, 30, 14, 0.12)" : "rgba(229, 207, 107, 0.2)"}
+                                    stroke={geography ? siteCharcoal : "#DCD7C9"}
+                                    strokeWidth="4"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    style={{ opacity: 1 }}
                                 />
 
-                                {/* Main Dot */}
-                                {marker.path ? (
-                                    <Link to={marker.path}>
-                                        <motion.circle
-                                            cx={x}
-                                            cy={y}
-                                            r={isHighlighted || isHovered ? 6 : 4}
-                                            fill={isHighlighted || isHovered ? "#fff" : "#E5CF6B"}
+                                {markers.map((marker, index) => {
+                                    const x = getX(marker.lng);
+                                    const y = getY(marker.lat);
+                                    const isHighlighted = zoomToId === marker.id;
+                                    const isHovered = hoveredId === marker.id || zoomToId === marker.id;
+                                    const activeCharcoal = "#040804"; // Extra deep for pins
+
+                                    return (
+                                        <g
+                                            key={marker.id || index}
                                             className="cursor-pointer"
-                                            whileHover={{ scale: 1.5 }}
-                                        />
-                                    </Link>
-                                ) : (
-                                    <motion.circle
-                                        cx={x}
-                                        cy={y}
-                                        r={isHighlighted || isHovered ? 6 : 4}
-                                        fill={isHighlighted || isHovered ? "#fff" : "#E5CF6B"}
-                                    />
-                                )}
+                                            onMouseEnter={() => {
+                                                setHoveredId(marker.id);
+                                                if (onHoverMarker) onHoverMarker(marker.id);
+                                            }}
+                                            onMouseLeave={() => {
+                                                setHoveredId(null);
+                                                if (onHoverMarker) onHoverMarker(null);
+                                            }}
+                                        >
+                                            <motion.circle
+                                                cx={x}
+                                                cy={y}
+                                                r={isHighlighted ? 12 : 8}
+                                                fill={geography ? siteCharcoal : "#E5CF6B"}
+                                                initial={{ scale: 0.8, opacity: 0.5 }}
+                                                animate={{
+                                                    scale: [0.8, 1.8, 0.8],
+                                                    opacity: [0.5, 0.2, 0.5]
+                                                }}
+                                                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                                            />
 
-                                {/* Label */}
-                                {(isHighlighted || isHovered || markers.length < 5) && (
-                                    <motion.text
-                                        initial={{ opacity: 0, x: x + 15 }}
-                                        animate={{ opacity: 1, x: x + 10 }}
-                                        y={y + 4}
-                                        fill={isHighlighted || isHovered ? "#fff" : "#E5CF6B"}
-                                        className="text-[14px] font-medium pointer-events-none font-cormorant"
-                                        style={{ textShadow: '0 0 4px rgba(0,0,0,0.8)' }}
+                                            {marker.path ? (
+                                                <Link to={marker.path}>
+                                                    <motion.circle
+                                                        cx={x}
+                                                        cy={y}
+                                                        r={isHighlighted || isHovered ? 6 : 4}
+                                                        fill={isHighlighted || isHovered ? (geography ? activeCharcoal : "#EAE0C8") : (geography ? siteCharcoal : "#E5CF6B")}
+                                                        whileHover={{ scale: 1.5 }}
+                                                        style={{ opacity: 1 }}
+                                                    />
+                                                </Link>
+                                            ) : (
+                                                <motion.circle
+                                                    cx={x}
+                                                    cy={y}
+                                                    r={isHighlighted || isHovered ? 6 : 4}
+                                                    fill={isHighlighted || isHovered ? (geography ? activeCharcoal : "#EAE0C8") : (geography ? siteCharcoal : "#E5CF6B")}
+                                                    style={{ opacity: 1 }}
+                                                />
+                                            )}
+
+                                            {/* Hover Labels with matched typography */}
+                                            {geography && isHovered && (
+                                                <motion.g
+                                                    initial={{ opacity: 0, y: 5 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    className="pointer-events-none"
+                                                >
+                                                    <text
+                                                        x={x}
+                                                        y={y - 18}
+                                                        textAnchor="middle"
+                                                        className="font-cormorant font-bold"
+                                                        style={{
+                                                            fill: siteCharcoal,
+                                                            fontSize: '28px', // Slightly larger to match text-lg
+                                                            filter: 'drop-shadow(0 2px 4px rgba(255,255,255,0.8))'
+                                                        }}
+                                                    >
+                                                        {marker.name}
+                                                    </text>
+                                                </motion.g>
+                                            )}
+                                        </g>
+                                    );
+                                })}
+                            </svg>
+
+                            {markers.length === 1 && (
+                                <div className="absolute bottom-4 right-4">
+                                    <a
+                                        href={markers[0].googleMapsUrl || `https://www.google.com/maps/search/?api=1&query=${markers[0].lat},${markers[0].lng}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-xs text-[#E5CF6B] hover:underline font-cormorant flex items-center gap-1 bg-black/40 px-2 py-1 rounded"
                                     >
-                                        {marker.name}
-                                    </motion.text>
-                                )}
-                            </g>
-                        );
-                    })}
-                </svg>
-
-                {/* Legend / Google Maps Link for Single Marker */}
-                {markers.length === 1 && (
-                    <div className="absolute bottom-4 right-4">
-                        <a
-                            href={markers[0].googleMapsUrl || `https://www.google.com/maps/search/?api=1&query=${markers[0].lat},${markers[0].lng}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-xs text-[#E5CF6B] hover:underline font-cormorant flex items-center gap-1 bg-black/40 px-2 py-1 rounded"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                            Google Maps
-                        </a>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 0 0 1-2-2V8a2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                        Google Maps
+                                    </a>
+                                </div>
+                            )}
+                        </div>
                     </div>
-                )}
+                </div>
             </div>
-
-            {markers.length > 1 && (
-                <p className="mt-4 text-sm text-[#E5CF6B]/60 font-cormorant italic">
-                    Click a marker to explore the destination
-                </p>
-            )}
         </div>
     );
 };
