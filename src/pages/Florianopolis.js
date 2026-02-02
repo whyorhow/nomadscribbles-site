@@ -158,6 +158,14 @@ function Florianopolis({ openLightbox }) {
         }
     ];
 
+    const pageBackgroundStyle = {
+        backgroundImage: `url(${paperTexture})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        filter: "contrast(1.1) brightness(1.1)", // Slight enhancement for the paper feel
+        opacity: 1,
+    };
+
     return (
         <div className="relative min-h-screen pt-2">
             {/* SEO */}
@@ -168,56 +176,62 @@ function Florianopolis({ openLightbox }) {
                 slug="/brazil/florianopolis"
             />
 
+            {/* Global Paper Background */}
+            <div
+                className="fixed inset-0 pointer-events-none z-0"
+                style={pageBackgroundStyle}
+            />
+
             {/* Hidden H1 */}
             <h1 className="sr-only">Florianópolis | Nomad Scribbles</h1>
 
+            {/* Content Wrapper to ensure z-index above background */}
+            <div className="relative z-10">
 
-            {/* Title Section */}
-            <div className="flex justify-center mb-6 px-4 mt-8">
-                <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-darkText tracking-tight text-center">Florianópolis</h1>
-            </div>
+                {/* Title Section */}
+                <div className="flex justify-center mb-6 px-4 mt-8">
+                    <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-darkText tracking-tight text-center drop-shadow-sm">Florianópolis</h1>
+                </div>
 
-            {/* Feature Image */}
-            <div className="w-full max-w-4xl mx-auto px-4 mb-12 flex flex-col items-center">
-                <img
-                    src="/images/Floripa/assets_small/Floripa14.webp"
-                    alt="Footprints leading to the water in Florianópolis"
-                    className="w-full h-auto object-cover rounded-lg shadow-md mb-2"
-                />
-                <p className="text-sm italic opacity-80 text-center">Footsteps trail along the beach before dissolving into the tide.</p>
-            </div>
+                {/* Feature Image */}
+                <div className="w-full max-w-4xl mx-auto px-4 mb-12 flex flex-col items-center">
+                    <img
+                        src="/images/Floripa/assets_small/Floripa14.webp"
+                        alt="Footprints leading to the water in Florianópolis"
+                        className="w-full h-auto object-cover rounded-lg shadow-lg mb-2"
+                    />
+                    <p className="text-sm italic opacity-80 text-center font-medium text-stone-700">Footsteps trail along the beach before dissolving into the tide.</p>
+                </div>
 
-            {/* Banner Spread with Map */}
-            <div className="relative w-full mb-16 overflow-hidden">
-                <div
-                    className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[110vw] pointer-events-none z-0"
-                    style={spreadBackgroundStyle}
-                />
-
-                <div className="relative z-20 max-w-5xl mx-auto px-4 py-8 flex flex-col items-center mt-[-10px]">
-                    <div className="w-full max-w-4xl overflow-visible mb-[-10px]">
-                        <ContextMap
-                            markers={[florianopolisCoords].filter(Boolean)}
-                            zoomToId="florianopolis"
-                            title="Where is Florianópolis?"
-                            geography={florianopolisCoords?.geography}
-                            transparent={true}
-                        />
+                {/* Banner Spread with Map */}
+                <div className="relative w-full mb-16 overflow-hidden">
+                    {/* Note: We removed the duplicate background here since it's now global,
+                        but we keep the layout for the map context */}
+                    <div className="relative z-20 max-w-5xl mx-auto px-4 py-8 flex flex-col items-center mt-[-10px]">
+                        <div className="w-full max-w-4xl overflow-visible mb-[-10px]">
+                            <ContextMap
+                                markers={[florianopolisCoords].filter(Boolean)}
+                                zoomToId="florianopolis"
+                                title="Where is Florianópolis?"
+                                geography={florianopolisCoords?.geography}
+                                transparent={true}
+                            />
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            {/* Main Content with Interactive Sections */}
-            <main className="px-2 py-2 max-w-screen-xl mx-auto space-y-8 flex flex-col items-center">
-                {sections.map((section) => (
-                    <StoryCard
-                        key={section.id}
-                        section={section}
-                        getImage={getImage}
-                        handleImageClick={handleImageClick}
-                    />
-                ))}
-            </main>
+                {/* Main Content with Interactive Sections */}
+                <main className="px-2 py-2 max-w-screen-xl mx-auto space-y-8 flex flex-col items-center pb-24">
+                    {sections.map((section) => (
+                        <StoryCard
+                            key={section.id}
+                            section={section}
+                            getImage={getImage}
+                            handleImageClick={handleImageClick}
+                        />
+                    ))}
+                </main>
+            </div>
         </div>
     );
 }
@@ -228,7 +242,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
     return (
         <motion.div
             layout
-            className={`w-full max-w-6xl bg-white/90 backdrop-blur-md rounded-xl overflow-hidden shadow-sm cursor-pointer transition-all duration-300 ${isHovered ? "shadow-2xl bg-white/95" : ""}`}
+            className={`w-full max-w-6xl bg-stone-900/90 backdrop-blur-md rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 ${isHovered ? "shadow-2xl bg-stone-900/95" : ""}`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onClick={() => setIsHovered(!isHovered)} // Tap to toggle on mobile
@@ -238,7 +252,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
         >
             {/* Header / Cover State */}
             <div className="relative p-6 md:p-10 flex flex-col items-center">
-                <h2 className="text-4xl md:text-6xl font-bold font-handwriting mb-8 text-center text-darkText">
+                <h2 className="text-4xl md:text-6xl font-bold font-handwriting mb-8 text-center text-stone-100">
                     {section.title}
                 </h2>
 
@@ -249,18 +263,18 @@ function StoryCard({ section, getImage, handleImageClick }) {
                         className="w-full h-auto object-contain rounded-sm mb-6"
                     />
                     {section.coverCaption && (
-                        <p className="text-center text-base italic opacity-90 mb-6 font-medium text-stone-700">{section.coverCaption}</p>
+                        <p className="text-center text-base italic opacity-80 mb-6 font-medium text-stone-400">{section.coverCaption}</p>
                     )}
                 </div>
 
-                {/* Indication to expand (only visible when not hovered?? actually lets keep it simple) */}
+                {/* Indication to expand */}
                 <motion.div
                     initial={{ opacity: 1, height: "auto" }}
                     animate={{ opacity: isHovered ? 0 : 1, height: isHovered ? 0 : "auto" }}
                     className="flex flex-col items-center h-8"
                 >
-                    <p className="text-xs uppercase tracking-widest opacity-60 mt-2 font-semibold">Explore Section</p>
-                    <div className="w-px h-4 bg-darkText/30 mt-1"></div>
+                    <p className="text-xs uppercase tracking-widest opacity-50 mt-2 font-semibold text-stone-400">Explore Section</p>
+                    <div className="w-px h-4 bg-stone-400/30 mt-1"></div>
                 </motion.div>
             </div>
 
@@ -272,12 +286,12 @@ function StoryCard({ section, getImage, handleImageClick }) {
                     height: isHovered ? "auto" : 0
                 }}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="overflow-hidden bg-white/40"
+                className="overflow-hidden bg-stone-900/40"
             >
                 <div className="px-6 pb-12 md:px-16 md:pb-20 flex flex-col items-center space-y-10">
                     {section.content.map((item, idx) => {
                         if (item.type === "text") {
-                            return <p key={idx} className="text-xl leading-relaxed max-w-4xl text-center md:text-left text-stone-800 font-medium">{item.text}</p>;
+                            return <p key={idx} className="text-xl leading-relaxed max-w-4xl text-center md:text-left text-stone-300 font-medium">{item.text}</p>;
                         }
                         if (item.type === "image") {
                             const img = getImage(item.id);
@@ -290,7 +304,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
                                         onClick={(e) => { e.stopPropagation(); handleImageClick(item.id); }}
                                         className="w-full h-auto rounded-sm cursor-pointer hover:opacity-95 transition-opacity"
                                     />
-                                    {item.caption && <p className="mt-3 text-base italic opacity-90 text-center text-stone-700">{item.caption}</p>}
+                                    {item.caption && <p className="mt-3 text-base italic opacity-80 text-center text-stone-400">{item.caption}</p>}
                                 </div>
                             );
                         }
@@ -316,18 +330,18 @@ function StoryCard({ section, getImage, handleImageClick }) {
                         }
                         if (item.type === "quote") {
                             return (
-                                <blockquote key={idx} className="border-l-4 border-gold pl-6 italic my-6 text-xl opacity-90 max-w-2xl md:text-left">
+                                <blockquote key={idx} className="border-l-4 border-gold pl-6 italic my-6 text-xl opacity-90 max-w-2xl md:text-left text-stone-300">
                                     {item.text.split('\n').map((line, i) => <span key={i} className="block">{line}</span>)}
-                                    {item.source && <span className="text-base not-italic block mt-2 font-bold">{item.source}</span>}
+                                    {item.source && <span className="text-base not-italic block mt-2 font-bold text-stone-400">{item.source}</span>}
                                 </blockquote>
                             );
                         }
                         if (item.type === "header") {
-                            return <h3 key={idx} className="text-2xl md:text-3xl font-bold font-handwriting mt-4 text-center">{item.text}</h3>;
+                            return <h3 key={idx} className="text-2xl md:text-3xl font-bold font-handwriting mt-4 text-center text-stone-100">{item.text}</h3>;
                         }
                         if (item.type === "list") {
                             return (
-                                <ul key={idx} className="list-disc pl-5 space-y-4 text-lg max-w-2xl text-left">
+                                <ul key={idx} className="list-disc pl-5 space-y-4 text-lg max-w-2xl text-left text-stone-300">
                                     {item.items.map((li, i) => <li key={i}>{li}</li>)}
                                 </ul>
                             );
