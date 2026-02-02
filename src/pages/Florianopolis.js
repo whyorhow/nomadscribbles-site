@@ -197,7 +197,7 @@ function Florianopolis({ openLightbox }) {
 
                 {/* Title Section */}
                 <div className="flex justify-center mb-6 px-4 mt-8">
-                    <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-stone-100 tracking-tight text-center drop-shadow-sm">Florianópolis</h1>
+                    <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-[#D4AF37] tracking-tight text-center drop-shadow-sm">Florianópolis</h1>
                 </div>
 
                 {/* Feature Image */}
