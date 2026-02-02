@@ -66,10 +66,11 @@ function Florianopolis({ openLightbox }) {
     return (
         <div className="relative min-h-screen pt-2">
             {/* SEO */}
+            {/* SEO */}
             <SEO
                 title="Florianópolis | Nomad Scribbles"
                 description="Florianópolis: An island city where lush hills meet over 40 distinct beaches. Discover the diverse geography of Brazil's southern coast."
-                image="/images/Floripa/small/Floripa1.webp"
+                image="/images/Floripa/assets_small/Floripa1z.webp"
                 slug="/brazil/florianopolis"
             />
 
@@ -85,7 +86,7 @@ function Florianopolis({ openLightbox }) {
             {/* Feature Image */}
             <div className="w-full max-w-4xl mx-auto px-4 mb-12 flex flex-col items-center">
                 <img
-                    src="/images/Floripa/small/Floripa14.webp"
+                    src="/images/Floripa/assets_small/Floripa14z.webp"
                     alt="Footprints leading to the water in Florianópolis"
                     className="w-full h-auto object-cover rounded-lg shadow-md mb-2"
                 />
