@@ -246,6 +246,44 @@ function Florianopolis({ openLightbox }) {
     );
 }
 
+// Reusable animated image component
+function RevealImage({ smallSrc, fullSrc, alt, onClick, caption }) {
+    const [isHovered, setIsHovered] = useState(false);
+
+    return (
+        <div
+            className={`relative max-w-5xl mx-auto transition-all duration-700 ease-in-out my-8 ${isHovered ? "w-full p-0" : "w-1/2 p-4 bg-white/5"}`}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
+            <div className="relative w-full">
+                {/* Small Framed Image (Visible by default) */}
+                <img
+                    src={smallSrc}
+                    alt={alt}
+                    onClick={onClick}
+                    className={`w-full h-auto object-contain rounded-sm shadow-sm transition-opacity duration-500 cursor-pointer ${isHovered ? "opacity-0" : "opacity-100"}`}
+                />
+
+                {/* High-Res Full Image (Fades in on hover) */}
+                <img
+                    src={fullSrc}
+                    alt={alt}
+                    onClick={onClick}
+                    className={`absolute inset-0 w-full h-full object-cover rounded-sm transition-opacity duration-700 cursor-pointer ${isHovered ? "opacity-100" : "opacity-0"}`}
+                    loading="lazy"
+                />
+            </div>
+
+            {caption && (
+                <p className={`text-center text-sm italic mt-4 font-medium text-stone-300 transition-opacity duration-500 ${isHovered ? "opacity-100" : "opacity-0"}`}>
+                    {caption}
+                </p>
+            )}
+        </div>
+    );
+}
+
 function StoryCard({ section, getImage, handleImageClick }) {
     const [isHovered, setIsHovered] = useState(false);
 
@@ -266,30 +304,14 @@ function StoryCard({ section, getImage, handleImageClick }) {
                     {section.title}
                 </h2>
 
-                {/* Animated Image Container */}
-                <div className={`relative max-w-5xl mx-auto transition-all duration-700 ease-in-out ${isHovered ? "w-full p-0" : "w-1/2 p-4 bg-white/5"}`}>
-
-                    {/* Small Framed Image (Visible by default) */}
-                    <img
-                        src={getImage(section.coverImage)?.image}
-                        alt={section.title}
-                        className={`w-full h-auto object-contain rounded-sm shadow-sm transition-opacity duration-500 ${isHovered ? "opacity-0" : "opacity-100"}`}
-                    />
-
-                    {/* High-Res Full Image (Fades in on hover) */}
-                    <img
-                        src={getImage(section.coverImage)?.lightboxImage}
-                        alt={section.title}
-                        className={`absolute inset-0 w-full h-full object-cover rounded-sm transition-opacity duration-700 ${isHovered ? "opacity-100" : "opacity-0"}`}
-                        loading="lazy"
-                    />
-                </div>
-
-                {section.coverCaption && (
-                    <p className={`text-center text-base italic mb-6 font-medium text-stone-200 mt-6 transition-opacity duration-300 ${isHovered ? "opacity-100" : "opacity-80"}`}>
-                        {section.coverCaption}
-                    </p>
-                )}
+                {/* Reused Reveal Animation for Cover */}
+                <RevealImage
+                    smallSrc={getImage(section.coverImage)?.image}
+                    fullSrc={getImage(section.coverImage)?.lightboxImage}
+                    alt={section.title}
+                    caption={section.coverCaption}
+                    onClick={() => handleImageClick(section.coverImage)}
+                />
 
                 {/* Indication to expand */}
                 <motion.div
@@ -321,14 +343,14 @@ function StoryCard({ section, getImage, handleImageClick }) {
                             const img = getImage(item.id);
                             if (!img) return null;
                             return (
-                                <div key={idx} className="flex flex-col items-center max-w-5xl w-full">
-                                    <img
-                                        src={img.image}
+                                <div key={idx} className="w-full">
+                                    <RevealImage
+                                        smallSrc={img.image}
+                                        fullSrc={img.lightboxImage}
                                         alt={img.title || ""}
+                                        caption={item.caption}
                                         onClick={(e) => { e.stopPropagation(); handleImageClick(item.id); }}
-                                        className="w-full h-auto rounded-sm cursor-pointer hover:opacity-95 transition-opacity"
                                     />
-                                    {item.caption && <p className="mt-3 text-base italic opacity-80 text-center text-stone-400">{item.caption}</p>}
                                 </div>
                             );
                         }
@@ -339,12 +361,12 @@ function StoryCard({ section, getImage, handleImageClick }) {
                                         const img = getImage(id);
                                         if (!img) return null;
                                         return (
-                                            <div key={id} className="flex flex-col items-center">
-                                                <img
-                                                    src={img.image}
+                                            <div key={id} className="flex flex-col items-center w-full">
+                                                <RevealImage
+                                                    smallSrc={img.image}
+                                                    fullSrc={img.lightboxImage}
                                                     alt={id}
                                                     onClick={(e) => { e.stopPropagation(); handleImageClick(id); }}
-                                                    className="w-full h-auto rounded-lg shadow-md cursor-pointer hover:opacity-95 transition-opacity"
                                                 />
                                             </div>
                                         );
