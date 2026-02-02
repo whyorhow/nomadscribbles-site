@@ -261,21 +261,35 @@ function StoryCard({ section, getImage, handleImageClick }) {
             viewport={{ once: true }}
         >
             {/* Header / Cover State */}
-            <div className="relative p-6 md:p-10 flex flex-col items-center">
-                <h2 className="text-4xl md:text-6xl font-bold font-handwriting mb-8 text-center text-stone-100">
+            <div className="relative p-6 md:p-10 flex flex-col items-center z-10">
+                <h2 className="text-4xl md:text-6xl font-bold font-handwriting mb-8 text-center text-stone-100 drop-shadow-md">
                     {section.title}
                 </h2>
 
-                <div className="w-full max-w-5xl">
+                {/* Animated Image Container */}
+                <div className={`relative w-full max-w-5xl transition-all duration-700 ease-in-out ${isHovered ? "p-0 scale-100" : "p-4 bg-white/5 scale-95"}`}>
+
+                    {/* Small Framed Image (Visible by default) */}
                     <img
                         src={getImage(section.coverImage)?.image}
                         alt={section.title}
-                        className="w-full h-auto object-contain rounded-sm mb-6"
+                        className={`w-full h-auto object-contain rounded-sm shadow-sm transition-opacity duration-500 ${isHovered ? "opacity-0" : "opacity-100"}`}
                     />
-                    {section.coverCaption && (
-                        <p className="text-center text-base italic opacity-80 mb-6 font-medium text-stone-400">{section.coverCaption}</p>
-                    )}
+
+                    {/* High-Res Full Image (Fades in on hover) */}
+                    <img
+                        src={getImage(section.coverImage)?.lightboxImage}
+                        alt={section.title}
+                        className={`absolute inset-0 w-full h-full object-cover rounded-sm transition-opacity duration-700 ${isHovered ? "opacity-100" : "opacity-0"}`}
+                        loading="lazy"
+                    />
                 </div>
+
+                {section.coverCaption && (
+                    <p className={`text-center text-base italic mb-6 font-medium text-stone-200 mt-6 transition-opacity duration-300 ${isHovered ? "opacity-100" : "opacity-80"}`}>
+                        {section.coverCaption}
+                    </p>
+                )}
 
                 {/* Indication to expand */}
                 <motion.div
