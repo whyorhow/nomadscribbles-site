@@ -159,7 +159,7 @@ function Florianopolis({ openLightbox }) {
     ];
 
     const pageBackgroundStyle = {
-        backgroundColor: "#fdfbf7", // Subtle off-white/paper color
+        backgroundColor: "#F0F4EF", // Subtle light sage/green tone to match the nature theme
         opacity: 1,
     };
 
