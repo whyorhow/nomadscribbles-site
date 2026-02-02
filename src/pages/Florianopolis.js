@@ -159,7 +159,7 @@ function Florianopolis({ openLightbox }) {
     ];
 
     const pageBackgroundStyle = {
-        backgroundColor: "#E2EBE5", // More visible sage green
+        backgroundColor: "#84935c", // Deep olive green as requested
         opacity: 1,
     };
 
@@ -197,7 +197,7 @@ function Florianopolis({ openLightbox }) {
 
                 {/* Title Section */}
                 <div className="flex justify-center mb-6 px-4 mt-8">
-                    <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-darkText tracking-tight text-center drop-shadow-sm">Florianópolis</h1>
+                    <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-stone-100 tracking-tight text-center drop-shadow-sm">Florianópolis</h1>
                 </div>
 
                 {/* Feature Image */}
@@ -207,7 +207,7 @@ function Florianopolis({ openLightbox }) {
                         alt="Footprints leading to the water in Florianópolis"
                         className="w-full h-auto object-cover rounded-lg shadow-lg mb-2"
                     />
-                    <p className="text-sm italic opacity-80 text-center font-medium text-stone-700">Footsteps trail along the beach before dissolving into the tide.</p>
+                    <p className="text-sm italic opacity-90 text-center font-medium text-stone-200">Footsteps trail along the beach before dissolving into the tide.</p>
                 </div>
 
                 {/* Banner Spread with Map */}
