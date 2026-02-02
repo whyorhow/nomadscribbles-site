@@ -212,183 +212,336 @@ function Florianopolis({ openLightbox }) {
             </div>
 
             {/* Main Content with Narrative Interleaved */}
-            <main className="px-2 py-2 max-w-screen-lg mx-auto space-y-12 font-cormorant text-darkText leading-relaxed">
+            <main className="px-2 py-2 max-w-screen-xl mx-auto space-y-24 text-darkText leading-relaxed font-sans flex flex-col items-center">
 
-                {/* Section 1: Intro */}
-                <section className="space-y-6">
-                    <div className="max-w-none text-darkText">
-                        <h2 className="text-3xl font-bold font-handwriting mb-6">Florianópolis Is a Brazilian Holiday Island — and That Matters</h2>
-                        <p className="mb-4">
-                            Florianópolis isn’t a place built primarily for international visitors. It’s a holiday island for Brazilians, and that shapes everything about it — the pace of the beaches, the way people use the space, and the overall feel of the island. Families return here year after year, cities empty toward the coast in summer, and daily life stretches outward into sand, forest, and water.
+                {/* --- Section 1: Intro --- */}
+                <div className="w-full flex flex-col items-center space-y-12">
+                    <div className="max-w-2xl text-center md:text-left">
+                        <h2 className="text-3xl md:text-5xl font-bold font-handwriting mb-8 text-center">Florianópolis Is a Brazilian Holiday Island — and That Matters</h2>
+                        <p className="mb-6 text-lg">
+                            Florianópolis isn’t a place built primarily for international visitors. It’s a holiday island for Brazilians, and that shapes everything about it — the pace of the beaches, the way people use the space, and the overall feel of the island.
                         </p>
-                        <p className="mb-4">
-                            For European travellers, that distinction matters. Floripa isn’t loud or demanding. It feels safe, relaxed, and easy to move through, with an emphasis on being outdoors rather than being entertained. You don’t come here to collect highlights. You come here to settle into something that already works.
+                    </div>
+
+                    {/* Image 18: Where the City Meets the Sea */}
+                    {contentBlocks[1] && floripaImages.find(i => i.id === contentBlocks[1].imageId) && (
+                        <div className="flex flex-col items-center max-w-4xl text-center">
+                            <img
+                                src={floripaImages.find(i => i.id === contentBlocks[1].imageId).image}
+                                alt={contentBlocks[1].title}
+                                onClick={() => handleImageClick(contentBlocks[1].imageId)}
+                                className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer mb-4"
+                            />
+                            <p className="max-w-2xl text-sm italic opacity-80">{contentBlocks[1].text}</p>
+                        </div>
+                    )}
+
+                    <div className="max-w-2xl text-center md:text-left">
+                        <p className="mb-6 text-lg">
+                            Families return here year after year, cities empty toward the coast in summer, and daily life stretches outward into sand, forest, and water.
                         </p>
-                        <p className="mb-4">
-                            Florianópolis reveals itself slowly. Footsteps fade into the tide, coastlines widen and then narrow again, and the island shifts gently between city, beach, and forest. Even the built details — staircases, lifeguard towers, paths — feel like suggestions rather than instructions. Nothing insists on your attention for long.
+                        <p className="mb-6 text-lg">
+                            For European travellers, that distinction matters. Floripa isn’t loud or demanding. It feels safe, relaxed, and easy to move through, with an emphasis on being outdoors rather than being entertained.
                         </p>
-                        <p className="mb-4">
+                    </div>
+
+                    <div className="max-w-2xl text-center md:text-left">
+                        <p className="mb-6 text-lg">
+                            You don’t come here to collect highlights. You come here to settle into something that already works.
+                        </p>
+                        <p className="mb-6 text-lg">
+                            Florianópolis reveals itself slowly. Footsteps fade into the tide, coastlines widen and then narrow again, and the island shifts gently between city, beach, and forest.
+                        </p>
+                        <p className="mb-6 text-lg">
+                            Even the built details — staircases, lifeguard towers, paths — feel like suggestions rather than instructions. Nothing insists on your attention for long.
+                        </p>
+                        <p className="mb-6 text-lg">
                             There’s a sense that people are sharing space rather than consuming it. Beaches are used all day, towns feel lived-in, and reminders about care and responsibility are quietly part of the landscape. Wildlife appears without ceremony. Observation here feels mutual.
                         </p>
                     </div>
+                </div>
 
-                    {/* Images 1-2: City/Intro */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {contentBlocks.slice(1, 2).map((block) => {
-                            const img = floripaImages.find(i => i.id === block.imageId);
+                {/* --- Section 2: Campeche --- */}
+                <div className="w-full flex flex-col items-center space-y-12">
+                    <div className="max-w-2xl text-center md:text-left">
+                        <h3 className="text-3xl md:text-4xl font-bold font-handwriting mb-8 text-center">Campeche: Space, Not Spectacle</h3>
+                        <p className="mb-6 text-lg">
+                            Campeche feels open in every sense. The beach runs wide, backed by green hills rather than dense development, and the horizon stays uninterrupted.
+                        </p>
+                    </div>
+
+                    {/* Image 5: Campeche, Unrushed + Image 3: Steps */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl">
+                        {[2, 3].map(idx => {
+                            const block = contentBlocks[idx];
+                            const img = block ? floripaImages.find(i => i.id === block.imageId) : null;
                             return img ? (
                                 <div key={block.title} className="flex flex-col items-center">
-                                    <img
-                                        src={img.image}
-                                        alt={block.title}
-                                        loading="lazy"
-                                        onClick={() => handleImageClick(block.imageId)}
-                                        className="rounded-lg cursor-pointer w-full h-auto shadow-md hover:opacity-95 transition-opacity"
-                                    />
-                                    <p className="mt-2 text-sm italic opacity-80">{block.title}</p>
+                                    <img src={img.image} alt={block.title} onClick={() => handleImageClick(block.imageId)} className="rounded-lg shadow-md cursor-pointer mb-4" />
+                                    <p className="text-sm italic opacity-80 text-center">{block.text}</p>
                                 </div>
                             ) : null;
                         })}
                     </div>
-                </section>
 
-                {/* Section 2: Campeche */}
-                <section className="space-y-6">
-                    <div className="max-w-none text-darkText">
-                        <h3 className="text-2xl font-bold font-handwriting mb-4">Campeche: Space, Not Spectacle</h3>
-                        <p className="mb-4">
-                            Campeche feels open in every sense. The beach runs wide, backed by green hills rather than dense development, and the horizon stays uninterrupted. People arrive with coolers, towels, and time, and tend to stay put.
+                    <div className="max-w-2xl text-center md:text-left">
+                        <p className="mb-6 text-lg">
+                            People arrive with coolers, towels, and time, and tend to stay put.
                         </p>
-                        <p className="mb-4">
-                            For Brazilians, Campeche is about familiarity and freedom — long days, repeated visits, and a rhythm that doesn’t change much year to year. For visitors, it’s often where the island’s pace clicks into place. Nothing competes for attention, and that absence of pressure becomes the appeal. Even Campeche Island just offshore feels vivid without being overworked, visited calmly rather than framed as an event.
+                        <p className="mb-6 text-lg">
+                            For Brazilians, Campeche is about familiarity and freedom — long days, repeated visits, and a rhythm that doesn’t change much year to year. For visitors, it’s often where the island’s pace clicks into place.
                         </p>
-                        <blockquote className="border-l-4 border-gold pl-4 italic my-6">
+                        <p className="mb-6 text-lg">
+                            Nothing competes for attention, and that absence of pressure becomes the appeal. Even Campeche Island just offshore feels vivid without being overworked, visited calmly rather than framed as an event.
+                        </p>
+                        <blockquote className="border-l-4 border-gold pl-6 italic my-10 text-xl opacity-90 text-left">
                             "Pé na areia, água de coco, beira do mar.<br />
                             Feet in the sand, coconut water, by the sea."<br />
-                            <span className="text-sm not-italic block mt-1">— from “Pé na Areia”, Diogo Nogueira</span>
+                            <span className="text-base not-italic block mt-2 font-bold">— from “Pé na Areia”, Diogo Nogueira</span>
                         </blockquote>
                     </div>
-                    {/* Images: Campeche Group */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {contentBlocks.slice(2, 4).map((block) => {
-                            const img = floripaImages.find(i => i.id === block.imageId);
+                </div>
+
+                {/* --- Section 3: Santo Antonio (Large group broken up) --- */}
+                <div className="w-full flex flex-col items-center space-y-12">
+                    <div className="max-w-2xl text-center md:text-left">
+                        <h3 className="text-3xl md:text-4xl font-bold font-handwriting mb-8 text-center">Santo Antônio de Lisboa: Daily Life by the Water</h3>
+                        <p className="mb-6 text-lg">
+                            Santo Antônio de Lisboa sits on the quieter, bay-facing side of the island. The water is calmer here, the light softer, and evenings tend to linger.
+                        </p>
+                        <p className="mb-6 text-lg">
+                            This geography shapes how the place is used — less about the open ocean, more about staying close.
+                        </p>
+                    </div>
+
+                    {/* Images 12 & 4: Along the Shore, Lifeguard */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl">
+                        {[4, 5].map(idx => {
+                            const block = contentBlocks[idx];
+                            const img = block ? floripaImages.find(i => i.id === block.imageId) : null;
                             return img ? (
                                 <div key={block.title} className="flex flex-col items-center">
-                                    <img
-                                        src={img.image}
-                                        alt={block.title}
-                                        loading="lazy"
-                                        onClick={() => handleImageClick(block.imageId)}
-                                        className="rounded-lg cursor-pointer w-full h-auto shadow-md hover:opacity-95 transition-opacity"
-                                    />
-                                    <p className="mt-2 text-sm italic opacity-80">{block.title}</p>
+                                    <img src={img.image} alt={block.title} onClick={() => handleImageClick(block.imageId)} className="rounded-lg shadow-md cursor-pointer mb-4" />
+                                    <p className="text-sm italic opacity-80 text-center">{block.text}</p>
                                 </div>
                             ) : null;
                         })}
                     </div>
-                </section>
 
-                {/* Section 3: Santo Antonio */}
-                <section className="space-y-6">
-                    <div className="max-w-none text-darkText">
-                        <h3 className="text-2xl font-bold font-handwriting mb-4">Santo Antônio de Lisboa: Daily Life by the Water</h3>
-                        <p className="mb-4">
-                            Santo Antônio de Lisboa sits on the quieter, bay-facing side of the island. The water is calmer here, the light softer, and evenings tend to linger. This geography shapes how the place is used — less about the open ocean, more about staying close.
-                        </p>
-                        <p className="mb-4">
-                            It’s one of the island’s older settled areas, shaped by routine rather than reinvention. Boats rest near shore, restaurants fill slowly, workshops and homes sit side by side. Notes left behind, handmade objects, and unhurried meals aren’t styled for visitors — they’re simply part of how the town works. For travellers, Santo Antônio offers a glimpse of Florianópolis as somewhere people live, not perform.
+                    <div className="max-w-2xl text-center md:text-left">
+                        <p className="mb-6 text-lg">
+                            It’s one of the island’s older settled areas, shaped by routine rather than reinvention. Boats rest near shore, restaurants fill slowly, workshops and homes sit side by side.
                         </p>
                     </div>
-                    {/* Images: Santo Antonio & Village Details Group */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {contentBlocks.slice(4, 12).map((block) => {
-                            const img = floripaImages.find(i => i.id === block.imageId);
+
+                    {/* Images 17, 2, 10: Princess Flower, Figueira, Shrimp Plant */}
+                    {/* Using a grid of 3 here might be too small, lets do 2 and 1 or interleaved */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl">
+                        {[6, 7].map(idx => { // 17 (Princess), 2 (Figueira)
+                            const block = contentBlocks[idx];
+                            const img = block ? floripaImages.find(i => i.id === block.imageId) : null;
                             return img ? (
                                 <div key={block.title} className="flex flex-col items-center">
-                                    <img
-                                        src={img.image}
-                                        alt={block.title}
-                                        loading="lazy"
-                                        onClick={() => handleImageClick(block.imageId)}
-                                        className="rounded-lg cursor-pointer w-full h-auto shadow-md hover:opacity-95 transition-opacity"
-                                    />
-                                    <p className="mt-2 text-sm italic opacity-80">{block.title}</p>
+                                    <img src={img.image} alt={block.title} onClick={() => handleImageClick(block.imageId)} className="rounded-lg shadow-md cursor-pointer mb-4" />
+                                    <p className="text-sm italic opacity-80 text-center">{block.text}</p>
                                 </div>
                             ) : null;
                         })}
                     </div>
-                </section>
+                    {/* Image 10 (Shrimp) centered */}
+                    {contentBlocks[8] && floripaImages.find(i => i.id === contentBlocks[8].imageId) && (
+                        <div className="flex flex-col items-center max-w-2xl text-center">
+                            <img
+                                src={floripaImages.find(i => i.id === contentBlocks[8].imageId).image}
+                                alt={contentBlocks[8].title}
+                                onClick={() => handleImageClick(contentBlocks[8].imageId)}
+                                className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer mb-4 max-h-[600px] w-auto"
+                            />
+                            <p className="text-sm italic opacity-80">{contentBlocks[8].text}</p>
+                        </div>
+                    )}
 
-                {/* Section 4: Praia do Forte */}
-                <section className="space-y-6">
-                    <div className="max-w-none text-darkText">
-                        <h3 className="text-2xl font-bold font-handwriting mb-4">Praia do Forte: Letting the Landscape Lead</h3>
-                        <p className="mb-4">
-                            Praia do Forte feels less polished. Rocks interrupt the sand, waves arrive unevenly, and the coastline resists being smoothed out. It’s not dramatic, but it’s active — shaped continuously by wind, water, and light.
+
+                    <div className="max-w-2xl text-center md:text-left">
+                        <p className="mb-6 text-lg">
+                            Notes left behind, handmade objects, and unhurried meals aren’t styled for visitors — they’re simply part of how the town works. For travellers, Santo Antônio offers a glimpse of Florianópolis as somewhere people live, not perform.
                         </p>
-                        <p className="mb-4">
+                    </div>
+
+                    {/* Images 7, 8: Hillside, Bar do Arante */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl">
+                        {[9, 10].map(idx => {
+                            const block = contentBlocks[idx];
+                            const img = block ? floripaImages.find(i => i.id === block.imageId) : null;
+                            return img ? (
+                                <div key={block.title} className="flex flex-col items-center">
+                                    <img src={img.image} alt={block.title} onClick={() => handleImageClick(block.imageId)} className="rounded-lg shadow-md cursor-pointer mb-4" />
+                                    <p className="text-sm italic opacity-80 text-center">{block.text}</p>
+                                </div>
+                            ) : null;
+                        })}
+                    </div>
+
+                    {/* Images 6 (Snowy Egret) and the Final 4 group (15, 16, 19, 22) */}
+                    {/* This group of 5 needs to be broken up. */}
+                    {/* Egret + Shared Care */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl">
+                        {[11, 12].map(idx => {
+                            const block = contentBlocks[idx];
+                            const img = block ? floripaImages.find(i => i.id === block.imageId) : null;
+                            return img ? (
+                                <div key={block.title} className="flex flex-col items-center">
+                                    <img src={img.image} alt={block.title} onClick={() => handleImageClick(block.imageId)} className="rounded-lg shadow-md cursor-pointer mb-4" />
+                                    <p className="text-sm italic opacity-80 text-center">{block.text}</p>
+                                </div>
+                            ) : null;
+                        })}
+                    </div>
+                    {/* Above Cove + Thorns */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl">
+                        {[13, 14].map(idx => {
+                            const block = contentBlocks[idx];
+                            const img = block ? floripaImages.find(i => i.id === block.imageId) : null;
+                            return img ? (
+                                <div key={block.title} className="flex flex-col items-center">
+                                    <img src={img.image} alt={block.title} onClick={() => handleImageClick(block.imageId)} className="rounded-lg shadow-md cursor-pointer mb-4" />
+                                    <p className="text-sm italic opacity-80 text-center">{block.text}</p>
+                                </div>
+                            ) : null;
+                        })}
+                    </div>
+                    {/* Rocks + Workshop Window */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl">
+                        {[15, 16].map(idx => {
+                            const block = contentBlocks[idx];
+                            const img = block ? floripaImages.find(i => i.id === block.imageId) : null;
+                            return img ? (
+                                <div key={block.title} className="flex flex-col items-center">
+                                    <img src={img.image} alt={block.title} onClick={() => handleImageClick(block.imageId)} className="rounded-lg shadow-md cursor-pointer mb-4" />
+                                    <p className="text-sm italic opacity-80 text-center">{block.text}</p>
+                                </div>
+                            ) : null;
+                        })}
+                    </div>
+
+                </div>
+
+                {/* --- Section 4: Praia do Forte --- */}
+                <div className="w-full flex flex-col items-center space-y-12">
+                    <div className="max-w-2xl text-center md:text-left">
+                        <h3 className="text-3xl md:text-4xl font-bold font-handwriting mb-8 text-center">Praia do Forte: Letting the Landscape Lead</h3>
+                        <p className="mb-6 text-lg">
+                            Praia do Forte feels less polished. Rocks interrupt the sand, waves arrive unevenly, and the coastline resists being smoothed out.
+                        </p>
+                        <p className="mb-6 text-lg">
+                            It’s not dramatic, but it’s active — shaped continuously by wind, water, and light.
+                        </p>
+                    </div>
+
+                    {/* Image 13 (Dusk) & 21 (Casting) */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl">
+                        {[17, 18].map(idx => {
+                            const block = contentBlocks[idx];
+                            const img = block ? floripaImages.find(i => i.id === block.imageId) : null;
+                            return img ? (
+                                <div key={block.title} className="flex flex-col items-center">
+                                    <img src={img.image} alt={block.title} onClick={() => handleImageClick(block.imageId)} className="rounded-lg shadow-md cursor-pointer mb-4" />
+                                    <p className="text-sm italic opacity-80 text-center">{block.text}</p>
+                                </div>
+                            ) : null;
+                        })}
+                    </div>
+
+                    <div className="max-w-2xl text-center md:text-left">
+                        <p className="mb-6 text-lg">
                             Here, Florianópolis’ relationship with nature becomes clearest. Plants lean into salt air, stones accept the tide repeatedly, and people adjust their pace without thinking about it. The landscape sets the terms, and life follows.
                         </p>
                     </div>
-                    {/* Images: Praia do Forte & Nature Group */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {contentBlocks.slice(12, 17).map((block) => {
-                            const img = floripaImages.find(i => i.id === block.imageId);
+
+                    {/* Image 20 (Last Light) centered */}
+                    {contentBlocks[19] && floripaImages.find(i => i.id === contentBlocks[19].imageId) && (
+                        <div className="flex flex-col items-center max-w-2xl text-center">
+                            <img
+                                src={floripaImages.find(i => i.id === contentBlocks[19].imageId).image}
+                                alt={contentBlocks[19].title}
+                                onClick={() => handleImageClick(contentBlocks[19].imageId)}
+                                className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer mb-4"
+                            />
+                            <p className="text-sm italic opacity-80">{contentBlocks[19].text}</p>
+                        </div>
+                    )}
+                </div>
+
+                {/* --- Section 5: Conclusion --- */}
+                <div className="w-full flex flex-col items-center space-y-12">
+                    <div className="max-w-2xl text-center md:text-left">
+                        <h3 className="text-3xl md:text-4xl font-bold font-handwriting mb-8 text-center">This island is a good fit if…</h3>
+                        <ul className="list-disc pl-5 space-y-4 mb-10 text-lg">
+                            <li>You enjoy beaches that feel lived-in rather than staged, and days that don’t need much planning. You’re happy letting nature set the pace — walking, swimming, sitting, and doing it all again the next day.</li>
+                            <li>You’re curious about how Brazilians travel within their own country, and you value places that feel safe, relaxed, and easy to move through. Space, greenery, and everyday rhythm matter more to you than constant activity.</li>
+                        </ul>
+                    </div>
+
+                    {/* Image 25 (Arriving) + 24 (Coati) */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl">
+                        {[20, 21].map(idx => {
+                            const block = contentBlocks[idx];
+                            const img = block ? floripaImages.find(i => i.id === block.imageId) : null;
                             return img ? (
                                 <div key={block.title} className="flex flex-col items-center">
-                                    <img
-                                        src={img.image}
-                                        alt={block.title}
-                                        loading="lazy"
-                                        onClick={() => handleImageClick(block.imageId)}
-                                        className="rounded-lg cursor-pointer w-full h-auto shadow-md hover:opacity-95 transition-opacity"
-                                    />
-                                    <p className="mt-2 text-sm italic opacity-80">{block.title}</p>
+                                    <img src={img.image} alt={block.title} onClick={() => handleImageClick(block.imageId)} className="rounded-lg shadow-md cursor-pointer mb-4" />
+                                    <p className="text-sm italic opacity-80 text-center">{block.text}</p>
                                 </div>
                             ) : null;
                         })}
                     </div>
-                </section>
 
-                {/* Section 5: Good Fit / Conclusion */}
-                <section className="space-y-6">
-                    <div className="max-w-none text-darkText">
-                        <h3 className="text-2xl font-bold font-handwriting mb-4">This island is a good fit if…</h3>
-                        <ul className="list-disc pl-5 space-y-2 mb-6">
-                            <li>You enjoy beaches that feel lived-in rather than staged, and days that don’t need much planning. You’re happy letting nature set the pace — walking, swimming, sitting, and doing it all again the next day.</li>
-                            <li>You’re curious about how Brazilians travel within their own country, and you value places that feel safe, relaxed, and easy to move through. Space, greenery, and everyday rhythm matter more to you than constant activity.</li>
-                        </ul>
-
-                        <h3 className="text-2xl font-bold font-handwriting mb-4">It may not be the right fit if…</h3>
-                        <ul className="list-disc pl-5 space-y-2 mb-6">
+                    <div className="max-w-2xl text-center md:text-left">
+                        <h3 className="text-3xl md:text-4xl font-bold font-handwriting mb-8 text-center">It may not be the right fit if…</h3>
+                        <ul className="list-disc pl-5 space-y-4 mb-10 text-lg">
                             <li>You’re looking for a dense city experience or a tightly structured itinerary. You prefer destinations built around landmarks, nightlife, or a sense of urgency.</li>
                             <li>You want spectacle at every turn, or beaches designed to entertain rather than to be used. Florianópolis tends to reward patience and repetition more than novelty.</li>
                         </ul>
 
-                        <p className="mb-4">
-                            Florianópolis isn’t a place to be decoded all at once. It’s better understood gradually, through small differences between beaches, towns, and days. If the feel of the island resonates — the space, the calm, the way nature and daily life overlap — then it’s worth exploring further in your own way, whether that’s maps, conversations, or the inevitable “things to do” lists elsewhere. This page is simply the starting point.
+                        <p className="mb-6 text-lg">
+                            Florianópolis isn’t a place to be decoded all at once. It’s better understood gradually, through small differences between beaches, towns, and days.
                         </p>
                     </div>
-                    {/* Images: Final Group */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {contentBlocks.slice(17).map((block) => {
-                            const img = floripaImages.find(i => i.id === block.imageId);
+
+                    {/* Image 9 (Small Witness) + 1 (Curassow) */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl">
+                        {[22, 23].map(idx => {
+                            const block = contentBlocks[idx];
+                            const img = block ? floripaImages.find(i => i.id === block.imageId) : null;
                             return img ? (
                                 <div key={block.title} className="flex flex-col items-center">
-                                    <img
-                                        src={img.image}
-                                        alt={block.title}
-                                        loading="lazy"
-                                        onClick={() => handleImageClick(block.imageId)}
-                                        className="rounded-lg cursor-pointer w-full h-auto shadow-md hover:opacity-95 transition-opacity"
-                                    />
-                                    <p className="mt-2 text-sm italic opacity-80">{block.title}</p>
+                                    <img src={img.image} alt={block.title} onClick={() => handleImageClick(block.imageId)} className="rounded-lg shadow-md cursor-pointer mb-4 text-center" />
+                                    <p className="text-sm italic opacity-80 text-center">{block.text}</p>
                                 </div>
                             ) : null;
                         })}
                     </div>
-                </section>
 
+                    <div className="max-w-2xl text-center md:text-left">
+                        <p className="mb-6 text-lg">
+                            If the feel of the island resonates — the space, the calm, the way nature and daily life overlap — then it’s worth exploring further in your own way, whether that’s maps, conversations, or the inevitable “things to do” lists elsewhere. This page is simply the starting point.
+                        </p>
+                    </div>
+
+                    {/* Final Image 23 (Golden Hour) centered logic if needed, but it's the last one in the list (index 24) */}
+                    {contentBlocks[24] && floripaImages.find(i => i.id === contentBlocks[24].imageId) && (
+                        <div className="flex flex-col items-center max-w-2xl text-center">
+                            <img
+                                src={floripaImages.find(i => i.id === contentBlocks[24].imageId).image}
+                                alt={contentBlocks[24].title}
+                                onClick={() => handleImageClick(contentBlocks[24].imageId)}
+                                className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer mb-4"
+                            />
+                            <p className="text-sm italic opacity-80">{contentBlocks[24].text}</p>
+                        </div>
+                    )}
+
+                </div>
             </main>
 
         </div>
