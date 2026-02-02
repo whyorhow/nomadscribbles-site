@@ -86,7 +86,7 @@ function Florianopolis({ openLightbox }) {
             {/* Feature Image */}
             <div className="w-full max-w-4xl mx-auto px-4 mb-12 flex flex-col items-center">
                 <img
-                    src="/images/Floripa/assets_small/Floripa14z.webp"
+                    src="/images/Floripa/assets_small/Floripa14.webp"
                     alt="Footprints leading to the water in Florianópolis"
                     className="w-full h-auto object-cover rounded-lg shadow-md mb-2"
                 />
