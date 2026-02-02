@@ -252,7 +252,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
     return (
         <motion.div
             layout
-            className={`w-full max-w-6xl bg-stone-900 backdrop-blur-md rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 ${isHovered ? "shadow-2xl bg-black" : ""}`}
+            className={`w-full max-w-6xl bg-stone-900/50 backdrop-blur-md rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 ${isHovered ? "shadow-2xl bg-stone-900/80" : ""}`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onClick={() => setIsHovered(!isHovered)} // Tap to toggle on mobile
@@ -296,7 +296,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
                     height: isHovered ? "auto" : 0
                 }}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="overflow-hidden bg-stone-900"
+                className="overflow-hidden bg-transparent"
             >
                 <div className="px-6 pb-12 md:px-16 md:pb-20 flex flex-col items-center space-y-10">
                     {section.content.map((item, idx) => {
