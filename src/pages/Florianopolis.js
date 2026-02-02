@@ -127,7 +127,7 @@ function Florianopolis({ openLightbox }) {
                     {/* Image: Where the City Meets the Sea (floripa18) */}
                     <div className="flex flex-col items-center max-w-4xl text-center">
                         <img
-                            src={getImage("floripa18")?.blogimage}
+                            src={getImage("floripa18")?.image}
                             alt="Where the City Meets the Sea"
                             onClick={() => handleImageClick("floripa18")}
                             className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer mb-2"
@@ -160,7 +160,7 @@ function Florianopolis({ openLightbox }) {
                     {/* Image: Figueira Centenária (floripa2) */}
                     <div className="flex flex-col items-center max-w-4xl text-center">
                         <img
-                            src={getImage("floripa2")?.blogimage}
+                            src={getImage("floripa2")?.image}
                             alt="Figueira Centenária"
                             onClick={() => handleImageClick("floripa2")}
                             className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer mb-2"
@@ -181,7 +181,7 @@ function Florianopolis({ openLightbox }) {
                     {/* Image: Campeche, Unrushed (floripa5) */}
                     <div className="flex flex-col items-center max-w-4xl text-center">
                         <img
-                            src={getImage("floripa5")?.blogimage}
+                            src={getImage("floripa5")?.image}
                             alt="Campeche, Unrushed"
                             onClick={() => handleImageClick("floripa5")}
                             className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer mb-2"
@@ -192,7 +192,7 @@ function Florianopolis({ openLightbox }) {
                     {/* Image: Steps Toward the Atlantic (floripa3) - NO CAPTION */}
                     <div className="flex flex-col items-center max-w-4xl text-center">
                         <img
-                            src={getImage("floripa3")?.blogimage}
+                            src={getImage("floripa3")?.image}
                             alt="Steps Toward the Atlantic"
                             onClick={() => handleImageClick("floripa3")}
                             className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer"
@@ -232,7 +232,7 @@ function Florianopolis({ openLightbox }) {
                     {/* Image: Along the Shore (floripa12) */}
                     <div className="flex flex-col items-center max-w-4xl text-center">
                         <img
-                            src={getImage("floripa12")?.blogimage}
+                            src={getImage("floripa12")?.image}
                             alt="Along the Shore"
                             onClick={() => handleImageClick("floripa12")}
                             className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer mb-2"
@@ -243,7 +243,7 @@ function Florianopolis({ openLightbox }) {
                     {/* Image: Watching the Water (floripa4) - NO CAPTION */}
                     <div className="flex flex-col items-center max-w-4xl text-center">
                         <img
-                            src={getImage("floripa4")?.blogimage}
+                            src={getImage("floripa4")?.image}
                             alt="Watching the Water"
                             onClick={() => handleImageClick("floripa4")}
                             className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer"
@@ -262,7 +262,7 @@ function Florianopolis({ openLightbox }) {
                             const img = getImage(id);
                             return img ? (
                                 <div key={id} className="flex flex-col items-center">
-                                    <img src={img.blogimage} alt={id} onClick={() => handleImageClick(id)} className="rounded-lg shadow-md cursor-pointer hover:opacity-95 transition-opacity" />
+                                    <img src={img.image} alt={id} onClick={() => handleImageClick(id)} className="rounded-lg shadow-md cursor-pointer hover:opacity-95 transition-opacity" />
                                 </div>
                             ) : null;
                         })}
@@ -277,7 +277,7 @@ function Florianopolis({ openLightbox }) {
                     {/* Image: Bar do Arante (floripa8) */}
                     <div className="flex flex-col items-center max-w-4xl text-center">
                         <img
-                            src={getImage("floripa8")?.blogimage}
+                            src={getImage("floripa8")?.image}
                             alt="Bar do Arante"
                             onClick={() => handleImageClick("floripa8")}
                             className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer mb-2"
@@ -288,7 +288,7 @@ function Florianopolis({ openLightbox }) {
                     {/* Image: The Workshop Window (floripa11) */}
                     <div className="flex flex-col items-center max-w-4xl text-center">
                         <img
-                            src={getImage("floripa11")?.blogimage}
+                            src={getImage("floripa11")?.image}
                             alt="The Workshop Window"
                             onClick={() => handleImageClick("floripa11")}
                             className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer mb-2"
@@ -302,7 +302,7 @@ function Florianopolis({ openLightbox }) {
                             const img = getImage(id);
                             return img ? (
                                 <div key={id} className="flex flex-col items-center">
-                                    <img src={img.blogimage} alt={id} onClick={() => handleImageClick(id)} className="rounded-lg shadow-md cursor-pointer hover:opacity-95 transition-opacity" />
+                                    <img src={img.image} alt={id} onClick={() => handleImageClick(id)} className="rounded-lg shadow-md cursor-pointer hover:opacity-95 transition-opacity" />
                                 </div>
                             ) : null;
                         })}
@@ -311,7 +311,7 @@ function Florianopolis({ openLightbox }) {
                     {/* Image: Above the Cove (floripa16) */}
                     <div className="flex flex-col items-center max-w-4xl text-center">
                         <img
-                            src={getImage("floripa16")?.blogimage}
+                            src={getImage("floripa16")?.image}
                             alt="Above the Cove"
                             onClick={() => handleImageClick("floripa16")}
                             className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer mb-2"
@@ -322,7 +322,7 @@ function Florianopolis({ openLightbox }) {
                     {/* Image: Thorns (floripa19) - NO CAPTION */}
                     <div className="flex flex-col items-center max-w-4xl text-center">
                         <img
-                            src={getImage("floripa19")?.blogimage}
+                            src={getImage("floripa19")?.image}
                             alt="Thorns and Salt Air"
                             onClick={() => handleImageClick("floripa19")}
                             className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer"
@@ -345,7 +345,7 @@ function Florianopolis({ openLightbox }) {
                     {/* Image: Rocks at Praia do Forte (floripa22) */}
                     <div className="flex flex-col items-center max-w-4xl text-center">
                         <img
-                            src={getImage("floripa22")?.blogimage}
+                            src={getImage("floripa22")?.image}
                             alt="Rocks at Praia do Forte"
                             onClick={() => handleImageClick("floripa22")}
                             className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer mb-2"
@@ -359,7 +359,7 @@ function Florianopolis({ openLightbox }) {
                             const img = getImage(id);
                             return img ? (
                                 <div key={id} className="flex flex-col items-center">
-                                    <img src={img.blogimage} alt={id} onClick={() => handleImageClick(id)} className="rounded-lg shadow-md cursor-pointer hover:opacity-95 transition-opacity" />
+                                    <img src={img.image} alt={id} onClick={() => handleImageClick(id)} className="rounded-lg shadow-md cursor-pointer hover:opacity-95 transition-opacity" />
                                 </div>
                             ) : null;
                         })}
@@ -374,7 +374,7 @@ function Florianopolis({ openLightbox }) {
                     {/* Image: Last Light on the Bay (floripa20) - NO CAPTION */}
                     <div className="flex flex-col items-center max-w-4xl text-center">
                         <img
-                            src={getImage("floripa20")?.blogimage}
+                            src={getImage("floripa20")?.image}
                             alt="Last Light on the Bay"
                             onClick={() => handleImageClick("floripa20")}
                             className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer"
@@ -395,7 +395,7 @@ function Florianopolis({ openLightbox }) {
                     {/* Image: Arriving at Campeche (floripa25) */}
                     <div className="flex flex-col items-center max-w-4xl text-center">
                         <img
-                            src={getImage("floripa25")?.blogimage}
+                            src={getImage("floripa25")?.image}
                             alt="Arriving at Campeche Island"
                             onClick={() => handleImageClick("floripa25")}
                             className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer mb-2"
@@ -406,7 +406,7 @@ function Florianopolis({ openLightbox }) {
                     {/* Image: Coati (floripa24) - NO CAPTION */}
                     <div className="flex flex-col items-center max-w-4xl text-center">
                         <img
-                            src={getImage("floripa24")?.blogimage}
+                            src={getImage("floripa24")?.image}
                             alt="Coati on Campeche Island"
                             onClick={() => handleImageClick("floripa24")}
                             className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer"
@@ -432,7 +432,7 @@ function Florianopolis({ openLightbox }) {
                                 const img = getImage(id);
                                 return img ? (
                                     <div key={id} className="flex flex-col items-center">
-                                        <img src={img.blogimage} alt={id} onClick={() => handleImageClick(id)} className="rounded-lg shadow-md cursor-pointer hover:opacity-95 transition-opacity" />
+                                        <img src={img.image} alt={id} onClick={() => handleImageClick(id)} className="rounded-lg shadow-md cursor-pointer hover:opacity-95 transition-opacity" />
                                     </div>
                                 ) : null;
                             })}
@@ -449,7 +449,7 @@ function Florianopolis({ openLightbox }) {
                     {/* Final Image: Golden Hour (floripa23) - NO CAPTION */}
                     <div className="flex flex-col items-center max-w-4xl text-center">
                         <img
-                            src={getImage("floripa23")?.blogimage}
+                            src={getImage("floripa23")?.image}
                             alt="Golden Hour"
                             onClick={() => handleImageClick("floripa23")}
                             className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer"
