@@ -21,141 +21,39 @@ function Florianopolis({ openLightbox }) {
         opacity: 0.95,
     };
 
-    const contentBlocks = [
-        {
-            title: "Footprints, Then Water",
-            text: "Footsteps trail along the beach before dissolving into the tide. Whatever passed through here didn’t stay long, and that feels intentional.",
-            imageId: "floripa14"
-        },
-        {
-            title: "Where the City Meets the Sea",
-            text: "The coastline stretches wide, busy at one end and thinning into distance at the other. Florianópolis often feels like this — expansive, but never overwhelming.",
-            imageId: "floripa18"
-        },
-        {
-            title: "Campeche, Unrushed",
-            text: "Campeche opens wide, where green edges soften into sand and the sea settles into an easy rhythm. It offers space rather than spectacle, and that feels like the point.",
-            imageId: "floripa5"
-        },
-        {
-            title: "Steps Toward the Atlantic",
-            text: "A narrow wooden staircase leads through sand and scrub, revealing the shoreline slowly rather than all at once. With each step, the ocean grows louder and the horizon wider.",
-            imageId: "floripa3"
-        },
-        {
-            title: "Along the Shore, Santo Antônio de Lisboa",
-            text: "The shoreline curves softly, where hills, boats, and shallow water settle into an easy balance. Nothing feels staged here — it’s simply how the place works.",
-            imageId: "floripa12"
-        },
-        {
-            title: "Watching the Water, Waiting for Nothing",
-            text: "The lifeguard tower stands bright against pale sand and open sky, ready but unhurried. Around it, the beach moves at its own pace, reminding you that stillness here is part of the design.",
-            imageId: "floripa4"
-        },
-        {
-            title: "Princess Flower",
-            text: "The vivid purple of the princess flower cuts cleanly through the surrounding green. It’s a small, precise interruption in an otherwise layered landscape.",
-            imageId: "floripa17"
-        },
-        {
-            title: "Figueira Centenária",
-            text: "At the centre of the city, the Figueira Centenária spreads wide, its vast branches supported as much by respect as by structure. Beneath it, daily life passes quickly, while the tree continues anchoring the present to something far older.",
-            imageId: "floripa2"
-        },
-        {
-            title: "Yellow Shrimp Plant",
-            text: "The yellow shrimp plant rose cleanly from the shade, its layered petals catching the light without trying too hard. In a landscape dense with green, it felt quietly intentional.",
-            imageId: "floripa10"
-        },
-        {
-            title: "Hillside Living, Armação",
-            text: "Houses gather along the hillside near the restaurant, pressed gently against the forest edge. The town feels shaped by its surroundings, built to fit rather than to dominate.",
-            imageId: "floripa7"
-        },
-        {
-            title: "Bar do Arante",
-            text: "At Bar do Arante, handwritten notes cover the walls and ceiling, each one left behind like a small offering. What began as habit has become atmosphere, turning the restaurant into a living archive of passing lives.",
-            imageId: "floripa8"
-        },
-        {
-            title: "Snowy Egret, Armação",
-            text: "A snowy egret moved along the shoreline at Armação, precise and unhurried at the water’s edge. The sea rolled in and out beside it, unconcerned with being watched.",
-            imageId: "floripa6"
-        },
-        {
-            title: "Shared Care",
-            text: "A hand-painted sign stands between sand and sea, gently reminding visitors to avoid standing water and to take their rubbish with them. It feels less like a warning and more like an unspoken agreement with the place.",
-            imageId: "floripa15"
-        },
-        {
-            title: "Above the Cove",
-            text: "From the trail above, the water opens into a quiet pocket of turquoise framed by rock and scrub. Seen from here, the beach feels held rather than exposed.",
-            imageId: "floripa16"
-        },
-        {
-            title: "Thorns and Salt Air",
-            text: "Cactus leans toward the water, shaped by sun and wind rather than care. Even the plants here seem adapted to looking outward.",
-            imageId: "floripa19"
-        },
-        {
-            title: "Rocks at Praia do Forte",
-            text: "Dark stones sit low in the surf at Praia do Forte, shaped smooth by repetition rather than force. Waves arrive, retreat, and leave everything exactly where it is.",
-            imageId: "floripa22"
-        },
-        {
-            title: "The Workshop Window",
-            text: "A small shop window frames one of the village’s handmade figures, half playful, half uncanny. These quiet workshops feel stitched into daily life, creating objects that linger long after you’ve passed by.",
-            imageId: "floripa11"
-        },
-        {
-            title: "Praia de Santo Antônio de Lisboa at Dusk",
-            text: "Small boats rest lightly on the water as the sky turns gold over Santo Antônio de Lisboa. Evening arrives without drama, then slips away just as quietly.",
-            imageId: "floripa13"
-        },
-        {
-            title: "Casting at Dusk, Santo Antônio de Lisboa",
-            text: "As the light fades, a lone figure casts a net into calm water while boats settle behind him. The movement feels practiced, almost timeless, carried out as the sky quietly changes.",
-            imageId: "floripa21"
-        },
-        {
-            title: "Last Light on the Bay",
-            text: "As the sun drops, boats settle into silhouettes and the water turns to gold. The day ends without urgency, as if everyone already knows it will return.",
-            imageId: "floripa20"
-        },
-        {
-            title: "Arriving at Campeche Island",
-            text: "A small boat rests in clear water as the beach fills gently behind it. Campeche Island feels vivid and alive, yet never hurried, as if it knows people will come and go.",
-            imageId: "floripa25"
-        },
-        {
-            title: "Coati on Campeche Island",
-            text: "A coati crosses the sand with casual confidence, unconcerned by boats or visitors nearby. On Campeche Island, wildlife feels less like an interruption and more like part of the rhythm.",
-            imageId: "floripa24"
-        },
-        {
-            title: "Small Witness",
-            text: "Perched between branches and beams, the marmoset paused as if weighing up our presence. Even brief encounters in Florianópolis feel shared, as though observation goes both ways.",
-            imageId: "floripa9"
-        },
-        {
-            title: "The Bare-Faced Curassow",
-            text: "The Bare-faced Curassow stood quietly among the undergrowth, dark and deliberate, its yellow beak cutting through the green. It didn’t perform or retreat — it simply watched back, unbothered by curiosity.",
-            imageId: "floripa1"
-        },
-        {
-            title: "Golden Hour, Praia do Forte",
-            text: "The sun drops toward the horizon, turning wet sand into a mirror of warm light. People slow their steps instinctively, as if the moment asks for less noise.",
-            imageId: "floripa23"
-        },
-        // Remaining images appended at the end
-
-
+    // Define the visual order of images for Lightbox navigation
+    const imageOrder = [
+        "floripa14", // Feature
+        "floripa18", // City Meets Sea
+        "floripa2",  // Figueira
+        "floripa5",  // Campeche Unrushed
+        "floripa3",  // Steps
+        "floripa12", // Along Shore
+        "floripa4",  // Watching Water
+        "floripa17", // Princess Flower
+        "floripa10", // Shrimp
+        "floripa8",  // Bar do Arante
+        "floripa11", // Workshop
+        "floripa7",  // Hillside
+        "floripa6",  // Egret
+        "floripa15", // Shared Care
+        "floripa16", // Above Cove
+        "floripa19", // Thorns
+        "floripa22", // Rocks
+        "floripa13", // Santo Antonio Dusk
+        "floripa21", // Casting
+        "floripa20", // Last Light
+        "floripa25", // Arriving
+        "floripa24", // Coati
+        "floripa9",  // Small Witness
+        "floripa1",  // Curassow
+        "floripa23"  // Golden Hour
     ];
 
-    // Derived list of images sorted by their appearance in contentBlocks
-    const sortedImages = contentBlocks.map(block => floripaImages.find(img => img.id === block.imageId)).filter(Boolean);
+    // Derived list of images sorted by their appearance
+    const sortedImages = imageOrder.map(id => floripaImages.find(img => img.id === id)).filter(Boolean);
 
-    // Helper to open lightbox with correct index from the SORTED list
+    // Helper to open lightbox with correct index
     const handleImageClick = (imageId) => {
         const index = sortedImages.findIndex(img => img.id === imageId);
         if (index !== -1) {
@@ -163,13 +61,15 @@ function Florianopolis({ openLightbox }) {
         }
     };
 
+    const getImage = (id) => floripaImages.find(i => i.id === id);
+
     return (
         <div className="relative min-h-screen pt-2">
             {/* SEO */}
             <SEO
                 title="Florianópolis | Nomad Scribbles"
                 description="Florianópolis: An island city where lush hills meet over 40 distinct beaches. Discover the diverse geography of Brazil's southern coast."
-                image="/images/Floripa/small/Floripa1z.webp"
+                image="/images/Floripa/small/Floripa1.webp"
                 slug="/brazil/florianopolis"
             />
 
@@ -183,12 +83,13 @@ function Florianopolis({ openLightbox }) {
             </div>
 
             {/* Feature Image */}
-            <div className="w-full max-w-4xl mx-auto px-4 mb-12">
+            <div className="w-full max-w-4xl mx-auto px-4 mb-12 flex flex-col items-center">
                 <img
                     src="/images/Floripa/small/Floripa14.webp"
                     alt="Footprints leading to the water in Florianópolis"
-                    className="w-full h-auto object-cover rounded-lg shadow-md"
+                    className="w-full h-auto object-cover rounded-lg shadow-md mb-2"
                 />
+                <p className="text-sm italic opacity-80 text-center">Footsteps trail along the beach before dissolving into the tide.</p>
             </div>
 
             {/* Banner Spread with Map */}
@@ -223,18 +124,16 @@ function Florianopolis({ openLightbox }) {
                         </p>
                     </div>
 
-                    {/* Image 18: Where the City Meets the Sea */}
-                    {contentBlocks[1] && floripaImages.find(i => i.id === contentBlocks[1].imageId) && (
-                        <div className="flex flex-col items-center max-w-4xl text-center">
-                            <img
-                                src={floripaImages.find(i => i.id === contentBlocks[1].imageId).image}
-                                alt={contentBlocks[1].title}
-                                onClick={() => handleImageClick(contentBlocks[1].imageId)}
-                                className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer mb-4"
-                            />
-                            <p className="max-w-2xl text-sm italic opacity-80">{contentBlocks[1].text}</p>
-                        </div>
-                    )}
+                    {/* Image: Where the City Meets the Sea (floripa18) */}
+                    <div className="flex flex-col items-center max-w-4xl text-center">
+                        <img
+                            src={getImage("floripa18")?.blogimage}
+                            alt="Where the City Meets the Sea"
+                            onClick={() => handleImageClick("floripa18")}
+                            className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer mb-2"
+                        />
+                        <p className="max-w-2xl text-sm italic opacity-80">The coastline stretches wide, busy at one end and thinning into distance at the other.</p>
+                    </div>
 
                     <div className="max-w-2xl text-center md:text-left">
                         <p className="mb-6 text-lg">
@@ -243,11 +142,9 @@ function Florianopolis({ openLightbox }) {
                         <p className="mb-6 text-lg">
                             For European travellers, that distinction matters. Floripa isn’t loud or demanding. It feels safe, relaxed, and easy to move through, with an emphasis on being outdoors rather than being entertained.
                         </p>
-                    </div>
-
-                    <div className="max-w-2xl text-center md:text-left">
                         <p className="mb-6 text-lg">
-                            You don’t come here to collect highlights. You come here to settle into something that already works.
+                            You don’t come here to collect highlights.
+                            <br />You come here to settle into something that already works.
                         </p>
                         <p className="mb-6 text-lg">
                             Florianópolis reveals itself slowly. Footsteps fade into the tide, coastlines widen and then narrow again, and the island shifts gently between city, beach, and forest.
@@ -258,6 +155,17 @@ function Florianopolis({ openLightbox }) {
                         <p className="mb-6 text-lg">
                             There’s a sense that people are sharing space rather than consuming it. Beaches are used all day, towns feel lived-in, and reminders about care and responsibility are quietly part of the landscape. Wildlife appears without ceremony. Observation here feels mutual.
                         </p>
+                    </div>
+
+                    {/* Image: Figueira Centenária (floripa2) */}
+                    <div className="flex flex-col items-center max-w-4xl text-center">
+                        <img
+                            src={getImage("floripa2")?.blogimage}
+                            alt="Figueira Centenária"
+                            onClick={() => handleImageClick("floripa2")}
+                            className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer mb-2"
+                        />
+                        <p className="max-w-2xl text-sm italic opacity-80">At the centre of the city, the fig tree anchors daily life to something far older.</p>
                     </div>
                 </div>
 
@@ -270,18 +178,25 @@ function Florianopolis({ openLightbox }) {
                         </p>
                     </div>
 
-                    {/* Image 5: Campeche, Unrushed + Image 3: Steps */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl">
-                        {[2, 3].map(idx => {
-                            const block = contentBlocks[idx];
-                            const img = block ? floripaImages.find(i => i.id === block.imageId) : null;
-                            return img ? (
-                                <div key={block.title} className="flex flex-col items-center">
-                                    <img src={img.image} alt={block.title} onClick={() => handleImageClick(block.imageId)} className="rounded-lg shadow-md cursor-pointer mb-4" />
-                                    <p className="text-sm italic opacity-80 text-center">{block.text}</p>
-                                </div>
-                            ) : null;
-                        })}
+                    {/* Image: Campeche, Unrushed (floripa5) */}
+                    <div className="flex flex-col items-center max-w-4xl text-center">
+                        <img
+                            src={getImage("floripa5")?.blogimage}
+                            alt="Campeche, Unrushed"
+                            onClick={() => handleImageClick("floripa5")}
+                            className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer mb-2"
+                        />
+                        <p className="max-w-2xl text-sm italic opacity-80">Campeche opens wide, where green edges soften into sand and the sea settles into an easy rhythm.</p>
+                    </div>
+
+                    {/* Image: Steps Toward the Atlantic (floripa3) - NO CAPTION */}
+                    <div className="flex flex-col items-center max-w-4xl text-center">
+                        <img
+                            src={getImage("floripa3")?.blogimage}
+                            alt="Steps Toward the Atlantic"
+                            onClick={() => handleImageClick("floripa3")}
+                            className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer"
+                        />
                     </div>
 
                     <div className="max-w-2xl text-center md:text-left">
@@ -302,7 +217,7 @@ function Florianopolis({ openLightbox }) {
                     </div>
                 </div>
 
-                {/* --- Section 3: Santo Antonio (Large group broken up) --- */}
+                {/* --- Section 3: Santo Antonio --- */}
                 <div className="w-full flex flex-col items-center space-y-12">
                     <div className="max-w-2xl text-center md:text-left">
                         <h3 className="text-3xl md:text-4xl font-bold font-handwriting mb-8 text-center">Santo Antônio de Lisboa: Daily Life by the Water</h3>
@@ -314,18 +229,25 @@ function Florianopolis({ openLightbox }) {
                         </p>
                     </div>
 
-                    {/* Images 12 & 4: Along the Shore, Lifeguard */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl">
-                        {[4, 5].map(idx => {
-                            const block = contentBlocks[idx];
-                            const img = block ? floripaImages.find(i => i.id === block.imageId) : null;
-                            return img ? (
-                                <div key={block.title} className="flex flex-col items-center">
-                                    <img src={img.image} alt={block.title} onClick={() => handleImageClick(block.imageId)} className="rounded-lg shadow-md cursor-pointer mb-4" />
-                                    <p className="text-sm italic opacity-80 text-center">{block.text}</p>
-                                </div>
-                            ) : null;
-                        })}
+                    {/* Image: Along the Shore (floripa12) */}
+                    <div className="flex flex-col items-center max-w-4xl text-center">
+                        <img
+                            src={getImage("floripa12")?.blogimage}
+                            alt="Along the Shore"
+                            onClick={() => handleImageClick("floripa12")}
+                            className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer mb-2"
+                        />
+                        <p className="max-w-2xl text-sm italic opacity-80">The shoreline curves softly, where hills, boats, and shallow water settle into an easy balance.</p>
+                    </div>
+
+                    {/* Image: Watching the Water (floripa4) - NO CAPTION */}
+                    <div className="flex flex-col items-center max-w-4xl text-center">
+                        <img
+                            src={getImage("floripa4")?.blogimage}
+                            alt="Watching the Water"
+                            onClick={() => handleImageClick("floripa4")}
+                            className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer"
+                        />
                     </div>
 
                     <div className="max-w-2xl text-center md:text-left">
@@ -334,33 +256,17 @@ function Florianopolis({ openLightbox }) {
                         </p>
                     </div>
 
-                    {/* Images 17, 2, 10: Princess Flower, Figueira, Shrimp Plant */}
-                    {/* Using a grid of 3 here might be too small, lets do 2 and 1 or interleaved */}
+                    {/* Image Cluster: Princess Flower (floripa17) + Yellow Shrimp Plant (floripa10) - NO CAPTIONS */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl">
-                        {[6, 7].map(idx => { // 17 (Princess), 2 (Figueira)
-                            const block = contentBlocks[idx];
-                            const img = block ? floripaImages.find(i => i.id === block.imageId) : null;
+                        {["floripa17", "floripa10"].map(id => {
+                            const img = getImage(id);
                             return img ? (
-                                <div key={block.title} className="flex flex-col items-center">
-                                    <img src={img.image} alt={block.title} onClick={() => handleImageClick(block.imageId)} className="rounded-lg shadow-md cursor-pointer mb-4" />
-                                    <p className="text-sm italic opacity-80 text-center">{block.text}</p>
+                                <div key={id} className="flex flex-col items-center">
+                                    <img src={img.blogimage} alt={id} onClick={() => handleImageClick(id)} className="rounded-lg shadow-md cursor-pointer hover:opacity-95 transition-opacity" />
                                 </div>
                             ) : null;
                         })}
                     </div>
-                    {/* Image 10 (Shrimp) centered */}
-                    {contentBlocks[8] && floripaImages.find(i => i.id === contentBlocks[8].imageId) && (
-                        <div className="flex flex-col items-center max-w-2xl text-center">
-                            <img
-                                src={floripaImages.find(i => i.id === contentBlocks[8].imageId).image}
-                                alt={contentBlocks[8].title}
-                                onClick={() => handleImageClick(contentBlocks[8].imageId)}
-                                className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer mb-4 max-h-[600px] w-auto"
-                            />
-                            <p className="text-sm italic opacity-80">{contentBlocks[8].text}</p>
-                        </div>
-                    )}
-
 
                     <div className="max-w-2xl text-center md:text-left">
                         <p className="mb-6 text-lg">
@@ -368,62 +274,60 @@ function Florianopolis({ openLightbox }) {
                         </p>
                     </div>
 
-                    {/* Images 7, 8: Hillside, Bar do Arante */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl">
-                        {[9, 10].map(idx => {
-                            const block = contentBlocks[idx];
-                            const img = block ? floripaImages.find(i => i.id === block.imageId) : null;
+                    {/* Image: Bar do Arante (floripa8) */}
+                    <div className="flex flex-col items-center max-w-4xl text-center">
+                        <img
+                            src={getImage("floripa8")?.blogimage}
+                            alt="Bar do Arante"
+                            onClick={() => handleImageClick("floripa8")}
+                            className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer mb-2"
+                        />
+                        <p className="max-w-2xl text-sm italic opacity-80">Handwritten notes accumulate over time, turning the restaurant into a record of passing lives.</p>
+                    </div>
+
+                    {/* Image: The Workshop Window (floripa11) */}
+                    <div className="flex flex-col items-center max-w-4xl text-center">
+                        <img
+                            src={getImage("floripa11")?.blogimage}
+                            alt="The Workshop Window"
+                            onClick={() => handleImageClick("floripa11")}
+                            className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer mb-2"
+                        />
+                        <p className="max-w-2xl text-sm italic opacity-80">Small workshops remain part of daily life, not attractions.</p>
+                    </div>
+
+                    {/* Image Cluster: Hillside (floripa7), Egret (floripa6), Shared Care (floripa15) - NO CAPTIONS */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl">
+                        {["floripa7", "floripa6", "floripa15"].map(id => {
+                            const img = getImage(id);
                             return img ? (
-                                <div key={block.title} className="flex flex-col items-center">
-                                    <img src={img.image} alt={block.title} onClick={() => handleImageClick(block.imageId)} className="rounded-lg shadow-md cursor-pointer mb-4" />
-                                    <p className="text-sm italic opacity-80 text-center">{block.text}</p>
+                                <div key={id} className="flex flex-col items-center">
+                                    <img src={img.blogimage} alt={id} onClick={() => handleImageClick(id)} className="rounded-lg shadow-md cursor-pointer hover:opacity-95 transition-opacity" />
                                 </div>
                             ) : null;
                         })}
                     </div>
 
-                    {/* Images 6 (Snowy Egret) and the Final 4 group (15, 16, 19, 22) */}
-                    {/* This group of 5 needs to be broken up. */}
-                    {/* Egret + Shared Care */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl">
-                        {[11, 12].map(idx => {
-                            const block = contentBlocks[idx];
-                            const img = block ? floripaImages.find(i => i.id === block.imageId) : null;
-                            return img ? (
-                                <div key={block.title} className="flex flex-col items-center">
-                                    <img src={img.image} alt={block.title} onClick={() => handleImageClick(block.imageId)} className="rounded-lg shadow-md cursor-pointer mb-4" />
-                                    <p className="text-sm italic opacity-80 text-center">{block.text}</p>
-                                </div>
-                            ) : null;
-                        })}
-                    </div>
-                    {/* Above Cove + Thorns */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl">
-                        {[13, 14].map(idx => {
-                            const block = contentBlocks[idx];
-                            const img = block ? floripaImages.find(i => i.id === block.imageId) : null;
-                            return img ? (
-                                <div key={block.title} className="flex flex-col items-center">
-                                    <img src={img.image} alt={block.title} onClick={() => handleImageClick(block.imageId)} className="rounded-lg shadow-md cursor-pointer mb-4" />
-                                    <p className="text-sm italic opacity-80 text-center">{block.text}</p>
-                                </div>
-                            ) : null;
-                        })}
-                    </div>
-                    {/* Rocks + Workshop Window */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl">
-                        {[15, 16].map(idx => {
-                            const block = contentBlocks[idx];
-                            const img = block ? floripaImages.find(i => i.id === block.imageId) : null;
-                            return img ? (
-                                <div key={block.title} className="flex flex-col items-center">
-                                    <img src={img.image} alt={block.title} onClick={() => handleImageClick(block.imageId)} className="rounded-lg shadow-md cursor-pointer mb-4" />
-                                    <p className="text-sm italic opacity-80 text-center">{block.text}</p>
-                                </div>
-                            ) : null;
-                        })}
+                    {/* Image: Above the Cove (floripa16) */}
+                    <div className="flex flex-col items-center max-w-4xl text-center">
+                        <img
+                            src={getImage("floripa16")?.blogimage}
+                            alt="Above the Cove"
+                            onClick={() => handleImageClick("floripa16")}
+                            className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer mb-2"
+                        />
+                        <p className="max-w-2xl text-sm italic opacity-80">Seen from above, the beach feels held rather than exposed.</p>
                     </div>
 
+                    {/* Image: Thorns (floripa19) - NO CAPTION */}
+                    <div className="flex flex-col items-center max-w-4xl text-center">
+                        <img
+                            src={getImage("floripa19")?.blogimage}
+                            alt="Thorns and Salt Air"
+                            onClick={() => handleImageClick("floripa19")}
+                            className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer"
+                        />
+                    </div>
                 </div>
 
                 {/* --- Section 4: Praia do Forte --- */}
@@ -438,15 +342,24 @@ function Florianopolis({ openLightbox }) {
                         </p>
                     </div>
 
-                    {/* Image 13 (Dusk) & 21 (Casting) */}
+                    {/* Image: Rocks at Praia do Forte (floripa22) */}
+                    <div className="flex flex-col items-center max-w-4xl text-center">
+                        <img
+                            src={getImage("floripa22")?.blogimage}
+                            alt="Rocks at Praia do Forte"
+                            onClick={() => handleImageClick("floripa22")}
+                            className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer mb-2"
+                        />
+                        <p className="max-w-2xl text-sm italic opacity-80">Dark stones sit low in the surf, shaped smooth by repetition rather than force.</p>
+                    </div>
+
+                    {/* Image Pair: Santo Antonio Dusk (floripa13) + Casting (floripa21) - NO CAPTIONS */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl">
-                        {[17, 18].map(idx => {
-                            const block = contentBlocks[idx];
-                            const img = block ? floripaImages.find(i => i.id === block.imageId) : null;
+                        {["floripa13", "floripa21"].map(id => {
+                            const img = getImage(id);
                             return img ? (
-                                <div key={block.title} className="flex flex-col items-center">
-                                    <img src={img.image} alt={block.title} onClick={() => handleImageClick(block.imageId)} className="rounded-lg shadow-md cursor-pointer mb-4" />
-                                    <p className="text-sm italic opacity-80 text-center">{block.text}</p>
+                                <div key={id} className="flex flex-col items-center">
+                                    <img src={img.blogimage} alt={id} onClick={() => handleImageClick(id)} className="rounded-lg shadow-md cursor-pointer hover:opacity-95 transition-opacity" />
                                 </div>
                             ) : null;
                         })}
@@ -458,18 +371,15 @@ function Florianopolis({ openLightbox }) {
                         </p>
                     </div>
 
-                    {/* Image 20 (Last Light) centered */}
-                    {contentBlocks[19] && floripaImages.find(i => i.id === contentBlocks[19].imageId) && (
-                        <div className="flex flex-col items-center max-w-2xl text-center">
-                            <img
-                                src={floripaImages.find(i => i.id === contentBlocks[19].imageId).image}
-                                alt={contentBlocks[19].title}
-                                onClick={() => handleImageClick(contentBlocks[19].imageId)}
-                                className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer mb-4"
-                            />
-                            <p className="text-sm italic opacity-80">{contentBlocks[19].text}</p>
-                        </div>
-                    )}
+                    {/* Image: Last Light on the Bay (floripa20) - NO CAPTION */}
+                    <div className="flex flex-col items-center max-w-4xl text-center">
+                        <img
+                            src={getImage("floripa20")?.blogimage}
+                            alt="Last Light on the Bay"
+                            onClick={() => handleImageClick("floripa20")}
+                            className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer"
+                        />
+                    </div>
                 </div>
 
                 {/* --- Section 5: Conclusion --- */}
@@ -482,18 +392,25 @@ function Florianopolis({ openLightbox }) {
                         </ul>
                     </div>
 
-                    {/* Image 25 (Arriving) + 24 (Coati) */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl">
-                        {[20, 21].map(idx => {
-                            const block = contentBlocks[idx];
-                            const img = block ? floripaImages.find(i => i.id === block.imageId) : null;
-                            return img ? (
-                                <div key={block.title} className="flex flex-col items-center">
-                                    <img src={img.image} alt={block.title} onClick={() => handleImageClick(block.imageId)} className="rounded-lg shadow-md cursor-pointer mb-4" />
-                                    <p className="text-sm italic opacity-80 text-center">{block.text}</p>
-                                </div>
-                            ) : null;
-                        })}
+                    {/* Image: Arriving at Campeche (floripa25) */}
+                    <div className="flex flex-col items-center max-w-4xl text-center">
+                        <img
+                            src={getImage("floripa25")?.blogimage}
+                            alt="Arriving at Campeche Island"
+                            onClick={() => handleImageClick("floripa25")}
+                            className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer mb-2"
+                        />
+                        <p className="max-w-2xl text-sm italic opacity-80">Access is simple, and the pace remains unhurried.</p>
+                    </div>
+
+                    {/* Image: Coati (floripa24) - NO CAPTION */}
+                    <div className="flex flex-col items-center max-w-4xl text-center">
+                        <img
+                            src={getImage("floripa24")?.blogimage}
+                            alt="Coati on Campeche Island"
+                            onClick={() => handleImageClick("floripa24")}
+                            className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer"
+                        />
                     </div>
 
                     <div className="max-w-2xl text-center md:text-left">
@@ -508,18 +425,19 @@ function Florianopolis({ openLightbox }) {
                         </p>
                     </div>
 
-                    {/* Image 9 (Small Witness) + 1 (Curassow) */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl">
-                        {[22, 23].map(idx => {
-                            const block = contentBlocks[idx];
-                            const img = block ? floripaImages.find(i => i.id === block.imageId) : null;
-                            return img ? (
-                                <div key={block.title} className="flex flex-col items-center">
-                                    <img src={img.image} alt={block.title} onClick={() => handleImageClick(block.imageId)} className="rounded-lg shadow-md cursor-pointer mb-4 text-center" />
-                                    <p className="text-sm italic opacity-80 text-center">{block.text}</p>
-                                </div>
-                            ) : null;
-                        })}
+                    {/* Image Cluster: Small Witness (floripa9), Curassow (floripa1) */}
+                    <div className="flex flex-col items-center max-w-4xl text-center">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full mb-4">
+                            {["floripa9", "floripa1"].map(id => {
+                                const img = getImage(id);
+                                return img ? (
+                                    <div key={id} className="flex flex-col items-center">
+                                        <img src={img.blogimage} alt={id} onClick={() => handleImageClick(id)} className="rounded-lg shadow-md cursor-pointer hover:opacity-95 transition-opacity" />
+                                    </div>
+                                ) : null;
+                            })}
+                        </div>
+                        <p className="max-w-2xl text-sm italic opacity-80">The Bare-faced Curassow paused long enough to watch back.</p>
                     </div>
 
                     <div className="max-w-2xl text-center md:text-left">
@@ -528,18 +446,15 @@ function Florianopolis({ openLightbox }) {
                         </p>
                     </div>
 
-                    {/* Final Image 23 (Golden Hour) centered logic if needed, but it's the last one in the list (index 24) */}
-                    {contentBlocks[24] && floripaImages.find(i => i.id === contentBlocks[24].imageId) && (
-                        <div className="flex flex-col items-center max-w-2xl text-center">
-                            <img
-                                src={floripaImages.find(i => i.id === contentBlocks[24].imageId).image}
-                                alt={contentBlocks[24].title}
-                                onClick={() => handleImageClick(contentBlocks[24].imageId)}
-                                className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer mb-4"
-                            />
-                            <p className="text-sm italic opacity-80">{contentBlocks[24].text}</p>
-                        </div>
-                    )}
+                    {/* Final Image: Golden Hour (floripa23) - NO CAPTION */}
+                    <div className="flex flex-col items-center max-w-4xl text-center">
+                        <img
+                            src={getImage("floripa23")?.blogimage}
+                            alt="Golden Hour"
+                            onClick={() => handleImageClick("floripa23")}
+                            className="rounded-lg shadow-md hover:opacity-95 transition-opacity cursor-pointer"
+                        />
+                    </div>
 
                 </div>
             </main>
