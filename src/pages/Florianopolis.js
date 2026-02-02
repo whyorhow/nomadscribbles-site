@@ -159,11 +159,16 @@ function Florianopolis({ openLightbox }) {
     ];
 
     const pageBackgroundStyle = {
+        backgroundColor: "#fdfbf7", // Subtle off-white/paper color
+        opacity: 1,
+    };
+
+    const spreadBackgroundStyle = {
         backgroundImage: `url(${paperTexture})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        filter: "contrast(1.1) brightness(1.1)", // Slight enhancement for the paper feel
-        opacity: 1,
+        filter: "url(#torn-paper-filter)",
+        opacity: 0.95,
     };
 
     return (
@@ -176,7 +181,7 @@ function Florianopolis({ openLightbox }) {
                 slug="/brazil/florianopolis"
             />
 
-            {/* Global Paper Background */}
+            {/* Global Background */}
             <div
                 className="fixed inset-0 pointer-events-none z-0"
                 style={pageBackgroundStyle}
@@ -205,8 +210,11 @@ function Florianopolis({ openLightbox }) {
 
                 {/* Banner Spread with Map */}
                 <div className="relative w-full mb-16 overflow-hidden">
-                    {/* Note: We removed the duplicate background here since it's now global,
-                        but we keep the layout for the map context */}
+                    <div
+                        className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[110vw] pointer-events-none z-0"
+                        style={spreadBackgroundStyle}
+                    />
+
                     <div className="relative z-20 max-w-5xl mx-auto px-4 py-8 flex flex-col items-center mt-[-10px]">
                         <div className="w-full max-w-4xl overflow-visible mb-[-10px]">
                             <ContextMap
