@@ -267,7 +267,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
                 </h2>
 
                 {/* Animated Image Container */}
-                <div className={`relative w-full max-w-5xl transition-all duration-700 ease-in-out ${isHovered ? "p-0 scale-100" : "p-4 bg-white/5 scale-95"}`}>
+                <div className={`relative max-w-5xl mx-auto transition-all duration-700 ease-in-out ${isHovered ? "w-full p-0" : "w-1/2 p-4 bg-white/5"}`}>
 
                     {/* Small Framed Image (Visible by default) */}
                     <img
