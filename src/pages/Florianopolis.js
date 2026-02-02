@@ -54,10 +54,11 @@ function Florianopolis({ openLightbox }) {
     const sortedImages = imageOrder.map(id => floripaImages.find(img => img.id === id)).filter(Boolean);
 
     // Helper to open lightbox with correct index
+    // Helper to open lightbox with correct index
     const handleImageClick = (imageId) => {
         const index = sortedImages.findIndex(img => img.id === imageId);
         if (index !== -1) {
-            openLightbox(index, sortedImages.map(img => img.lightboxImage), sortedImages.map(img => img.title));
+            openLightbox(index, sortedImages);
         }
     };
 
