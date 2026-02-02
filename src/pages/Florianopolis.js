@@ -228,7 +228,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
     return (
         <motion.div
             layout
-            className={`w-full max-w-4xl bg-white/50 backdrop-blur-sm rounded-xl overflow-hidden shadow-sm border border-stone-200 cursor-pointer transition-shadow duration-300 ${isHovered ? "shadow-xl bg-white/80" : ""}`}
+            className={`w-full max-w-6xl bg-white/90 backdrop-blur-md rounded-xl overflow-hidden shadow-sm cursor-pointer transition-all duration-300 ${isHovered ? "shadow-2xl bg-white/95" : ""}`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onClick={() => setIsHovered(!isHovered)} // Tap to toggle on mobile
@@ -237,19 +237,19 @@ function StoryCard({ section, getImage, handleImageClick }) {
             viewport={{ once: true }}
         >
             {/* Header / Cover State */}
-            <div className="relative p-6 md:p-8 flex flex-col items-center">
-                <h2 className="text-3xl md:text-5xl font-bold font-handwriting mb-6 text-center text-darkText">
+            <div className="relative p-6 md:p-10 flex flex-col items-center">
+                <h2 className="text-4xl md:text-6xl font-bold font-handwriting mb-8 text-center text-darkText">
                     {section.title}
                 </h2>
 
-                <div className="w-full max-w-3xl">
+                <div className="w-full max-w-5xl">
                     <img
                         src={getImage(section.coverImage)?.image}
                         alt={section.title}
-                        className="w-full h-64 md:h-96 object-cover rounded-lg shadow-md mb-4"
+                        className="w-full h-auto object-contain rounded-sm mb-6"
                     />
                     {section.coverCaption && (
-                        <p className="text-center text-sm italic opacity-80 mb-4">{section.coverCaption}</p>
+                        <p className="text-center text-base italic opacity-90 mb-6 font-medium text-stone-700">{section.coverCaption}</p>
                     )}
                 </div>
 
@@ -259,8 +259,8 @@ function StoryCard({ section, getImage, handleImageClick }) {
                     animate={{ opacity: isHovered ? 0 : 1, height: isHovered ? 0 : "auto" }}
                     className="flex flex-col items-center h-8"
                 >
-                    <p className="text-xs uppercase tracking-widest opacity-50 mt-2">Explore Section</p>
-                    <div className="w-px h-4 bg-darkText/20 mt-1"></div>
+                    <p className="text-xs uppercase tracking-widest opacity-60 mt-2 font-semibold">Explore Section</p>
+                    <div className="w-px h-4 bg-darkText/30 mt-1"></div>
                 </motion.div>
             </div>
 
@@ -271,32 +271,32 @@ function StoryCard({ section, getImage, handleImageClick }) {
                     opacity: isHovered ? 1 : 0,
                     height: isHovered ? "auto" : 0
                 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="overflow-hidden"
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                className="overflow-hidden bg-white/40"
             >
-                <div className="px-6 pb-12 md:px-12 md:pb-16 flex flex-col items-center space-y-8">
+                <div className="px-6 pb-12 md:px-16 md:pb-20 flex flex-col items-center space-y-10">
                     {section.content.map((item, idx) => {
                         if (item.type === "text") {
-                            return <p key={idx} className="text-lg leading-relaxed max-w-2xl text-center md:text-left">{item.text}</p>;
+                            return <p key={idx} className="text-xl leading-relaxed max-w-4xl text-center md:text-left text-stone-800 font-medium">{item.text}</p>;
                         }
                         if (item.type === "image") {
                             const img = getImage(item.id);
                             if (!img) return null;
                             return (
-                                <div key={idx} className="flex flex-col items-center max-w-3xl w-full">
+                                <div key={idx} className="flex flex-col items-center max-w-5xl w-full">
                                     <img
                                         src={img.image}
                                         alt={img.title || ""}
                                         onClick={(e) => { e.stopPropagation(); handleImageClick(item.id); }}
-                                        className="w-full h-auto rounded-lg shadow-md cursor-pointer hover:opacity-95 transition-opacity"
+                                        className="w-full h-auto rounded-sm cursor-pointer hover:opacity-95 transition-opacity"
                                     />
-                                    {item.caption && <p className="mt-2 text-sm italic opacity-80 text-center">{item.caption}</p>}
+                                    {item.caption && <p className="mt-3 text-base italic opacity-90 text-center text-stone-700">{item.caption}</p>}
                                 </div>
                             );
                         }
                         if (item.type === "grid") {
                             return (
-                                <div key={idx} className={`grid grid-cols-1 md:grid-cols-${item.ids.length > 2 ? '3' : '2'} gap-4 md:gap-8 w-full max-w-5xl`}>
+                                <div key={idx} className={`grid grid-cols-1 md:grid-cols-${item.ids.length > 2 ? '3' : '2'} gap-6 md:gap-10 w-full max-w-6xl`}>
                                     {item.ids.map(id => {
                                         const img = getImage(id);
                                         if (!img) return null;
