@@ -252,7 +252,7 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption }) {
 
     return (
         <div
-            className={`relative max-w-5xl mx-auto transition-all duration-700 ease-in-out my-8 ${isHovered ? "w-full p-0" : "w-1/2 p-4 bg-white/5"}`}
+            className={`relative max-w-5xl mx-auto transition-all duration-700 ease-in-out my-8 ${isHovered ? "w-full" : "w-1/2"}`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
@@ -300,7 +300,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
         >
             {/* Header / Cover State */}
             <div className="relative p-6 md:p-10 flex flex-col items-center z-10">
-                <h2 className="text-4xl md:text-6xl font-bold font-handwriting mb-8 text-center text-stone-100 drop-shadow-md">
+                <h2 className={`text-4xl md:text-6xl font-bold font-handwriting mb-8 text-center drop-shadow-md transition-colors duration-500 ${isHovered ? "text-stone-100" : "text-[#D4AF37]"}`}>
                     {section.title}
                 </h2>
 
