@@ -163,14 +163,6 @@ function Florianopolis({ openLightbox }) {
         opacity: 1,
     };
 
-    const spreadBackgroundStyle = {
-        backgroundImage: `url(${paperTexture})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        filter: "url(#torn-paper-filter)",
-        opacity: 0.95,
-    };
-
     return (
         <div className="relative min-h-screen pt-2">
             {/* SEO */}
@@ -180,6 +172,16 @@ function Florianopolis({ openLightbox }) {
                 image="/images/Floripa/assets_small/Floripa1z.webp"
                 slug="/brazil/florianopolis"
             />
+
+            {/* Hidden SVG Filter for Paper Distortion - Defined locally to prevent rendering issues */}
+            <svg className="absolute w-0 h-0 invisible" aria-hidden="true" focusable="false">
+                <defs>
+                    <filter id="torn-paper-filter" x="-20%" y="-20%" width="140%" height="140%">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" seed="5" result="noise" />
+                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G" />
+                    </filter>
+                </defs>
+            </svg>
 
             {/* Global Background */}
             <div
