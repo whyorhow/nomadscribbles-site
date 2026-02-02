@@ -24,6 +24,7 @@ import ContactUs from "./pages/ContactUs";
 import SearchResults from "./pages/SearchResults";
 import NotFound from "./pages/NotFound";
 import CookiePreferences from "./pages/CookiePreferences";
+import Florianopolis from "./pages/Florianopolis";
 
 // --- Components ---
 import Nav from "./components/Nav";
@@ -102,6 +103,7 @@ function MainContent({
           <Route path="/brazil/saopaulo/carnival" element={<Carnival openLightbox={openLightbox} />} />
           <Route path="/brazil/saopaulo/murals" element={<Murals openLightbox={openLightbox} />} />
           <Route path="/brazil/saopaulo/santos" element={<Santos openLightbox={openLightbox} />} />
+          <Route path="/brazil/florianopolis" element={<Florianopolis openLightbox={openLightbox} />} />
           <Route path="/nomads-gallery" element={<NomadsGallery openLightbox={openLightbox} />} />
           <Route path="/contact-us" element={<ContactUs openLightbox={openLightbox} />} />
           <Route path="/search" element={<SearchResults openLightbox={openLightbox} />} />

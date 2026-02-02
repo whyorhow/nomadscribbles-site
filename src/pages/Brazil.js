@@ -21,6 +21,7 @@ function Brazil() {
   // Featured destinations for the carousel
   const featuredDestinations = [
     { id: "saopaulo", name: "São Paulo", img: "/images/SaoPauloLanding/small/street.jpg", path: "/brazil/saopaulo" },
+    { id: "florianopolis", name: "Florianópolis", img: "/images/Floripa/small/Floripa18.webp", path: "/brazil/florianopolis" },
     { id: "rio", name: "Rio de Janeiro", img: "/images/Rio/small/Rio9.webp", path: "/brazil/rio" },
     { id: "salvador", name: "Salvador", img: "/images/Salvador/small/Salvador5.webp", path: "/brazil/salvador" },
     { id: "pantanal", name: "The Pantanal", img: "/images/Pantanal/small/Pantanal5.webp", path: "/brazil/pantanal" }
