@@ -385,8 +385,6 @@ function Florianopolis({ openLightbox }) {
             );
 }
 
-        </div>
-    );
-}
 
-export default Florianopolis;
+
+            export default Florianopolis;
