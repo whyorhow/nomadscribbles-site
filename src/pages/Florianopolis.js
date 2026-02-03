@@ -279,22 +279,20 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption }) {
 }
 
 function StoryCard({ section, getImage, handleImageClick }) {
-    const [isHovered, setIsHovered] = useState(false);
+    const [isExpanded, setIsExpanded] = useState(false);
 
     return (
         <motion.div
             layout
-            className={`w-full max-w-6xl bg-stone-900/50 backdrop-blur-md rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 ${isHovered ? "shadow-2xl bg-stone-900/80" : ""}`}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            onClick={() => setIsHovered(!isHovered)} // Tap to toggle on mobile
+            className={`w-full max-w-6xl bg-stone-900/50 backdrop-blur-md rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 ${isExpanded ? "shadow-2xl bg-stone-900/80" : ""}`}
+            onClick={() => setIsExpanded(!isExpanded)}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
         >
             {/* Header / Cover State */}
             <div className="relative p-6 md:p-10 flex flex-col items-center z-10">
-                <h2 className={`text-4xl md:text-6xl font-bold font-handwriting mb-8 text-center drop-shadow-md transition-colors duration-500 ${isHovered ? "text-stone-100" : "text-[#D4AF37]"}`}>
+                <h2 className={`text-4xl md:text-6xl font-bold font-handwriting mb-8 text-center drop-shadow-md transition-colors duration-500 ${isExpanded ? "text-stone-100" : "text-[#D4AF37]"}`}>
                     {section.title}
                 </h2>
 
@@ -310,7 +308,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
                 {/* Indication to expand */}
                 <motion.div
                     initial={{ opacity: 1, height: "auto" }}
-                    animate={{ opacity: isHovered ? 0 : 1, height: isHovered ? 0 : "auto" }}
+                    animate={{ opacity: isExpanded ? 0 : 1, height: isExpanded ? 0 : "auto" }}
                     className="flex flex-col items-center h-8"
                 >
                     <p className="text-xs uppercase tracking-widest opacity-50 mt-2 font-semibold text-stone-400">Explore Section</p>
@@ -322,8 +320,8 @@ function StoryCard({ section, getImage, handleImageClick }) {
             <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{
-                    opacity: isHovered ? 1 : 0,
-                    height: isHovered ? "auto" : 0
+                    opacity: isExpanded ? 1 : 0,
+                    height: isExpanded ? "auto" : 0
                 }}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
                 className="overflow-hidden bg-transparent"
