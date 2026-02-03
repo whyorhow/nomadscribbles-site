@@ -72,13 +72,11 @@ function Florianopolis({ openLightbox }) {
             coverImage: "floripa18", // Where the City Meets the Sea
             coverCaption: "The coastline stretches wide, busy at one end and thinning into distance at the other.",
             content: [
-                { type: "text", text: "Florianópolis isn’t a place built primarily for international visitors. It’s a holiday island for Brazilians, and that shapes everything about it — the pace of the beaches, the way people use the space, and the overall feel of the island." },
-                { type: "text", text: "Families return here year after year, cities empty toward the coast in summer, and daily life stretches outward into sand, forest, and water." },
-                { type: "text", text: "For European travellers, that distinction matters. Floripa isn’t loud or demanding. It feels safe, relaxed, and easy to move through, with an emphasis on being outdoors rather than being entertained." },
-                { type: "text", text: "You don’t come here to collect highlights. You come here to settle into something that already works." },
-                { type: "text", text: "Florianópolis reveals itself slowly. Footsteps fade into the tide, coastlines widen and then narrow again, and the island shifts gently between city, beach, and forest." },
-                { type: "text", text: "Even the built details — staircases, lifeguard towers, paths — feel like suggestions rather than instructions. Nothing insists on your attention for long." },
-                { type: "text", text: "There’s a sense that people are sharing space rather than consuming it. Beaches are used all day, towns feel lived-in, and reminders about care and responsibility are quietly part of the landscape. Wildlife appears without ceremony. Observation here feels mutual." },
+                { type: "text", text: "Florianópolis reveals itself slowly. Footsteps fade into the tide, coastlines widen and narrow again, and the island shifts gently between city, beach, and forest." },
+                { type: "text", text: "The built details feel like suggestions rather than instructions — staircases, lifeguard towers, paths that guide without insisting. Nothing holds your attention for long. There’s a sense of shared space rather than consumption. Beaches are used all day, towns feel lived-in, and care for the environment is quietly embedded in daily routines. Wildlife appears without ceremony. Observation feels mutual." },
+                { type: "text", text: "This is partly because Florianópolis isn’t shaped primarily for international visitors. It’s a holiday island for Brazilians, and that context sets the tone. Families return year after year, cities empty toward the coast in summer, and daily life stretches outward into sand, water, and green space." },
+                { type: "text", text: "For European travellers, that difference matters. Floripa isn’t loud or demanding. It feels safe, relaxed, and easy to move through, with an emphasis on being outdoors rather than being entertained." },
+                { type: "text", text: "You don’t come here to collect highlights. You come to settle into something that already works." },
                 { type: "image", id: "floripa2", caption: "At the centre of the city, the fig tree anchors daily life to something far older." }
             ]
         },
@@ -88,12 +86,12 @@ function Florianopolis({ openLightbox }) {
             coverImage: "floripa5", // Campeche Unrushed
             coverCaption: "Campeche opens wide, where green edges soften into sand and the sea settles into an easy rhythm.",
             content: [
-                { type: "text", text: "Campeche feels open in every sense. The beach runs wide, backed by green hills rather than dense development, and the horizon stays uninterrupted." },
+                { type: "text", text: "If the island’s pace is defined by space and repetition, Campeche is where that becomes most visible." },
                 { type: "image", id: "floripa3" }, // Steps
-                { type: "text", text: "People arrive with coolers, towels, and time, and tend to stay put." },
-                { type: "text", text: "For Brazilians, Campeche is about familiarity and freedom — long days, repeated visits, and a rhythm that doesn’t change much year to year. For visitors, it’s often where the island’s pace clicks into place." },
-                { type: "text", text: "Nothing competes for attention, and that absence of pressure becomes the appeal. Even Campeche Island just offshore feels vivid without being overworked, visited calmly rather than framed as an event." },
-                { type: "quote", text: "Pé na areia, água de coco, beira do mar.\nFeet in the sand, coconut water, by the sea.", source: "— from “Pé na Areia”, Diogo Nogueira" }
+                { type: "text", text: "The beach runs broad and uninterrupted, backed by hills rather than dense development. The horizon stays open. People arrive with coolers, towels, and time, and tend to stay put." },
+                { type: "text", text: "For Brazilians, Campeche is about familiarity — long days, repeated visits, and a rhythm that doesn’t need reinvention. For visitors, it’s often where the island’s logic clicks into place." },
+                { type: "text", text: "Nothing competes for attention, and that absence becomes the appeal. Even Campeche Island offshore feels vivid without being overworked, visited calmly rather than framed as an event." },
+                { type: "quote", text: "Pé na areia, água de coco, beira do mar.\nFeet in the sand, coconut water, by the sea.", source: "— Diogo Nogueira" }
             ]
         },
         {
@@ -102,12 +100,12 @@ function Florianopolis({ openLightbox }) {
             coverImage: "floripa12", // Along Shore
             coverCaption: "The shoreline curves softly, where hills, boats, and shallow water settle into an easy balance.",
             content: [
-                { type: "text", text: "Santo Antônio de Lisboa sits on the quieter, bay-facing side of the island. The water is calmer here, the light softer, and evenings tend to linger." },
-                { type: "text", text: "This geography shapes how the place is used — less about the open ocean, more about staying close." },
+                { type: "text", text: "On the quieter, bay-facing side of the island, the rhythm turns inward." },
                 { type: "image", id: "floripa4" }, // Watching Water
-                { type: "text", text: "It’s one of the island’s older settled areas, shaped by routine rather than reinvention. Boats rest near shore, restaurants fill slowly, workshops and homes sit side by side." },
+                { type: "text", text: "Santo Antônio de Lisboa sits where the water stays calm and the light softens toward evening. The geography shapes how the town is used — less about the open ocean, more about staying close." },
+                { type: "text", text: "It’s one of the island’s older settled areas, formed by routine rather than reinvention. Boats rest near shore, restaurants fill gradually, workshops and homes sit side by side." },
                 { type: "grid", ids: ["floripa17", "floripa10"] }, // Princess Flower, Shrimp
-                { type: "text", text: "Notes left behind, handmade objects, and unhurried meals aren’t styled for visitors — they’re simply part of how the town works. For travellers, Santo Antônio offers a glimpse of Florianópolis as somewhere people live, not perform." },
+                { type: "text", text: "Handwritten notes, handmade objects, and unhurried meals aren’t arranged for visitors. They’re simply part of how the place functions. For travellers, Santo Antônio offers Florianópolis as somewhere people live, not perform." },
                 { type: "image", id: "floripa8", caption: "Handwritten notes accumulate over time, turning the restaurant into a record of passing lives." }, // Bar do Arante
                 { type: "image", id: "floripa11", caption: "Small workshops remain part of daily life, not attractions." }, // Workshop
                 { type: "grid", ids: ["floripa7", "floripa6", "floripa15"] }, // Hillside, Egret, Shared Care
@@ -121,38 +119,26 @@ function Florianopolis({ openLightbox }) {
             coverImage: "floripa22", // Rocks
             coverCaption: "Dark stones sit low in the surf, shaped smooth by repetition rather than force.",
             content: [
-                { type: "text", text: "Praia do Forte feels less polished. Rocks interrupt the sand, waves arrive unevenly, and the coastline resists being smoothed out." },
-                { type: "text", text: "It’s not dramatic, but it’s active — shaped continuously by wind, water, and light." },
+                { type: "text", text: "Where Campeche opens wide, Praia do Forte interrupts." },
+                { type: "text", text: "Rocks break the sand, waves arrive unevenly, and the coastline resists being smoothed out. It’s not dramatic, but it’s active — shaped continuously by wind, water, and tide." },
                 { type: "grid", ids: ["floripa13", "floripa21"] }, // Dusk, Casting
-                { type: "text", text: "Here, Florianópolis’ relationship with nature becomes clearest. Plants lean into salt air, stones accept the tide repeatedly, and people adjust their pace without thinking about it. The landscape sets the terms, and life follows." },
+                { type: "text", text: "Here, the island’s relationship with nature becomes clearest. Plants lean into salt air, stones accept the water again and again, and people adjust their pace without thinking about it. The landscape sets the terms. Life follows." },
                 { type: "image", id: "floripa20" } // Last Light
             ]
         },
         {
             id: "conclusion",
-            title: "Who is this Trip for?",
+            title: "Who Is This Trip For?",
             coverImage: "floripa25", // Arriving at Campeche
             coverCaption: "Access is simple, and the pace remains unhurried.",
             content: [
-                { type: "header", text: "This island is a good fit if…" },
-                {
-                    type: "list", items: [
-                        "You enjoy beaches that feel lived-in rather than staged, and days that don’t need much planning. You’re happy letting nature set the pace — walking, swimming, sitting, and doing it all again the next day.",
-                        "You’re curious about how Brazilians travel within their own country, and you value places that feel safe, relaxed, and easy to move through. Space, greenery, and everyday rhythm matter more to you than constant activity."
-                    ]
-                },
+                { type: "text", text: "This island suits travellers who enjoy beaches that feel lived-in rather than staged, and days that don’t require much planning. If you’re happy walking, swimming, sitting, and repeating the same small pleasures, Florianópolis fits easily. An interest in how Brazilians travel within their own country — and a preference for space, greenery, and everyday rhythm over constant activity — helps." },
                 { type: "image", id: "floripa24" }, // Coati
-                { type: "header", text: "It may not be the right fit if…" },
-                {
-                    type: "list", items: [
-                        "You’re looking for a dense city experience or a tightly structured itinerary. You prefer destinations built around landmarks, nightlife, or a sense of urgency.",
-                        "You want spectacle at every turn, or beaches designed to entertain rather than to be used. Florianópolis tends to reward patience and repetition more than novelty."
-                    ]
-                },
-                { type: "text", text: "Florianópolis isn’t a place to be decoded all at once. It’s better understood gradually, through small differences between beaches, towns, and days." },
+                { type: "text", text: "It may frustrate those looking for a dense city experience or a tightly structured itinerary. If you prefer destinations built around landmarks, nightlife, or urgency, or want spectacle at every turn, this island may feel too understated. Florianópolis tends to reward patience and repetition more than novelty." },
+                { type: "text", text: "It isn’t a place to be decoded all at once. It’s better understood gradually, through small differences between beaches, towns, and days." },
                 { type: "grid", ids: ["floripa9", "floripa1"] }, // Small Witness, Curassow
-                { type: "text", text: "The Bare-faced Curassow paused long enough to watch back." },
-                { type: "text", text: "If the feel of the island resonates — the space, the calm, the way nature and daily life overlap — then it’s worth exploring further in your own way, whether that’s maps, conversations, or the inevitable “things to do” lists elsewhere. This page is simply the starting point." },
+                { type: "text", text: "The bare-faced curassow paused long enough to watch back — a reminder that here, observation often goes both ways." },
+                { type: "text", text: "If the island’s pace resonates — the space, the calm, the way nature and daily life overlap — it’s worth exploring further in your own way. Maps, conversations, and “things to do” lists can come later. This page is simply the starting point." },
                 { type: "image", id: "floripa23" } // Golden Hour
             ]
         }
