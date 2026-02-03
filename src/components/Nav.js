@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // FIX: .. to go up to assets
 import { ReactComponent as SearchIcon } from "../assets/images/Search.svg";
@@ -13,6 +13,7 @@ function Nav() {
   const [openSaoPaulo, setOpenSaoPaulo] = useState(true);
 
   const [searchQuery, setSearchQuery] = useState("");
+  const closeTimeoutRef = useRef(null);
 
   const navigate = useNavigate();
 
@@ -48,9 +49,21 @@ function Nav() {
 
   const toggleSearch = () => setSearchOpen((s) => !s);
 
+  // Hover handlers for Menu
+  const handleMenuEnter = () => {
+    if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+    setMenuOpen(true);
+  };
+
+  const handleMenuLeave = () => {
+    closeTimeoutRef.current = setTimeout(() => {
+      setMenuOpen(false);
+    }, 300); // 300ms delay to allow moving to the menu
+  };
+
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (!e.target.closest?.(".burger-menu-container") && menuOpen) {
+      if (!e.target.closest?.(".burger-menu-container") && !e.target.closest?.("#site-menu") && menuOpen) {
         setMenuOpen(false);
       }
       if (!e.target.closest?.(".search-container") && searchOpen) {
@@ -64,19 +77,24 @@ function Nav() {
       clearTimeout(timeout);
       if (menuOpen || searchOpen) {
         timeout = setTimeout(() => {
-          setMenuOpen(false);
-          setSearchOpen(false);
-        }, 2000);
+          // Keep open if hovering
+          // This logic was "auto closing after 2s" which interacts poorly with hover
+          // I will disable auto-closing on mousemove if we use hover logic, 
+          // or rely on explicit mouseLeave.
+          // setMenuOpen(false); 
+          // setSearchOpen(false);
+        }, 5000); // Increased to 5s or maybe remove entirely if hover handles it
       }
     };
-    document.addEventListener("mousemove", resetTimeout);
-    document.addEventListener("keydown", resetTimeout);
+    // document.addEventListener("mousemove", resetTimeout); // Disabling aggressive auto-close
+    // document.addEventListener("keydown", resetTimeout);
 
     return () => {
       document.removeEventListener("click", handleClickOutside);
-      document.removeEventListener("mousemove", resetTimeout);
-      document.removeEventListener("keydown", resetTimeout);
+      // document.removeEventListener("mousemove", resetTimeout);
+      // document.removeEventListener("keydown", resetTimeout);
       clearTimeout(timeout);
+      if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
     };
   }, [menuOpen, searchOpen]);
 
@@ -172,6 +190,8 @@ function Nav() {
         aria-expanded={menuOpen}
         aria-controls="site-menu"
         onClick={toggleMenu}
+        onMouseEnter={handleMenuEnter}
+        onMouseLeave={handleMenuLeave}
         style={{ zIndex: 9999 }}
       >
         <div
@@ -259,11 +279,16 @@ function Nav() {
     transform transition-transform duration-300
     bg-[#e8eac7]/80
     ${menuOpen ? "translate-x-0 pointer-events-auto" : "translate-x-full pointer-events-none"}`}
+        onMouseEnter={handleMenuEnter}
+        onMouseLeave={handleMenuLeave}
       >
         <Link className="text-[#38350b] text-lg hover:text-[#0c0b01]" to="/home" onClick={() => setMenuOpen(false)}>Home</Link>
 
         <div className="flex flex-col">
-          <div className="flex justify-between items-center w-full">
+          <div
+            className="flex justify-between items-center w-full cursor-pointer"
+            onMouseEnter={() => setOpenAdventures(true)}
+          >
             <Link className="text-[#38350b] text-lg hover:text-[#0c0b01]" to="/adventures" onClick={() => setMenuOpen(false)}>Adventures Blog</Link>
             <button onClick={() => toggleSubmenu("adventures", setOpenAdventures)} className="focus:outline-none" aria-label="Toggle travel submenu">
               <Arrow isOpen={openAdventures} />
@@ -271,7 +296,10 @@ function Nav() {
           </div>
 
           <div className={submenuClass(openAdventures)}>
-            <div className="flex justify-between items-center w-full">
+            <div
+              className="flex justify-between items-center w-full cursor-pointer"
+              onMouseEnter={() => setOpenBrazil(true)}
+            >
               <Link className="text-[#38350b] text-base hover:text-[#0c0b01]" to="/brazil" onClick={() => setMenuOpen(false)}>Brazil</Link>
               <button onClick={() => toggleSubmenu("brazil", setOpenBrazil)} className="focus:outline-none" aria-label="Toggle brazil submenu">
                 <Arrow isOpen={openBrazil} />
@@ -279,7 +307,10 @@ function Nav() {
             </div>
 
             <div className={submenuClass(openBrazil)}>
-              <div className="flex justify-between items-center w-full">
+              <div
+                className="flex justify-between items-center w-full cursor-pointer"
+                onMouseEnter={() => setOpenSaoPaulo(true)}
+              >
                 <Link className="text-[#38350b] text-base hover:text-[#0c0b01]" to="/brazil/saopaulo" onClick={() => setMenuOpen(false)}>São Paulo</Link>
                 <button onClick={() => toggleSubmenu("saopaulo", setOpenSaoPaulo)} className="focus:outline-none" aria-label="Toggle saopaulo submenu">
                   <Arrow isOpen={openSaoPaulo} />

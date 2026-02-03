@@ -195,8 +195,15 @@ function Florianopolis({ openLightbox }) {
             {/* Content Wrapper to ensure z-index above background */}
             <div className="relative z-10">
 
+                {/* Back to Brazil Link */}
+                <div className="flex justify-center mt-8 mb-2 z-10 relative">
+                     <Link to="/brazil" className="text-stone-400 text-sm font-bold tracking-widest uppercase hover:text-[#D4AF37] transition-colors">
+                        ← Return to Brazil
+                     </Link>
+                </div>
+
                 {/* Title Section */}
-                <div className="flex justify-center mb-6 px-4 mt-8">
+                <div className="flex justify-center mb-6 px-4 mt-2">
                     <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-[#D4AF37] tracking-tight text-center drop-shadow-sm">Florianópolis</h1>
                 </div>
 
@@ -217,8 +224,8 @@ function Florianopolis({ openLightbox }) {
                         style={spreadBackgroundStyle}
                     />
 
-                    <div className="relative z-20 max-w-5xl mx-auto px-4 py-8 flex flex-col items-center mt-[-10px]">
-                        <div className="w-full max-w-4xl overflow-visible mb-[-10px]">
+                    <div className="relative z-20 max-w-5xl mx-auto px-4 py-4 md:py-8 flex flex-col items-center mt-[-10px]">
+                        <div className="w-[66%] md:w-full max-w-4xl overflow-visible mb-[-10px]">
                             <ContextMap
                                 markers={[florianopolisCoords].filter(Boolean)}
                                 zoomToId="florianopolis"
@@ -247,36 +254,44 @@ function Florianopolis({ openLightbox }) {
 }
 
 // Reusable animated image component
+// Reusable animated image component
 function RevealImage({ smallSrc, fullSrc, alt, onClick, caption }) {
-    const [isHovered, setIsHovered] = useState(false);
+    const [isExpanded, setIsExpanded] = useState(false);
+
+    const handleClick = (e) => {
+        if (!isExpanded) {
+            e.stopPropagation();
+            setIsExpanded(true);
+        } else {
+            if (onClick) onClick(e);
+        }
+    };
 
     return (
         <div
-            className={`relative max-w-5xl mx-auto transition-all duration-700 ease-in-out my-8 ${isHovered ? "w-full" : "w-full md:w-1/2"}`}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+            className={`relative max-w-5xl mx-auto transition-all duration-700 ease-in-out my-8 ${isExpanded ? "w-full" : "w-full md:w-1/2"}`}
         >
             <div className="relative w-full">
                 {/* Small Framed Image (Visible by default) */}
                 <img
                     src={smallSrc}
                     alt={alt}
-                    onClick={onClick}
-                    className={`w-full h-auto object-contain rounded-sm shadow-sm transition-opacity duration-500 cursor-pointer ${isHovered ? "opacity-0" : "opacity-100"}`}
+                    onClick={handleClick}
+                    className={`w-full h-auto object-contain rounded-sm shadow-sm transition-opacity duration-500 cursor-pointer ${isExpanded ? "opacity-0" : "opacity-100"}`}
                 />
 
                 {/* High-Res Full Image (Fades in on hover) */}
                 <img
                     src={fullSrc}
                     alt={alt}
-                    onClick={onClick}
-                    className={`absolute inset-0 w-full h-full object-cover rounded-sm transition-opacity duration-700 cursor-pointer ${isHovered ? "opacity-100" : "opacity-0"}`}
+                    onClick={handleClick}
+                    className={`absolute inset-0 w-full h-full object-cover rounded-sm transition-opacity duration-700 cursor-pointer ${isExpanded ? "opacity-100" : "opacity-0"}`}
                     loading="lazy"
                 />
             </div>
 
             {caption && (
-                <p className={`text-center text-sm italic mt-4 font-medium text-stone-300 transition-opacity duration-500 ${isHovered ? "opacity-100" : "opacity-0"}`}>
+                <p className={`text-center text-sm italic mt-4 font-medium text-stone-300 transition-opacity duration-500 ${isExpanded ? "opacity-100" : "opacity-0"}`}>
                     {caption}
                 </p>
             )}
