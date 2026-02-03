@@ -240,7 +240,7 @@ const ContextMap = ({ markers = [], zoomToId = null, title = "Location Context",
                             </svg>
 
                             {markers.length === 1 && (
-                                <div className="absolute bottom-4 right-4">
+                                <div className="absolute bottom-4 -right-16 md:-right-24">
                                     <a
                                         href={markers[0].googleMapsUrl || `https://www.google.com/maps/search/?api=1&query=${markers[0].lat},${markers[0].lng}`}
                                         target="_blank"

@@ -144,15 +144,8 @@ function Pantanal({ openLightbox }) {
             {/* Global Background Wrapper */}
             <div className="relative w-full overflow-hidden">
 
-                {/* Back to Brazil Link */}
-                <div className="flex justify-center mt-8 mb-2 z-10 relative">
-                     <Link to="/brazil" className="text-stone-400 text-sm font-bold tracking-widest uppercase hover:text-[#D4AF37] transition-colors">
-                        ← Return to Brazil
-                     </Link>
-                </div>
-
                 {/* Title Section */}
-                <div className="flex justify-center mb-6 px-4 mt-2 relative z-10">
+                <div className="flex justify-center mb-6 px-4 mt-8 relative z-10">
                     <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-[#D4AF37] tracking-tight text-center drop-shadow-sm">The Pantanal</h1>
                 </div>
 

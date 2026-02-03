@@ -130,7 +130,7 @@ function Florianopolis({ openLightbox }) {
         },
         {
             id: "conclusion",
-            title: "Is This the Right Fit?",
+            title: "Who is this Trip for?",
             coverImage: "floripa25", // Arriving at Campeche
             coverCaption: "Access is simple, and the pace remains unhurried.",
             content: [
@@ -195,15 +195,8 @@ function Florianopolis({ openLightbox }) {
             {/* Content Wrapper to ensure z-index above background */}
             <div className="relative z-10">
 
-                {/* Back to Brazil Link */}
-                <div className="flex justify-center mt-8 mb-2 z-10 relative">
-                     <Link to="/brazil" className="text-stone-400 text-sm font-bold tracking-widest uppercase hover:text-[#D4AF37] transition-colors">
-                        ← Return to Brazil
-                     </Link>
-                </div>
-
                 {/* Title Section */}
-                <div className="flex justify-center mb-6 px-4 mt-2">
+                <div className="flex justify-center mb-6 px-4 mt-8">
                     <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-[#D4AF37] tracking-tight text-center drop-shadow-sm">Florianópolis</h1>
                 </div>
 

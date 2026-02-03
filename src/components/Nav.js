@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 // FIX: .. to go up to assets
 import { ReactComponent as SearchIcon } from "../assets/images/Search.svg";
 
@@ -16,6 +16,10 @@ function Nav() {
   const closeTimeoutRef = useRef(null);
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Check if we should show the "Return to Brazil" global header link
+  const showReturnLink = ["/brazil/florianopolis", "/brazil/pantanal", "/brazil/rio", "/brazil/salvador"].includes(location.pathname);
 
   // Analytics helpers
   const trackClick = (path) => {
@@ -161,6 +165,17 @@ function Nav() {
 
   return (
     <>
+      {showReturnLink && (
+        <div className="fixed top-2 md:top-4 left-1/2 -translate-x-1/2 z-50 transition-opacity duration-500">
+          <Link to="/brazil" className="flex flex-col md:flex-row items-center justify-center text-[#ceb752] hover:text-[#e8eac7] transition-colors drop-shadow-md">
+            <span className="text-xl md:text-lg mb-[-5px] md:mb-0 md:mr-2">←</span>
+            <span className="text-[10px] md:text-sm font-bold tracking-widest uppercase text-center md:text-left leading-tight">
+              Return <br className="md:hidden" /> to Brazil
+            </span>
+          </Link>
+        </div>
+      )}
+
       <div className="search-container fixed top-2 md:top-2 right-12 z-50 flex items-center">
         <SearchIcon
           className={`cursor-pointer transition-transform duration-300 p-1 w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11
