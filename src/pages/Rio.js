@@ -21,129 +21,303 @@ function Rio({ openLightbox }) {
         opacity: 0.95,
     };
 
-    const contentBlocks = [
-        {
-            title: "Granite at First Light",
-            text: "The city wakes beneath massive stone shoulders. As the sun lifts, light skims across bare rock faces, revealing how Rio is built around its landscape rather than on top of it. These hills are not distant backdrops — they are present, unavoidable, shaping neighborhoods, views, and daily movement.",
-            imageId: "rio1" // Rio Landscape
-        },
-        {
-            title: "City Pressed to the Mountain",
-            text: "Dense neighborhoods cling to the slopes, rising in tight layers between forest and sea. From above, the city appears compressed, every available surface inhabited. Rio’s geography leaves little room for separation. Wealth, poverty, nature, and concrete exist side by side, stacked vertically rather than spread apart.",
-            imageId: "rio7" // Favela Colors
-        },
-        {
-            title: "Watching from Above",
-            text: "The figure of Christ stands open-armed over the city, both distant and deeply present. From this height, Rio stretches outward — beaches, buildings, forests, and roads unfolding in every direction. The statue does not dominate the view so much as frame it, a silent witness to the movement below.",
-            imageId: "rio6" // Christ the Redeemer
-        },
-        {
-            title: "Stone and Sky",
-            text: "Up close, the monument feels heavier, more human in scale. Weathered stone meets open air, and the outstretched arms feel less like spectacle and more like gesture. Clouds pass, birds circle, voices drift upward. Even here, at one of the city’s most visited sites, Rio never fully pauses.",
-            imageId: "rio10" // Rio Sunset (Sky theme)
-        },
-        {
-            title: "Where the City Meets the Sea",
-            text: "On the shoreline, the rhythm changes again. Waves roll in, feet sink into sand, conversations slow. The beach is not an escape from the city — it is part of its daily life. Here, Rio stretches out horizontally, offering space, breath, and light after the density of the hills.",
-            imageId: "rio5" // Beach Life
-        },
-        {
-            title: "A City Defined by Geography",
-            text: "Rio’s dramatic landscape is the result of ancient granite formations shaped long before the city existed. Mountains rise abruptly from sea level, forcing urban life to adapt vertically. This geography influences everything — housing, transport, visibility, even social boundaries.",
-            imageId: "rio3" // Sugarloaf View
-        },
-        {
-            title: "Christ the Redeemer",
-            text: "Completed in 1931, the statue atop Corcovado Mountain has become one of the most recognisable symbols of Brazil. More than a religious monument, it has come to represent protection, openness, and watchfulness — a constant presence above the city’s contradictions.",
-            imageId: "rio2" // Rio Scenes (General view)
-        },
-        {
-            title: "Between Forest and Ocean",
-            text: "Rio is bordered by the Atlantic Ocean on one side and the Tijuca Forest — one of the world’s largest urban rainforests — on the other. This proximity means nature is never far away. Sudden rain, shifting light, and dense greenery are part of everyday urban experience.",
-            imageId: "rio4" // Urban Jungle
-        },
-        {
-            title: "The Beach as Common Ground",
-            text: "Unlike many global cities, Rio’s beaches function as shared social spaces. Locals from across the city gather here — to swim, talk, play, rest, and observe. The shoreline becomes a place where social lines soften, even if briefly.",
-            imageId: "rio9" // Tropical Vibes
-        }
+    // Define the visual order of images for Lightbox navigation
+    const imageOrder = [
+        "rio1", "rio2", "rio3", "rio4", "rio5", "rio6", "rio7", "rio8", "rio9", "rio10", "rio11"
     ];
 
-    // Helper to open lightbox with correct index from the full list
+    // Derived list of images sorted by their appearance
+    const sortedImages = imageOrder.map(id => rioImages.find(img => img.id === id)).filter(Boolean);
+
+    // Helper to open lightbox with correct index
     const handleImageClick = (imageId) => {
-        const index = rioImages.findIndex(img => img.id === imageId);
+        const index = sortedImages.findIndex(img => img.id === imageId);
         if (index !== -1) {
-            openLightbox(index, rioImages.map(img => img.blogimage), rioImages.map(img => img.title));
+            openLightbox(index, sortedImages);
         }
     };
 
+    const getImage = (id) => rioImages.find(i => i.id === id);
+
+    // --- Section Data Structure ---
+    const sections = [
+        {
+            id: "carnival",
+            title: "Spectacle and scale", // Adapted from Rio2 desc
+            coverImage: "rio2", // Carnival Stands
+            coverCaption: "Carnival is as much about collective participation as spectacle.",
+            content: [
+                { type: "text", text: "Viewed from above, the Sambadrome becomes a dense field of sound, light, and choreography. Each section performs with precision, but the scale of the crowd reminds you that Carnival is a massive, shared event." },
+                { type: "header", text: "The Effort Behind the Fantasy" },
+                { type: "image", id: "rio3", caption: "What reads as excess is the result of months of work." }, // Float
+                { type: "text", text: "Large-scale floats move slowly through the avenue, combining mythology, politics, humour, and craftsmanship. Entire neighbourhoods work for months to create these fleeting moments of perfection." },
+                { type: "grid", ids: ["rio4", "rio5"] }, // Hands & Daylight
+                { type: "text", text: "Close up, the detail becomes human again — hands raised, figures layered, performers and mechanics working together. Seen in daylight, the structures expose their construction, reminding us that Carnival exists within everyday Rio, not apart from it." }
+            ]
+        },
+        {
+            id: "geography",
+            title: "A City Pressed to the Mountain",
+            coverImage: "rio8", // City Slope
+            coverCaption: "Geography here forces the city upward.",
+            content: [
+                { type: "text", text: "Dense neighbourhoods climb the slopes between forest and sea, filling every available space. Rio’s geography leaves little room for sprawl; instead, it layers daily life vertically." },
+                { type: "header", text: "Granite Foundations" },
+                { type: "image", id: "rio7", caption: "The landscape isn’t a backdrop — it sets the limits." }, // Granite
+                { type: "text", text: "The city wakes beneath massive stone hills as early light skims across bare rock. In Rio, the landscape isn’t a backdrop — it sets the limits and the mood. Daily life adapts to this terrain rather than resisting it." },
+                { type: "image", id: "rio6", caption: "Quiet courtyards operate in the shadow of the mountain." } // Parque Lage
+            ]
+        },
+        {
+            id: "corcovado",
+            title: "Watching from Above",
+            coverImage: "rio9", // Christ
+            coverCaption: "Distant yet constant.",
+            content: [
+                { type: "text", text: "Christ the Redeemer stands above the city, distant yet constant. From this height, Rio unfolds as a mix of water, forest, and dense urban movement." },
+                { type: "text", text: "Up close, the monument feels heavier and quieter than expected. Weathered stone, passing clouds, and surrounding forest pull attention back to the setting rather than the symbol. It is a human scale within a monumental landscape." },
+                { type: "image", id: "rio10", caption: "Weathered stone and passing clouds." } // Human Scale
+            ]
+        },
+        {
+            id: "sea",
+            title: "Where the City Meets the Sea",
+            coverImage: "rio11", // Beach
+            coverCaption: "The shoreline isn’t an escape; it’s part of everyday life.",
+            content: [
+                { type: "text", text: "The beach marks a shift in pace — conversations slow, bodies stretch, and the city exhales. In Rio, the shoreline isn’t an escape; it’s part of everyday life. It is where the density of the city opens up to the horizon." }
+            ]
+        }
+    ];
+
+    const pageBackgroundStyle = {
+        backgroundColor: "#84935c", // Deep olive green to match others
+        opacity: 1,
+    };
+
     return (
-        <div className="relative min-h-screen pt-2">
-            {/* SEO */}
+        <div className="min-h-screen transition-colors duration-500" style={pageBackgroundStyle}>
             <SEO
                 title="Rio de Janeiro | Nomad Scribbles"
-                description="Rio de Janeiro: Where stone, sea, and belief shape the skyline. A city pressed to the mountains and defined by its dramatic geography."
-                image="/images/Rio/small/Rio1F.webp"
-                slug="/brazil/rio"
+                description="Rio de Janeiro: A city of granite, carnival, and sea, defined by its dramatic geography."
+                keywords={["Rio de Janeiro", "Brazil", "Carnival", "Travel Photography", "Christ the Redeemer"]}
             />
 
-            {/* Hidden H1 */}
-            <h1 className="sr-only">Rio de Janeiro | Nomad Scribbles</h1>
+            {/* SVG Filter for Torn Paper Effect */}
+            <svg style={{ visibility: 'hidden', position: 'absolute' }} width="0" height="0">
+                <defs>
+                    <filter id="torn-paper-filter">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="5" result="noise" />
+                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="20" />
+                    </filter>
+                </defs>
+            </svg>
 
+            {/* Global Background Wrapper */}
+            <div className="relative w-full overflow-hidden">
 
-            {/* Title Section */}
-            <div className="flex justify-center mb-6 px-4 mt-8">
-                <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-darkText tracking-tight text-center">Rio de Janeiro</h1>
-            </div>
+                {/* Title Section */}
+                <div className="flex justify-center mb-6 px-4 mt-8 relative z-10">
+                    <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-[#D4AF37] tracking-tight text-center drop-shadow-sm">Rio de Janeiro</h1>
+                </div>
 
-            {/* Banner Spread with Map */}
-            <div className="relative w-full mb-16 overflow-hidden">
-                <div
-                    className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[110vw] pointer-events-none z-0"
-                    style={spreadBackgroundStyle}
-                />
+                {/* Hero Image - Rio1 (Selaron) */}
+                <div className="w-full max-w-4xl mx-auto px-4 mb-12 flex flex-col items-center relative z-10">
+                    <img
+                        src="/images/Rio/small/Rio1.webp"
+                        alt="Selarón Steps at Night"
+                        className="w-full h-auto object-cover rounded-lg shadow-lg mb-2"
+                    />
+                    <p className="text-sm italic opacity-90 text-center font-medium text-stone-200">The tiled staircase in Lapa fills after dark, drawing locals into a narrow pocket of colour.</p>
+                </div>
 
-                <div className="relative z-20 max-w-5xl mx-auto px-4 py-8 flex flex-col items-center mt-[-10px]">
-                    <div className="w-full max-w-4xl overflow-visible mb-[-10px]">
-                        <ContextMap
-                            markers={[rioCoords].filter(Boolean)}
-                            zoomToId="rio"
-                            title="Where is Rio de Janeiro?"
-                            geography={rioCoords?.geography}
-                            transparent={true}
-                        />
+                {/* Banner Spread with Map */}
+                <div className="relative w-full mb-16 overflow-hidden">
+                    <div
+                        className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[110vw] pointer-events-none z-0"
+                        style={spreadBackgroundStyle}
+                    />
+
+                    <div className="relative z-20 max-w-5xl mx-auto px-4 py-8 flex flex-col items-center mt-[-10px]">
+                        <div className="w-full max-w-4xl overflow-visible mb-[-10px]">
+                            <ContextMap
+                                markers={[rioCoords].filter(Boolean)}
+                                zoomToId="rio"
+                                title="Where is Rio?"
+                                geography={rioCoords?.geography}
+                                transparent={true}
+                            />
+                        </div>
                     </div>
                 </div>
+
+                {/* Main Content with Interactive Sections */}
+                <main className="px-2 py-2 max-w-screen-xl mx-auto space-y-8 flex flex-col items-center pb-24">
+                    {sections.map((section) => (
+                        <StoryCard
+                            key={section.id}
+                            section={section}
+                            getImage={getImage}
+                            handleImageClick={handleImageClick}
+                        />
+                    ))}
+                </main>
+            </div>
+        </div>
+    );
+}
+
+// Reusable animated image component
+function RevealImage({ smallSrc, fullSrc, alt, onClick, caption }) {
+    const [isHovered, setIsHovered] = useState(false);
+
+    return (
+        <div
+            className={`relative max-w-5xl mx-auto transition-all duration-700 ease-in-out my-8 ${isHovered ? "w-full" : "w-full md:w-1/2"}`}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
+            <div className="relative w-full">
+                {/* Small Image (Visible by default) */}
+                <img
+                    src={smallSrc}
+                    alt={alt}
+                    onClick={onClick}
+                    className={`w-full h-auto object-contain rounded-sm shadow-sm transition-opacity duration-500 cursor-pointer ${isHovered ? "opacity-0" : "opacity-100"}`}
+                />
+
+                {/* High-Res Full Image (Fades in on hover) */}
+                <img
+                    src={fullSrc}
+                    alt={alt}
+                    onClick={onClick}
+                    className={`absolute inset-0 w-full h-full object-cover rounded-sm transition-opacity duration-700 cursor-pointer ${isHovered ? "opacity-100" : "opacity-0"}`}
+                    loading="lazy"
+                />
             </div>
 
-            <main className="px-2 py-2 max-w-screen-lg mx-auto space-y-6 font-cormorant text-darkText leading-relaxed">
-                {contentBlocks.map((block, idx) => {
-                    const img = rioImages.find(i => i.id === block.imageId);
-                    if (!img) return null;
-
-                    return (
-                        <div
-                            key={block.title}
-                            className={`flex flex-col lg:flex-row items-center justify-center gap-6 ${idx % 2 === 1 ? "lg:flex-row-reverse" : ""
-                                }`}
-                        >
-                            <img
-                                src={img.blogimage}
-                                alt={img.title}
-                                loading="lazy"
-                                onClick={() => handleImageClick(block.imageId)}
-                                className="rounded-lg cursor-pointer w-10/12 sm:w-3/4 md:w-2/3 lg:w-2/5 h-auto shadow-md hover:opacity-95 transition-opacity p-4 max-w-[350px]"
-                            />
-                            <div className="p-4 rounded-md flex-1 text-left text-sm sm:text-base">
-                                <h2 className="font-bold text-lg mb-2">{block.title}</h2>
-                                <p>{block.text}</p>
-                            </div>
-                        </div>
-                    );
-                })}
-            </main>
-
+            {caption && (
+                <p className={`text-center text-sm italic mt-4 font-medium text-stone-300 transition-opacity duration-500 ${isHovered ? "opacity-100" : "opacity-0"}`}>
+                    {caption}
+                </p>
+            )}
         </div>
+    );
+}
+
+function StoryCard({ section, getImage, handleImageClick }) {
+    const [isHovered, setIsHovered] = useState(false);
+
+    return (
+        <motion.div
+            layout
+            className={`w-full max-w-6xl bg-stone-900/50 backdrop-blur-md rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 ${isHovered ? "shadow-2xl bg-stone-900/80" : ""}`}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onClick={() => setIsHovered(!isHovered)} // Tap to toggle on mobile
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+        >
+            {/* Header / Cover State */}
+            <div className="relative p-6 md:p-10 flex flex-col items-center z-10">
+                <h2 className={`text-4xl md:text-6xl font-bold font-handwriting mb-8 text-center drop-shadow-md transition-colors duration-500 ${isHovered ? "text-stone-100" : "text-[#D4AF37]"}`}>
+                    {section.title}
+                </h2>
+
+                {/* Reused Reveal Animation for Cover */}
+                <RevealImage
+                    smallSrc={getImage(section.coverImage)?.image}
+                    fullSrc={getImage(section.coverImage)?.lightboxImage}
+                    alt={section.title}
+                    caption={section.coverCaption}
+                    onClick={() => handleImageClick(section.coverImage)}
+                />
+
+                {/* Indication to expand */}
+                <motion.div
+                    initial={{ opacity: 1, height: "auto" }}
+                    animate={{ opacity: isHovered ? 0 : 1, height: isHovered ? 0 : "auto" }}
+                    className="flex flex-col items-center h-8"
+                >
+                    <p className="text-xs uppercase tracking-widest opacity-50 mt-2 font-semibold text-stone-400">Explore Section</p>
+                    <div className="w-px h-4 bg-stone-400/30 mt-1"></div>
+                </motion.div>
+            </div>
+
+            {/* Expanded Content */}
+            <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{
+                    opacity: isHovered ? 1 : 0,
+                    height: isHovered ? "auto" : 0
+                }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                className="overflow-hidden bg-transparent"
+            >
+                <div className="px-6 pb-12 md:px-16 md:pb-20 flex flex-col items-center space-y-10">
+                    {section.content.map((item, idx) => {
+                        if (item.type === "text") {
+                            return <p key={idx} className="text-xl leading-relaxed max-w-4xl text-center md:text-left text-stone-300 font-medium">{item.text}</p>;
+                        }
+                        if (item.type === "image") {
+                            const img = getImage(item.id);
+                            if (!img) return null;
+                            return (
+                                <div key={idx} className="w-full">
+                                    <RevealImage
+                                        smallSrc={img.image}
+                                        fullSrc={img.lightboxImage}
+                                        alt={img.title || ""}
+                                        caption={item.caption}
+                                        onClick={(e) => { e.stopPropagation(); handleImageClick(item.id); }}
+                                    />
+                                </div>
+                            );
+                        }
+                        if (item.type === "grid") {
+                            return (
+                                <div key={idx} className={`grid grid-cols-1 md:grid-cols-${item.ids.length > 2 ? '3' : '2'} gap-6 md:gap-10 w-full max-w-6xl`}>
+                                    {item.ids.map(id => {
+                                        const img = getImage(id);
+                                        if (!img) return null;
+                                        return (
+                                            <div key={id} className="flex flex-col items-center w-full">
+                                                <RevealImage
+                                                    smallSrc={img.image}
+                                                    fullSrc={img.lightboxImage}
+                                                    alt={id}
+                                                    onClick={(e) => { e.stopPropagation(); handleImageClick(id); }}
+                                                />
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            );
+                        }
+                        if (item.type === "quote") {
+                            return (
+                                <blockquote key={idx} className="border-l-4 border-gold pl-6 italic my-6 text-xl opacity-90 max-w-2xl md:text-left text-stone-300">
+                                    {item.text.split('\n').map((line, i) => <span key={i} className="block">{line}</span>)}
+                                    {item.source && <span className="text-base not-italic block mt-2 font-bold text-stone-400">{item.source}</span>}
+                                </blockquote>
+                            );
+                        }
+                        if (item.type === "header") {
+                            return <h3 key={idx} className="text-2xl md:text-3xl font-bold font-handwriting mt-4 text-center text-stone-100">{item.text}</h3>;
+                        }
+                        if (item.type === "list") {
+                            return (
+                                <ul key={idx} className="list-disc pl-5 space-y-4 text-lg max-w-2xl text-left text-stone-300">
+                                    {item.items.map((li, i) => <li key={i}>{li}</li>)}
+                                </ul>
+                            );
+                        }
+                        return null;
+                    })}
+                </div>
+            </motion.div>
+        </motion.div>
     );
 }
 

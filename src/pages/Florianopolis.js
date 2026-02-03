@@ -252,7 +252,7 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption }) {
 
     return (
         <div
-            className={`relative max-w-5xl mx-auto transition-all duration-700 ease-in-out my-8 ${isHovered ? "w-full" : "w-1/2"}`}
+            className={`relative max-w-5xl mx-auto transition-all duration-700 ease-in-out my-8 ${isHovered ? "w-full" : "w-full md:w-1/2"}`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
