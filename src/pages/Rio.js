@@ -43,25 +43,29 @@ function Rio({ openLightbox }) {
     const sections = [
         {
             id: "carnival",
-            title: "Spectacle and scale", // Adapted from Rio2 desc
+            title: "Spectacle and scale",
+            subtitle: "Carnival Works Because Everyone Is Involved",
+            expandedBg: "bg-[#262626]/95", // Neutral Dark
             coverImage: "rio2", // Carnival Stands
             coverCaption: "Carnival is as much about collective participation as spectacle.",
             content: [
-                { type: "text", text: "Viewed from above, the Sambadrome becomes a dense field of sound, light, and choreography. Each section performs with precision, but the scale of the crowd reminds you that Carnival is a massive, shared event." },
+                { type: "text", text: "From above, the Sambadrome compresses into a dense field of sound, light, and choreography. Each section performs with precision, but the scale of the crowd makes it clear that Carnival only works because it is shared." },
                 { type: "header", text: "The Effort Behind the Fantasy" },
                 { type: "image", id: "rio3", caption: "What reads as excess is the result of months of work." }, // Float
-                { type: "text", text: "Large-scale floats move slowly through the avenue, combining mythology, politics, humour, and craftsmanship. Entire neighbourhoods work for months to create these fleeting moments of perfection." },
+                { type: "text", text: "Large-scale floats move slowly through the avenue, combining mythology, politics, humour, and craftsmanship. Entire neighbourhoods work for months to create these fleeting moments of perfection, assembled collectively long before they ever reach the avenue." },
                 { type: "grid", ids: ["rio4", "rio5"] }, // Hands & Daylight
                 { type: "text", text: "Close up, the detail becomes human again — hands raised, figures layered, performers and mechanics working together. Seen in daylight, the structures expose their construction, reminding us that Carnival exists within everyday Rio, not apart from it." }
             ]
         },
         {
             id: "geography",
-            title: "A City Pressed to the Mountain",
+            title: "Pressed to the Mountain",
+            subtitle: "Geography Forces the City Upward",
+            expandedBg: "bg-[#1c1917]/95", // Warm Stone Dark
             coverImage: "rio8", // City Slope
             coverCaption: "Geography here forces the city upward.",
             content: [
-                { type: "text", text: "Dense neighbourhoods climb the slopes between forest and sea, filling every available space. Rio’s geography leaves little room for sprawl; instead, it layers daily life vertically." },
+                { type: "text", text: "Dense neighbourhoods climb the slopes between forest and sea, filling every available space. Rio’s geography leaves little room for sprawl; it layers daily life vertically." },
                 { type: "header", text: "Granite Foundations" },
                 { type: "image", id: "rio7", caption: "The landscape isn’t a backdrop — it sets the limits." }, // Granite
                 { type: "text", text: "The city wakes beneath massive stone hills as early light skims across bare rock. In Rio, the landscape isn’t a backdrop — it sets the limits and the mood. Daily life adapts to this terrain rather than resisting it." },
@@ -71,21 +75,25 @@ function Rio({ openLightbox }) {
         {
             id: "corcovado",
             title: "Watching from Above",
+            subtitle: "A Fixed Point in a Moving City",
+            expandedBg: "bg-[#0c0a09]/95", // Very Dark Stone
             coverImage: "rio9", // Christ
             coverCaption: "Distant yet constant.",
             content: [
                 { type: "text", text: "Christ the Redeemer stands above the city, distant yet constant. From this height, Rio unfolds as a mix of water, forest, and dense urban movement." },
-                { type: "text", text: "Up close, the monument feels heavier and quieter than expected. Weathered stone, passing clouds, and surrounding forest pull attention back to the setting rather than the symbol. It is a human scale within a monumental landscape." },
+                { type: "text", text: "Up close, the monument feels heavier and quieter than expected. Weathered stone, passing clouds, and surrounding forest pull attention back to the setting rather than the monument itself. It is a human scale within a monumental landscape." },
                 { type: "image", id: "rio10", caption: "Weathered stone and passing clouds." } // Human Scale
             ]
         },
         {
             id: "sea",
-            title: "Where the City Meets the Sea",
+            title: "The City Meets the Sea",
+            subtitle: "The Shoreline Isn’t an Escape; It’s Part of Everyday Life",
+            expandedBg: "bg-[#0f172a]/95", // Deep Blue/Slate Dark
             coverImage: "rio11", // Beach
             coverCaption: "The shoreline isn’t an escape; it’s part of everyday life.",
             content: [
-                { type: "text", text: "The beach marks a shift in pace — conversations slow, bodies stretch, and the city exhales. In Rio, the shoreline isn’t an escape; it’s part of everyday life. It is where the density of the city opens up to the horizon." }
+                { type: "text", text: "The beach marks a shift in pace — conversations slow, bodies stretch, and the city exhales. In Rio, the shoreline isn’t an escape; it’s part of everyday life. It is where the density of the city opens up to the horizon, without leaving daily life behind." }
             ]
         }
     ];
@@ -128,7 +136,7 @@ function Rio({ openLightbox }) {
                         alt="Selarón Steps at Night"
                         className="w-full h-auto object-cover rounded-lg shadow-lg mb-2"
                     />
-                    <p className="text-sm italic opacity-90 text-center font-medium text-stone-200">The tiled staircase in Lapa fills after dark, drawing locals into a narrow pocket of colour.</p>
+                    <p className="text-sm italic opacity-90 text-center font-medium text-stone-200">The tiled staircase in Lapa fills after dark, becoming a narrow pocket where movement, noise, and colour gather.</p>
                 </div>
 
                 {/* Banner Spread with Map */}
@@ -168,45 +176,139 @@ function Rio({ openLightbox }) {
 }
 
 // Reusable animated image component
-function RevealImage({ smallSrc, fullSrc, alt, onClick, caption }) {
-    const [isExpanded, setIsExpanded] = useState(false);
+function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onToggle, autoCollapse, title }) {
+    // Determine if we are controlled or uncontrolled
+    const isControlled = expanded !== undefined;
+
+    // Internal state for "uncontrolled" usage OR for visual overrides (auto-collapse)
+    // We initialize based on the prop if valid
+    const [visuallyExpanded, setVisuallyExpanded] = useState(isControlled ? expanded : false);
+    const [imgError, setImgError] = useState(false);
+    const [fullLoaded, setFullLoaded] = useState(false);
+    const containerRef = React.useRef(null);
+
+    // Sync with controlled prop, but only if the prop changes to TRUE or we are sync
+    // We want to allow the prop to stay TRUE (text open) while we visually collapse
+    React.useEffect(() => {
+        if (isControlled) {
+            setVisuallyExpanded(expanded);
+        }
+    }, [expanded, isControlled]);
+
+    // Auto-collapse logic
+    // Default: true for everything (as requested by user)
+    const shouldAutoCollapse = autoCollapse !== undefined ? autoCollapse : true;
+
+    React.useEffect(() => {
+        if (!shouldAutoCollapse || !visuallyExpanded) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (!entry.isIntersecting) {
+                    // Element has left the screen -> Collapse visually
+                    setVisuallyExpanded(false);
+                    // NOTE: We do NOT call onToggle() here. 
+                    // This keeps the text section open (as requested essentially)
+                    // but shrinks the image.
+                }
+            },
+            { threshold: 0 }
+        );
+
+        if (containerRef.current) observer.observe(containerRef.current);
+
+        return () => observer.disconnect();
+    }, [shouldAutoCollapse, visuallyExpanded]);
 
     const handleClick = (e) => {
-        if (!isExpanded) {
-            e.stopPropagation();
-            setIsExpanded(true);
+        e.stopPropagation();
+
+        if (isControlled && onToggle) {
+            if (!visuallyExpanded) {
+                // If it looks small, expand it visually
+                // If the parent thinks it's already expanded (text open), we just update visual
+                setVisuallyExpanded(true);
+
+                // If parent thinks it's NOT expanded, we must tell it to expand
+                if (!expanded) {
+                    onToggle();
+                }
+            } else {
+                // It is fully expanded visually. 
+                // Now we trigger the Lightbox (onClick)
+                // We do NOT toggle closed on click anymore (unless it's the only interaction?)
+                // Actually, typically clicking an expanded image opens lightbox. 
+                // Clicking HEADING toggles section.
+                if (onClick) onClick(e);
+            }
         } else {
-            if (onClick) onClick(e);
+            // Uncontrolled
+            if (!visuallyExpanded) {
+                setVisuallyExpanded(true);
+            } else {
+                if (onClick) onClick(e);
+            }
         }
     };
 
+    // Determine which image drives the layout
+    // If expanded and full image is loaded, it becomes the relative one (driver)
+    const showFullAsDriver = visuallyExpanded && fullLoaded && !imgError;
+
     return (
         <div
-            className={`relative max-w-5xl mx-auto transition-all duration-700 ease-in-out my-8 ${isExpanded ? "w-full" : "w-full md:w-1/2"}`}
+            ref={containerRef}
+            className={`relative max-w-5xl mx-auto transition-all duration-700 ease-in-out my-8 ${visuallyExpanded ? "w-full" : "w-full md:w-1/2"}`}
         >
             <div className="relative w-full">
-                {/* Small Image (Visible by default) */}
+                {/* Small Framed Image (Visible by default, or if full image fails) */}
                 <img
                     src={smallSrc}
                     alt={alt}
                     onClick={handleClick}
-                    className={`w-full h-auto object-contain rounded-sm shadow-sm transition-opacity duration-500 cursor-pointer ${isExpanded ? "opacity-0" : "opacity-100"}`}
+                    className={`rounded-sm shadow-sm transition-opacity duration-500 cursor-pointer ${showFullAsDriver ? "absolute inset-0 w-full h-full object-cover opacity-0" : "relative w-full h-auto object-contain z-10"} ${visuallyExpanded && !imgError && !showFullAsDriver ? "opacity-0" : "opacity-100"}`}
                 />
 
-                {/* High-Res Full Image (Fades in on hover) */}
-                <img
-                    src={fullSrc}
-                    alt={alt}
-                    onClick={handleClick}
-                    className={`absolute inset-0 w-full h-full object-cover rounded-sm transition-opacity duration-700 cursor-pointer ${isExpanded ? "opacity-100" : "opacity-0"}`}
-                    loading="lazy"
-                />
+                {/* High-Res Full Image (Fades in on hover/expand) */}
+                {!imgError && (
+                    <img
+                        src={fullSrc}
+                        alt={alt}
+                        onClick={handleClick}
+                        onLoad={() => setFullLoaded(true)}
+                        onError={() => setImgError(true)}
+                        className={`rounded-sm transition-opacity duration-700 cursor-pointer ${showFullAsDriver ? "relative w-full h-auto z-20 opacity-100" : "absolute inset-0 w-full h-full object-cover z-20 opacity-0"} ${visuallyExpanded && !showFullAsDriver ? "opacity-100" : ""}`}
+                        loading="lazy"
+                    />
+                )}
             </div>
 
-            {caption && (
-                <p className={`text-center text-sm italic mt-4 font-medium text-stone-300 transition-opacity duration-500 ${isExpanded ? "opacity-100" : "opacity-0"}`}>
-                    {caption}
-                </p>
+            {/* Label / Caption Container - Grid Stack to ensure height adapts to tallest element */}
+            {(title || caption) && (
+                <div className="grid grid-cols-1 grid-rows-1 mt-8 w-full">
+                    {/* Gallery Label (Title) - Visible when NOT expanded */}
+                    {title && (
+                        <div
+                            className={`col-start-1 row-start-1 flex justify-center transition-opacity duration-500 z-10 ${!visuallyExpanded ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+                        >
+                            <div className="max-w-[200px] p-3 bg-white/5 backdrop-blur-sm border-l border-[#eeda8d]/50 text-center shadow-sm">
+                                <h4 className="text-stone-200 text-xs font-bold uppercase tracking-widest mb-1 font-cormorant">
+                                    {title}
+                                </h4>
+                                <div className="mx-auto mt-2 w-4 h-[1px] bg-[#eeda8d]/50" />
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Caption - Visible when expanded */}
+                    {caption && (
+                        <div className={`col-start-1 row-start-1 flex justify-center items-start transition-opacity duration-500 ${visuallyExpanded ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+                            <p className="text-center text-sm italic font-medium text-stone-300">
+                                {caption}
+                            </p>
+                        </div>
+                    )}
+                </div>
             )}
         </div>
     );
@@ -214,11 +316,12 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption }) {
 
 function StoryCard({ section, getImage, handleImageClick }) {
     const [isExpanded, setIsExpanded] = useState(false);
+    const activeBg = section.expandedBg || "bg-stone-900/80";
 
     return (
         <motion.div
             layout
-            className={`w-full max-w-6xl bg-stone-900/50 backdrop-blur-md rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 ${isExpanded ? "shadow-2xl bg-stone-900/80" : ""}`}
+            className={`w-full max-w-6xl bg-stone-900/50 backdrop-blur-md rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-500 ${isExpanded ? `shadow-2xl ${activeBg}` : ""}`}
             onClick={() => setIsExpanded(!isExpanded)}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -226,9 +329,16 @@ function StoryCard({ section, getImage, handleImageClick }) {
         >
             {/* Header / Cover State */}
             <div className="relative p-6 md:p-10 flex flex-col items-center z-10">
-                <h2 className={`text-4xl md:text-6xl font-bold font-handwriting mb-8 text-center drop-shadow-md transition-colors duration-500 ${isExpanded ? "text-stone-100" : "text-[#D4AF37]"}`}>
-                    {section.title}
-                </h2>
+                <div className="text-center mb-8">
+                    <h2 className={`text-4xl md:text-6xl font-bold font-handwriting drop-shadow-md transition-colors duration-500 ${isExpanded ? "text-stone-100" : "text-[#D4AF37]"}`}>
+                        {section.title}
+                    </h2>
+                    {section.subtitle && (
+                        <h3 className={`text-lg md:text-xl font-light tracking-wide mt-2 transition-colors duration-500 ${isExpanded ? "text-stone-300" : "text-stone-300"}`}>
+                            {section.subtitle}
+                        </h3>
+                    )}
+                </div>
 
                 {/* Reused Reveal Animation for Cover */}
                 <RevealImage
@@ -236,7 +346,10 @@ function StoryCard({ section, getImage, handleImageClick }) {
                     fullSrc={getImage(section.coverImage)?.lightboxImage}
                     alt={section.title}
                     caption={section.coverCaption}
+                    title={getImage(section.coverImage)?.title}
                     onClick={() => handleImageClick(section.coverImage)}
+                    expanded={isExpanded}
+                    onToggle={() => setIsExpanded(!isExpanded)}
                 />
 
                 {/* Indication to expand */}
@@ -275,6 +388,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
                                         fullSrc={img.lightboxImage}
                                         alt={img.title || ""}
                                         caption={item.caption}
+                                        title={img.title}
                                         onClick={(e) => { e.stopPropagation(); handleImageClick(item.id); }}
                                     />
                                 </div>
@@ -292,6 +406,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
                                                     smallSrc={img.image}
                                                     fullSrc={img.lightboxImage}
                                                     alt={id}
+                                                    title={img.title}
                                                     onClick={(e) => { e.stopPropagation(); handleImageClick(id); }}
                                                 />
                                             </div>

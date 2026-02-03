@@ -43,8 +43,8 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex, d
   const isObject = typeof current === "object";
 
   const imageSrc = isObject
-    ? (current.lightboxImage || current.image).replace(/F\.webp$/, '.webp')
-    : current.replace(/F\.webp$/, '.webp');
+    ? (current.lightboxImage || current.image).replace(/[Fzv]\.webp$/, '.webp')
+    : current.replace(/[Fzv]\.webp$/, '.webp');
   const title = isObject ? current.title : "";
   const description = isObject ? current.shortDescription || descriptionProp || "" : "";
   const gumroadLink = isObject ? current.gumroadLink : null;
@@ -112,8 +112,8 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex, d
               alt={title}
               loading="lazy"
               className={`rounded-sm cursor-pointer object-contain block ${isFullscreen
-                  ? "max-w-[100vw] max-h-[100vh]"
-                  : "max-w-[90vw] md:max-w-[80vw] lg:max-w-[70vw] max-h-[80vh] sm:max-h-[75vh] md:max-h-[70vh] lg:max-h-[65vh]"
+                ? "max-w-[100vw] max-h-[100vh]"
+                : "max-w-[90vw] md:max-w-[80vw] lg:max-w-[70vw] max-h-[80vh] sm:max-h-[75vh] md:max-h-[70vh] lg:max-h-[65vh]"
                 }`}
               onClick={toggleFullscreen}
               initial={{ scale: 0.8, opacity: 0 }}

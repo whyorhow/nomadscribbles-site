@@ -166,11 +166,11 @@ function Nav() {
   return (
     <>
       {showReturnLink && (
-        <div className="fixed top-2 md:top-4 left-1/2 -translate-x-1/2 z-50 transition-opacity duration-500">
-          <Link to="/brazil" className="flex flex-col md:flex-row items-center justify-center text-[#ceb752] hover:text-[#e8eac7] transition-colors drop-shadow-md">
-            <span className="text-xl md:text-lg mb-[-5px] md:mb-0 md:mr-2">←</span>
-            <span className="text-[10px] md:text-sm font-bold tracking-widest uppercase text-center md:text-left leading-tight">
-              Return <br className="md:hidden" /> to Brazil
+        <div className="fixed top-16 lg:top-3 left-1/2 -translate-x-1/2 z-[10000] transition-opacity duration-500">
+          <Link to="/brazil" className="flex flex-row items-center justify-center text-[#ceb752] hover:text-[#e8eac7] transition-colors drop-shadow-md bg-stone-900/40 backdrop-blur-md rounded-full px-4 py-0.5 border border-white/10 shadow-lg">
+            <span className="text-lg mr-2 mb-0">←</span>
+            <span className="text-[10px] md:text-sm font-bold tracking-widest uppercase text-center leading-tight whitespace-nowrap">
+              Return to Brazil
             </span>
           </Link>
         </div>

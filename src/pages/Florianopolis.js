@@ -68,8 +68,10 @@ function Florianopolis({ openLightbox }) {
     const sections = [
         {
             id: "intro",
-            title: "Florianópolis Is a Brazilian Holiday Island — and That Matters",
-            coverImage: "floripa18", // Where the City Meets the Sea
+            title: "The Island",
+            subtitle: "Florianópolis Is a Brazilian Holiday Island — and That Matters",
+            expandedBg: "bg-[#262626]/95", // Neutral Dark
+            coverImage: "floripa18",
             coverCaption: "The coastline stretches wide, busy at one end and thinning into distance at the other.",
             content: [
                 { type: "text", text: "Florianópolis reveals itself slowly. Footsteps fade into the tide, coastlines widen and narrow again, and the island shifts gently between city, beach, and forest." },
@@ -82,12 +84,14 @@ function Florianopolis({ openLightbox }) {
         },
         {
             id: "campeche",
-            title: "Campeche: Space, Not Spectacle",
-            coverImage: "floripa5", // Campeche Unrushed
+            title: "Campeche",
+            subtitle: "Space, Not Spectacle",
+            expandedBg: "bg-[#0f172a]/90", // Dark Slate Blue
+            coverImage: "floripa5",
             coverCaption: "Campeche opens wide, where green edges soften into sand and the sea settles into an easy rhythm.",
             content: [
                 { type: "text", text: "If the island’s pace is defined by space and repetition, Campeche is where that becomes most visible." },
-                { type: "image", id: "floripa3" }, // Steps
+                { type: "image", id: "floripa3" },
                 { type: "text", text: "The beach runs broad and uninterrupted, backed by hills rather than dense development. The horizon stays open. People arrive with coolers, towels, and time, and tend to stay put." },
                 { type: "text", text: "For Brazilians, Campeche is about familiarity — long days, repeated visits, and a rhythm that doesn’t need reinvention. For visitors, it’s often where the island’s logic clicks into place." },
                 { type: "text", text: "Nothing competes for attention, and that absence becomes the appeal. Even Campeche Island offshore feels vivid without being overworked, visited calmly rather than framed as an event." },
@@ -96,50 +100,56 @@ function Florianopolis({ openLightbox }) {
         },
         {
             id: "santo-antonio",
-            title: "Santo Antônio de Lisboa: Daily Life by the Water",
-            coverImage: "floripa12", // Along Shore
+            title: "Santo Antônio",
+            subtitle: "Daily Life by the Water",
+            expandedBg: "bg-[#27272a]/95", // Zinc Dark
+            coverImage: "floripa12",
             coverCaption: "The shoreline curves softly, where hills, boats, and shallow water settle into an easy balance.",
             content: [
                 { type: "text", text: "On the quieter, bay-facing side of the island, the rhythm turns inward." },
-                { type: "image", id: "floripa4" }, // Watching Water
+                { type: "image", id: "floripa4" },
                 { type: "text", text: "Santo Antônio de Lisboa sits where the water stays calm and the light softens toward evening. The geography shapes how the town is used — less about the open ocean, more about staying close." },
                 { type: "text", text: "It’s one of the island’s older settled areas, formed by routine rather than reinvention. Boats rest near shore, restaurants fill gradually, workshops and homes sit side by side." },
-                { type: "grid", ids: ["floripa17", "floripa10"] }, // Princess Flower, Shrimp
+                { type: "grid", ids: ["floripa17", "floripa10"] },
                 { type: "text", text: "Handwritten notes, handmade objects, and unhurried meals aren’t arranged for visitors. They’re simply part of how the place functions. For travellers, Santo Antônio offers Florianópolis as somewhere people live, not perform." },
-                { type: "image", id: "floripa8", caption: "Handwritten notes accumulate over time, turning the restaurant into a record of passing lives." }, // Bar do Arante
-                { type: "image", id: "floripa11", caption: "Small workshops remain part of daily life, not attractions." }, // Workshop
-                { type: "grid", ids: ["floripa7", "floripa6", "floripa15"] }, // Hillside, Egret, Shared Care
-                { type: "image", id: "floripa16", caption: "Seen from above, the beach feels held rather than exposed." }, // Above Cove
-                { type: "image", id: "floripa19" } // Thorns
+                { type: "image", id: "floripa8", caption: "Handwritten notes accumulate over time, turning the restaurant into a record of passing lives." },
+                { type: "image", id: "floripa11", caption: "Small workshops remain part of daily life, not attractions." },
+                { type: "grid", ids: ["floripa7", "floripa6", "floripa15"] },
+                { type: "image", id: "floripa16", caption: "Seen from above, the beach feels held rather than exposed." },
+                { type: "image", id: "floripa19" }
             ]
         },
         {
             id: "praia-do-forte",
-            title: "Praia do Forte: Letting the Landscape Lead",
-            coverImage: "floripa22", // Rocks
+            title: "Praia do Forte",
+            subtitle: "Letting the Landscape Lead",
+            expandedBg: "bg-[#292524]/95", // Warm Stone Dark
+            coverImage: "floripa22",
             coverCaption: "Dark stones sit low in the surf, shaped smooth by repetition rather than force.",
             content: [
                 { type: "text", text: "Where Campeche opens wide, Praia do Forte interrupts." },
                 { type: "text", text: "Rocks break the sand, waves arrive unevenly, and the coastline resists being smoothed out. It’s not dramatic, but it’s active — shaped continuously by wind, water, and tide." },
-                { type: "grid", ids: ["floripa13", "floripa21"] }, // Dusk, Casting
+                { type: "grid", ids: ["floripa13", "floripa21"] },
                 { type: "text", text: "Here, the island’s relationship with nature becomes clearest. Plants lean into salt air, stones accept the water again and again, and people adjust their pace without thinking about it. The landscape sets the terms. Life follows." },
-                { type: "image", id: "floripa20" } // Last Light
+                { type: "image", id: "floripa20" }
             ]
         },
         {
             id: "conclusion",
-            title: "Who Is This Trip For?",
-            coverImage: "floripa25", // Arriving at Campeche
+            title: "The Traveller",
+            subtitle: "Who Is This Trip For?",
+            expandedBg: "bg-[#141c14]/95", // Deep Greenish
+            coverImage: "floripa25",
             coverCaption: "Access is simple, and the pace remains unhurried.",
             content: [
                 { type: "text", text: "This island suits travellers who enjoy beaches that feel lived-in rather than staged, and days that don’t require much planning. If you’re happy walking, swimming, sitting, and repeating the same small pleasures, Florianópolis fits easily. An interest in how Brazilians travel within their own country — and a preference for space, greenery, and everyday rhythm over constant activity — helps." },
-                { type: "image", id: "floripa24" }, // Coati
+                { type: "image", id: "floripa24" },
                 { type: "text", text: "It may frustrate those looking for a dense city experience or a tightly structured itinerary. If you prefer destinations built around landmarks, nightlife, or urgency, or want spectacle at every turn, this island may feel too understated. Florianópolis tends to reward patience and repetition more than novelty." },
                 { type: "text", text: "It isn’t a place to be decoded all at once. It’s better understood gradually, through small differences between beaches, towns, and days." },
-                { type: "grid", ids: ["floripa9", "floripa1"] }, // Small Witness, Curassow
+                { type: "grid", ids: ["floripa9", "floripa1"] },
                 { type: "text", text: "The bare-faced curassow paused long enough to watch back — a reminder that here, observation often goes both ways." },
                 { type: "text", text: "If the island’s pace resonates — the space, the calm, the way nature and daily life overlap — it’s worth exploring further in your own way. Maps, conversations, and “things to do” lists can come later. This page is simply the starting point." },
-                { type: "image", id: "floripa23" } // Golden Hour
+                { type: "image", id: "floripa23" }
             ]
         }
     ];
@@ -234,45 +244,141 @@ function Florianopolis({ openLightbox }) {
 
 // Reusable animated image component
 // Reusable animated image component
-function RevealImage({ smallSrc, fullSrc, alt, onClick, caption }) {
-    const [isExpanded, setIsExpanded] = useState(false);
+// Reusable animated image component
+// Reusable animated image component
+function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onToggle, autoCollapse, title }) {
+    // Determine if we are controlled or uncontrolled
+    const isControlled = expanded !== undefined;
+
+    // Internal state for "uncontrolled" usage OR for visual overrides (auto-collapse)
+    // We initialize based on the prop if valid
+    const [visuallyExpanded, setVisuallyExpanded] = useState(isControlled ? expanded : false);
+    const [imgError, setImgError] = useState(false);
+    const [fullLoaded, setFullLoaded] = useState(false);
+    const containerRef = React.useRef(null);
+
+    // Sync with controlled prop, but only if the prop changes to TRUE or we are sync
+    // We want to allow the prop to stay TRUE (text open) while we visually collapse
+    React.useEffect(() => {
+        if (isControlled) {
+            setVisuallyExpanded(expanded);
+        }
+    }, [expanded, isControlled]);
+
+    // Auto-collapse logic
+    // Default: true for everything (as requested by user)
+    const shouldAutoCollapse = autoCollapse !== undefined ? autoCollapse : true;
+
+    React.useEffect(() => {
+        if (!shouldAutoCollapse || !visuallyExpanded) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (!entry.isIntersecting) {
+                    // Element has left the screen -> Collapse visually
+                    setVisuallyExpanded(false);
+                    // NOTE: We do NOT call onToggle() here. 
+                    // This keeps the text section open (as requested essentially)
+                    // but shrinks the image.
+                }
+            },
+            { threshold: 0 }
+        );
+
+        if (containerRef.current) observer.observe(containerRef.current);
+
+        return () => observer.disconnect();
+    }, [shouldAutoCollapse, visuallyExpanded]);
 
     const handleClick = (e) => {
-        if (!isExpanded) {
-            e.stopPropagation();
-            setIsExpanded(true);
+        e.stopPropagation();
+
+        if (isControlled && onToggle) {
+            if (!visuallyExpanded) {
+                // If it looks small, expand it visually
+                // If the parent thinks it's already expanded (text open), we just update visual
+                setVisuallyExpanded(true);
+
+                // If parent thinks it's NOT expanded, we must tell it to expand
+                if (!expanded) {
+                    onToggle();
+                }
+            } else {
+                // It is fully expanded visually. 
+                // Now we trigger the Lightbox (onClick)
+                // We do NOT toggle closed on click anymore (unless it's the only interaction?)
+                // Actually, typically clicking an expanded image opens lightbox. 
+                // Clicking HEADING toggles section.
+                if (onClick) onClick(e);
+            }
         } else {
-            if (onClick) onClick(e);
+            // Uncontrolled
+            if (!visuallyExpanded) {
+                setVisuallyExpanded(true);
+            } else {
+                if (onClick) onClick(e);
+            }
         }
     };
 
+    // Determine which image drives the layout
+    // If expanded and full image is loaded, it becomes the relative one (driver)
+    const showFullAsDriver = visuallyExpanded && fullLoaded && !imgError;
+
     return (
         <div
-            className={`relative max-w-5xl mx-auto transition-all duration-700 ease-in-out my-8 ${isExpanded ? "w-full" : "w-full md:w-1/2"}`}
+            ref={containerRef}
+            className={`relative max-w-5xl mx-auto transition-all duration-700 ease-in-out my-8 ${visuallyExpanded ? "w-full" : "w-full md:w-1/2"}`}
         >
             <div className="relative w-full">
-                {/* Small Framed Image (Visible by default) */}
+                {/* Small Framed Image (Visible by default, or if full image fails) */}
                 <img
                     src={smallSrc}
                     alt={alt}
                     onClick={handleClick}
-                    className={`w-full h-auto object-contain rounded-sm shadow-sm transition-opacity duration-500 cursor-pointer ${isExpanded ? "opacity-0" : "opacity-100"}`}
+                    className={`rounded-sm shadow-sm transition-opacity duration-500 cursor-pointer ${showFullAsDriver ? "absolute inset-0 w-full h-full object-cover opacity-0" : "relative w-full h-auto object-contain z-10"} ${visuallyExpanded && !imgError && !showFullAsDriver ? "opacity-0" : "opacity-100"}`}
                 />
 
-                {/* High-Res Full Image (Fades in on hover) */}
-                <img
-                    src={fullSrc}
-                    alt={alt}
-                    onClick={handleClick}
-                    className={`absolute inset-0 w-full h-full object-cover rounded-sm transition-opacity duration-700 cursor-pointer ${isExpanded ? "opacity-100" : "opacity-0"}`}
-                    loading="lazy"
-                />
+                {/* High-Res Full Image (Fades in on hover/expand) */}
+                {!imgError && (
+                    <img
+                        src={fullSrc}
+                        alt={alt}
+                        onClick={handleClick}
+                        onLoad={() => setFullLoaded(true)}
+                        onError={() => setImgError(true)}
+                        className={`rounded-sm transition-opacity duration-700 cursor-pointer ${showFullAsDriver ? "relative w-full h-auto z-20 opacity-100" : "absolute inset-0 w-full h-full object-cover z-20 opacity-0"} ${visuallyExpanded && !showFullAsDriver ? "opacity-100" : ""}`}
+                        loading="lazy"
+                    />
+                )}
             </div>
 
-            {caption && (
-                <p className={`text-center text-sm italic mt-4 font-medium text-stone-300 transition-opacity duration-500 ${isExpanded ? "opacity-100" : "opacity-0"}`}>
-                    {caption}
-                </p>
+            {/* Label / Caption Container - Grid Stack to ensure height adapts to tallest element */}
+            {(title || caption) && (
+                <div className="grid grid-cols-1 grid-rows-1 mt-8 w-full">
+                    {/* Gallery Label (Title) - Visible when NOT expanded */}
+                    {title && (
+                        <div
+                            className={`col-start-1 row-start-1 flex justify-center transition-opacity duration-500 z-10 ${!visuallyExpanded ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+                        >
+                            <div className="max-w-[200px] p-3 bg-white/5 backdrop-blur-sm border-l border-[#eeda8d]/50 text-center shadow-sm">
+                                <h4 className="text-stone-200 text-xs font-bold uppercase tracking-widest mb-1 font-cormorant">
+                                    {title}
+                                </h4>
+                                <div className="mx-auto mt-2 w-4 h-[1px] bg-[#eeda8d]/50" />
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Caption - Visible when expanded */}
+                    {caption && (
+                        <div className={`col-start-1 row-start-1 flex justify-center items-start transition-opacity duration-500 ${visuallyExpanded ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+                            <p className="text-center text-sm italic font-medium text-stone-300">
+                                {caption}
+                            </p>
+                        </div>
+                    )}
+                </div>
             )}
         </div>
     );
@@ -281,10 +387,13 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption }) {
 function StoryCard({ section, getImage, handleImageClick }) {
     const [isExpanded, setIsExpanded] = useState(false);
 
+    // Default to stone-900/80 if not specified
+    const activeBg = section.expandedBg || "bg-stone-900/80";
+
     return (
         <motion.div
             layout
-            className={`w-full max-w-6xl bg-stone-900/50 backdrop-blur-md rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 ${isExpanded ? "shadow-2xl bg-stone-900/80" : ""}`}
+            className={`w-full max-w-6xl bg-stone-900/50 backdrop-blur-md rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-500 ${isExpanded ? `shadow-2xl ${activeBg}` : ""}`}
             onClick={() => setIsExpanded(!isExpanded)}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -292,17 +401,27 @@ function StoryCard({ section, getImage, handleImageClick }) {
         >
             {/* Header / Cover State */}
             <div className="relative p-6 md:p-10 flex flex-col items-center z-10">
-                <h2 className={`text-4xl md:text-6xl font-bold font-handwriting mb-8 text-center drop-shadow-md transition-colors duration-500 ${isExpanded ? "text-stone-100" : "text-[#D4AF37]"}`}>
-                    {section.title}
-                </h2>
+                <div className="text-center mb-8">
+                    <h2 className={`text-4xl md:text-6xl font-bold font-handwriting drop-shadow-md transition-colors duration-500 ${isExpanded ? "text-stone-100" : "text-[#D4AF37]"}`}>
+                        {section.title}
+                    </h2>
+                    {section.subtitle && (
+                        <h3 className={`text-lg md:text-xl font-light tracking-wide mt-2 transition-colors duration-500 ${isExpanded ? "text-stone-300" : "text-stone-300"}`}>
+                            {section.subtitle}
+                        </h3>
+                    )}
+                </div>
 
-                {/* Reused Reveal Animation for Cover */}
+                {/* Reused Reveal Image for Cover - CONTROLLED now */}
                 <RevealImage
                     smallSrc={getImage(section.coverImage)?.image}
                     fullSrc={getImage(section.coverImage)?.lightboxImage}
                     alt={section.title}
                     caption={section.coverCaption}
-                    onClick={() => handleImageClick(section.coverImage)}
+                    title={getImage(section.coverImage)?.title}
+                    onClick={() => handleImageClick(section.coverImage)} // This triggers lightbox
+                    expanded={isExpanded}
+                    onToggle={() => setIsExpanded(!isExpanded)}
                 />
 
                 {/* Indication to expand */}
@@ -341,6 +460,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
                                         fullSrc={img.lightboxImage}
                                         alt={img.title || ""}
                                         caption={item.caption}
+                                        title={img.title}
                                         onClick={(e) => { e.stopPropagation(); handleImageClick(item.id); }}
                                     />
                                 </div>
@@ -358,6 +478,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
                                                     smallSrc={img.image}
                                                     fullSrc={img.lightboxImage}
                                                     alt={id}
+                                                    title={img.title}
                                                     onClick={(e) => { e.stopPropagation(); handleImageClick(id); }}
                                                 />
                                             </div>
