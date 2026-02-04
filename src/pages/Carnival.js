@@ -21,7 +21,7 @@ function Carnival({ openLightbox }) {
 
 
   return (
-    <div className="relative min-h-screen pt-2">
+    <div className="relative pt-2">
       {/* SEO */}
       <SEO
         title="Carnival in São Paulo | Nomad Scribbles"

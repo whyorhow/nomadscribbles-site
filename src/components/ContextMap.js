@@ -111,10 +111,10 @@ const ContextMap = ({ markers = [], zoomToId = null, title = "Location Context",
                     />
                 )}
 
-                <div className="relative z-10 py-8">
-                    <div className="flex flex-col lg:flex-row items-center justify-center gap-4 w-full max-w-5xl mx-auto px-4">
+                <div className="relative z-10 pt-8 pb-8">
+                    <div className="flex flex-col lg:flex-row items-center justify-center gap-1 lg:gap-8 w-full max-w-5xl mx-auto px-4">
                         {geography && typeof geography === 'string' && (
-                            <div className="flex-1 text-left py-6 max-w-2xl flex flex-col justify-center">
+                            <div className="flex-1 text-left py-0 max-w-2xl flex flex-col justify-center">
                                 {showTitle && (
                                     <div className="mb-2">
                                         <h3 className="text-xl font-bold font-cormorant text-[#101E0E] leading-tight mb-0 tracking-tight">{title}</h3>
@@ -133,8 +133,8 @@ const ContextMap = ({ markers = [], zoomToId = null, title = "Location Context",
                             </div>
                         )}
 
-                        <div className={`relative w-full ${typeof geography === 'string' ? 'lg:w-[180px]' : (variant === 'overview' ? 'max-w-[1200px]' : 'max-w-[400px]') + ' flex items-center justify-center'}`}>
-                            <svg viewBox={viewBox} className="w-full h-full drop-shadow-2xl">
+                        <div className={`relative w-full ${(typeof geography === 'string' ? 'max-w-[360px] lg:max-w-none lg:w-[320px]' : (variant === 'overview' ? 'max-w-[1200px]' : 'max-w-[400px]')) + ' flex items-center justify-center'}`}>
+                            <svg viewBox={viewBox} className="w-full h-full drop-shadow-2xl" style={{ overflow: "visible" }}>
                                 {variant === "overview" && otherPaths.map((path, idx) => (
                                     <path
                                         key={idx}
@@ -240,7 +240,7 @@ const ContextMap = ({ markers = [], zoomToId = null, title = "Location Context",
                             </svg>
 
                             {markers.length === 1 && (
-                                <div className="absolute bottom-4 -right-16 md:-right-24">
+                                <div className="absolute bottom-4 right-2">
                                     <a
                                         href={markers[0].googleMapsUrl || `https://www.google.com/maps/search/?api=1&query=${markers[0].lat},${markers[0].lng}`}
                                         target="_blank"

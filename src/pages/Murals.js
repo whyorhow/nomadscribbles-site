@@ -22,7 +22,7 @@ export default function Murals({ openLightbox }) {
 
 
   return (
-    <div className="relative min-h-screen pt-2">
+    <div className="relative pt-2">
       {/* SEO */}
       <SEO
         title="São Paulo Murals | Nomad Scribbles"

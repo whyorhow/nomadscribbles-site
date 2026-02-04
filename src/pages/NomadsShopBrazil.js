@@ -48,7 +48,7 @@ export default function NomadsShopBrazil() {
   }, []);
 
   return (
-    <div className="min-h-screen relative pb-24 sm:pb-32">
+    <div className="relative pb-24 sm:pb-32">
 
       {/* Page Title */}
       <div className="flex flex-col items-center mb-12 relative z-10 mt-20 sm:mt-8">

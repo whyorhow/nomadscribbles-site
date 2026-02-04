@@ -160,7 +160,7 @@ function Florianopolis({ openLightbox }) {
     };
 
     return (
-        <div className="relative min-h-screen pt-2">
+        <div className="relative pt-2">
             {/* SEO */}
             <SEO
                 title="Florianópolis | Nomad Scribbles"
@@ -213,8 +213,8 @@ function Florianopolis({ openLightbox }) {
                         style={spreadBackgroundStyle}
                     />
 
-                    <div className="relative z-20 max-w-5xl mx-auto px-4 py-4 md:py-8 flex flex-col items-center mt-[-10px]">
-                        <div className="w-[66%] md:w-full max-w-4xl overflow-visible mb-[-10px]">
+                    <div className="relative z-20 max-w-5xl mx-auto px-4 pt-0 pb-4 md:pt-2 md:pb-8 flex flex-col items-center mt-[-10px]">
+                        <div className="w-full max-w-4xl overflow-visible mb-[-10px]">
                             <ContextMap
                                 markers={[florianopolisCoords].filter(Boolean)}
                                 zoomToId="florianopolis"
@@ -236,6 +236,13 @@ function Florianopolis({ openLightbox }) {
                             handleImageClick={handleImageClick}
                         />
                     ))}
+
+                    <div className="w-full flex justify-center mt-16 mb-8 relative z-10">
+                        <Link to="/brazil" className="flex flex-row items-center justify-center text-[#ceb752] hover:text-[#e8eac7] transition-colors drop-shadow-md bg-stone-900/40 backdrop-blur-md rounded-full px-6 py-2 border border-white/10 shadow-lg hover:bg-stone-900/60">
+                            <span className="text-xl mr-3 pb-1">←</span>
+                            <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Return to Brazil</span>
+                        </Link>
+                    </div>
                 </main>
             </div>
         </div>
@@ -347,7 +354,7 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
                         onClick={handleClick}
                         onLoad={() => setFullLoaded(true)}
                         onError={() => setImgError(true)}
-                        className={`rounded-sm transition-opacity duration-700 cursor-pointer ${showFullAsDriver ? "relative w-full h-auto z-20 opacity-100" : "absolute inset-0 w-full h-full object-cover z-20 opacity-0"} ${visuallyExpanded && !showFullAsDriver ? "opacity-100" : ""}`}
+                        className={`rounded-sm transition-all duration-700 cursor-pointer ${showFullAsDriver ? "relative w-full h-auto z-20 opacity-100 scale-100" : "absolute inset-0 w-full h-full object-cover z-20 opacity-0 scale-95"} ${visuallyExpanded && !showFullAsDriver ? "opacity-100 scale-100" : ""}`}
                         loading="lazy"
                     />
                 )}

@@ -26,7 +26,7 @@ export default function NomadsShop() {
   const cookiesAccepted = localStorage.getItem("cookiesAccepted") === "true";
 
   return (
-    <div className="min-h-screen relative">
+    <div className="relative">
       {/* SEO */}
       <SEO
         title="Adventures Around the World | Nomad Scribbles"

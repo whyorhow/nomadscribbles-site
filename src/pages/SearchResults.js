@@ -75,7 +75,7 @@ function SearchResults() {
   );
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-start py-12 px-4 bg-stony-paper-light font-cormorant">
+    <div className="flex flex-col items-center justify-start py-12 px-4 bg-stony-paper-light font-cormorant">
       <h1 className="text-3xl font-bold mb-8 text-[#101E0E] tracking-tight">Search Results for "{query}"</h1>
 
       {results.length > 0 ? (

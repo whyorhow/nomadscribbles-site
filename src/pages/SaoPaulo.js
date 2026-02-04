@@ -121,7 +121,7 @@ function SaoPaulo() {
   }));
 
   return (
-    <div className="relative min-h-screen flex flex-col">
+    <div className="relative flex flex-col">
       <SEO
         title="Top 5 Things to Do in São Paulo | Nomad Scribbles"
         description="Discover the best of São Paulo — from lush parks and world-class art galleries to Carnival, street murals, and the seaside charm of Santos."

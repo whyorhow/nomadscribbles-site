@@ -54,7 +54,7 @@ export default function CookiePreferences() {
   };
 
   return (
-    <div className="min-h-screen relative text-white">
+    <div className="relative text-white">
 
       <main className="px-4 py-8 max-w-4xl mx-auto space-y-12">
         <h1 className="text-3xl font-bold mb-6">Privacy & Cookie Policy</h1>

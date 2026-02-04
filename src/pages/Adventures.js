@@ -23,7 +23,7 @@ function Adventures() {
   ];
 
   return (
-    <div className="min-h-screen pt-4">
+    <div className="pt-4">
       {/* SEO Component */}
       <SEO
         title="Adventures Around the World | Nomad Scribbles"

@@ -23,12 +23,12 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full bg-[#AEA363] text-darkText p-2 md:p-3 border-t border-[#817e65] text-xs md:text-sm">
+    <footer className="relative z-50 w-full bg-[#AEA363] text-darkText p-2 md:p-3 border-t border-[#817e65] text-xs md:text-sm">
       <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-2 md:gap-3 text-center md:text-left">
-        
+
         {/* Left section */}
         <div className="flex flex-col md:flex-row items-center justify-center md:justify-start gap-2 md:gap-4">
-          
+
           {/* Social icons */}
           <div className="flex items-center gap-3">
             <button
@@ -127,7 +127,7 @@ export default function Footer() {
 
         {/* Right section */}
         <div className="flex flex-col md:flex-row items-center justify-center md:justify-end gap-1 md:gap-3">
-          
+
           {/* Mobile condensed text */}
           <div className="flex md:hidden items-center gap-1">
             <span>NS &copy; {year}</span>

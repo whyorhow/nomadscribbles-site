@@ -5,7 +5,7 @@ import SEO from "../components/SEO";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen relative flex flex-col items-center px-4 pt-4 pb-10 bg-gradient-to-b from-[#5c6e53] via-[#485b3c] to-[#37462f] text-[#eeda8d]">
+    <div className="relative flex flex-col items-center px-4 pt-4 pb-10 bg-gradient-to-b from-[#5c6e53] via-[#485b3c] to-[#37462f] text-[#eeda8d]">
 
       {/* SEO */}
       <SEO

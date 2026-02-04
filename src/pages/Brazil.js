@@ -55,7 +55,7 @@ function Brazil() {
 
   return (
     <motion.div
-      className="relative min-h-screen pb-20"
+      className="relative pb-20"
       variants={staggerContainer}
       initial="hidden"
       animate="visible"

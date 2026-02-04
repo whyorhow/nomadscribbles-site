@@ -34,7 +34,7 @@ export default function Museums({ openLightbox }) {
   ];
 
   return (
-    <div className="relative min-h-screen pt-2 font-cormorant text-darkText leading-relaxed">
+    <div className="relative pt-2 font-cormorant text-darkText leading-relaxed">
       {/* SEO */}
       <SEO
         title="São Paulo Art Galleries | Nomad Scribbles"

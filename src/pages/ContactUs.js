@@ -18,7 +18,8 @@ export default function ContactUs() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.email.includes("@")) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
       alert("Please enter a valid email address.");
       return;
     }
@@ -50,7 +51,7 @@ export default function ContactUs() {
 
       if (res.ok) setFormData({ name: "", email: "", message: "" });
     } catch (error) {
-      console.error("Error sending email:", error);
+      // Log removed
       alert("There was an error sending your message. Please try again later.");
     } finally {
       setLoading(false);
@@ -58,7 +59,7 @@ export default function ContactUs() {
   };
 
   return (
-    <div className="min-h-screen relative flex flex-col items-center px-4 pt-4 pb-10">
+    <div className="relative flex flex-col items-center px-4 pt-4 pb-10">
       {/* SEO */}
       <SEO
         title="Contact Us | Nomad Scribbles"

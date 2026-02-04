@@ -356,7 +356,7 @@ export default function NomadsShopSaoPaulo({ openLightbox }) {
 
   return (
     <motion.div
-      className="min-h-screen"
+      className="relative"
       variants={staggerContainer}
       initial="hidden"
       animate="visible"

@@ -23,7 +23,7 @@ function Rio({ openLightbox }) {
 
     // Define the visual order of images for Lightbox navigation
     const imageOrder = [
-        "rio1", "rio2", "rio3", "rio4", "rio5", "rio6", "rio7", "rio8", "rio9", "rio10", "rio11"
+        "rio1", "rio2", "rio3", "rio4", "rio5", "rio6", "rio7", "rio8", "rio9", "rio10", "rio11", "rio12", "rio13", "rio14"
     ];
 
     // Derived list of images sorted by their appearance
@@ -49,12 +49,12 @@ function Rio({ openLightbox }) {
             coverImage: "rio2", // Carnival Stands
             coverCaption: "Carnival is as much about collective participation as spectacle.",
             content: [
-                { type: "text", text: "From above, the Sambadrome compresses into a dense field of sound, light, and choreography. Each section performs with precision, but the scale of the crowd makes it clear that Carnival only works because it is shared." },
+                { type: "text", text: "From above, the Sambadrome compresses into a dense field of sound, light, and choreography. Each section performs with precision, but the scale of the crowd makes it clear that Carnival only works because it is shared. What looks overwhelming from a distance becomes cohesive only through collective effort." },
                 { type: "header", text: "The Effort Behind the Fantasy" },
                 { type: "image", id: "rio3", caption: "What reads as excess is the result of months of work." }, // Float
                 { type: "text", text: "Large-scale floats move slowly through the avenue, combining mythology, politics, humour, and craftsmanship. Entire neighbourhoods work for months to create these fleeting moments of perfection, assembled collectively long before they ever reach the avenue." },
                 { type: "grid", ids: ["rio4", "rio5"] }, // Hands & Daylight
-                { type: "text", text: "Close up, the detail becomes human again — hands raised, figures layered, performers and mechanics working together. Seen in daylight, the structures expose their construction, reminding us that Carnival exists within everyday Rio, not apart from it." }
+                { type: "text", text: "Close up, the detail becomes human again — hands raised, figures layered, performers and mechanics working side by side. Seen in daylight, the structures expose their construction, reminding us that Carnival exists within everyday Rio, not apart from it, and returns to it once the music fades." }
             ]
         },
         {
@@ -65,10 +65,10 @@ function Rio({ openLightbox }) {
             coverImage: "rio8", // City Slope
             coverCaption: "Geography here forces the city upward.",
             content: [
-                { type: "text", text: "Dense neighbourhoods climb the slopes between forest and sea, filling every available space. Rio’s geography leaves little room for sprawl; it layers daily life vertically." },
+                { type: "text", text: "Dense neighbourhoods climb the slopes between forest and sea, filling every available space. Rio’s geography leaves little room for sprawl; instead, it layers daily life vertically, compressing homes, streets, and routines against the hills." },
                 { type: "header", text: "Granite Foundations" },
                 { type: "image", id: "rio7", caption: "The landscape isn’t a backdrop — it sets the limits." }, // Granite
-                { type: "text", text: "The city wakes beneath massive stone hills as early light skims across bare rock. In Rio, the landscape isn’t a backdrop — it sets the limits and the mood. Daily life adapts to this terrain rather than resisting it." },
+                { type: "text", text: "The city wakes beneath massive stone hills as early light skims across bare rock. In Rio, the landscape isn’t a backdrop — it sets the limits and the mood. Daily life adapts to this terrain rather than resisting it, shaped by shadow, elevation, and constraint." },
                 { type: "image", id: "rio6", caption: "Quiet courtyards operate in the shadow of the mountain." } // Parque Lage
             ]
         },
@@ -80,20 +80,28 @@ function Rio({ openLightbox }) {
             coverImage: "rio9", // Christ
             coverCaption: "Distant yet constant.",
             content: [
-                { type: "text", text: "Christ the Redeemer stands above the city, distant yet constant. From this height, Rio unfolds as a mix of water, forest, and dense urban movement." },
-                { type: "text", text: "Up close, the monument feels heavier and quieter than expected. Weathered stone, passing clouds, and surrounding forest pull attention back to the setting rather than the monument itself. It is a human scale within a monumental landscape." },
+                { type: "text", text: "Christ the Redeemer stands above the city, distant yet constant. From this height, Rio unfolds as a mix of water, forest, and dense urban movement, all held in uneasy balance." },
+                { type: "text", text: "Up close, the monument feels heavier and quieter than expected. Weathered stone, passing clouds, and surrounding forest pull attention back to the setting rather than the monument itself. It becomes a human pause within a monumental landscape." },
                 { type: "image", id: "rio10", caption: "Weathered stone and passing clouds." } // Human Scale
             ]
+        },
+        // --- Full Width Transition Image Inserted Here ---
+        {
+            id: "transition_shade",
+            type: "transition_image",
+            imageId: "rio13",
+            caption: "Looking up from beneath a beach umbrella, the world reduces to fabric, tension, and blue. The sun is present but softened, filtered through canvas and salt air, turning heat into something almost gentle."
         },
         {
             id: "sea",
             title: "The City Meets the Sea",
             subtitle: "The Shoreline Isn’t an Escape; It’s Part of Everyday Life",
             expandedBg: "bg-[#0f172a]/95", // Deep Blue/Slate Dark
-            coverImage: "rio11", // Beach
+            coverImage: "rio14", // Between Coconut and Mountain
             coverCaption: "The shoreline isn’t an escape; it’s part of everyday life.",
             content: [
-                { type: "text", text: "The beach marks a shift in pace — conversations slow, bodies stretch, and the city exhales. In Rio, the shoreline isn’t an escape; it’s part of everyday life. It is where the density of the city opens up to the horizon, without leaving daily life behind." }
+                { type: "text", text: "The beach marks a shift in pace. Conversations slow. Bodies stretch. The city exhales. In Rio, the shoreline isn’t an escape; it’s where daily life loosens without ever fully stopping, opening outward while still remaining unmistakably urban." },
+                { type: "image", id: "rio12", caption: "Nothing here feels precious for long." }
             ]
         }
     ];
@@ -104,7 +112,7 @@ function Rio({ openLightbox }) {
     };
 
     return (
-        <div className="min-h-screen transition-colors duration-500" style={pageBackgroundStyle}>
+        <div className="transition-colors duration-500" style={pageBackgroundStyle}>
             <SEO
                 title="Rio de Janeiro | Nomad Scribbles"
                 description="Rio de Janeiro: A city of granite, carnival, and sea, defined by its dramatic geography."
@@ -146,8 +154,8 @@ function Rio({ openLightbox }) {
                         style={spreadBackgroundStyle}
                     />
 
-                    <div className="relative z-20 max-w-5xl mx-auto px-4 py-4 md:py-8 flex flex-col items-center mt-[-10px]">
-                        <div className="w-[66%] md:w-full max-w-4xl overflow-visible mb-[-10px]">
+                    <div className="relative z-20 max-w-5xl mx-auto px-4 pt-0 pb-4 md:pt-2 md:pb-8 flex flex-col items-center mt-[-10px]">
+                        <div className="w-full max-w-4xl overflow-visible mb-[-10px]">
                             <ContextMap
                                 markers={[rioCoords].filter(Boolean)}
                                 zoomToId="rio"
@@ -161,14 +169,41 @@ function Rio({ openLightbox }) {
 
                 {/* Main Content with Interactive Sections */}
                 <main className="px-2 py-2 max-w-screen-xl mx-auto space-y-8 flex flex-col items-center pb-24">
-                    {sections.map((section) => (
-                        <StoryCard
-                            key={section.id}
-                            section={section}
-                            getImage={getImage}
-                            handleImageClick={handleImageClick}
-                        />
-                    ))}
+                    {sections.map((section) => {
+                        if (section.type === "transition_image") {
+                            const img = getImage(section.imageId);
+                            if (!img) return null;
+                            return (
+                                <div key={section.id} className="w-full max-w-6xl py-12">
+                                    <RevealImage
+                                        smallSrc={img.image}
+                                        fullSrc={img.lightboxImage}
+                                        alt={img.title}
+                                        caption={section.caption}
+                                        title={img.title}
+                                        onClick={() => handleImageClick(section.imageId)}
+                                        expanded={true} // Always expanded for transition
+                                        autoCollapse={false}
+                                    />
+                                </div>
+                            );
+                        }
+                        return (
+                            <StoryCard
+                                key={section.id}
+                                section={section}
+                                getImage={getImage}
+                                handleImageClick={handleImageClick}
+                            />
+                        );
+                    })}
+
+                    <div className="w-full flex justify-center mt-16 mb-8 relative z-10">
+                        <Link to="/brazil" className="flex flex-row items-center justify-center text-[#ceb752] hover:text-[#e8eac7] transition-colors drop-shadow-md bg-stone-900/40 backdrop-blur-md rounded-full px-6 py-2 border border-white/10 shadow-lg hover:bg-stone-900/60">
+                            <span className="text-xl mr-3 pb-1">←</span>
+                            <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Return to Brazil</span>
+                        </Link>
+                    </div>
                 </main>
             </div>
         </div>
@@ -266,7 +301,7 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
                     src={smallSrc}
                     alt={alt}
                     onClick={handleClick}
-                    className={`rounded-sm shadow-sm transition-opacity duration-500 cursor-pointer ${showFullAsDriver ? "absolute inset-0 w-full h-full object-cover opacity-0" : "relative w-full h-auto object-contain z-10"} ${visuallyExpanded && !imgError && !showFullAsDriver ? "opacity-0" : "opacity-100"}`}
+                    className={`rounded-sm shadow-sm transition-all duration-500 cursor-pointer ${showFullAsDriver ? "absolute inset-0 w-full h-full object-cover opacity-0" : "relative w-full h-auto object-contain z-10"}`}
                 />
 
                 {/* High-Res Full Image (Fades in on hover/expand) */}
@@ -277,7 +312,7 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
                         onClick={handleClick}
                         onLoad={() => setFullLoaded(true)}
                         onError={() => setImgError(true)}
-                        className={`rounded-sm transition-opacity duration-700 cursor-pointer ${showFullAsDriver ? "relative w-full h-auto z-20 opacity-100" : "absolute inset-0 w-full h-full object-cover z-20 opacity-0"} ${visuallyExpanded && !showFullAsDriver ? "opacity-100" : ""}`}
+                        className={`rounded-sm transition-all duration-700 ease-out cursor-pointer ${showFullAsDriver ? "relative w-full h-auto z-20 opacity-100 scale-100" : "absolute inset-0 w-full h-full object-cover z-20 opacity-0 scale-95"}`}
                         loading="lazy"
                     />
                 )}

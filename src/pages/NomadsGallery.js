@@ -25,7 +25,7 @@ export default function NomadsGallery({ openLightbox }) {
   };
 
   return (
-    <div className="min-h-screen pt-4 pb-8 relative">
+    <div className="pt-4 pb-8 relative">
       <SEO
         title="Nomads Gallery | Nomad Scribbles"
         description="Explore our curated gallery of photos and artwork from our travels around the world."
