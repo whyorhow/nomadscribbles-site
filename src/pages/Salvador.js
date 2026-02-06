@@ -268,10 +268,14 @@ function Salvador({ openLightbox }) {
                         />
                     ))}
 
-                    <div className="w-full flex justify-center mt-16 mb-8 relative z-10">
-                        <Link to="/brazil" className="flex flex-row items-center justify-center text-[#ceb752] hover:text-[#e8eac7] transition-colors drop-shadow-md bg-stone-900/40 backdrop-blur-md rounded-full px-6 py-2 border border-white/10 shadow-lg hover:bg-stone-900/60">
+                    <div className="w-full flex flex-col items-center gap-4 mt-16 mb-8 relative z-10">
+                        <Link to="/brazil" className="flex flex-row items-center justify-center text-stone-300 hover:text-white transition-colors drop-shadow-md bg-stone-950/50 backdrop-blur-md rounded-full px-6 py-2 border border-white/10 shadow-lg hover:bg-stone-900/60 w-fit">
                             <span className="text-xl mr-3 pb-1">←</span>
                             <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Return to Brazil</span>
+                        </Link>
+                        <Link to="/home" className="flex flex-row items-center justify-center text-[#eeda8d] hover:text-white transition-colors drop-shadow-sm bg-[#ceb752]/30 backdrop-blur-md rounded-full px-6 py-2 border border-[#ceb752]/60 shadow-md hover:bg-[#ceb752]/40 w-fit">
+                            <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Explore More Destinations</span>
+                            <span className="text-xl ml-3 pb-1">→</span>
                         </Link>
                     </div>
                 </main>

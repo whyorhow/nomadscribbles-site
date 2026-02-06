@@ -35,9 +35,9 @@ function Home() {
     { title: "Florianópolis", link: "/brazil/florianopolis", img: "/images/Floripa/thumbnail/Floripa1.webp" },
     { title: "Salvador", link: "/brazil/salvador", img: "/images/Salvador/thumbnail/Salvador1.webp" },
     { title: "Pantanal", link: "/brazil/pantanal", img: "/images/Pantanal/thumbnail/Pantanal1.webp" },
-    { title: "Carnival", link: "/brazil/carnival", img: "/images/CarnivalSP/thumbnail/Carnival1.webp" },
-    { title: "Street Murals", link: "/brazil/murals", img: "/images/Murals/thumbnail/Graffiti1.webp" },
-    { title: "Parks", link: "/brazil/parks", img: "/images/SP-Parks/thumbnail/Park1.webp" },
+    { title: "Carnival", link: "/brazil/saopaulo/carnival", img: "/images/CarnivalSP/thumbnail/Carnival1.webp" },
+    { title: "Street Murals", link: "/brazil/saopaulo/murals", img: "/images/Murals/thumbnail/Graffiti1.webp" },
+    { title: "Parks", link: "/brazil/saopaulo/parks", img: "/images/SP-Parks/thumbnail/Park1.webp" },
     { title: "Nomads Gallery", link: "/nomads-gallery", img: "/images/Home/ThumbnailNG.webp" },
     { title: "Nomads Shop", link: "/nomadsshop", img: "/images/Home/ThumbnailNS.webp" },
   ];
@@ -245,7 +245,7 @@ function Home() {
         className="w-full mt-[120vh] px-2 sm:px-4 relative z-40"
       >
         <motion.div
-          className="relative block w-full max-w-full sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/20 group transition-all duration-[2000ms]"
+          className="relative block w-full max-w-full sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[4/3] cursor-pointer overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/20 group transition-all duration-[2000ms]"
           onMouseEnter={() => {
             if (!isMobile) setShowMiniSP(true);
             trackEvent("hover_feature", "Home Page", "São Paulo Feature");
@@ -265,36 +265,35 @@ function Home() {
           />
           <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px] group-hover:bg-black/10 group-hover:backdrop-blur-none transition-all duration-[2000ms]"></div>
 
-          <motion.img
-            src={process.env.PUBLIC_URL + "/images/Home/SaoPauloScript1.webp"}
-            alt="São Paulo Script Detail"
-            className={`absolute top-2 sm:top-4 left-2 sm:left-4 w-48 sm:w-72 md:w-88 z-20 transition-opacity duration-[2000ms] ${!showMiniSP ? "opacity-100" : "opacity-0"
-              }`}
-            variants={fadeScale}
-          />
+          <div className={`absolute top-8 left-8 z-20 transition-opacity duration-[2000ms] ${!showMiniSP ? "opacity-100" : "opacity-0"}`}>
+            <h2 className="font-handwriting text-6xl sm:text-8xl md:text-9xl text-white drop-shadow-lg -rotate-6">
+              São Paulo
+            </h2>
+          </div>
 
           {showMiniSP && (
-            <motion.div
-              className={`absolute bottom-16 inset-x-0 flex justify-center items-end space-x-2 sm:space-x-3 z-20 transition-all duration-[2000ms] ease-in-out ${showMiniSP ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                }`}
-              variants={fadeScale}
-            >
-              <img
+            <>
+              <motion.div
+                className={`absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-[2000ms] ${showMiniSP ? "opacity-100" : "opacity-0"}`}
+              >
+                <h3 className="font-handwriting text-5xl sm:text-7xl text-white drop-shadow-xl text-center px-4">
+                  Concrete Jungle
+                </h3>
+              </motion.div>
+
+              <motion.img
                 src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/pizza.webp"}
-                alt="São Paulo Pizza"
-                className="w-24 sm:w-30 md:w-44 lg:w-44 h-auto rounded-sm shadow-lg transition-opacity duration-[4000ms]"
+                alt=""
+                className="absolute top-4 right-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[6deg]"
+                variants={fadeScale}
               />
-              <img
-                src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/street.webp"}
-                alt="São Paulo Street"
-                className="w-24 sm:w-30 md:w-44 lg:w-44 h-auto rounded-sm shadow-lg transition-opacity duration-[4000ms]"
-              />
-              <img
+              <motion.img
                 src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/caparinha.webp"}
-                alt="Caipirinha"
-                className="w-24 sm:w-30 md:w-44 lg:w-44 h-auto rounded-sm shadow-lg transition-opacity duration-[4000ms]"
+                alt=""
+                className="absolute bottom-4 left-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[-3deg]"
+                variants={fadeScale}
               />
-            </motion.div>
+            </>
           )}
         </motion.div>
       </motion.div>
@@ -306,10 +305,10 @@ function Home() {
         whileInView="visible"
         viewport={{ amount: 0.3 }}
         variants={staggerContainer}
-        className="w-full mt-48 px-2 sm:px-4 relative z-40"
+        className="w-full mt-24 px-2 sm:px-4 relative z-40"
       >
         <motion.div
-          className="relative block w-full max-w-full sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/20 group transition-all duration-[2000ms]"
+          className="relative block w-full max-w-full sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[4/3] cursor-pointer overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/20 group transition-all duration-[2000ms]"
           onMouseEnter={() => {
             setShowMiniSantos(true); // Reusing state variable for simplicity as "Feature 2 state"
             trackEvent("hover_feature", "Home Page", "Salvador Feature");
@@ -368,10 +367,10 @@ function Home() {
         whileInView="visible"
         viewport={{ amount: 0.3 }}
         variants={staggerContainer}
-        className="w-full mt-48 px-2 sm:px-4 relative z-40"
+        className="w-full mt-24 px-2 sm:px-4 relative z-40"
       >
         <motion.div
-          className="relative block w-full max-w-full sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/20 group transition-all duration-[2000ms]"
+          className="relative block w-full max-w-full sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[4/3] cursor-pointer overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/20 group transition-all duration-[2000ms]"
           onMouseEnter={() => {
             setShowMiniRio(true);
             trackEvent("hover_feature", "Home Page", "Rio Feature");
@@ -415,10 +414,10 @@ function Home() {
         whileInView="visible"
         viewport={{ amount: 0.3 }}
         variants={staggerContainer}
-        className="w-full mt-48 px-2 sm:px-4 relative z-40"
+        className="w-full mt-24 px-2 sm:px-4 relative z-40"
       >
         <motion.div
-          className="relative block w-full max-w-full sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/20 group transition-all duration-[2000ms]"
+          className="relative block w-full max-w-full sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[4/3] cursor-pointer overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/20 group transition-all duration-[2000ms]"
           onMouseEnter={() => {
             setShowMiniFloripa(true);
             trackEvent("hover_feature", "Home Page", "Florianopolis Feature");
@@ -472,7 +471,7 @@ function Home() {
       </motion.div>
 
       {/* Bottom Carousel - Swiper Implementation */}
-      <div className="w-full max-w-screen-xl mx-auto py-12 mt-48 relative px-2 sm:px-4 z-40">
+      <div className="w-full max-w-screen-xl mx-auto py-12 mt-24 relative px-2 sm:px-4 z-40">
         <Swiper
           modules={[Navigation, Autoplay]}
           spaceBetween={20}

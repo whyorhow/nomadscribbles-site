@@ -199,10 +199,14 @@ function Parks({ openLightbox }) {
             </p>
           </div>
 
-          <div className="w-full flex justify-center mt-8 mb-8 relative z-10">
-            <Link to="/brazil/saopaulo" className="flex flex-row items-center justify-center text-[#2e5c31] hover:text-[#4a7c4d] transition-colors drop-shadow-md bg-stone-900/10 backdrop-blur-md rounded-full px-6 py-2 border border-stone-900/10 shadow-sm hover:bg-stone-900/20">
+          <div className="w-full flex flex-col items-center gap-4 mt-8 mb-8 relative z-10">
+            <Link to="/brazil/saopaulo" className="flex flex-row items-center justify-center text-stone-300 hover:text-white transition-colors drop-shadow-md bg-stone-950/50 backdrop-blur-md rounded-full px-6 py-2 border border-white/10 shadow-lg hover:bg-stone-900/60 w-fit">
               <span className="text-xl mr-3 pb-1">←</span>
               <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Return to São Paulo</span>
+            </Link>
+            <Link to="/brazil/saopaulo/museums" className="flex flex-row items-center justify-center text-[#2e5c31] hover:text-[#1a3d21] transition-colors drop-shadow-sm bg-[#2e5c31]/30 backdrop-blur-md rounded-full px-6 py-2 border border-[#2e5c31]/50 shadow-md hover:bg-[#2e5c31]/40 w-fit">
+              <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Next: Art Galleries</span>
+              <span className="text-xl ml-3 pb-1">→</span>
             </Link>
           </div>
         </main>
