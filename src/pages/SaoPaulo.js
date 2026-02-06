@@ -9,45 +9,45 @@ import ContextMap from "../components/ContextMap";
 import paperTexture from '../assets/Backgrounds/PaperTexture.jpg';
 import destinations from "../assets/destinations.json";
 
-
-
 function SaoPaulo() {
   const saopauloCoords = destinations.find(d => d.id === "saopaulo");
+
+  // Key Experiences Data (Top 5)
   const top5 = [
     {
       title: "1. Explore São Paulo’s Parks",
-      text: "São Paulo’s green heart beats inside its parks. From the lakes and modernist sculptures of Ibirapuera Park to the botanical calm of Parque Estadual da Cantareira, these open spaces offer quiet moments away from city noise — ideal for picnics, sketching, or simply breathing.",
-      image: `${process.env.PUBLIC_URL}/images/SP-Parks/Park8.webp`,
+      text: "São Paulo’s green heart beats inside its parks. From the open lawns and modernist forms of Ibirapuera to the dense forest edges of Cantareira, these spaces offer relief without escape — places to walk, sketch, rest, and watch the city breathe more slowly.",
+      image: `${process.env.PUBLIC_URL}/images/SP-Parks/small/Park1z.webp`,
       link: "/brazil/saopaulo/parks",
-      alt: "Ibirapuera Park lake in São Paulo with skyline reflections",
+      alt: "Ibirapuera Park lake in São Paulo",
     },
     {
       title: "2. Discover World-Class Art Galleries",
-      text: "Art in São Paulo never sits still. At MASP, masterpieces seem to float on glass, while the Pinacoteca brings Brazilian modernism into soft light and brick halls. Each space tells part of the city’s creative story — bold, experimental, and proudly urban.",
-      image: `${process.env.PUBLIC_URL}/images/ArtGallery/ArtGallery6.webp`,
+      text: "Art in São Paulo never settles into one voice. At MASP, paintings hover above the avenue on glass supports, while the Pinacoteca draws Brazilian modernism into brick halls and quiet light. The city’s galleries reflect its character — bold, experimental, and unapologetically urban.",
+      image: `${process.env.PUBLIC_URL}/images/ArtGallery/small/ArtGallery1z.webp`,
       link: "/brazil/saopaulo/museums",
-      alt: "MASP glass structure on Paulista Avenue in São Paulo",
+      alt: "MASP glass structure on Paulista Avenue",
     },
     {
       title: "3. Experience Carnival Up Close",
-      text: "In São Paulo, Carnival is both rhythm and rebellion. Samba drums echo through the Sambadrome and neighbourhood blocos spill through the streets in colour and sound. Join the dancers, sip a caipirinha, and feel how the city turns joy into motion.",
-      image: `${process.env.PUBLIC_URL}/images/CarnivalSP/Carnival8.webp`,
+      text: "For Paulistanos, Carnival is preparation, pride, and release. Samba schools rehearse for months before stepping into the Sambódromo, while blocos spill through neighbourhood streets with no fixed route. It’s a celebration shaped as much by discipline as by joy — and felt most strongly by those who carry it every year.",
+      image: `${process.env.PUBLIC_URL}/images/CarnivalSP/small/Carnival1z.webp`,
       link: "/brazil/saopaulo/carnival",
-      alt: "Samba parade in São Paulo Carnival with dancers in bright costumes",
+      alt: "Samba parade in São Paulo Carnival",
     },
     {
       title: "4. Wander Among Street Murals",
-      text: "The city walls of São Paulo speak louder than words. Walk through Vila Madalena’s Beco do Batman and you’ll find political voices, portraits, and wild imagination sprayed in colour. Every mural adds another layer to the city’s living canvas.",
-      image: `${process.env.PUBLIC_URL}/images/Murals/Graffiti6.webp`,
+      text: "São Paulo’s walls speak openly. In places like Vila Madalena’s Beco do Batman, murals layer politics, humour, protest, and portraiture across entire streets. The city becomes a public canvas — constantly repainted, argued with, and reimagined.",
+      image: `${process.env.PUBLIC_URL}/images/Murals/small/Graffiti1z.webp`,
       link: "/brazil/saopaulo/murals",
-      alt: "Colourful graffiti art in Beco do Batman, Vila Madalena, São Paulo",
+      alt: "Colourful graffiti art in Beco do Batman",
     },
     {
       title: "5. Take a Day Trip to Santos",
-      text: "Just an hour south of São Paulo, Santos changes the pace. Colonial streets lead to long beaches and the scent of roasted coffee drifts from the old Coffee Museum. It’s where Paulistanos go to swap skyscrapers for sea breeze.",
-      image: `${process.env.PUBLIC_URL}/images/Santos/Santos6.webp`,
+      text: "An hour south, the city loosens. Santos trades height for horizon, with long beaches, colonial streets, and the lingering scent of roasted coffee near the old Coffee Museum. It’s where Paulistanos go to swap density for sea air.",
+      image: `${process.env.PUBLIC_URL}/images/Santos/small/Santos1z.webp`,
       link: "/brazil/saopaulo/santos",
-      alt: "Beachfront and historic Coffee Museum in Santos, Brazil",
+      alt: "Beachfront and historic Coffee Museum in Santos",
     },
   ];
 
@@ -59,12 +59,6 @@ function SaoPaulo() {
     "bg-[#C7F5D8]/50",
   ];
 
-  const inlineImages = artImages.filter((img) =>
-    ["pizza", "street", "rain", "caparinhaPhoto", "caparinhaDrawn"].includes(img.id)
-  );
-
-
-
   const spreadBackgroundStyle = {
     backgroundImage: `url(${paperTexture})`,
     backgroundSize: "cover",
@@ -73,85 +67,114 @@ function SaoPaulo() {
     opacity: 1,
   };
 
-  const [currentIndex, setCurrentIndex] = useState(null);
-  const [revealed, setRevealed] = useState({}); // tracks which images are revealed on mobile
-
-  const handleToggle = (id) => {
-    setRevealed((prev) => ({ ...prev, [id]: !prev[id] }));
-  };
-
-  const neighborhoods = [
-    {
-      id: "vila-madalena",
-      name: "Vila Madalena",
-      img: "/images/SaoPauloLanding/VilaMadalenaF.webp",
-      coords: [-23.555, -46.693],
-    },
-    {
-      id: "pinheiros",
-      name: "Pinheiros",
-      img: "/images/SaoPauloLanding/PinheirosF.webp",
-      coords: [-23.563, -46.698],
-    },
-    {
-      id: "jardins",
-      name: "Jardins",
-      img: "/images/SaoPauloLanding/JardinsF.webp",
-      coords: [-23.565, -46.668],
-    },
-    {
-      id: "liberdade",
-      name: "Liberdade",
-      img: "/images/SaoPauloLanding/LiberdadeF.webp",
-      coords: [-23.558, -46.636],
-    },
-    {
-      id: "centro",
-      name: "Centro",
-      img: "/images/SaoPauloLanding/CentroF.webp",
-      coords: [-23.548, -46.633],
-    },
-  ];
-
-  const mapMarkers = neighborhoods.map((dest) => ({
-    id: dest.id,
-    name: dest.name,
-    coordinates: dest.coords,
-    link: `/nomads-shop/brazil/saopaulo?category=${dest.name}`,
-  }));
-
   return (
-    <div className="relative flex flex-col">
+    <div className="relative flex flex-col font-sans text-[#e2e1dc]">
       <SEO
-        title="Top 5 Things to Do in São Paulo | Nomad Scribbles"
-        description="Discover the best of São Paulo — from lush parks and world-class art galleries to Carnival, street murals, and the seaside charm of Santos."
-        keywords="São Paulo travel guide, best things to do in São Paulo, São Paulo attractions, Nomad Scribbles, São Paulo parks, MASP, street art, Carnival, Santos, Brazil travel"
+        title="São Paulo: City Life & Flavours | Nomad Scribbles"
+        description="São Paulo moves with a rhythm that’s hard to pin down. Discover a city built from layers — parks, art, carnival, and street murals."
+        keywords="São Paulo travel guide, things to do in São Paulo, Ibirapuera Park, MASP, Beco do Batman, Santos day trip"
         image="https://nomadscribbles.com/images/SaoPauloLanding/SaoPauloFeature.webp"
         url="https://nomadscribbles.com/brazil/saopaulo"
       />
 
-
-      <div className="flex justify-center mt-2 mb-2">
-        <img
-          src={`${process.env.PUBLIC_URL}/images/SaoPauloLanding/SaoPauloFeature.webp`}
-          alt="São Paulo skyline with feature title"
-          className="w-full max-w-[600px] h-auto rounded-lg shadow-lg object-contain"
-        />
-      </div>
-
-      <section className="max-w-screen-lg mx-auto px-6 pt-8 pb-4 text-[#e2e1dc] leading-relaxed">
-        <div className="flex justify-center mb-4">
+      {/* 1. Feature Image (Role: Entry point) */}
+      <section className="relative w-full mb-8">
+        <div className="w-full">
           <img
-            src={`${process.env.PUBLIC_URL}/images/SaoPauloLanding/heading2.webp`}
-            alt="City Life and Flavours of São Paulo"
-            className="w-full max-w-[400px] h-auto object-contain drop-shadow-md"
-            loading="lazy"
+            src={`${process.env.PUBLIC_URL}/images/SaoPauloLanding/SaoPauloFeature.webp`}
+            alt="The city spreads outward in layers"
+            className="w-full h-auto object-cover max-h-[80vh]"
           />
+        </div>
+        <div className="max-w-screen-lg mx-auto px-6 mt-4">
+          <p className="text-sm italic text-gray-400 text-center animate-fade-in-up delay-200">
+            The city spreads outward in layers — dense, vertical, and constantly in motion.
+          </p>
         </div>
       </section>
 
-      {/* Banner Spread with Map */}
-      <div className="relative w-full mb-8 overflow-hidden">
+      {/* 2. Introduction */}
+      <section className="max-w-screen-md mx-auto px-6 mb-16 text-center">
+        <h1 className="text-3xl md:text-5xl font-bold mb-6 text-[#edd98d]">
+          City Life and Flavours
+        </h1>
+        <p className="text-lg leading-relaxed md:text-xl text-[#e2e1dc]/90">
+          São Paulo moves with a rhythm that’s hard to pin down — part jazz, part traffic, part heartbeat. Rain on concrete smells faintly of roasted coffee, and music leaks from apartment windows. The city rarely pauses, but it constantly reveals itself in fragments: a shared table, a wet street, a glass lifted mid-conversation. What follows are small ways in.
+        </p>
+      </section>
+
+      {/* 3. Narrative Image Blocks (Editorial, non-expandable) */}
+      <section className="max-w-screen-lg mx-auto px-6 space-y-16 mb-20">
+
+        {/* Block A - Pizza */}
+        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+          <div className="w-full md:w-1/2">
+            <img
+              src={`${process.env.PUBLIC_URL}/images/SaoPauloLanding/pizza.webp`}
+              alt="Late-night pizza in São Paulo"
+              className="w-full h-auto rounded-sm shadow-md"
+              loading="lazy"
+            />
+            <p className="text-xs text-gray-400 mt-2 italic">Late-night pizza is less a meal than a habit.</p>
+          </div>
+          <div className="w-full md:w-1/2 text-lg leading-relaxed">
+            <h3 className="text-xl font-bold text-[#edd98d] mb-4">A Quiet Religion</h3>
+            <p>Pizza in São Paulo is a quiet religion. Born from Italian ovens, thin and soft, eaten late — sometimes after midnight. Every neighbourhood claims the best slice. The crust cracks softly, the cheese stretches, and the toppings shift with local taste rather than rules. Sitting down to share a pizza feels like stepping briefly into the city’s everyday rhythm.</p>
+          </div>
+        </div>
+
+        {/* Block B - Street Layers (Liberdade) */}
+        <div className="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12">
+          <div className="w-full md:w-1/2">
+            <img
+              src={`${process.env.PUBLIC_URL}/images/SaoPauloLanding/small/Street2.webp`}
+              alt="Liberdade holds its stories at street level"
+              className="w-full h-auto rounded-sm shadow-md"
+              loading="lazy"
+            />
+            <p className="text-xs text-gray-400 mt-2 italic">Liberdade holds its stories at street level.</p>
+          </div>
+          <div className="w-full md:w-1/2 text-lg leading-relaxed">
+            <h3 className="text-xl font-bold text-[#edd98d] mb-4">Layers at Street Level</h3>
+            <p>After the rain, São Paulo sharpens rather than softens. Crosswalk paint glows against damp asphalt, murals stack colour along low walls, and power lines sketch loose grids overhead. In neighbourhoods like Liberdade, daily movement, borrowed influence, and routine overlap without ceremony. Even when traffic pauses, the city still feels in motion.</p>
+          </div>
+        </div>
+
+        {/* Block C - Caipirinha */}
+        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+          <div className="w-full md:w-1/2 space-y-4">
+            <img
+              src={`${process.env.PUBLIC_URL}/images/SaoPauloLanding/caparinha.webp`}
+              alt="A pause, briefly held - Photo"
+              className="w-[70%] mx-auto block h-auto rounded-sm shadow-md"
+              loading="lazy"
+            />
+            <img
+              src={`${process.env.PUBLIC_URL}/images/SaoPauloLanding/CaparinhaDrawn.webp`}
+              alt="A pause, briefly held - Sketch"
+              className="w-[70%] mx-auto block h-auto rounded-sm shadow-md opacity-90"
+              loading="lazy"
+            />
+            <p className="text-xs text-gray-400 italic">A pause, briefly held.</p>
+          </div>
+          <div className="w-full md:w-1/2 text-lg leading-relaxed">
+            <h3 className="text-xl font-bold text-[#edd98d] mb-4">A Pause, Briefly Held</h3>
+            <p>A caipirinha marks a small pause in a city of ten million. Lime, sugar, cachaça — simple balance. Ice clinks as conversations drift from football to art to the day’s small dramas. The sweetness fades slowly, leaving just enough space to notice the moment before the city pulls you back in.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Bridge Text */}
+      <section className="bg-[#1c1c1c] py-12 mb-16">
+        <div className="max-w-screen-md mx-auto px-6 text-center">
+          <p className="text-xl md:text-2xl font-light italic text-gray-300">
+            “These moments sketch only the surface of São Paulo. Beyond them, the city opens outward — into green spaces, rehearsal halls, galleries, and streets where its larger rhythms take shape.”
+          </p>
+        </div>
+      </section>
+
+      {/* Banner Spread with Map (Optional: Keeping context map as it adds value but placing it before key experiences) */}
+      <div className="relative w-full mb-16 overflow-hidden hidden md:block">
         <div
           className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[110vw] pointer-events-none z-10"
           style={{
@@ -173,99 +196,11 @@ function SaoPaulo() {
         </div>
       </div>
 
-      <section className="max-w-screen-lg mx-auto px-6 py-8 space-y-8 mb-8 text-[#e2e1dc] leading-relaxed">
-        <p>
-          São Paulo moves with a rhythm that’s hard to pin down — part jazz, part traffic, part heartbeat. Rain on concrete smells faintly of roasted coffee, and music leaks from apartment windows. The energy hums beneath everything.
-        </p>
-
-        <div className="flex flex-col gap-2">
-          {/* Pizza Block */}
-          <div className="flex flex-col sm:flex-row items-start gap-2">
-            <div className="relative w-1/2 sm:w-1/5">
-              <img
-                src={`${process.env.PUBLIC_URL}/images/SaoPauloLanding/pizza.webp`}
-                alt="São Paulo-style pizza"
-                loading="lazy"
-                className="rounded-lg shadow-md flex-shrink-0 cursor-pointer transition-opacity duration-[2000ms]"
-                onMouseEnter={() => handleToggle("pizza")}
-                onMouseLeave={() => handleToggle("pizza")}
-                onClick={() =>
-                  setCurrentIndex(inlineImages.findIndex((img) => img.id === "pizza"))
-                }
-                style={{ opacity: revealed["pizza"] ? 1 : 0.8 }}
-              />
-            </div>
-            <p className="flex-1">
-              Pizza here is a quiet religion. Born from Italian ovens, thin and soft, eaten late — sometimes after midnight. Every neighbourhood claims the best slice. The crust cracks softly under your teeth, the cheese stretches like warm sunlight, and each topping tells a story of local tastes and seasonal produce. Sharing a pizza feels like sharing a little piece of São Paulo itself.
-            </p>
-          </div>
-
-          {/* Street + Rain Block */}
-          <div className="flex flex-col sm:flex-row-reverse items-start gap-2">
-            {["street", "rain"].map((id) => {
-              const img = inlineImages.find((img) => img.id === id);
-              return (
-                <div key={id} className="relative w-1/2 sm:w-1/5">
-                  <img
-                    src={img.blogimage}
-                    alt={img.alt}
-                    loading="lazy"
-                    className="rounded-lg shadow-md flex-shrink-0 cursor-pointer transition-opacity duration-[2000ms]"
-                    onMouseEnter={() => handleToggle(id)}
-                    onMouseLeave={() => handleToggle(id)}
-                    onClick={() =>
-                      setCurrentIndex(inlineImages.findIndex((img) => img.id === id))
-                    }
-                    style={{ opacity: revealed[id] ? 1 : 0.8 }}
-                  />
-                </div>
-              );
-            })}
-            <p className="flex-1">
-              After the rain, reflections bloom across pavements, shopfronts glow in gold and blue. Even in stillness, São Paulo feels alive — a city that never entirely sleeps. Music floats from open windows, footsteps echo on cobbled streets, and the smell of roasted coffee drifts through alleys. Every corner seems to pulse with a hidden rhythm, inviting wanderers to notice small stories in the mundane.
-            </p>
-          </div>
-
-          {/* Caipirinha Block */}
-          <div className="flex flex-col sm:flex-row items-start gap-2">
-            {["caparinhaPhoto", "caparinhaDrawn"].map((id) => {
-              const img = inlineImages.find((img) => img.id === id);
-              return (
-                <div key={id} className="relative w-1/2 sm:w-1/5">
-                  <img
-                    src={img.blogimage}
-                    alt={img.alt}
-                    loading="lazy"
-                    className="rounded-lg shadow-md flex-shrink-0 cursor-pointer transition-opacity duration-[2000ms]"
-                    onMouseEnter={() => handleToggle(id)}
-                    onMouseLeave={() => handleToggle(id)}
-                    onClick={() =>
-                      setCurrentIndex(inlineImages.findIndex((img) => img.id === id))
-                    }
-                    style={{ opacity: revealed[id] ? 1 : 0.8 }}
-                  />
-                </div>
-              );
-            })}
-            <p className="flex-1">
-              A Caipirinha marks the pause in a city of ten million. Lime, sugar, cachaça — simple balance. Locals sip between laughter and long stories. The ice clinks in glasses as conversations meander from football to art to the day’s adventures. The tangy sweetness lingers on your tongue, a small reminder to slow down, even in a city that never stops moving.
-            </p>
-          </div>
-        </div>
-
-        <p className="text-center mt-4">
-          These glimpses capture just the first layer of São Paulo — now let’s dive into the city’s top five experiences.
-        </p>
-      </section>
-
-      <main className="px-4 py-8 max-w-screen-lg mx-auto space-y-6">
-        <div className="flex justify-center mb-6">
-          <img
-            src={`${process.env.PUBLIC_URL}/images/SaoPauloLanding/heading3.webp`}
-            alt="Top 5 Things to Do in São Paulo"
-            className="w-full max-w-[420px] h-auto object-contain drop-shadow-md"
-            loading="lazy"
-          />
+      {/* 5. Key Experiences (Navigational) */}
+      <main className="max-w-screen-lg mx-auto px-6 pb-20 space-y-8">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl font-bold text-[#edd98d]">Key Experiences</h2>
+          <p className="text-gray-400 mt-2">Deeper dives into the city</p>
         </div>
 
         {top5.map((item, idx) => (
@@ -275,43 +210,34 @@ function SaoPaulo() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             viewport={{ once: true }}
-            className={`flex flex-col lg:flex-row items-center gap-6 ${top5BgColors[idx]} rounded-lg p-4 shadow-md ${idx % 2 === 1 ? "lg:flex-row-reverse" : ""
-              }`}
+            className={`flex flex-col md:flex-row items-center gap-6 ${top5BgColors[idx]} rounded-lg p-6 shadow-md ${idx % 2 === 1 ? "md:flex-row-reverse" : ""}`}
           >
-            <a
-              href={item.link}
-              rel="noopener noreferrer"
-              className="w-full sm:w-3/4 lg:w-2/5 flex-shrink-0"
-            >
-              <img
-                src={item.image}
-                alt={item.alt}
-                loading="lazy"
-                className="rounded-lg w-full shadow-md hover:opacity-90 transition-opacity"
-              />
-            </a>
-            <div className="flex-1">
-              <h3 className="font-bold text-lg mb-2">{item.title}</h3>
-              <p className="mb-3">{item.text}</p>
-              <a
-                href={item.link}
-                rel="noopener noreferrer"
-                className="inline-block text-[#edd98d] font-semibold hover:underline"
+            {/* Image (Framed 'z' image) */}
+            <div className="w-full md:w-2/5 flex-shrink-0">
+              <Link to={item.link}>
+                <img
+                  src={item.image}
+                  alt={item.alt}
+                  loading="lazy"
+                  className="w-full h-auto rounded-lg shadow-lg hover:scale-105 transition-transform duration-500 ease-out cursor-pointer"
+                />
+              </Link>
+            </div>
+
+            {/* Text & Link */}
+            <div className="flex-1 text-center md:text-left">
+              <h3 className="font-bold text-2xl mb-3 text-black">{item.title}</h3>
+              <p className="mb-4 text-black/80 leading-relaxed">{item.text}</p>
+              <Link
+                to={item.link}
+                className="inline-block text-black font-bold uppercase tracking-wide border-b-2 border-black/20 hover:border-black transition-colors"
               >
-                Read more →
-              </a>
+                Explore {item.title.split(".")[1] || "More"} →
+              </Link>
             </div>
           </motion.div>
         ))}
       </main>
-
-      {currentIndex !== null && (
-        <Lightbox
-          images={inlineImages}
-          currentIndex={currentIndex}
-          setCurrentIndex={setCurrentIndex}
-        />
-      )}
     </div>
   );
 }
