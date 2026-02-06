@@ -1,29 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 
-// --- Pages ---
-import Home from "./pages/Home";
-import Adventures from "./pages/Adventures";
-import NomadsShop from "./pages/NomadsShop";
-import NomadsShopBrazil from "./pages/NomadsShopBrazil";
-import NomadsShopSaoPaulo from "./pages/NomadsShopSaoPaulo";
-import NomadsShopCategory from "./pages/NomadsShopCategory";
-import Brazil from "./pages/Brazil";
-import SaoPaulo from "./pages/SaoPaulo";
-import Parks from "./pages/Parks";
-import Museums from "./pages/Museums";
-import Carnival from "./pages/Carnival";
-import Murals from "./pages/Murals";
-import Santos from "./pages/Santos";
-import Pantanal from "./pages/Pantanal";
-import Rio from "./pages/Rio";
-import Salvador from "./pages/Salvador";
-import NomadsGallery from "./pages/NomadsGallery";
-import ContactUs from "./pages/ContactUs";
-import SearchResults from "./pages/SearchResults";
-import NotFound from "./pages/NotFound";
-import CookiePreferences from "./pages/CookiePreferences";
+// --- Pages (Lazy Loaded) ---
+const Home = lazy(() => import("./pages/Home"));
+const Adventures = lazy(() => import("./pages/Adventures"));
+const NomadsShop = lazy(() => import("./pages/NomadsShop"));
+const NomadsShopBrazil = lazy(() => import("./pages/NomadsShopBrazil"));
+const NomadsShopSaoPaulo = lazy(() => import("./pages/NomadsShopSaoPaulo"));
+const NomadsShopCategory = lazy(() => import("./pages/NomadsShopCategory"));
+const Brazil = lazy(() => import("./pages/Brazil"));
+const SaoPaulo = lazy(() => import("./pages/SaoPaulo"));
+const Parks = lazy(() => import("./pages/Parks"));
+const Museums = lazy(() => import("./pages/Museums"));
+const Carnival = lazy(() => import("./pages/Carnival"));
+const Murals = lazy(() => import("./pages/Murals"));
+const Santos = lazy(() => import("./pages/Santos"));
+const Pantanal = lazy(() => import("./pages/Pantanal"));
+const Rio = lazy(() => import("./pages/Rio"));
+const Salvador = lazy(() => import("./pages/Salvador"));
+const NomadsGallery = lazy(() => import("./pages/NomadsGallery"));
+const ContactUs = lazy(() => import("./pages/ContactUs"));
+const SearchResults = lazy(() => import("./pages/SearchResults"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const CookiePreferences = lazy(() => import("./pages/CookiePreferences"));
 
 // --- Components ---
 import Nav from "./components/Nav";
@@ -128,39 +128,41 @@ function MainContent({
       {!isHome && <VisualHeader />}
 
       <main role="main" className={`flex-grow ${!isHome ? "pt-12" : ""}`}>
-        <Routes>
-          <Route path="/" element={<Home openLightbox={openLightbox} />} />
-          <Route path="/home" element={<Home openLightbox={openLightbox} />} />
-          <Route path="/adventures" element={<Adventures openLightbox={openLightbox} />} />
-          <Route path="/nomadsshop" element={<NomadsShop />} />
-          <Route path="/nomads-shop" element={<NomadsShop />} />
-          <Route path="/nomads-shop/brazil" element={<NomadsShopBrazil />} />
-          <Route path="/nomads-shop/brazil/saopaulo" element={<NomadsShopSaoPaulo openLightbox={openLightbox} />} />
-          <Route path="/nomads-shop/brazil/:city" element={<NomadsShopCategory openLightbox={openLightbox} />} />
-          <Route path="/brazil" element={<Brazil openLightbox={openLightbox} />} />
-          <Route path="/brazil/rio" element={<Rio />} />
-          <Route path="/brazil/salvador" element={<Salvador />} />
-          <Route path="/brazil/pantanal" element={<Pantanal />} />
-          <Route path="/brazil/saopaulo" element={<SaoPaulo openLightbox={openLightbox} />} />
-          <Route path="/brazil/saopaulo/parks" element={<Parks openLightbox={openLightbox} />} />
-          <Route path="/brazil/saopaulo/museums" element={<Museums openLightbox={openLightbox} />} />
-          <Route path="/brazil/saopaulo/carnival" element={<Carnival openLightbox={openLightbox} />} />
-          <Route path="/brazil/saopaulo/murals" element={<Murals openLightbox={openLightbox} />} />
-          <Route path="/brazil/saopaulo/santos" element={<Santos openLightbox={openLightbox} />} />
-          <Route path="/nomads-gallery" element={<NomadsGallery openLightbox={openLightbox} />} />
-          <Route path="/contact-us" element={<ContactUs openLightbox={openLightbox} />} />
-          <Route path="/search" element={<SearchResults openLightbox={openLightbox} />} />
-          <Route path="*" element={<NotFound />} />
-          <Route
-            path="/cookie-preferences"
-            element={
-              <CookiePreferences
-                cookiesAccepted={cookiesAccepted}
-                onConsentChange={handleConsentChange}
-              />
-            }
-          />
-        </Routes>
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+          <Routes>
+            <Route path="/" element={<Home openLightbox={openLightbox} />} />
+            <Route path="/home" element={<Home openLightbox={openLightbox} />} />
+            <Route path="/adventures" element={<Adventures openLightbox={openLightbox} />} />
+            <Route path="/nomadsshop" element={<NomadsShop />} />
+            <Route path="/nomads-shop" element={<NomadsShop />} />
+            <Route path="/nomads-shop/brazil" element={<NomadsShopBrazil />} />
+            <Route path="/nomads-shop/brazil/saopaulo" element={<NomadsShopSaoPaulo openLightbox={openLightbox} />} />
+            <Route path="/nomads-shop/brazil/:city" element={<NomadsShopCategory openLightbox={openLightbox} />} />
+            <Route path="/brazil" element={<Brazil openLightbox={openLightbox} />} />
+            <Route path="/brazil/rio" element={<Rio />} />
+            <Route path="/brazil/salvador" element={<Salvador />} />
+            <Route path="/brazil/pantanal" element={<Pantanal />} />
+            <Route path="/brazil/saopaulo" element={<SaoPaulo openLightbox={openLightbox} />} />
+            <Route path="/brazil/saopaulo/parks" element={<Parks openLightbox={openLightbox} />} />
+            <Route path="/brazil/saopaulo/museums" element={<Museums openLightbox={openLightbox} />} />
+            <Route path="/brazil/saopaulo/carnival" element={<Carnival openLightbox={openLightbox} />} />
+            <Route path="/brazil/saopaulo/murals" element={<Murals openLightbox={openLightbox} />} />
+            <Route path="/brazil/saopaulo/santos" element={<Santos openLightbox={openLightbox} />} />
+            <Route path="/nomads-gallery" element={<NomadsGallery openLightbox={openLightbox} />} />
+            <Route path="/contact-us" element={<ContactUs openLightbox={openLightbox} />} />
+            <Route path="/search" element={<SearchResults openLightbox={openLightbox} />} />
+            <Route path="*" element={<NotFound />} />
+            <Route
+              path="/cookie-preferences"
+              element={
+                <CookiePreferences
+                  cookiesAccepted={cookiesAccepted}
+                  onConsentChange={handleConsentChange}
+                />
+              }
+            />
+          </Routes>
+        </Suspense>
       </main>
 
       {/* Cookie Consent Popup */}
