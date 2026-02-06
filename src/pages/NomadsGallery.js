@@ -5,6 +5,7 @@ import artImages from "../assets/artImages.json"; // FIX: now in assets
 import SEO from "../components/SEO";              // FIX: now in components
 import { fadeScale, hoverScale, staggerContainer } from "../utils/animations"; // FIX: now in utils
 import { trackEvent } from "../utils/analytics";  // FIX: now in utils
+
 export default function NomadsGallery({ openLightbox }) {
   const [shuffledImages, setShuffledImages] = useState([]);
 

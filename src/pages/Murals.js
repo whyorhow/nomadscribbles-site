@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import SEO from "../components/SEO";
@@ -103,6 +103,24 @@ const cardSections = [
 ];
 
 export default function Murals({ openLightbox }) {
+  const [isHeroExpanded, setIsHeroExpanded] = useState(false);
+  const heroRef = useRef(null);
+
+  // Auto-collapse when scrolled out of view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting && isHeroExpanded) {
+          setIsHeroExpanded(false);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (heroRef.current) observer.observe(heroRef.current);
+    return () => observer.disconnect();
+  }, [isHeroExpanded]);
+
   // Construct image list for Lightbox (Hero + Cards)
   const allImages = useMemo(() => {
     const list = [{
@@ -136,33 +154,47 @@ export default function Murals({ openLightbox }) {
         slug="/brazil/saopaulo/murals"
       />
 
-      <div className="relative w-full max-w-screen-xl mx-auto px-4">
-        {/* Header */}
-        <div className="flex justify-center mb-6 mt-8 relative z-10">
-          <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-[#D4AF37] tracking-tight text-center drop-shadow-sm">
-            Street Murals
-          </h1>
+      <div className="relative w-full overflow-hidden">
+        {/* Title Section */}
+        <div className="flex justify-center mb-6 px-4 mt-8 relative z-10">
+          <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-[#D4AF37] tracking-tight text-center drop-shadow-sm">Street Murals</h1>
         </div>
 
-        {/* 1. Hero Image (Graffiti1 - Static, Full) */}
-        <div className="w-full max-w-5xl mx-auto mb-16 flex flex-col md:flex-row items-center gap-10 relative z-10 bg-white/40 p-6 md:p-8 rounded-xl backdrop-blur-sm shadow-sm">
-          <div className="w-full md:w-1/2 cursor-pointer" onClick={() => handleImageClick(heroSection.id)}>
+        {/* Magazine Style Hero Section */}
+        <div ref={heroRef} className="w-full max-w-7xl mx-auto px-4 mb-24 relative z-10 group">
+
+          {/* Main Hero Image - Large & Cinematic */}
+          <div
+            className={`relative w-full overflow-hidden rounded-xl shadow-md cursor-pointer group-hover:shadow-xl transition-all duration-700 ease-in-out ${isHeroExpanded ? 'aspect-auto' : 'aspect-[16/10] md:aspect-[16/9]'}`}
+            onClick={() => {
+              if (!isHeroExpanded) setIsHeroExpanded(true);
+              else handleImageClick(heroSection.id);
+            }}
+          >
             <img
-              src={`${process.env.PUBLIC_URL}${heroSection.imageFull}`}
-              alt={heroSection.title}
-              className="w-full h-auto object-cover rounded-lg shadow-md hover:opacity-95 transition-opacity"
+              src={isHeroExpanded ? process.env.PUBLIC_URL + "/images/Murals/full/Graffiti1.webp" : process.env.PUBLIC_URL + "/images/Murals/small/Graffiti1new.webp"}
+              alt="Murals Hero"
+              className={`w-full h-full object-cover transition-transform duration-700 ease-in-out ${!isHeroExpanded ? 'transform scale-100 group-hover:scale-105' : ''}`}
             />
           </div>
-          <div className="w-full md:w-1/2 text-left">
-            <h2 className="text-4xl md:text-5xl font-bold font-handwriting text-[#2e1065] mb-4">
-              {heroSection.title}
-            </h2>
-            <p className="text-lg md:text-xl font-medium text-stone-700 leading-relaxed max-w-lg">
-              {heroSection.text}
-            </p>
+
+          {/* Overlapping Text Card - "Newspaper" Style */}
+          <div className="relative md:absolute md:-bottom-12 md:left-12 lg:left-20 w-full md:max-w-xl bg-[#f5f5f4] p-8 md:p-10 shadow-xl rounded-lg border-t-4 border-[#e9d5ff] mt-[-3rem] md:mt-0 z-20">
+            {/* Decorative 'Issue' or 'Date' line */}
+            <div className="flex items-center gap-3 mb-4 opacity-60">
+              <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#6b21a8]">Feature</span>
+              <div className="h-[1px] w-12 bg-stone-400"></div>
+              <span className="text-xs font-serif italic text-stone-500">São Paulo</span>
+            </div>
+
+            <div className="text-xl md:text-2xl font-serif text-stone-800 leading-relaxed">
+              <span className="text-5xl float-left mr-3 mt-[-10px] font-bold text-[#6b21a8] font-handwriting">P</span>
+              <p className="inline">
+                Wait, paint appears, disappears, and returns altered. Walls in São Paulo are rarely neutral. Murals stretch across facades like open letters, layered with joy, protest, memory, and response. For people who live here, these images aren’t landmarks — they’re part of the daily landscape, absorbing the city’s rhythm and reflecting it back in colour and form.
+              </p>
+            </div>
           </div>
         </div>
-
         {/* 2. Expanding Cards (Graffiti 2-9) */}
         <main className="px-2 py-2 max-w-screen-xl mx-auto space-y-12 flex flex-col items-center pb-24">
           {cardSections.map((section) => (

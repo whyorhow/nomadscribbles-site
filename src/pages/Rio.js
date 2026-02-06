@@ -13,6 +13,25 @@ function Rio({ openLightbox }) {
     const rioCoords = destinations.find(d => d.id === "rio");
     const rioImages = artImages.filter(img => img.category === "Rio");
 
+    // Hero Interaction State
+    const [isHeroExpanded, setIsHeroExpanded] = useState(false);
+    const heroRef = React.useRef(null);
+
+    // Auto-collapse hero when scrolled out of view
+    React.useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (!entry.isIntersecting && isHeroExpanded) {
+                    setIsHeroExpanded(false);
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        if (heroRef.current) observer.observe(heroRef.current);
+        return () => observer.disconnect();
+    }, [isHeroExpanded]);
+
     const spreadBackgroundStyle = {
         backgroundImage: `url(${paperTexture})`,
         backgroundSize: "cover",
@@ -138,13 +157,37 @@ function Rio({ openLightbox }) {
                 </div>
 
                 {/* Hero Image - Rio1 (Selaron) */}
-                <div className="w-full max-w-4xl mx-auto px-4 mb-12 flex flex-col items-center relative z-10">
-                    <img
-                        src="/images/Rio/small/Rio1.webp"
-                        alt="Selarón Steps at Night"
-                        className="w-full h-auto object-cover rounded-lg shadow-lg mb-2"
-                    />
-                    <p className="text-sm italic opacity-90 text-center font-medium text-stone-200">The tiled staircase in Lapa fills after dark, becoming a narrow pocket where movement, noise, and colour gather.</p>
+                {/* Magazine Style Hero Section - Interactive & Overlapping */}
+                <div ref={heroRef} className="w-full max-w-7xl mx-auto px-4 mb-24 relative z-10 group">
+
+                    {/* Main Hero Image - Expandable */}
+                    <div
+                        className={`relative w-full overflow-hidden rounded-xl shadow-md cursor-pointer group-hover:shadow-xl transition-all duration-700 ease-in-out ${isHeroExpanded ? 'aspect-auto' : 'aspect-[16/10] md:aspect-[21/9]'}`}
+                        onClick={() => setIsHeroExpanded(!isHeroExpanded)}
+                    >
+                        <img
+                            src={isHeroExpanded ? process.env.PUBLIC_URL + "/images/Rio/full/RioW1.webp" : process.env.PUBLIC_URL + "/images/Rio/small/Rio1new.webp"}
+                            alt="Selarón Steps at Night"
+                            className={`w-full h-full object-cover transition-transform duration-700 ease-in-out ${!isHeroExpanded ? 'transform scale-100 group-hover:scale-105' : ''}`}
+                        />
+                    </div>
+
+                    {/* Overlapping Text Card - "Newspaper" Style */}
+                    <div className="relative md:absolute md:-bottom-12 md:left-12 lg:left-20 w-full md:max-w-xl bg-[#f5f5f4] p-8 md:p-10 shadow-xl rounded-lg border-t-4 border-[#e9d5ff] mt-[-3rem] md:mt-0 z-20">
+                        {/* Decorative Feature line */}
+                        <div className="flex items-center gap-3 mb-4 opacity-60">
+                            <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#6b21a8]">Feature</span>
+                            <div className="h-[1px] w-12 bg-stone-400"></div>
+                            <span className="text-xs font-serif italic text-stone-500">Lapa, Rio de Janeiro</span>
+                        </div>
+
+                        <div className="text-xl md:text-2xl font-serif text-stone-800 leading-relaxed">
+                            <span className="text-5xl float-left mr-3 mt-[-10px] font-bold text-[#6b21a8] font-handwriting">T</span>
+                            <p className="inline">
+                                he tiled staircase in Lapa fills after dark, becoming a narrow pocket where movement, noise, and colour gather. That density reminds you that in Rio, public spaces are rarely empty — they are stages for daily life.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
                 {/* Banner Spread with Map */}
@@ -377,8 +420,8 @@ function StoryCard({ section, getImage, handleImageClick }) {
 
                 {/* Reused Reveal Animation for Cover */}
                 <RevealImage
-                    smallSrc={getImage(section.coverImage)?.image}
-                    fullSrc={getImage(section.coverImage)?.lightboxImage}
+                    smallSrc={`${process.env.PUBLIC_URL}${getImage(section.coverImage)?.image}`}
+                    fullSrc={`${process.env.PUBLIC_URL}${getImage(section.coverImage)?.lightboxImage}`}
                     alt={section.title}
                     caption={section.coverCaption}
                     title={getImage(section.coverImage)?.title}
@@ -419,8 +462,8 @@ function StoryCard({ section, getImage, handleImageClick }) {
                             return (
                                 <div key={idx} className="w-full">
                                     <RevealImage
-                                        smallSrc={img.image}
-                                        fullSrc={img.lightboxImage}
+                                        smallSrc={`${process.env.PUBLIC_URL}${img.image}`}
+                                        fullSrc={`${process.env.PUBLIC_URL}${img.lightboxImage}`}
                                         alt={img.title || ""}
                                         caption={item.caption}
                                         title={img.title}
@@ -438,8 +481,8 @@ function StoryCard({ section, getImage, handleImageClick }) {
                                         return (
                                             <div key={id} className="flex flex-col items-center w-full">
                                                 <RevealImage
-                                                    smallSrc={img.image}
-                                                    fullSrc={img.lightboxImage}
+                                                    smallSrc={`${process.env.PUBLIC_URL}${img.image}`}
+                                                    fullSrc={`${process.env.PUBLIC_URL}${img.lightboxImage}`}
                                                     alt={id}
                                                     title={img.title}
                                                     onClick={(e) => { e.stopPropagation(); handleImageClick(id); }}

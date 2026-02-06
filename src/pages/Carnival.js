@@ -7,7 +7,24 @@ import artImages from "../assets/artImages.json";
 
 
 function Carnival({ openLightbox }) {
+  const [isHeroExpanded, setIsHeroExpanded] = useState(false);
+  const heroRef = useRef(null);
   const carnivalImages = artImages.filter(img => img.category === "Carnival");
+
+  // Auto-collapse when scrolled out of view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting && isHeroExpanded) {
+          setIsHeroExpanded(false);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (heroRef.current) observer.observe(heroRef.current);
+    return () => observer.disconnect();
+  }, [isHeroExpanded]);
 
   // Define the visual order of images for Lightbox navigation
   const imageOrder = [
@@ -137,24 +154,44 @@ function Carnival({ openLightbox }) {
         image="/images/CarnivalSP/CarnivalBackground.png"
         slug="/brazil/saopaulo/carnival"
       />
-
       <div className="relative w-full overflow-hidden">
         {/* Title Section */}
         <div className="flex justify-center mb-6 px-4 mt-8 relative z-10">
           <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-[#D4AF37] tracking-tight text-center drop-shadow-sm">Carnival</h1>
         </div>
 
-        {/* Hero Image - Carnival10 (The Sambadrome Opens - Feature Image) */}
-        <div className="w-full max-w-5xl mx-auto px-4 mb-16 flex flex-col items-center relative z-10">
-          <img
-            src={getImage("carnival10")?.lightboxImage || ""}
-            alt="Carnival at the Sambódromo"
-            className="w-full h-auto object-cover rounded-lg shadow-lg mb-2 cursor-pointer hover:opacity-95 transition-opacity"
-            onClick={() => handleImageClick("carnival10")}
-          />
-          <p className="text-sm italic opacity-90 text-center font-medium text-stone-500 mt-2">
-            Carnival gathers scale at the Sambódromo, where months of preparation are released in a single, collective movement.
-          </p>
+        {/* Magazine Style Hero Section */}
+        <div ref={heroRef} className="w-full max-w-7xl mx-auto px-4 mb-24 relative z-10 group">
+
+          {/* Main Hero Image - Large & Cinematic */}
+          <div
+            className={`relative w-full overflow-hidden rounded-xl shadow-md cursor-pointer group-hover:shadow-xl transition-all duration-700 ease-in-out ${isHeroExpanded ? 'aspect-auto' : 'aspect-[16/10] md:aspect-[16/9]'}`}
+            onClick={() => {
+              if (!isHeroExpanded) setIsHeroExpanded(true);
+              else handleImageClick("carnival10");
+            }}
+          >
+            <img
+              src={isHeroExpanded ? process.env.PUBLIC_URL + "/images/CarnivalSP/full/Carnival10.webp" : process.env.PUBLIC_URL + "/images/CarnivalSP/small/Carnival10new.webp"}
+              alt="Carnival Hero"
+              className={`w-full h-full object-cover transition-transform duration-700 ease-in-out ${!isHeroExpanded ? 'transform scale-100 group-hover:scale-105' : ''}`}
+            />
+          </div>
+
+          {/* Overlapping Text Card - "Newspaper" Style */}
+          <div className="relative md:absolute md:-bottom-12 md:left-12 lg:left-20 w-full md:max-w-xl bg-[#f5f5f4] p-8 md:p-10 shadow-xl rounded-lg border-t-4 border-[#e9d5ff] mt-[-3rem] md:mt-0 z-20">
+            {/* Decorative 'Issue' or 'Date' line */}
+            <div className="flex items-center gap-3 mb-4 opacity-60">
+              <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#6b21a8]">Feature</span>
+              <div className="h-[1px] w-12 bg-stone-400"></div>
+              <span className="text-xs font-serif italic text-stone-500">São Paulo</span>
+            </div>
+
+            <p className="text-xl md:text-2xl font-serif text-stone-800 leading-relaxed">
+              <span className="text-5xl float-left mr-3 mt-[-10px] font-bold text-[#6b21a8] font-handwriting">C</span>
+              arnival in São Paulo is often misunderstood. It is not just a spectacle for broadcast, but a reclaiming of the city itself. For a few days, the streets belong to people, not cars. The rhythm of the blocos rewrites the map, turning intersections into dance floors and viaducts into gathering spaces. It is messy, loud, and vital—a necessary release for a city that rarely stops.
+            </p>
+          </div>
         </div>
 
 

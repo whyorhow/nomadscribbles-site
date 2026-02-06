@@ -13,6 +13,25 @@ function Florianopolis({ openLightbox }) {
     const florianopolisCoords = destinations.find(d => d.id === "florianopolis");
     const floripaImages = artImages.filter(img => img.category === "Florianopolis");
 
+    // Hero Interaction State
+    const [isHeroExpanded, setIsHeroExpanded] = useState(false);
+    const heroRef = React.useRef(null);
+
+    // Auto-collapse hero when scrolled out of view
+    React.useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (!entry.isIntersecting && isHeroExpanded) {
+                    setIsHeroExpanded(false);
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        if (heroRef.current) observer.observe(heroRef.current);
+        return () => observer.disconnect();
+    }, [isHeroExpanded]);
+
     const spreadBackgroundStyle = {
         backgroundImage: `url(${paperTexture})`,
         backgroundSize: "cover",
@@ -165,7 +184,7 @@ function Florianopolis({ openLightbox }) {
             <SEO
                 title="Florianópolis | Nomad Scribbles"
                 description="Florianópolis: An island city where lush hills meet over 40 distinct beaches. Discover the diverse geography of Brazil's southern coast."
-                image="/images/Floripa/assets_small/Floripa1z.webp"
+                image="/images/Floripa/small/Floripa1z.webp"
                 slug="/brazil/florianopolis"
             />
 
@@ -197,13 +216,36 @@ function Florianopolis({ openLightbox }) {
                 </div>
 
                 {/* Feature Image */}
-                <div className="w-full max-w-4xl mx-auto px-4 mb-12 flex flex-col items-center">
-                    <img
-                        src="/images/Floripa/assets_small/Floripa14.webp"
-                        alt="Footprints leading to the water in Florianópolis"
-                        className="w-full h-auto object-cover rounded-lg shadow-lg mb-2"
-                    />
-                    <p className="text-sm italic opacity-90 text-center font-medium text-stone-200">Footsteps trail along the beach before dissolving into the tide.</p>
+                {/* Magazine Style Hero Section */}
+                <div ref={heroRef} className="w-full max-w-7xl mx-auto px-4 mb-24 relative z-10 group">
+
+                    {/* Main Hero Image - Expandable */}
+                    <div
+                        className={`relative w-full overflow-hidden rounded-xl shadow-md cursor-pointer group-hover:shadow-xl transition-all duration-700 ease-in-out ${isHeroExpanded ? 'aspect-auto' : 'aspect-[16/10] md:aspect-[21/9]'}`}
+                        onClick={() => setIsHeroExpanded(!isHeroExpanded)}
+                    >
+                        <img
+                            src={isHeroExpanded ? process.env.PUBLIC_URL + "/images/Floripa/full/Floripa14.webp" : process.env.PUBLIC_URL + "/images/Floripa/small/Floripa14new.webp"}
+                            alt="Florianopolis Beach Hero"
+                            className={`w-full h-full object-cover transition-transform duration-700 ease-in-out ${!isHeroExpanded ? 'transform scale-100 group-hover:scale-105' : ''}`}
+                        />
+                    </div>
+
+                    {/* Overlapping Text Card */}
+                    <div className="relative md:absolute md:-bottom-12 md:left-12 lg:left-20 w-full md:max-w-xl bg-[#f5f5f4] p-8 md:p-10 shadow-xl rounded-lg border-t-4 border-[#e9d5ff] mt-[-3rem] md:mt-0 z-20">
+                        <div className="flex items-center gap-3 mb-4 opacity-60">
+                            <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#6b21a8]">Feature</span>
+                            <div className="h-[1px] w-12 bg-stone-400"></div>
+                            <span className="text-xs font-serif italic text-stone-500">Santa Catarina Island</span>
+                        </div>
+
+                        <div className="text-xl md:text-2xl font-serif text-stone-800 leading-relaxed">
+                            <span className="text-5xl float-left mr-3 mt-[-10px] font-bold text-[#6b21a8] font-handwriting">F</span>
+                            <p className="inline">
+                                lorianópolis reveals itself slowly. Footsteps fade into the tide, coastlines widen and narrow again, and the island shifts gently between city, beach, and forest. The built details feel like suggestions rather than instructions.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
                 {/* Banner Spread with Map */}
@@ -421,8 +463,8 @@ function StoryCard({ section, getImage, handleImageClick }) {
 
                 {/* Reused Reveal Image for Cover - CONTROLLED now */}
                 <RevealImage
-                    smallSrc={getImage(section.coverImage)?.image}
-                    fullSrc={getImage(section.coverImage)?.lightboxImage}
+                    smallSrc={`${process.env.PUBLIC_URL}${getImage(section.coverImage)?.image}`}
+                    fullSrc={`${process.env.PUBLIC_URL}${getImage(section.coverImage)?.lightboxImage}`}
                     alt={section.title}
                     caption={section.coverCaption}
                     title={getImage(section.coverImage)?.title}
@@ -463,8 +505,8 @@ function StoryCard({ section, getImage, handleImageClick }) {
                             return (
                                 <div key={idx} className="w-full">
                                     <RevealImage
-                                        smallSrc={img.image}
-                                        fullSrc={img.lightboxImage}
+                                        smallSrc={`${process.env.PUBLIC_URL}${img.image}`}
+                                        fullSrc={`${process.env.PUBLIC_URL}${img.lightboxImage}`}
                                         alt={img.title || ""}
                                         caption={item.caption}
                                         title={img.title}
@@ -482,8 +524,8 @@ function StoryCard({ section, getImage, handleImageClick }) {
                                         return (
                                             <div key={id} className="flex flex-col items-center w-full">
                                                 <RevealImage
-                                                    smallSrc={img.image}
-                                                    fullSrc={img.lightboxImage}
+                                                    smallSrc={`${process.env.PUBLIC_URL}${img.image}`}
+                                                    fullSrc={`${process.env.PUBLIC_URL}${img.lightboxImage}`}
                                                     alt={id}
                                                     title={img.title}
                                                     onClick={(e) => { e.stopPropagation(); handleImageClick(id); }}
