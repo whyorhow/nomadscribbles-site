@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import SEO from "../components/SEO";
 import { motion } from "framer-motion";
 import { fadeScale, hoverScale, staggerContainer } from "../utils/animations";
 
@@ -361,6 +362,12 @@ export default function NomadsShopSaoPaulo({ openLightbox }) {
       initial="hidden"
       animate="visible"
     >
+      <SEO
+        title="São Paulo Collection | Nomads Shop"
+        description="Explore our curated collection of art and prints from São Paulo."
+        image="/images/SaoPauloLanding/SaoPauloFeature.webp"
+        slug="nomads-shop/brazil/saopaulo"
+      />
 
       <div className="flex flex-col items-center mb-8 relative z-10 mt-14 sm:mt-8">
         <img

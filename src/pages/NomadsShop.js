@@ -29,11 +29,10 @@ export default function NomadsShop() {
     <div className="relative">
       {/* SEO */}
       <SEO
-        title="Adventures Around the World | Nomad Scribbles"
-        description="Join us on journeys across the globe — explore flags, stories, and adventures with Nomad Scribbles."
+        title="Nomads Shop | Nomad Scribbles"
+        description="Explore our curated collections of travel stories, sketches, and adventures from around the world."
         image="/images/Adventures/AdventuresBD.webp"
-        slug="adventures"
-        canonical="https://yourdomain.com/adventures"
+        slug="nomads-shop"
       />
 
 

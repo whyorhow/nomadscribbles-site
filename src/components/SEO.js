@@ -1,10 +1,23 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 
-function SEO({ title, description, image, slug }) {
-  const baseUrl = "https://nomadscribbles.com";
-  const pageUrl = slug ? `${baseUrl}/${slug}` : baseUrl;
-  const fullImage = image ? `${baseUrl}${image}` : `${baseUrl}/images/default-share.png`;
+function SEO({ title, description, image, slug, url }) {
+  const baseUrl = "https://www.nomadscribbles.com";
+
+  // Use 'url' if provided, otherwise construct from 'slug'
+  let pageUrl = baseUrl;
+  if (url) {
+    pageUrl = url;
+  } else if (slug) {
+    pageUrl = slug.startsWith('http') ? slug : `${baseUrl}${slug.startsWith('/') ? '' : '/'}${slug}`;
+  }
+
+  // Handle absolute vs relative image paths
+  let fullImage = `${baseUrl}/images/default-share.png`;
+  if (image) {
+    fullImage = image.startsWith('http') ? image : `${baseUrl}${image.startsWith('/') ? '' : '/'}${image}`;
+  }
+
   const defaultDescription =
     "Nomad Scribbles – a collection of travel stories, sketches, and adventures across the world.";
 
@@ -34,6 +47,7 @@ function SEO({ title, description, image, slug }) {
     </Helmet>
   );
 }
+
 
 export default SEO;
 

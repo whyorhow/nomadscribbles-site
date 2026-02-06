@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
+import SEO from "../components/SEO";
 
 // Expanded site content with more synonyms
 const siteContent = [
@@ -76,6 +77,11 @@ function SearchResults() {
 
   return (
     <div className="flex flex-col items-center justify-start py-12 px-4 bg-stony-paper-light font-cormorant">
+      <SEO
+        title={`Search Results for "${query}" | Nomad Scribbles`}
+        description={`Search results for "${query}" on Nomad Scribbles.`}
+        slug={`search?q=${query}`}
+      />
       <h1 className="text-3xl font-bold mb-8 text-[#101E0E] tracking-tight">Search Results for "{query}"</h1>
 
       {results.length > 0 ? (

@@ -1,17 +1,10 @@
-# BEGIN Cloudflare Managed Content
-# (Cloudflare may inject its own content signals here, this is normal)
-# END Cloudflare Managed Content
-
 User-agent: *
 Allow: /
 
-# Prevent crawling of pages not meant for indexing
+# Prevent crawling of utility/search pages
 Disallow: /search
-Disallow: /news
-Disallow: /adventures
-Disallow: /contact-us
-Disallow: /nomads-shop/brazil
-Disallow: /brazil
+Disallow: /cookie-preferences
 
 Sitemap: https://www.nomadscribbles.com/sitemap.xml
+
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import SEO from "../components/SEO";
 import { motion } from "framer-motion";
 import { fadeScale, hoverScale, staggerContainer } from "../utils/animations";
 import { trackEvent } from "../utils/analytics";
@@ -52,6 +53,11 @@ export default function NomadsShopCategory({ openLightbox }) {
             initial="hidden"
             animate="visible"
         >
+            <SEO
+                title={`${categoryFilter} Collection | Nomads Shop`}
+                description={`Explore our curated collection of art and prints from ${categoryFilter}, Brazil.`}
+                slug={`nomads-shop/brazil/${city.toLowerCase()}`}
+            />
 
             <div className="flex flex-col items-center mb-8 relative z-10 mt-14 sm:mt-8">
                 <img

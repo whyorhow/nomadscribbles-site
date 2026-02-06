@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import SEO from "../components/SEO";
 
 export default function CookiePreferences() {
   const navigate = useNavigate();
@@ -55,6 +56,11 @@ export default function CookiePreferences() {
 
   return (
     <div className="relative text-white">
+      <SEO
+        title="Cookie Preferences | Nomad Scribbles"
+        description="Manage your cookie preferences and learn about our privacy policy."
+        slug="cookie-preferences"
+      />
 
       <main className="px-4 py-8 max-w-4xl mx-auto space-y-12">
         <h1 className="text-3xl font-bold mb-6">Privacy & Cookie Policy</h1>

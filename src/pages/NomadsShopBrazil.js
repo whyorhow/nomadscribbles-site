@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import products from "../assets/artImages.json"; // FIX
@@ -49,6 +50,12 @@ export default function NomadsShopBrazil() {
 
   return (
     <div className="relative pb-24 sm:pb-32">
+      <SEO
+        title="Brazil Collection | Nomads Shop"
+        description="Explore our curated collection of art and prints from across Brazil."
+        image="/images/Adventures/BrazilFlag.webp"
+        slug="nomads-shop/brazil"
+      />
 
       {/* Page Title */}
       <div className="flex flex-col items-center mb-12 relative z-10 mt-20 sm:mt-8">

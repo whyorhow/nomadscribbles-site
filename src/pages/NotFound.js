@@ -11,7 +11,7 @@ export default function NotFound() {
       <SEO
         title="404 Not Found | Nomad Scribbles"
         description="Oops! The page you're looking for doesn't exist. Return home to continue exploring Nomad Scribbles."
-        url="https://nomadscribbles.com/404"
+        slug="404"
       />
 
       {/* Hidden H1 for accessibility */}

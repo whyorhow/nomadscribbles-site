@@ -65,7 +65,7 @@ export default function ContactUs() {
         title="Contact Us | Nomad Scribbles"
         description="Get in touch with Nomad Scribbles — send us a message and share your travel adventures or questions."
         image="/images/Contact/ContactBackground.png"
-        url="https://nomadscribbles.com/contact"
+        slug="contact-us"
       />
 
       {/* Hidden H1 for accessibility */}
