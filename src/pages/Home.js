@@ -31,10 +31,15 @@ function Home() {
   const [logoReady, setLogoReady] = useState(false);
 
   const originalCards = [
-    { title: "Nomads Shop", link: "/nomadsshop", img: "/images/Home/ThumbnailNS.webp" },
+    { title: "Rio de Janeiro", link: "/brazil/rio", img: "/images/Rio/thumbnail/Rio1.webp" },
+    { title: "Florianópolis", link: "/brazil/florianopolis", img: "/images/Floripa/thumbnail/Floripa1.webp" },
+    { title: "Salvador", link: "/brazil/salvador", img: "/images/Salvador/thumbnail/Salvador1.webp" },
+    { title: "Pantanal", link: "/brazil/pantanal", img: "/images/Pantanal/thumbnail/Pantanal1.webp" },
+    { title: "Carnival", link: "/brazil/carnival", img: "/images/CarnivalSP/thumbnail/Carnival1.webp" },
+    { title: "Street Murals", link: "/brazil/murals", img: "/images/Murals/thumbnail/Graffiti1.webp" },
+    { title: "Parks", link: "/brazil/parks", img: "/images/SP-Parks/thumbnail/Park1.webp" },
     { title: "Nomads Gallery", link: "/nomads-gallery", img: "/images/Home/ThumbnailNG.webp" },
-    { title: "Adventures", link: "/adventures", img: "/images/Home/ThumbnailA.webp" },
-    { title: "Brazil", link: "/brazil", img: "/images/Home/Thumbnail.webp" },
+    { title: "Nomads Shop", link: "/nomadsshop", img: "/images/Home/ThumbnailNS.webp" },
   ];
 
 
@@ -43,6 +48,7 @@ function Home() {
 
   const [showMiniSP, setShowMiniSP] = useState(false);
   const [showMiniSantos, setShowMiniSantos] = useState(false);
+  const [showMiniRio, setShowMiniRio] = useState(false);
 
   const firstFeatureRef = useRef(null); // For autoscroll
 
@@ -150,6 +156,14 @@ function Home() {
     setShowMiniSantos((prev) => {
       if (!prev) return true;
       navigate("/brazil/saopaulo/santos");
+      return prev;
+    });
+  };
+
+  const handleRioClick = () => {
+    setShowMiniRio((prev) => {
+      if (!prev) return true;
+      navigate("/brazil/rio");
       return prev;
     });
   };
@@ -341,6 +355,53 @@ function Home() {
                 variants={fadeScale}
               />
             </>
+          )}
+        </motion.div>
+      </motion.div>
+
+      {/* Rio Feature */}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ amount: 0.3 }}
+        variants={staggerContainer}
+        className="w-full mt-48 px-2 sm:px-4 relative z-40"
+      >
+        <motion.div
+          className="relative block w-full max-w-full sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/20 group transition-all duration-[2000ms]"
+          onMouseEnter={() => {
+            setShowMiniRio(true);
+            trackEvent("hover_feature", "Home Page", "Rio Feature");
+          }}
+          onMouseLeave={() => setShowMiniRio(false)}
+          onClick={() => {
+            handleRioClick();
+            trackEvent("click_feature", "Home Page", "Rio Feature");
+          }}
+          variants={fadeScale}
+        >
+          <motion.img
+            src={process.env.PUBLIC_URL + "/images/Rio/Rio1.jpg"}
+            alt="Rio de Janeiro city travel feature"
+            className="w-full h-full object-cover transition-transform duration-2000 group-hover:scale-105"
+            variants={hoverScale}
+          />
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px] group-hover:bg-black/10 group-hover:backdrop-blur-none transition-all duration-[2000ms]"></div>
+
+          <div className={`absolute top-8 left-8 z-20 transition-opacity duration-[2000ms] ${!showMiniRio ? "opacity-100" : "opacity-0"}`}>
+            <h2 className="font-handwriting text-6xl sm:text-8xl md:text-9xl text-white drop-shadow-lg -rotate-6">
+              Rio de Janeiro
+            </h2>
+          </div>
+
+          {showMiniRio && (
+            <motion.div
+              className={`absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-[2000ms] ${showMiniRio ? "opacity-100" : "opacity-0"}`}
+            >
+              <h3 className="font-handwriting text-5xl sm:text-7xl text-white drop-shadow-xl text-center px-4">
+                Marvelous City
+              </h3>
+            </motion.div>
           )}
         </motion.div>
       </motion.div>
