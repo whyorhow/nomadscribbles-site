@@ -47,8 +47,9 @@ function Home() {
   // const carouselRef = useRef(null); // Removed manual carousel ref
 
   const [showMiniSP, setShowMiniSP] = useState(false);
-  const [showMiniSantos, setShowMiniSantos] = useState(false);
+  const [showMiniSantos, setShowMiniSantos] = useState(false); // Used for Salvador
   const [showMiniRio, setShowMiniRio] = useState(false);
+  const [showMiniFloripa, setShowMiniFloripa] = useState(false);
 
   const firstFeatureRef = useRef(null); // For autoscroll
 
@@ -168,6 +169,14 @@ function Home() {
     });
   };
 
+  const handleFloripaClick = () => {
+    setShowMiniFloripa((prev) => {
+      if (!prev) return true;
+      navigate("/brazil/florianopolis");
+      return prev;
+    });
+  };
+
 
   return (
     <div className="relative w-screen min-h-[250vh] overflow-hidden bg-[#342508ff]">
@@ -249,7 +258,7 @@ function Home() {
           variants={fadeScale}
         >
           <motion.img
-            src={process.env.PUBLIC_URL + "/images/Home/Features/SaoPaulo.webp"}
+            src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/street.webp"}
             alt="São Paulo city travel feature"
             className="w-full h-full object-cover transition-transform duration-2000 group-hover:scale-105"
             variants={hoverScale}
@@ -291,6 +300,7 @@ function Home() {
       </motion.div>
 
       {/* Santos Feature */}
+      {/* Salvador Feature (Replaces Santos) */}
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -301,57 +311,50 @@ function Home() {
         <motion.div
           className="relative block w-full max-w-full sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/20 group transition-all duration-[2000ms]"
           onMouseEnter={() => {
-            setShowMiniSantos(true);
-            trackEvent("hover_feature", "Home Page", "Santos Feature");
+            setShowMiniSantos(true); // Reusing state variable for simplicity as "Feature 2 state"
+            trackEvent("hover_feature", "Home Page", "Salvador Feature");
           }}
           onMouseLeave={() => setShowMiniSantos(false)}
           onClick={() => {
-            handleSantosClick();
-            trackEvent("click_feature", "Home Page", "Santos Feature");
+            navigate("/brazil/salvador");
+            trackEvent("click_feature", "Home Page", "Salvador Feature");
           }}
           variants={fadeScale}
         >
           <motion.img
-            src={process.env.PUBLIC_URL + "/images/Home/Features/Santos.webp"}
-            alt="Santos city travel feature"
+            src={process.env.PUBLIC_URL + "/images/Salvador/full/SalvadorW1.webp"}
+            alt="Salvador city travel feature"
             className="w-full h-full object-cover transition-transform duration-2000 group-hover:scale-105"
             variants={hoverScale}
           />
           <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px] group-hover:bg-black/10 group-hover:backdrop-blur-none transition-all duration-[2000ms]"></div>
 
-          <motion.img
-            src={process.env.PUBLIC_URL + "/images/Home/SantosScript1.png"}
-            alt="Santos Script Detail"
-            className={`absolute top-2 sm:top-4 left-2 sm:left-4 w-48 sm:w-72 md:w-96 z-20 transition-opacity duration-[2000ms] ${!showMiniSantos ? "opacity-100" : "opacity-0"
-              }`}
-            variants={fadeScale}
-          />
-          <motion.img
-            src={process.env.PUBLIC_URL + "/images/Home/SantosScript2.png"}
-            alt="Santos Script Hover Detail"
-            className={`absolute bottom-2 sm:bottom-4 right-2 sm:right-4 w-48 sm:w-72 md:w-96 z-20 transition-opacity duration-[2000ms] ${showMiniSantos ? "opacity-100" : "opacity-0"
-              }`}
-            variants={fadeScale}
-          />
+          <div className={`absolute top-8 right-8 z-20 transition-opacity duration-[2000ms] ${!showMiniSantos ? "opacity-100" : "opacity-0"}`}>
+            <h2 className="font-handwriting text-6xl sm:text-8xl md:text-9xl text-white drop-shadow-lg rotate-3 text-right">
+              Salvador
+            </h2>
+          </div>
 
           {showMiniSantos && (
             <>
+              <motion.div
+                className={`absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-[2000ms] ${showMiniSantos ? "opacity-100" : "opacity-0"}`}
+              >
+                <h3 className="font-handwriting text-5xl sm:text-7xl text-white drop-shadow-xl text-center px-4">
+                  Soul of Brazil
+                </h3>
+              </motion.div>
+
               <motion.img
-                src={process.env.PUBLIC_URL + "/images/Home/Features/SantosMini1.webp"}
+                src={process.env.PUBLIC_URL + "/images/Salvador/small/Salvador20z.webp"}
                 alt=""
-                className="absolute top-2 left-2 w-36 sm:w-48 md:w-64 lg:w-72 z-20 transition-opacity duration-[2000ms]"
+                className="absolute top-4 left-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[-6deg]"
                 variants={fadeScale}
               />
               <motion.img
-                src={process.env.PUBLIC_URL + "/images/Home/Features/SantosMini2.webp"}
+                src={process.env.PUBLIC_URL + "/images/Salvador/small/Salvador15z.webp"}
                 alt=""
-                className="absolute top-1/3 right-4 w-36 sm:w-48 md:w-64 lg:w-72 z-20 transition-opacity duration-[2000ms]"
-                variants={fadeScale}
-              />
-              <motion.img
-                src={process.env.PUBLIC_URL + "/images/Home/Features/SantosMini3.webp"}
-                alt=""
-                className="absolute bottom-4 left-1/3 w-36 sm:w-48 md:w-64 lg:w-72 z-20 transition-opacity duration-[2000ms]"
+                className="absolute bottom-4 right-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[3deg]"
                 variants={fadeScale}
               />
             </>
@@ -402,6 +405,68 @@ function Home() {
                 Marvelous City
               </h3>
             </motion.div>
+          )}
+        </motion.div>
+      </motion.div>
+
+      {/* Florianópolis Feature */}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ amount: 0.3 }}
+        variants={staggerContainer}
+        className="w-full mt-48 px-2 sm:px-4 relative z-40"
+      >
+        <motion.div
+          className="relative block w-full max-w-full sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[16/9] cursor-pointer overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/20 group transition-all duration-[2000ms]"
+          onMouseEnter={() => {
+            setShowMiniFloripa(true);
+            trackEvent("hover_feature", "Home Page", "Florianopolis Feature");
+          }}
+          onMouseLeave={() => setShowMiniFloripa(false)}
+          onClick={() => {
+            handleFloripaClick();
+            trackEvent("click_feature", "Home Page", "Florianopolis Feature");
+          }}
+          variants={fadeScale}
+        >
+          <motion.img
+            src={process.env.PUBLIC_URL + "/images/Floripa/full/Floripa20.webp"}
+            alt="Florianópolis island travel feature"
+            className="w-full h-full object-cover transition-transform duration-2000 group-hover:scale-105"
+            variants={hoverScale}
+          />
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px] group-hover:bg-black/10 group-hover:backdrop-blur-none transition-all duration-[2000ms]"></div>
+
+          <div className={`absolute top-8 left-8 z-20 transition-opacity duration-[2000ms] ${!showMiniFloripa ? "opacity-100" : "opacity-0"}`}>
+            <h2 className="font-handwriting text-6xl sm:text-8xl md:text-9xl text-white drop-shadow-lg -rotate-3">
+              Florianópolis
+            </h2>
+          </div>
+
+          {showMiniFloripa && (
+            <>
+              <motion.div
+                className={`absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-[2000ms] ${showMiniFloripa ? "opacity-100" : "opacity-0"}`}
+              >
+                <h3 className="font-handwriting text-5xl sm:text-7xl text-white drop-shadow-xl text-center px-4">
+                  Island of Magic
+                </h3>
+              </motion.div>
+
+              <motion.img
+                src={process.env.PUBLIC_URL + "/images/Floripa/small/Floripa9z.webp"}
+                alt=""
+                className="absolute bottom-4 left-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[-3deg]"
+                variants={fadeScale}
+              />
+              <motion.img
+                src={process.env.PUBLIC_URL + "/images/Floripa/small/Floripa1z.webp"}
+                alt=""
+                className="absolute top-4 right-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[6deg]"
+                variants={fadeScale}
+              />
+            </>
           )}
         </motion.div>
       </motion.div>
