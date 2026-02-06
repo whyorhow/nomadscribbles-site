@@ -1,8 +1,8 @@
 [
   {
-    "id": "caparinhaPhoto",
-    "title": "Caipirinha Photo",
-    "description": "A refreshing caipirinha moment in São Paulo.",
+    "id": "caipirinha",
+    "title": "A Pause in the Noise",
+    "description": "A caipirinha marks the pause in a city of ten million.",
     "image": "/images/SaoPauloLanding/small/caparinhaz.webp",
     "blogimage": "/images/SaoPauloLanding/small/caparinha.jpg",
     "lightboxImage": "/images/SaoPauloLanding/full/caparinha.jpg",
@@ -11,8 +11,8 @@
     "shopLink": "/nomads-shop/brazil/saopaulo?category=City Life"
   },
   {
-    "id": "caparinhaDrawn",
-    "title": "Caipirinha Drawing",
+    "id": "caipirinhaSketch",
+    "title": "Caipirinha Sketch",
     "description": "Artistic drawn version of a caipirinha.",
     "image": "/images/SaoPauloLanding/small/CaparinhaDrawnz.webp",
     "blogimage": "/images/SaoPauloLanding/small/CaparinhaDrawn.jpg",
@@ -23,8 +23,8 @@
   },
   {
     "id": "pizza",
-    "title": "Pizza Print",
-    "description": "São Paulo’s famous pizza scene captured.",
+    "title": "São Paulo-Style Pizza",
+    "description": "Pizza here is a quiet religion.",
     "image": "/images/SaoPauloLanding/small/pizzaz.webp",
     "blogimage": "/images/SaoPauloLanding/small/pizza.jpg",
     "lightboxImage": "/images/SaoPauloLanding/full/pizza.jpg",
@@ -44,9 +44,9 @@
     "shopLink": "/nomads-shop/brazil/saopaulo?category=City Life"
   },
   {
-    "id": "street",
-    "title": "Street Night Scene",
-    "description": "An electric night in São Paulo streets.",
+    "id": "street2",
+    "title": "Liberdade: Layers at Street Level",
+    "description": "In neighbourhoods like Liberdade, the city feels layered rather than polished.",
     "image": "/images/SaoPauloLanding/small/streetz.webp",
     "blogimage": "/images/SaoPauloLanding/small/street.jpg",
     "lightboxImage": "/images/SaoPauloLanding/full/street.jpg",
@@ -291,7 +291,7 @@
     "description": "São Paulo Carnival streets alive with colour and music",
     "image": "/images/CarnivalSP/small/Carnival1z.webp",
     "blogimage": "/images/CarnivalSP/small/Carnival1.webp",
-    "lightboxImage": "/images/CarnivalSP/full/Carnival1.jpg",
+    "lightboxImage": "/images/CarnivalSP/full/Carnival1.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/junhjy",
     "category": "Carnival",
     "shopLink": "/nomads-shop/brazil/saopaulo?category=Carnival"
@@ -302,7 +302,7 @@
     "description": "Samba schools perform at Sambódromo do Anhembi",
     "image": "/images/CarnivalSP/small/Carnival2z.webp",
     "blogimage": "/images/CarnivalSP/small/Carnival2.webp",
-    "lightboxImage": "/images/CarnivalSP/full/Carnival2.jpg",
+    "lightboxImage": "/images/CarnivalSP/full/Carnival2.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/htrdk",
     "category": "Carnival",
     "shopLink": "/nomads-shop/brazil/saopaulo?category=Carnival"
@@ -313,7 +313,7 @@
     "description": "Floats behind the scenes at Sambódromo",
     "image": "/images/CarnivalSP/small/Carnival3z.webp",
     "blogimage": "/images/CarnivalSP/small/Carnival3.webp",
-    "lightboxImage": "/images/CarnivalSP/full/Carnival3.jpg",
+    "lightboxImage": "/images/CarnivalSP/full/Carnival3.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/oktonph",
     "category": "Carnival",
     "shopLink": "/nomads-shop/brazil/saopaulo?category=Carnival"
@@ -324,7 +324,7 @@
     "description": "Spectators watching Carnival, city rhythms unfolding",
     "image": "/images/CarnivalSP/small/Carnival4z.webp",
     "blogimage": "/images/CarnivalSP/small/Carnival4.webp",
-    "lightboxImage": "/images/CarnivalSP/full/Carnival4.jpg",
+    "lightboxImage": "/images/CarnivalSP/full/Carnival4.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/hfnkpg",
     "category": "Carnival",
     "shopLink": "/nomads-shop/brazil/saopaulo?category=Carnival"
@@ -335,7 +335,7 @@
     "description": "Ibirapuera Park bloco dancers winding through trees",
     "image": "/images/CarnivalSP/small/Carnival6z.webp",
     "blogimage": "/images/CarnivalSP/small/Carnival6.webp",
-    "lightboxImage": "/images/CarnivalSP/full/Carnival6.jpg",
+    "lightboxImage": "/images/CarnivalSP/full/Carnival6.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/iuzniy",
     "category": "Carnival",
     "shopLink": "/nomads-shop/brazil/saopaulo?category=Carnival"
@@ -346,7 +346,7 @@
     "description": "Blocos in alleyways and open parks during Carnival",
     "image": "/images/CarnivalSP/small/Carnival5z.webp",
     "blogimage": "/images/CarnivalSP/small/Carnival5.webp",
-    "lightboxImage": "/images/CarnivalSP/full/Carnival5.jpg",
+    "lightboxImage": "/images/CarnivalSP/full/Carnival5.webp",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/cgujou",
     "category": "Carnival",
     "shopLink": "/nomads-shop/brazil/saopaulo?category=Carnival"
@@ -359,6 +359,72 @@
     "blogimage": "/images/CarnivalSP/small/Carnival7.webp",
     "lightboxImage": "/images/CarnivalSP/full/Carnival7.jpg",
     "gumroadLink": "https://nomadscribbles.gumroad.com/l/mykatk",
+    "category": "Carnival",
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Carnival"
+  },
+  {
+    "id": "carnival9",
+    "title": "Carnival 9",
+    "description": "Carnival scene.",
+    "image": "/images/CarnivalSP/small/Carnival9z.webp",
+    "blogimage": "/images/CarnivalSP/small/Carnival9.webp",
+    "lightboxImage": "/images/CarnivalSP/full/Carnival9.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Carnival",
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Carnival"
+  },
+  {
+    "id": "carnival10",
+    "title": "The Sambadrome Opens",
+    "description": "Carnival gathers scale.",
+    "image": "/images/CarnivalSP/small/Carnival10z.webp",
+    "blogimage": "/images/CarnivalSP/small/Carnival10.webp",
+    "lightboxImage": "/images/CarnivalSP/full/Carnival10.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Carnival",
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Carnival"
+  },
+  {
+    "id": "carnival11",
+    "title": "Carnival 11",
+    "description": "Carnival scene.",
+    "image": "/images/CarnivalSP/small/Carnival11z.webp",
+    "blogimage": "/images/CarnivalSP/small/Carnival11.webp",
+    "lightboxImage": "/images/CarnivalSP/full/Carnival11.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Carnival",
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Carnival"
+  },
+  {
+    "id": "carnival12",
+    "title": "Carnival 12",
+    "description": "Carnival scene.",
+    "image": "/images/CarnivalSP/small/Carnival12z.webp",
+    "blogimage": "/images/CarnivalSP/small/Carnival12.webp",
+    "lightboxImage": "/images/CarnivalSP/full/Carnival12.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Carnival",
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Carnival"
+  },
+  {
+    "id": "carnival13",
+    "title": "Carnival 13",
+    "description": "Carnival scene.",
+    "image": "/images/CarnivalSP/small/Carnival13z.webp",
+    "blogimage": "/images/CarnivalSP/small/Carnival13.webp",
+    "lightboxImage": "/images/CarnivalSP/full/Carnival13.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Carnival",
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Carnival"
+  },
+  {
+    "id": "carnival14",
+    "title": "Carnival 14",
+    "description": "Carnival scene.",
+    "image": "/images/CarnivalSP/small/Carnival14z.webp",
+    "blogimage": "/images/CarnivalSP/small/Carnival14.webp",
+    "lightboxImage": "/images/CarnivalSP/full/Carnival14.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Carnival",
     "shopLink": "/nomads-shop/brazil/saopaulo?category=Carnival"
   },
@@ -1175,5 +1241,71 @@
     "gumroadLink": "https://nomadscribbles.gumroad.com/",
     "category": "Florianopolis",
     "shopLink": "/nomads-shop/brazil/florianopolis"
+  },
+  {
+    "id": "carnival9",
+    "title": "Street Rhythm, Before the Parade",
+    "description": "A small percussion group gathers in a narrow street, playing close enough that the sound bounces back from the walls. There’s no stage and no clear edge between performers and onlookers — just shared rhythm, heat, and momentum building in place.",
+    "image": "/images/CarnivalSP/small/Carnival9z.webp",
+    "blogimage": "/images/CarnivalSP/small/Carnival9.webp",
+    "lightboxImage": "/images/CarnivalSP/full/Carnival9.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Carnival",
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Carnival"
+  },
+  {
+    "id": "carnival10",
+    "title": "The Sambadrome Opens",
+    "description": "From the stands, Carnival reveals its scale. Costumed performers move in dense formation along the avenue, framed by temporary architecture and packed crowds. Precision and spectacle dominate here, but the noise and movement never feel distant.",
+    "image": "/images/CarnivalSP/small/Carnival10z.webp",
+    "blogimage": "/images/CarnivalSP/small/Carnival10.webp",
+    "lightboxImage": "/images/CarnivalSP/full/Carnival10.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Carnival",
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Carnival"
+  },
+  {
+    "id": "carnival11",
+    "title": "Brass, Drums, and Crowd",
+    "description": "A trombone cuts through layered percussion as musicians play shoulder-to-shoulder with the crowd. Carnival at street level feels improvised and immediate, held together by rhythm rather than organisation.",
+    "image": "/images/CarnivalSP/small/Carnival11z.webp",
+    "blogimage": "/images/CarnivalSP/small/Carnival11.webp",
+    "lightboxImage": "/images/CarnivalSP/full/Carnival11.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Carnival",
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Carnival"
+  },
+  {
+    "id": "carnival12",
+    "title": "Between Beats",
+    "description": "Drummers pause, adjust straps, and exchange glances while the rhythm carries on around them. Even in the brief gaps, the street stays charged — the sound never fully stops, it just shifts hands.",
+    "image": "/images/CarnivalSP/small/Carnival12z.webp",
+    "blogimage": "/images/CarnivalSP/small/Carnival12.webp",
+    "lightboxImage": "/images/CarnivalSP/full/Carnival12.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Carnival",
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Carnival"
+  },
+  {
+    "id": "carnival13",
+    "title": "Hands on the Drum",
+    "description": "A close view of the instruments shows the physical side of Carnival. Mallets strike worn skins, paint flakes from the wall behind, and the rhythm becomes something tactile rather than performative.",
+    "image": "/images/CarnivalSP/small/Carnival13z.webp",
+    "blogimage": "/images/CarnivalSP/small/Carnival13.webp",
+    "lightboxImage": "/images/CarnivalSP/full/Carnival13.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Carnival",
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Carnival"
+  },
+  {
+    "id": "carnival14",
+    "title": "Music Spills into the Street",
+    "description": "A brass player steps forward as percussion continues behind him, framed by murals and passing crowds. Carnival here isn’t contained by routes or schedules — it leaks outward, filling side streets and pulling people in as it goes.",
+    "image": "/images/CarnivalSP/small/Carnival14z.webp",
+    "blogimage": "/images/CarnivalSP/small/Carnival14.webp",
+    "lightboxImage": "/images/CarnivalSP/full/Carnival14.webp",
+    "gumroadLink": "https://nomadscribbles.gumroad.com/",
+    "category": "Carnival",
+    "shopLink": "/nomads-shop/brazil/saopaulo?category=Carnival"
   }
 ]
