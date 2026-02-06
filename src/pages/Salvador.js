@@ -150,7 +150,7 @@ function Salvador() {
                             >
                                 <img
                                     src={img.blogimage}
-                                    alt={img.title}
+                                    alt={img.alt || img.title || block.title}
                                     loading="lazy"
                                     className="rounded-lg cursor-pointer w-full h-auto shadow-md hover:opacity-95 transition-opacity p-4"
                                 />

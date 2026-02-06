@@ -7,12 +7,12 @@ import { fadeScale, staggerContainer } from "../utils/animations";
 function Brazil() {
   const shouldReduceMotion = useReducedMotion();
   const cities = [
-    { name: "Rio de Janeiro", path: "/brazil/rio" },
-    { name: "Salvador", path: "/brazil/salvador" },
-    { name: "Foz do Iguaçu", path: "/brazil/foz" },
-    { name: "Pantanal", path: "/brazil/pantanal" },
-    { name: "Bonito", path: "/brazil/bonito" },
-    { name: "Manaus", path: "/brazil/manaus" },
+    { name: "Rio de Janeiro", path: "/brazil/rio", alt: "Link to Rio de Janeiro adventures" },
+    { name: "Salvador", path: "/brazil/salvador", alt: "Link to Salvador adventures" },
+    { name: "Foz do Iguaçu", path: "/brazil/foz", alt: "Link to Foz do Iguaçu adventures" },
+    { name: "Pantanal", path: "/brazil/pantanal", alt: "Link to Pantanal adventures" },
+    { name: "Bonito", path: "/brazil/bonito", alt: "Link to Bonito adventures" },
+    { name: "Manaus", path: "/brazil/manaus", alt: "Link to Manaus adventures" },
   ];
 
   const [showOverlay, setShowOverlay] = useState(false);
@@ -94,6 +94,7 @@ function Brazil() {
               <Link
                 to={city.path}
                 className="block w-full bg-white/80 text-gray-900 backdrop-blur-md rounded-xl py-3 text-center hover:bg-white hover:shadow-lg transition duration-300"
+                aria-label={`Explore ${city.name}`}
               >
                 {city.name}
               </Link>

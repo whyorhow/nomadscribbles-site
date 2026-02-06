@@ -116,7 +116,7 @@ function SaoPaulo() {
               >
                 <img
                   src={`${process.env.PUBLIC_URL}/images/SaoPauloLanding/pizza.webp`}
-                  alt="São Paulo-style pizza"
+                  alt="Delicious São Paulo-style pizza slice"
                   loading="lazy"
                   className="rounded-lg shadow-md flex-shrink-0 cursor-pointer transition-opacity duration-[2000ms]"
                   style={{ opacity: revealed["pizza"] ? 1 : 0.8 }}
@@ -144,11 +144,11 @@ function SaoPaulo() {
                     onClick={() =>
                       setCurrentIndex(inlineImages.findIndex((img) => img.id === id))
                     }
-                    aria-label={`View ${img.alt} in lightbox`}
+                    aria-label={`View ${img.alt || "gallery image"} in lightbox`}
                   >
                     <img
                       src={img.blogimage}
-                      alt={img.alt}
+                      alt={img.alt || "Sao Paulo street scene"}
                       loading="lazy"
                       className="rounded-lg shadow-md flex-shrink-0 cursor-pointer transition-opacity duration-[2000ms]"
                       style={{ opacity: revealed[id] ? 1 : 0.8 }}
@@ -178,11 +178,11 @@ function SaoPaulo() {
                     onClick={() =>
                       setCurrentIndex(inlineImages.findIndex((img) => img.id === id))
                     }
-                    aria-label={`View ${img.alt} in lightbox`}
+                    aria-label={`View ${img.alt || "gallery image"} in lightbox`}
                   >
                     <img
                       src={img.blogimage}
-                      alt={img.alt}
+                      alt={img.alt || "Caipirinha drink illustration or photo"}
                       loading="lazy"
                       className="rounded-lg shadow-md flex-shrink-0 cursor-pointer transition-opacity duration-[2000ms]"
                       style={{ opacity: revealed[id] ? 1 : 0.8 }}

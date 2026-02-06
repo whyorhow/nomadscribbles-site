@@ -71,7 +71,7 @@ function Adventures() {
                 >
                   <img
                     src={process.env.PUBLIC_URL + country.img}
-                    alt={`${country.name} flag`}
+                    alt={`Flag of ${country.name}`}
                     className="w-full h-32 object-cover rounded-lg shadow-lg transition-transform duration-200 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-[#FFF6EE] text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
@@ -88,7 +88,7 @@ function Adventures() {
                 >
                   <img
                     src={process.env.PUBLIC_URL + country.img}
-                    alt={`${country.name} flag`}
+                    alt={`Flag of ${country.name} (Coming Soon)`}
                     className="w-full h-32 object-cover rounded-lg shadow-lg grayscale opacity-70"
                   />
                   {/* Always visible label for non-clickable items to avoid confusion */}

@@ -157,10 +157,10 @@ function Home() {
   const [logoReady, setLogoReady] = useState(false);
 
   const originalCards = [
-    { title: "Nomads Shop", link: "/nomadsshop", img: "/images/Home/ThumbnailNS.webp" },
-    { title: "Nomads Gallery", link: "/nomads-gallery", img: "/images/Home/ThumbnailNG.webp" },
-    { title: "Adventures", link: "/adventures", img: "/images/Home/ThumbnailA.webp" },
-    { title: "Brazil", link: "/brazil", img: "/images/Home/Thumbnail.webp" },
+    { title: "Nomads Shop", link: "/nomadsshop", img: "/images/Home/ThumbnailNS.webp", alt: "Nomads Shop thumbnail showing travel merchandise" },
+    { title: "Nomads Gallery", link: "/nomads-gallery", img: "/images/Home/ThumbnailNG.webp", alt: "Nomads Gallery thumbnail displaying artistic travel photos" },
+    { title: "Adventures", link: "/adventures", img: "/images/Home/ThumbnailA.webp", alt: "Adventures thumbnail featuring a scenic landscape" },
+    { title: "Brazil", link: "/brazil", img: "/images/Home/Thumbnail.webp", alt: "Brazil thumbnail showing a vibrant Brazilian street scene" },
   ];
 
 
@@ -521,7 +521,7 @@ function Home() {
                   <div className="relative shadow-xl hover:shadow-2xl transition-all duration-300 w-full h-full rounded-2xl overflow-hidden aspect-[16/9] group">
                     <img
                       src={process.env.PUBLIC_URL + card.img}
-                      alt={card.title}
+                      alt={card.alt || card.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
@@ -534,7 +534,7 @@ function Home() {
                   <div className="relative shadow-xl hover:shadow-2xl transition-all duration-300 w-full h-full rounded-2xl overflow-hidden aspect-[16/9] group">
                     <img
                       src={process.env.PUBLIC_URL + card.img}
-                      alt={card.title}
+                      alt={card.alt || card.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
