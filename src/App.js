@@ -26,6 +26,7 @@ import NotFound from "./pages/NotFound";
 import CookiePreferences from "./pages/CookiePreferences";
 import Florianopolis from "./pages/Florianopolis";
 import Iguazu from "./pages/Iguazu";
+import Bonito from "./pages/Bonito";
 
 
 // --- Components ---
@@ -109,6 +110,7 @@ function MainContent({
           <Route path="/brazil/saopaulo/murals" element={<Murals openLightbox={openLightbox} />} />
           <Route path="/brazil/saopaulo/santos" element={<Santos openLightbox={openLightbox} />} />
           <Route path="/brazil/florianopolis" element={<Florianopolis openLightbox={openLightbox} />} />
+          <Route path="/brazil/bonito" element={<Bonito openLightbox={openLightbox} />} />
           <Route path="/nomads-gallery" element={<NomadsGallery openLightbox={openLightbox} />} />
           <Route path="/contact-us" element={<ContactUs openLightbox={openLightbox} />} />
           <Route path="/search" element={<SearchResults openLightbox={openLightbox} />} />

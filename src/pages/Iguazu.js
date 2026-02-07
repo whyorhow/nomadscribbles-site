@@ -8,21 +8,85 @@ import ContextMap from "../components/ContextMap";
 import destinations from "../assets/destinations.json";
 import paperTexture from '../assets/Backgrounds/PaperTexture.jpg';
 
+// Lightbox navigation order
+const IMAGE_ORDER = [
+    "iguazu16", "iguazu1", "iguazu2", "iguazu4", "iguazu3",
+    "iguazu6", "iguazu8", "iguazu5",
+    "iguazu9", "iguazu7", "iguazu10",
+    "iguazu12", "iguazu13", "iguazu17", "iguazu18",
+    "iguazu11", "iguazu14", "iguazu15"
+];
+
+const SECTIONS_DATA = [
+    {
+        id: "buildup",
+        title: "The Build-Up",
+        subtitle: "Views from above, through the trees",
+        expandedBg: "bg-stone-900/30",
+        preview: [
+            { type: "grid", ids: ["iguazu1", "iguazu2"], sizes: ["wide", "narrow"] },
+            { type: "text", text: "Long before you see the water, you hear it.\n\nAt first it’s distant, almost atmospheric — a low, continuous presence that sits beneath the forest sounds. The path moves through dense greenery, opening and closing again, offering brief glimpses of river far below. From above, Iguazu feels wide rather than tall, the water spreading out in multiple directions, broken by islands of rock and vegetation.\n\nThe noise grows gradually, building with each step. It doesn’t rise and fall — it accumulates." }
+        ],
+        content: [
+            { type: "image", id: "iguazu4", caption: "Water and forest on a scale that’s difficult to absorb all at once.", size: "narrow" },
+            { type: "image", id: "iguazu3", caption: "Iguazu reveals itself gradually, never all at once.", size: "narrow" }
+        ]
+    },
+    {
+        id: "impact",
+        title: "The Impact",
+        subtitle: "Noise, proximity, overload",
+        expandedBg: "bg-black/30",
+        preview: [
+            { type: "image", id: "iguazu6", caption: "Up close, Iguazu is overwhelming.", size: "wide" },
+            { type: "text", text: "Up close, Iguazu is overwhelming.\n\nThe sound becomes physical — a deep, relentless roar that presses into your chest and flattens conversation into gestures and half-smiles. Water crashes past at eye level, folding over itself again and again, throwing spray into the air so thick it feels like rain. The ground vibrates underfoot. Everything else recedes." }
+        ],
+        content: [
+            { type: "image", id: "iguazu8", caption: "This isn’t a single waterfall. It’s a system repeating itself across a vast arc of rock.", size: "wide" },
+            { type: "image", id: "iguazu5", caption: "Spray hangs in the air, catching the light." }
+        ]
+    },
+    {
+        id: "distance",
+        title: "Distance and Life",
+        subtitle: "Perspectives from the triple frontier",
+        expandedBg: "bg-stone-900/30",
+        preview: [
+            { type: "image", id: "iguazu9", caption: "Crossing to the Argentinian side, the tone changes.", size: "wide" },
+            { type: "text", text: "Crossing to the Argentinian side, the tone changes.\n\nThe falls are still vast, still loud, but they feel more distant, framed by forest and open sky. From here, Iguazu reveals its full width and the way it spills across borders without regard for them. Brazil and Argentina sit neatly marked on signs and platforms, while the river continues uninterrupted below." }
+        ],
+        content: [
+            { type: "grid", ids: ["iguazu7", "iguazu10"] },
+            { type: "grid", ids: ["iguazu12", "iguazu13"] },
+            { type: "grid", ids: ["iguazu17", "iguazu18"] },
+            { type: "text", text: "Away from the main viewpoints, attention shifts. Wildlife appears at the edges — birds in the canopy, coatis along the railings, butterflies pausing wherever the noise briefly softens. Upstream, the river looks almost calm, spreading wide and unhurried, giving no hint of what lies just metres ahead." }
+        ]
+    },
+    {
+        id: "closing",
+        title: "Closing / Release",
+        subtitle: "The lingering memory of scale",
+        expandedBg: "bg-black/30",
+        preview: [
+            { type: "image", id: "iguazu11", caption: "Iguazu doesn’t end with a final image.", size: "wide" },
+            { type: "text", text: "Iguazu doesn’t end with a final image.\n\nIt lingers instead as sound, pressure, and memory — the sense of having stood briefly inside something too large to fully absorb. Whether you arrive knowing only its reputation, or return already familiar with its force, the experience resists simplification." }
+        ],
+        content: [
+            { type: "grid", ids: ["iguazu14", "iguazu15"] },
+            { type: "quote", text: "This is a place people come to witness. What stays with you is how completely it surrounds you while you’re there." }
+        ]
+    }
+];
+
 function Iguazu({ openLightbox }) {
     const fozCoords = destinations.find(d => d.id === "foz");
-    const iguazuImages = artImages.filter(img => img.category === "Iguazu");
+    const iguazuImages = React.useMemo(() => artImages.filter(img => img.category === "Iguazu"), []);
 
     const getImage = (id) => iguazuImages.find(i => i.id === id);
 
-    // Lightbox navigation order
-    const imageOrder = [
-        "iguazu16", "iguazu1", "iguazu2", "iguazu4", "iguazu3",
-        "iguazu6", "iguazu8", "iguazu5",
-        "iguazu9", "iguazu7", "iguazu10",
-        "iguazu12", "iguazu13", "iguazu17", "iguazu18",
-        "iguazu11", "iguazu14", "iguazu15"
-    ];
-    const sortedImages = imageOrder.map(id => iguazuImages.find(img => img.id === id)).filter(Boolean);
+    const sortedImages = React.useMemo(() =>
+        IMAGE_ORDER.map(id => iguazuImages.find(img => img.id === id)).filter(Boolean),
+        [iguazuImages]);
 
     const handleImageClick = (imageId) => {
         const index = sortedImages.findIndex(img => img.id === imageId);
@@ -67,70 +131,10 @@ function Iguazu({ openLightbox }) {
     };
 
     const pageBackgroundStyle = {
-        backgroundColor: "#064e3b", // Deep emerald green
+        backgroundColor: "rgba(6, 78, 59, 0.3)", // Deep emerald green @ 30%
         minHeight: "100vh"
     };
 
-    const sections = [
-        {
-            id: "buildup",
-            title: "The Build-Up",
-            subtitle: "Views from above, through the trees",
-            expandedBg: "bg-stone-900/60",
-            preview: [
-                { type: "grid", ids: ["iguazu1", "iguazu2"], scales: [1, 0.5] },
-                { type: "text", text: "Long before you see the water, you hear it.\n\nAt first it’s distant, almost atmospheric — a low, continuous presence that sits beneath the forest sounds. The path moves through dense greenery, opening and closing again, offering brief glimpses of river far below. From above, Iguazu feels wide rather than tall, the water spreading out in multiple directions, broken by islands of rock and vegetation.\n\nThe noise grows gradually, building with each step. It doesn’t rise and fall — it accumulates." }
-            ],
-            content: [
-                { type: "image", id: "iguazu4", caption: "Water and forest on a scale that’s difficult to absorb all at once.", scale: 0.5 },
-                { type: "image", id: "iguazu3", caption: "Iguazu reveals itself gradually, never all at once.", scale: 0.5 }
-            ]
-        },
-        {
-            id: "impact",
-            title: "The Impact",
-            subtitle: "Noise, proximity, overload",
-            expandedBg: "bg-black/40",
-            preview: [
-                { type: "image", id: "iguazu6", caption: "Up close, Iguazu is overwhelming.", fullWidth: true },
-                { type: "text", text: "Up close, Iguazu is overwhelming.\n\nThe sound becomes physical — a deep, relentless roar that presses into your chest and flattens conversation into gestures and half-smiles. Water crashes past at eye level, folding over itself again and again, throwing spray into the air so thick it feels like rain. The ground vibrates underfoot. Everything else recedes." }
-            ],
-            content: [
-                { type: "image", id: "iguazu8", caption: "This isn’t a single waterfall. It’s a system repeating itself across a vast arc of rock.", fullWidth: true },
-                { type: "image", id: "iguazu5", caption: "Spray hangs in the air, catching the light." }
-            ]
-        },
-        {
-            id: "distance",
-            title: "Distance and Life",
-            subtitle: "Perspectives from the triple frontier",
-            expandedBg: "bg-stone-900/60",
-            preview: [
-                { type: "image", id: "iguazu9", caption: "Crossing to the Argentinian side, the tone changes.", fullWidth: true },
-                { type: "text", text: "Crossing to the Argentinian side, the tone changes.\n\nThe falls are still vast, still loud, but they feel more distant, framed by forest and open sky. From here, Iguazu reveals its full width and the way it spills across borders without regard for them. Brazil and Argentina sit neatly marked on signs and platforms, while the river continues uninterrupted below." }
-            ],
-            content: [
-                { type: "grid", ids: ["iguazu7", "iguazu10"] },
-                { type: "grid", ids: ["iguazu12", "iguazu13"] },
-                { type: "grid", ids: ["iguazu17", "iguazu18"] },
-                { type: "text", text: "Away from the main viewpoints, attention shifts. Wildlife appears at the edges — birds in the canopy, coatis along the railings, butterflies pausing wherever the noise briefly softens. Upstream, the river looks almost calm, spreading wide and unhurried, giving no hint of what lies just metres ahead." }
-            ]
-        },
-        {
-            id: "closing",
-            title: "Closing / Release",
-            subtitle: "The lingering memory of scale",
-            expandedBg: "bg-black/50",
-            preview: [
-                { type: "image", id: "iguazu11", caption: "Iguazu doesn’t end with a final image.", fullWidth: true },
-                { type: "text", text: "Iguazu doesn’t end with a final image.\n\nIt lingers instead as sound, pressure, and memory — the sense of having stood briefly inside something too large to fully absorb. Whether you arrive knowing only its reputation, or return already familiar with its force, the experience resists simplification." }
-            ],
-            content: [
-                { type: "grid", ids: ["iguazu14", "iguazu15"] },
-                { type: "quote", text: "This is a place people come to witness. What stays with you is how completely it surrounds you while you’re there." }
-            ]
-        }
-    ];
 
     return (
         <div style={pageBackgroundStyle} className="text-stone-200 font-serif">
@@ -154,18 +158,20 @@ function Iguazu({ openLightbox }) {
                 <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-[#D4AF37] tracking-tight text-center drop-shadow-sm">Iguazu Falls</h1>
             </div>
 
-            {/* HERO SECTION */}
             <div ref={heroRef} className="w-full max-w-7xl mx-auto px-4 mb-24 relative z-10 group">
-                <div
+                <motion.div
+                    layout
                     className={`relative w-full overflow-hidden rounded-xl shadow-md cursor-pointer group-hover:shadow-xl transition-all duration-1000 ease-in-out ${isHeroExpanded ? 'aspect-auto h-auto' : 'aspect-[16/10] md:aspect-[21/9] h-[60vh] md:h-auto'}`}
                     onClick={handleHeroClick}
                 >
                     <img
                         src={process.env.PUBLIC_URL + (isHeroExpanded ? "/images/Iguazu/full/Iguazu16.webp" : "/images/Iguazu/small/Iguazu16new.webp")}
                         alt="Iguazu Falls Hero"
+                        fetchPriority="high"
+                        loading="eager"
                         className={`w-full h-full object-cover transition-transform duration-1000 ease-in-out`}
                     />
-                </div>
+                </motion.div>
 
                 <div className="relative md:absolute md:-bottom-10 md:left-12 lg:left-20 w-full md:max-w-xl bg-stone-900/40 backdrop-blur-md p-8 md:p-10 shadow-xl rounded-lg border-l-4 border-[#D4AF37]/30 mt-[-2rem] md:mt-0 z-20">
                     <div className="flex items-center gap-3 mb-4 opacity-60">
@@ -200,7 +206,7 @@ function Iguazu({ openLightbox }) {
             </div>
 
             <main className="max-w-screen-xl mx-auto px-4 pb-24 space-y-24 flex flex-col items-center">
-                {sections.map((section) => (
+                {SECTIONS_DATA.map((section) => (
                     <StoryCard
                         key={section.id}
                         section={section}
@@ -227,7 +233,7 @@ function Iguazu({ openLightbox }) {
 // Interactive Section Component
 function StoryCard({ section, getImage, handleImageClick }) {
     const [isExpanded, setIsExpanded] = useState(false);
-    const activeBg = section.expandedBg || "bg-stone-900/60";
+    const activeBg = section.expandedBg || "bg-stone-900/30";
 
     const renderContent = (items, isPreview = false) => {
         return items.map((item, idx) => {
@@ -246,8 +252,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
                         getImage={getImage}
                         onClick={() => handleImageClick(item.id)}
                         caption={item.caption}
-                        fullWidth={item.fullWidth}
-                        scale={item.scale || 1}
+                        size={item.size}
                     />
                 );
             }
@@ -260,7 +265,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
                                 id={id}
                                 getImage={getImage}
                                 onClick={() => handleImageClick(id)}
-                                scale={item.scales ? item.scales[gridIdx] : 1}
+                                size={item.sizes ? item.sizes[gridIdx] : undefined}
                             />
                         ))}
                     </div>
@@ -282,7 +287,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
     return (
         <motion.div
             layout
-            className={`w-full max-w-6xl bg-stone-900/40 backdrop-blur-md rounded-xl overflow-hidden shadow-lg transition-all duration-500 ${isExpanded ? `shadow-2xl ${activeBg}` : ""}`}
+            className={`w-full max-w-6xl bg-stone-900/30 backdrop-blur-md rounded-xl overflow-hidden shadow-lg transition-all duration-500 ${isExpanded ? `shadow-2xl ${activeBg}` : ""}`}
         >
             <div className={`p-6 md:p-10 flex flex-col items-center z-10 transition-colors duration-500`}
                 onClick={() => !isExpanded && setIsExpanded(true)}
@@ -354,15 +359,24 @@ function StoryCard({ section, getImage, handleImageClick }) {
     );
 }
 
+// Semantic Size Mapping
+const SIZES = {
+    wide: "100%",
+    standard: "90%",
+    medium: "70%",
+    narrow: "50%",
+    z: "44%" // Baseline for z-images
+};
+
 // Reusable animated image component that expands to /full src
 // Forces object-contain for z-images and expanded state
-function InteractiveImage({ id, getImage, onClick, caption, fullWidth = false, scale = 1 }) {
+function InteractiveImage({ id, getImage, onClick, caption, size = "standard" }) {
     const img = getImage(id);
     if (!img) return null;
 
     const [isImageExpanded, setIsImageExpanded] = useState(false);
     const containerRef = useRef(null);
-    const isZImage = id.endsWith('z') || img.image.includes('z.webp');
+    const isZImage = id.endsWith('z') || (img.image && img.image.includes('z.webp'));
 
     // Auto-collapse image when scrolled out of view
     useEffect(() => {
@@ -389,33 +403,34 @@ function InteractiveImage({ id, getImage, onClick, caption, fullWidth = false, s
     };
 
     // Calculate width based on scale and state
-    const getWidth = () => {
-        if (isImageExpanded || fullWidth) return "100%";
-        const baseWidth = isZImage ? 44 : 90;
-        return `${baseWidth * scale}%`;
-    };
+    const currentSize = isImageExpanded ? "wide" : (isZImage ? "z" : size);
+    const width = SIZES[currentSize] || SIZES.standard;
 
     return (
-        <div
+        <motion.div
+            layout
             ref={containerRef}
-            className={`relative mx-auto transition-all duration-1000 ease-in-out cursor-pointer group my-4 ${fullWidth ? "max-w-none" : "max-w-5xl"}`}
-            style={{ width: getWidth() }}
+            className={`relative mx-auto transition-all duration-1000 ease-in-out cursor-pointer group my-4 ${currentSize === "wide" ? "max-w-none" : "max-w-5xl"}`}
+            style={{ width }}
             onClick={handleClick}
         >
             <div className={`relative overflow-hidden transition-all duration-1000 ease-in-out ${isImageExpanded || isZImage ? "aspect-auto" : "aspect-[16/10] md:aspect-[3/2]"}`}>
-                {/* Base Small Image - Fades out as High-Res fades in */}
+                {/* Base Small Image - Always rendered, lazy loaded */}
                 <img
                     src={process.env.PUBLIC_URL + img.image}
                     alt={img.title}
+                    loading="lazy"
                     className={`w-full h-auto block transition-all duration-1000 ease-in-out ${isImageExpanded || isZImage ? "object-contain" : "object-cover h-full"} ${isImageExpanded ? "opacity-0" : "opacity-100"}`}
                 />
 
-                {/* Overlay High-Res Image - Fades in on expansion */}
-                <img
-                    src={process.env.PUBLIC_URL + img.lightboxImage}
-                    alt={`${img.title} high-res`}
-                    className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${isImageExpanded ? "opacity-100" : "opacity-0 pointer-events-none"} ${isImageExpanded || isZImage ? "object-contain" : "object-cover"}`}
-                />
+                {/* Overlay High-Res Image - Only rendered if expanded to save bandwidth */}
+                {isImageExpanded && (
+                    <img
+                        src={process.env.PUBLIC_URL + img.lightboxImage}
+                        alt={`${img.title} high-res`}
+                        className={`absolute inset-0 w-full h-full object-contain`}
+                    />
+                )}
 
                 {/* Subtle Overlay for small state */}
                 <div className={`absolute inset-0 bg-black/5 transition-opacity duration-1000 ${isImageExpanded ? "opacity-0" : "opacity-100 group-hover:opacity-0"}`} />
@@ -444,7 +459,7 @@ function InteractiveImage({ id, getImage, onClick, caption, fullWidth = false, s
                     )}
                 </div>
             )}
-        </div>
+        </motion.div>
     );
 }
 

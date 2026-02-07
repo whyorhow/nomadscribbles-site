@@ -7,9 +7,9 @@ import ContextMap from "../components/ContextMap";
 import destinations from "../assets/destinations.json";
 import paperTexture from '../assets/Backgrounds/PaperTexture.jpg';
 
-function Florianopolis({ openLightbox }) {
-    const florianopolisCoords = destinations.find(d => d.id === "florianopolis");
-    const floripaImages = artImages.filter(img => img.category === "Florianopolis");
+function Bonito({ openLightbox }) {
+    const bonitoCoords = destinations.find(d => d.id === "bonito");
+    const bonitoImages = artImages.filter(img => img.category === "Bonito");
 
     // Hero Interaction State
     const [isHeroExpanded, setIsHeroExpanded] = useState(false);
@@ -40,14 +40,12 @@ function Florianopolis({ openLightbox }) {
 
     // Define the visual order of images for Lightbox navigation
     const imageOrder = [
-        "floripa14", "floripa18", "floripa2", "floripa5", "floripa3",
-        "floripa12", "floripa4", "floripa17", "floripa10", "floripa8",
-        "floripa11", "floripa7", "floripa6", "floripa15", "floripa16",
-        "floripa19", "floripa22", "floripa13", "floripa21", "floripa20",
-        "floripa25", "floripa24", "floripa9", "floripa1", "floripa23"
+        "bonito1", "bonito5", "bonito12", "bonito2", "bonito3",
+        "bonito4", "bonito6", "bonito8", "bonito7", "bonito9",
+        "bonito10", "bonito11", "bonito14", "bonito13"
     ];
 
-    const sortedImages = imageOrder.map(id => floripaImages.find(img => img.id === id)).filter(Boolean);
+    const sortedImages = imageOrder.map(id => bonitoImages.find(img => img.id === id)).filter(Boolean);
 
     const handleImageClick = (imageId) => {
         const index = sortedImages.findIndex(img => img.id === imageId);
@@ -56,109 +54,83 @@ function Florianopolis({ openLightbox }) {
         }
     };
 
-    const getImage = (id) => floripaImages.find(i => i.id === id);
+    const getImage = (id) => bonitoImages.find(i => i.id === id);
 
     const sections = [
         {
-            id: "intro",
-            title: "The Island",
-            subtitle: "Florianópolis Is a Brazilian Holiday Island — and That Matters",
+            id: "arrival",
+            title: "Arrival & Orientation",
+            subtitle: "Controlled Perspective",
             expandedBg: "bg-[#262626]/95",
-            coverImage: "floripa18",
-            coverCaption: "The coastline stretches wide, busy at one end and thinning into distance at the other.",
+            coverImage: "bonito1",
+            coverCaption: "Bonito doesn’t announce itself loudly. There are no sweeping viewpoints or dramatic entrances...",
             content: [
-                { type: "text", text: "Florianópolis reveals itself slowly. Footsteps fade into the tide, coastlines widen and narrow again, and the island shifts gently between city, beach, and forest." },
-                { type: "text", text: "The built details feel like suggestions rather than instructions — staircases, lifeguard towers, paths that guide without insisting. Nothing holds your attention for long. There’s a sense of shared space rather than consumption. Beaches are used all day, towns feel lived-in, and care for the environment is quietly embedded in daily routines. Wildlife appears without ceremony. Observation feels mutual." },
-                { type: "text", text: "This is partly because Florianópolis isn’t shaped primarily for international visitors. It’s a holiday island for Brazilians, and that context sets the tone. Families return year after year, cities empty toward the coast in summer, and daily life stretches outward into sand, water, and green space." },
-                { type: "text", text: "For European travellers, that difference matters. Floripa isn’t loud or demanding. It feels safe, relaxed, and easy to move through, with an emphasis on being outdoors rather than being entertained." },
-                { type: "text", text: "You don’t come here to collect highlights. You come to settle into something that already works." },
-                { type: "image", id: "floripa2", caption: "At the centre of the city, the fig tree anchors daily life to something far older." }
+                { type: "text", text: "Bonito doesn’t announce itself loudly. There are no sweeping viewpoints or dramatic entrances, just small signs, dirt roads, and the quiet sense that you’re being allowed into something carefully managed rather than put on display." },
+                { type: "text", text: "Places like Rio da Prata set the tone immediately. Entry is controlled, with guides, time slots, and visitor limits that are easy to notice but never heavy-handed. You sense quickly that these systems exist to keep the water as clear as it is, rather than to manage crowds." },
+                { type: "image", id: "bonito5", caption: "Beyond the rivers, life continues at an agricultural pace. Horses rest in the shade, fields stretch beside forest edges, and tourism fits around daily routines rather than reshaping them." },
+                { type: "text", text: "Bonito doesn’t feel separated from its surroundings. It feels folded into them." },
+                { type: "image", id: "bonito12", caption: "Much of the land around Bonito remains privately owned, with conservation managed through cooperation rather than exclusion. Farms, forests, and tourism often share the same ground." }
             ]
         },
         {
-            id: "campeche",
-            title: "Campeche",
-            subtitle: "Space, Not Spectacle",
+            id: "water",
+            title: "Water & Clarity",
+            subtitle: "Literal Transparency",
             expandedBg: "bg-[#0f172a]/90",
-            coverImage: "floripa5",
-            coverCaption: "Campeche opens wide, where green edges soften into sand and the sea settles into an easy rhythm.",
+            coverImage: "bonito2",
+            coverCaption: "The first glimpse of the water is almost disarming. From the bank, it looks reflective and calm...",
             content: [
-                { type: "text", text: "If the island’s pace is defined by space and repetition, Campeche is where that becomes most visible." },
-                { type: "image", id: "floripa3" },
-                { type: "text", text: "The beach runs broad and uninterrupted, backed by hills rather than dense development. The horizon stays open. People arrive with coolers, towels, and time, and tend to stay put." },
-                { type: "text", text: "For Brazilians, Campeche is about familiarity — long days, repeated visits, and a rhythm that doesn’t need reinvention. For visitors, it’s often where the island’s logic clicks into place." },
-                { type: "text", text: "Nothing competes for attention, and that absence becomes the appeal. Even Campeche Island offshore feels vivid without being overworked, visited calmly rather than framed as an event." },
-                { type: "quote", text: "Pé na areia, água de coco, beira do mar.\nFeet in the sand, coconut water, by the sea.", source: "— Diogo Nogueira" }
+                { type: "text", text: "The first glimpse of the water is almost disarming. From the bank, it looks reflective and calm, its surface mirroring trees and sky so cleanly it feels shallow. Then you look down." },
+                { type: "image", id: "bonito3", caption: "Fish drift through open water, branches hang suspended in sharp focus, and the riverbed appears as clearly as if the water weren’t there at all." },
+                { type: "text", text: "In places, visibility stretches for tens of metres, turning swimming into something closer to hovering." },
+                { type: "image", id: "bonito4", caption: "This clarity comes from the limestone landscape around Bonito. Water filters naturally through rock long before it reaches the surface, arriving already stripped of sediment." },
+                { type: "text", text: "The effect is immediate and slightly disorienting — you slow down without being told to." },
+                { type: "image", id: "bonito6", caption: "Most people drift rather than swim, letting the river carry them. Movement feels softened here, guided as much by instinct as by rules." }
             ]
         },
         {
-            id: "santo-antonio",
-            title: "Santo Antônio",
-            subtitle: "Daily Life by the Water",
-            expandedBg: "bg-[#27272a]/95",
-            coverImage: "floripa12",
-            coverCaption: "The shoreline curves softly, where hills, boats, and shallow water settle into an easy balance.",
-            content: [
-                { type: "text", text: "On the quieter, bay-facing side of the island, the rhythm turns inward." },
-                { type: "image", id: "floripa4" },
-                { type: "text", text: "Santo Antônio de Lisboa sits where the water stays calm and the light softens toward evening. The geography shapes how the town is used — less about the open ocean, more about staying close." },
-                { type: "text", text: "It’s one of the island’s older settled areas, formed by routine rather than reinvention. Boats rest near shore, restaurants fill gradually, workshops and homes sit side by side." },
-                { type: "grid", ids: ["floripa17", "floripa10"] },
-                { type: "text", text: "Handwritten notes, handmade objects, and unhurried meals aren’t arranged for visitors. They’re simply part of how the place functions. For travellers, Santo Antônio offers Florianópolis as somewhere people live, not perform." },
-                { type: "image", id: "floripa8", caption: "Handwritten notes accumulate over time, turning the restaurant into a record of passing lives." },
-                { type: "image", id: "floripa11", caption: "Small workshops remain part of daily life, not attractions." },
-                { type: "grid", ids: ["floripa7", "floripa6", "floripa15"] },
-                { type: "image", id: "floripa16", caption: "Seen from above, the beach feels held rather than exposed." },
-                { type: "image", id: "floripa19" }
-            ]
-        },
-        {
-            id: "praia-do-forte",
-            title: "Praia do Forte",
-            subtitle: "Letting the Landscape Lead",
-            expandedBg: "bg-[#292524]/95",
-            coverImage: "floripa22",
-            coverCaption: "Dark stones sit low in the surf, shaped smooth by repetition rather than force.",
-            content: [
-                { type: "text", text: "Where Campeche opens wide, Praia do Forte interrupts." },
-                { type: "text", text: "Rocks break the sand, waves arrive unevenly, and the coastline resists being smoothed out. It’s not dramatic, but it’s active — shaped continuously by wind, water, and tide." },
-                { type: "grid", ids: ["floripa13", "floripa21"] },
-                { type: "text", text: "Here, the island’s relationship with nature becomes clearest. Plants lean into salt air, stones accept the water again and again, and people adjust their pace without thinking about it. The landscape sets the terms. Life follows." },
-                { type: "image", id: "floripa20" }
-            ]
-        },
-        {
-            id: "conclusion",
-            title: "The Traveller",
-            subtitle: "Who Is This Trip For?",
+            id: "forest",
+            title: "Forest & Movement",
+            subtitle: "Into the Canvas",
             expandedBg: "bg-[#141c14]/95",
-            coverImage: "floripa25",
-            coverCaption: "Access is simple, and the pace remains unhurried.",
+            coverImage: "bonito8",
+            coverCaption: "Away from the open stretches of river, Bonito unfolds gradually.",
             content: [
-                { type: "text", text: "This island suits travellers who enjoy beaches that feel lived-in rather than staged, and days that don’t require much planning. If you’re happy walking, swimming, sitting, and repeating the same small pleasures, Florianópolis fits easily. An interest in how Brazilians travel within their own country — and a preference for space, greenery, and everyday rhythm over constant activity — helps." },
-                { type: "image", id: "floripa24" },
-                { type: "text", text: "It may frustrate those looking for a dense city experience or a tightly structured itinerary. If you prefer destinations built around landmarks, nightlife, or urgency, or want spectacle at every turn, this island may feel too understated. Florianópolis tends to reward patience and repetition more than novelty." },
-                { type: "text", text: "It isn’t a place to be decoded all at once. It’s better understood gradually, through small differences between beaches, towns, and days." },
-                { type: "grid", ids: ["floripa9", "floripa1"] },
-                { type: "text", text: "The bare-faced curassow paused long enough to watch back — a reminder that here, observation often goes both ways." },
-                { type: "text", text: "If the island’s pace resonates — the space, the calm, the way nature and daily life overlap — it’s worth exploring further in your own way. Maps, conversations, and “things to do” lists can come later. This page is simply the starting point." },
-                { type: "image", id: "floripa23" }
+                { type: "text", text: "Away from the open stretches of river, Bonito unfolds gradually. Trails follow bends in the water, disappear under tree cover, and reappear at shaded pools where sound and light soften together." },
+                { type: "grid", ids: ["bonito7", "bonito9"] },
+                { type: "text", text: "Small falls spill gently into pale green basins, barely disturbing the surface. These aren’t moments designed to impress. They work quietly, accumulating rather than announcing themselves." },
+                { type: "image", id: "bonito10", caption: "Crossing suspension bridges and forest walkways feels less like observation and more like passage. The canopy closes in, insects replace open water as the dominant sound, and the pace settles into something unhurried." }
+            ]
+        },
+        {
+            id: "closing",
+            title: "Stillness & Balance",
+            subtitle: "Everything in its Place",
+            expandedBg: "bg-[#292524]/95",
+            coverImage: "bonito11",
+            coverCaption: "As the page draws to a close, perspective widens again.",
+            content: [
+                { type: "text", text: "As the page draws to a close, perspective widens again. Water drops in layers through dense vegetation, light filtered by leaves before it ever reaches the pool below." },
+                { type: "image", id: "bonito14", caption: "Looking upward, bamboo and forest rise vertically, enclosing rather than opening the space. The landscape feels contained, held in balance rather than stretched for effect." },
+                { type: "image", id: "bonito13" },
+                { type: "text", text: "Bonito doesn’t rely on scale or spectacle. What stays with you is how carefully everything seems held in place — water, forest, movement — so nothing needs to compete for attention." },
+                { type: "quote", text: "It’s a place that rewards slowness, simply by allowing clarity to remain." }
             ]
         }
     ];
 
     const pageBackgroundStyle = {
-        backgroundColor: "#84935c",
+        backgroundColor: "#5c7c93",
         opacity: 1,
     };
 
     return (
         <div className="relative pt-2">
             <SEO
-                title="Florianópolis | Nomad Scribbles"
-                description="Florianópolis: An island city where lush hills meet over 40 distinct beaches. Discover the diverse geography of Brazil's southern coast."
-                image="/images/Floripa/small/Floripa1z.webp"
-                slug="/brazil/florianopolis"
+                title="Bonito | Nomad Scribbles"
+                description="Bonito: A hub for ecotourism, famous for its crystal-clear rivers, limestone caves, and the lush Cerrado plateau."
+                image="/images/Bonito/Small/Bonito1z.webp"
+                slug="/brazil/bonito"
             />
 
             <svg className="absolute w-0 h-0 invisible" aria-hidden="true" focusable="false">
@@ -175,11 +147,11 @@ function Florianopolis({ openLightbox }) {
                 style={pageBackgroundStyle}
             />
 
-            <h1 className="sr-only">Florianópolis | Nomad Scribbles</h1>
+            <h1 className="sr-only">Bonito | Nomad Scribbles</h1>
 
             <div className="relative z-10">
                 <div className="flex justify-center mb-6 px-4 mt-8">
-                    <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-[#D4AF37] tracking-tight text-center drop-shadow-sm">Florianópolis</h1>
+                    <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-[#D4AF37] tracking-tight text-center drop-shadow-sm">Bonito</h1>
                 </div>
 
                 {/* Hero Image - Optimized */}
@@ -190,25 +162,33 @@ function Florianopolis({ openLightbox }) {
                         onClick={() => setIsHeroExpanded(!isHeroExpanded)}
                     >
                         <img
-                            src={isHeroExpanded ? process.env.PUBLIC_URL + "/images/Floripa/full/Floripa14.webp" : process.env.PUBLIC_URL + "/images/Floripa/small/Floripa14new.webp"}
-                            alt="Florianopolis Beach Hero"
-                            fetchPriority="high" // OPTIMIZATION
-                            loading="eager"      // OPTIMIZATION
+                            src={isHeroExpanded ? process.env.PUBLIC_URL + "/images/Bonito/Full/Bonito3.webp" : process.env.PUBLIC_URL + "/images/Bonito/Small/Bonito3new.webp"}
+                            alt="Bonito Water Clarity Hero"
+                            fetchPriority="high"
+                            loading="eager"
                             className={`w-full h-full object-cover transition-transform duration-700 ease-in-out ${!isHeroExpanded ? 'transform scale-100 group-hover:scale-105' : ''}`}
                         />
+
+                        {/* Hero Overlay Text */}
+                        {!isHeroExpanded && (
+                            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                <h2 className="text-4xl md:text-6xl font-bold font-handwriting text-white drop-shadow-lg mb-2">Bonito</h2>
+                                <p className="text-xl md:text-2xl font-serif text-white/90 drop-shadow-md">Water so clear it feels unreal.</p>
+                            </div>
+                        )}
                     </motion.div>
 
-                    <div className="relative md:absolute md:-bottom-12 md:left-12 lg:left-20 w-full md:max-w-xl bg-[#f5f5f4] p-8 md:p-10 shadow-xl rounded-lg border-t-4 border-[#e9d5ff] mt-[-3rem] md:mt-0 z-20">
+                    <div className="relative md:absolute md:-bottom-12 md:left-12 lg:left-20 w-full md:max-w-xl bg-[#f5f5f4] p-8 md:p-10 shadow-xl rounded-lg border-t-4 border-[#7dd3fc] mt-[-3rem] md:mt-0 z-20">
                         <div className="flex items-center gap-3 mb-4 opacity-60">
-                            <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#6b21a8]">Feature</span>
+                            <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#0369a1]">Feature</span>
                             <div className="h-[1px] w-12 bg-stone-400"></div>
-                            <span className="text-xs font-serif italic text-stone-500">Santa Catarina Island</span>
+                            <span className="text-xs font-serif italic text-stone-500">Mato Grosso do Sul</span>
                         </div>
 
                         <div className="text-xl md:text-2xl font-serif text-stone-800 leading-relaxed">
-                            <span className="text-5xl float-left mr-3 mt-[-10px] font-bold text-[#6b21a8] font-handwriting">F</span>
+                            <span className="text-5xl float-left mr-3 mt-[-10px] font-bold text-[#0369a1] font-handwriting">B</span>
                             <p className="inline">
-                                lorianópolis reveals itself slowly. Footsteps fade into the tide, coastlines widen and narrow again, and the island shifts gently between city, beach, and forest. The built details feel like suggestions rather than instructions.
+                                onito doesn’t announce itself loudly. There are no sweeping viewpoints or dramatic entrances, just small signs, dirt roads, and the quiet sense that you’re being allowed into something carefully managed.
                             </p>
                         </div>
                     </div>
@@ -223,10 +203,10 @@ function Florianopolis({ openLightbox }) {
                     <div className="relative z-20 max-w-5xl mx-auto px-4 pt-0 pb-4 md:pt-2 md:pb-8 flex flex-col items-center mt-[-10px]">
                         <div className="w-full max-w-4xl overflow-visible mb-[-10px]">
                             <ContextMap
-                                markers={[florianopolisCoords].filter(Boolean)}
-                                zoomToId="florianopolis"
-                                title="Where is Florianópolis?"
-                                geography={florianopolisCoords?.geography}
+                                markers={[bonitoCoords].filter(Boolean)}
+                                zoomToId="bonito"
+                                title="Where is Bonito?"
+                                geography={bonitoCoords?.geography}
                                 transparent={true}
                             />
                         </div>
@@ -327,7 +307,6 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
                     className={`rounded-sm shadow-sm transition-opacity duration-500 cursor-pointer ${showFullAsDriver ? "absolute inset-0 w-full h-full object-cover opacity-0" : "relative w-full h-auto object-contain z-10"} ${visuallyExpanded && !imgError && !showFullAsDriver ? "opacity-0" : "opacity-100"}`}
                 />
 
-                {/* High-Res Image - Only rendered if expanded */}
                 {!imgError && visuallyExpanded && (
                     <img
                         src={fullSrc}
@@ -468,20 +447,9 @@ function StoryCard({ section, getImage, handleImageClick }) {
                         }
                         if (item.type === "quote") {
                             return (
-                                <blockquote key={idx} className="border-l-4 border-gold pl-6 italic my-6 text-xl opacity-90 max-w-2xl md:text-left text-stone-300">
-                                    {item.text.split('\n').map((line, i) => <span key={i} className="block">{line}</span>)}
-                                    {item.source && <span className="text-base not-italic block mt-2 font-bold text-stone-400">{item.source}</span>}
+                                <blockquote key={idx} className="border-l-4 border-gold pl-6 italic my-6 text-xl opacity-90 max-w-2xl text-center text-stone-300">
+                                    {item.text}
                                 </blockquote>
-                            );
-                        }
-                        if (item.type === "header") {
-                            return <h3 key={idx} className="text-2xl md:text-3xl font-bold font-handwriting mt-4 text-center text-stone-100">{item.text}</h3>;
-                        }
-                        if (item.type === "list") {
-                            return (
-                                <ul key={idx} className="list-disc pl-5 space-y-4 text-lg max-w-2xl text-left text-stone-300">
-                                    {item.items.map((li, i) => <li key={i}>{li}</li>)}
-                                </ul>
                             );
                         }
                         return null;
@@ -492,4 +460,4 @@ function StoryCard({ section, getImage, handleImageClick }) {
     );
 }
 
-export default Florianopolis;
+export default Bonito;

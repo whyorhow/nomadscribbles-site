@@ -2,9 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import SEO from "../components/SEO";
-import Lightbox from "../components/Lightbox";
 import artImages from "../assets/artImages.json";
-
 
 function Carnival({ openLightbox }) {
   const [isHeroExpanded, setIsHeroExpanded] = useState(false);
@@ -26,17 +24,13 @@ function Carnival({ openLightbox }) {
     return () => observer.disconnect();
   }, [isHeroExpanded]);
 
-  // Define the visual order of images for Lightbox navigation
   const imageOrder = [
     "carnival10", "carnival1", "carnival3", "carnival6", "carnival13", "carnival9", "carnival14", "carnival11", "carnival12"
   ];
 
   const getImage = (id) => carnivalImages.find(i => i.id === id);
-
-  // Derived list of images sorted by their appearance
   const sortedImages = imageOrder.map(id => getImage(id)).filter(Boolean);
 
-  // Helper to open lightbox with correct index
   const handleImageClick = (imageId) => {
     const index = sortedImages.findIndex(img => img.id === imageId);
     if (index !== -1) {
@@ -120,7 +114,6 @@ function Carnival({ openLightbox }) {
         { type: "text", text: "Music escapes its routes and schedules, spilling into side streets and unexpected corners. Brass cuts through percussion, crowds gather and dissolve, and Carnival briefly reorganises how the city moves. These moments feel unscripted, but they’re part of a shared understanding — Carnival goes where people carry it." }
       ]
     },
-    // Inline transition handled separately in render
     {
       id: "transition_beat",
       type: "transition_image",
@@ -162,8 +155,6 @@ function Carnival({ openLightbox }) {
 
         {/* Magazine Style Hero Section */}
         <div ref={heroRef} className="w-full max-w-7xl mx-auto px-4 mb-24 relative z-10 group">
-
-          {/* Main Hero Image - Large & Cinematic */}
           <div
             className={`relative w-full overflow-hidden rounded-xl shadow-md cursor-pointer group-hover:shadow-xl transition-all duration-700 ease-in-out ${isHeroExpanded ? 'aspect-auto' : 'aspect-[16/10] md:aspect-[16/9]'}`}
             onClick={() => {
@@ -174,13 +165,13 @@ function Carnival({ openLightbox }) {
             <img
               src={isHeroExpanded ? process.env.PUBLIC_URL + "/images/CarnivalSP/full/Carnival10.webp" : process.env.PUBLIC_URL + "/images/CarnivalSP/small/Carnival10new.webp"}
               alt="Carnival Hero"
+              fetchPriority="high" // OPTIMIZATION
+              loading="eager"      // OPTIMIZATION
               className={`w-full h-full object-cover transition-transform duration-700 ease-in-out ${!isHeroExpanded ? 'transform scale-100 group-hover:scale-105' : ''}`}
             />
           </div>
 
-          {/* Overlapping Text Card - "Newspaper" Style */}
           <div className="relative md:absolute md:-bottom-12 md:left-12 lg:left-20 w-full md:max-w-xl bg-[#f5f5f4] p-8 md:p-10 shadow-xl rounded-lg border-t-4 border-[#e9d5ff] mt-[-3rem] md:mt-0 z-20">
-            {/* Decorative 'Issue' or 'Date' line */}
             <div className="flex items-center gap-3 mb-4 opacity-60">
               <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#6b21a8]">Feature</span>
               <div className="h-[1px] w-12 bg-stone-400"></div>
@@ -194,8 +185,6 @@ function Carnival({ openLightbox }) {
           </div>
         </div>
 
-
-        {/* Main Content with Interactive Sections */}
         <main className="px-2 py-2 max-w-screen-xl mx-auto space-y-12 flex flex-col items-center pb-24">
           {sections.map((section) => {
             if (section.type === "transition_image") {
@@ -204,13 +193,13 @@ function Carnival({ openLightbox }) {
               return (
                 <div key={section.id} className="w-full max-w-6xl py-12">
                   <RevealImage
-                    smallSrc={img.image}
-                    fullSrc={img.lightboxImage}
+                    smallSrc={process.env.PUBLIC_URL + img.image}
+                    fullSrc={process.env.PUBLIC_URL + img.lightboxImage}
                     alt={img.title}
                     caption={section.caption}
                     title={img.title}
                     onClick={() => handleImageClick(section.imageId)}
-                    expanded={true} // Always expanded for transition
+                    expanded={true}
                     autoCollapse={false}
                   />
                 </div>
@@ -242,7 +231,6 @@ function Carnival({ openLightbox }) {
   );
 }
 
-// Interactive StoryCard Component (Zig-Zag Style)
 function StoryCard({ section, getImage, handleImageClick }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const activeBg = section.expandedBg || "bg-[#edd7f7]";
@@ -261,25 +249,21 @@ function StoryCard({ section, getImage, handleImageClick }) {
       viewport={{ once: true }}
     >
       <div className={`p-6 md:p-10 flex flex-col ${isReverse ? "md:flex-row-reverse" : "md:flex-row"} gap-8 md:gap-16 items-start md:items-center`}>
-
-        {/* Image Side */}
         <div className="w-full md:w-1/2 flex justify-center sticky top-0">
           <RevealImage
-            smallSrc={coverImg.image}
-            fullSrc={coverImg.lightboxImage}
+            smallSrc={process.env.PUBLIC_URL + coverImg.image}
+            fullSrc={process.env.PUBLIC_URL + coverImg.lightboxImage}
             alt={section.title}
-            caption={section.coverCaption} // Use coverCaption inside RevealImage if needed, or mapped below
+            caption={section.coverCaption}
             expanded={isExpanded}
             onToggle={() => setIsExpanded(!isExpanded)}
             onClick={() => handleImageClick(section.coverImage)}
           />
         </div>
 
-        {/* Content Side */}
         <div className="w-full md:w-1/2 flex flex-col justify-center text-center md:text-left min-h-[150px]">
           <AnimatePresence mode="wait">
             {isExpanded ? (
-              // Expanded: Full Content
               <motion.div
                 key="expanded-content"
                 initial={{ opacity: 0, y: 10 }}
@@ -298,7 +282,6 @@ function StoryCard({ section, getImage, handleImageClick }) {
                 )}
                 <div className="w-12 h-[2px] bg-[#2e1065]/20 mb-6"></div>
 
-                {/* Dynamic Content Mapping */}
                 <div className="space-y-6">
                   {section.content.map((item, idx) => {
                     if (item.type === "text") {
@@ -310,12 +293,12 @@ function StoryCard({ section, getImage, handleImageClick }) {
                       return (
                         <div key={idx} className="w-full mt-4">
                           <RevealImage
-                            smallSrc={subImg.image}
-                            fullSrc={subImg.lightboxImage}
+                            smallSrc={process.env.PUBLIC_URL + subImg.image}
+                            fullSrc={process.env.PUBLIC_URL + subImg.lightboxImage}
                             alt={subImg.title || ""}
                             caption={item.caption}
                             onClick={(e) => { e.stopPropagation(); handleImageClick(item.id); }}
-                            expanded={true} // Sub-images in content always shown 'ready'
+                            expanded={true}
                             autoCollapse={false}
                           />
                         </div>
@@ -324,10 +307,8 @@ function StoryCard({ section, getImage, handleImageClick }) {
                     return null;
                   })}
                 </div>
-
               </motion.div>
             ) : (
-              // Collapsed: Gallery Label Only
               <motion.div
                 key="collapsed-label"
                 initial={{ opacity: 0, x: -10 }}
@@ -336,7 +317,6 @@ function StoryCard({ section, getImage, handleImageClick }) {
                 transition={{ duration: 0.4 }}
                 className={`flex flex-col ${isReverse ? "items-start md:items-end md:text-right" : "items-start md:text-left"} w-full`}
               >
-                {/* Museum Label Style */}
                 <div className="max-w-[280px] p-4 bg-white/60 backdrop-blur-md border-l-2 border-[#E8C7F5] shadow-sm group">
                   <h4 className="text-[#2e1065] text-sm font-bold uppercase tracking-widest mb-1 font-cormorant leading-tight">
                     {section.title}
@@ -344,8 +324,6 @@ function StoryCard({ section, getImage, handleImageClick }) {
                   <p className="text-stone-500 text-[11px] italic font-serif leading-tight">
                     {section.subtitle || "São Paulo Carnival"}
                   </p>
-
-                  {/* Interactive Arrow Cue */}
                   <div className="mt-4 flex items-center gap-2 group-hover:gap-4 transition-all duration-300">
                     <span className="text-[10px] uppercase tracking-widest text-[#2e1065] font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">View</span>
                     <div className="w-6 h-6 rounded-full border border-[#2e1065]/30 flex items-center justify-center group-hover:bg-[#2e1065] group-hover:border-[#2e1065] transition-colors duration-300">
@@ -365,8 +343,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
   );
 }
 
-
-// Shared RevealImage Component
+// Optimized Reusable Image Component
 function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onToggle, autoCollapse, title }) {
   const isControlled = expanded !== undefined;
   const initialExpanded = isControlled ? expanded : false;
@@ -414,43 +391,46 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
   const showFullAsDriver = visuallyExpanded && fullLoaded && !imgError;
 
   return (
-    <div
+    <motion.div
+      layout
       ref={containerRef}
       className={`relative max-w-5xl mx-auto transition-all duration-700 ease-in-out my-4 ${visuallyExpanded ? "w-full" : "w-[80%] md:w-[80%]"}`}
       onClick={handleClick}
     >
       <div className="relative w-full rounded-lg overflow-hidden shadow-md group hover:shadow-lg transition-shadow cursor-pointer">
+        {/* Small Image */}
         <img
           src={smallSrc}
           alt={alt}
+          loading="lazy"
           className={`transition-all duration-500 
               ${showFullAsDriver ? "absolute inset-0 w-full h-full object-cover opacity-0" : "relative w-full h-auto object-contain z-10"}
               ${!visuallyExpanded ? "scale-95 group-hover:scale-100 transition-transform duration-500" : "scale-100"}
           `}
         />
 
-        {!imgError && (
+        {/* High-Res Image - Conditional Render */}
+        {!imgError && visuallyExpanded && (
           <img
             src={fullSrc}
             alt={alt}
             onLoad={() => setFullLoaded(true)}
             onError={() => setImgError(true)}
+            loading="lazy"
             className={`transition-all duration-700 ease-out 
                 ${showFullAsDriver ? "relative w-full h-auto z-20 opacity-100 scale-100" : "absolute inset-0 w-full h-full object-cover z-20 opacity-0 scale-95"}
             `}
-            loading="lazy"
           />
         )}
       </div>
 
-      {/* Optional Caption inside Image (mainly for sub-images/transitions) */}
       {(title || caption) && visuallyExpanded && (
         <div className="mt-4 text-center px-4">
           {title && <p className="text-xs font-bold uppercase tracking-widest text-[#2e1065]">{title}</p>}
           {caption && <p className="text-sm italic text-stone-600 mt-1">{caption}</p>}
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }
 

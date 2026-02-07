@@ -23,11 +23,11 @@ function Brazil() {
     { id: "saopaulo", name: "São Paulo", img: "/images/SaoPauloLanding/small/street.jpg", path: "/brazil/saopaulo" },
     { id: "florianopolis", name: "Florianópolis", img: "/images/Floripa/small/Floripa18.webp", path: "/brazil/florianopolis" },
     { id: "rio", name: "Rio de Janeiro", img: "/images/Rio/small/Rio9.webp", path: "/brazil/rio" },
+    { id: "bonito", name: "Bonito", img: "/images/Bonito/Small/Bonito3new.webp", path: "/brazil/bonito" },
     { id: "salvador", name: "Salvador", img: "/images/Salvador/small/Salvador5.webp", path: "/brazil/salvador" },
     { id: "pantanal", name: "The Pantanal", img: "/images/Pantanal/small/Pantanal5.webp", path: "/brazil/pantanal" },
     { id: "foz", name: "Foz do Iguaçu", img: "/images/Iguazu/small/Iguazu16.webp", path: "/brazil/foz" }
   ];
-
 
   // Map markers (excluding Santos as it's within São Paulo)
   const mapMarkers = destinations.filter(d => d.id !== 'santos');
@@ -43,7 +43,6 @@ function Brazil() {
     filter: "url(#torn-paper-filter)",
     opacity: 0.95,
   };
-
 
   // Programmatically slide swiper when map pin is hovered
   useEffect(() => {
@@ -72,8 +71,7 @@ function Brazil() {
 
       <h1 className="sr-only">Nomad Scribbles | Travel Adventures in Brazil</h1>
 
-
-      {/* Hero Image with Overlay */}
+      {/* Hero Image with Overlay - Optimized */}
       <motion.div
         className="relative w-full max-w-3xl mx-auto mt-24 mb-4 px-4 cursor-pointer"
         onMouseEnter={() => setShowOverlay(true)}
@@ -84,13 +82,15 @@ function Brazil() {
         <img
           src={process.env.PUBLIC_URL + "/images/Brazil/BrazilHero.webp"}
           alt="Brazilian landscape with city and nature"
+          fetchPriority="high" // OPTIMIZATION: Load first
+          loading="eager"      // OPTIMIZATION: Load immediately
           className="w-full h-auto object-contain shadow-lg rounded-lg p-3 sm:p-4"
         />
         <img
           src={process.env.PUBLIC_URL + "/images/Brazil/BrazilPhoto.webp"}
           alt="Overlay Brazil photo"
-          className={`absolute inset-0 w-full h-full object-contain shadow-lg transition-opacity duration-500 scale-[0.9] sm:scale-100 ${showOverlay ? "opacity-100" : "opacity-0"
-            }`}
+          loading="lazy" // OPTIMIZATION: This can load later
+          className={`absolute inset-0 w-full h-full object-contain shadow-lg transition-opacity duration-500 scale-[0.9] sm:scale-100 ${showOverlay ? "opacity-100" : "opacity-0"}`}
         />
       </motion.div>
 
@@ -121,12 +121,13 @@ function Brazil() {
                   loop={true}
                   className="w-full h-full"
                 >
-                  {featuredDestinations.map((city) => (
+                  {featuredDestinations.map((city, index) => (
                     <SwiperSlide key={city.id}>
                       <Link to={city.path} className="block w-full h-full group relative">
                         <img
                           src={process.env.PUBLIC_URL + city.img.replace(/small\//, 'small/').replace(/F\.webp$/, '.webp')}
                           alt={city.name}
+                          loading={index === 0 ? "eager" : "lazy"} // OPTIMIZATION: First slide eager, others lazy
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         />
                         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex flex-col justify-end p-8 pt-20">

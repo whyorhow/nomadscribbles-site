@@ -1487,5 +1487,145 @@
     "lightboxImage": "/images/Iguazu/full/Iguazu18.webp",
     "category": "Iguazu",
     "shopLink": "/nomads-shop/brazil/foz"
+  },
+  {
+    "id": "bonito1",
+    "title": "Arrival at Rio da Prata",
+    "description": "A hand-carved wooden sign marks the entrance to Rio da Prata, where Bonito’s reputation for pristine nature quietly begins. Nothing flashy, just a clear signal that this is a place shaped by conservation rather than spectacle.",
+    "image": "/images/Bonito/Small/Bonito1z.webp",
+    "blogimage": "/images/Bonito/Small/Bonito1.webp",
+    "lightboxImage": "/images/Bonito/Full/Bonito1.webp",
+    "category": "Bonito",
+    "shopLink": "/nomads-shop/brazil/bonito"
+  },
+  {
+    "id": "bonito5",
+    "title": "Working Animals of the Interior",
+    "description": "A close, patient gaze from a horse resting in the shade. Away from the rivers and caves, Bonito still moves at an agricultural pace, where animals are part of daily life rather than scenery.",
+    "image": "/images/Bonito/Small/Bonito5z.webp",
+    "blogimage": "/images/Bonito/Small/Bonito5.webp",
+    "lightboxImage": "/images/Bonito/Full/Bonito5.webp",
+    "category": "Bonito",
+    "shopLink": "/nomads-shop/brazil/bonito"
+  },
+  {
+    "id": "bonito12",
+    "title": "Crossing the Pasture",
+    "description": "Horses step carefully through shallow water while dark birds scatter across the grass beyond. It’s a reminder that Bonito isn’t sealed off as wilderness — daily rural life still flows straight through it.",
+    "image": "/images/Bonito/Small/Bonito12z.webp",
+    "blogimage": "/images/Bonito/Small/Bonito12.webp",
+    "lightboxImage": "/images/Bonito/Full/Bonito12.webp",
+    "category": "Bonito",
+    "shopLink": "/nomads-shop/brazil/bonito"
+  },
+  {
+    "id": "bonito2",
+    "title": "First Glimpse of the Water",
+    "description": "From the riverbank, the water appears impossibly clear, reflecting forest and sky in equal measure. At first glance it feels calm, almost still, giving little hint of the life moving just beneath the surface.",
+    "image": "/images/Bonito/Small/Bonito2z.webp",
+    "blogimage": "/images/Bonito/Small/Bonito2.webp",
+    "lightboxImage": "/images/Bonito/Full/Bonito2.webp",
+    "category": "Bonito",
+    "shopLink": "/nomads-shop/brazil/bonito"
+  },
+  {
+    "id": "bonito3",
+    "title": "Clarity, Revealed",
+    "description": "Looking down, the illusion disappears. Fish drift through layers of blue and green, branches suspended mid-water, the riverbed visible in sharp detail. In Bonito, transparency isn’t a metaphor — it’s literal.",
+    "image": "/images/Bonito/Small/Bonito3z.webp",
+    "blogimage": "/images/Bonito/Small/Bonito3.webp",
+    "lightboxImage": "/images/Bonito/Full/Bonito3.webp",
+    "category": "Bonito",
+    "shopLink": "/nomads-shop/brazil/bonito"
+  },
+  {
+    "id": "bonito4",
+    "title": "Where the River Slows",
+    "description": "Stone steps lead gently into the water as fish gather in the shallows. The river here feels inviting rather than dramatic, a place designed for quiet immersion rather than adrenaline.",
+    "image": "/images/Bonito/Small/Bonito4z.webp",
+    "blogimage": "/images/Bonito/Small/Bonito4.webp",
+    "lightboxImage": "/images/Bonito/Full/Bonito4.webp",
+    "category": "Bonito",
+    "shopLink": "/nomads-shop/brazil/bonito"
+  },
+  {
+    "id": "bonito6",
+    "title": "The Rope Swing",
+    "description": "A simple wooden swing hangs low over the river, just enough to tempt you into the water. It feels improvised and unpolished, a reminder that here, fun is woven directly into the landscape rather than built on top of it.",
+    "image": "/images/Bonito/Small/Bonito6z.webp",
+    "blogimage": "/images/Bonito/Small/Bonito6.webp",
+    "lightboxImage": "/images/Bonito/Full/Bonito6.webp",
+    "category": "Bonito",
+    "shopLink": "/nomads-shop/brazil/bonito"
+  },
+  {
+    "id": "bonito8",
+    "title": "A Bend in the River",
+    "description": "The river curves softly through dense forest, its colour shifting with the light. From the bank, it feels contained and intimate, as if the water is passing through the jungle on its own quiet terms.",
+    "image": "/images/Bonito/Small/Bonito8z.webp",
+    "blogimage": "/images/Bonito/Small/Bonito8.webp",
+    "lightboxImage": "/images/Bonito/Full/Bonito8.webp",
+    "category": "Bonito",
+    "shopLink": "/nomads-shop/brazil/bonito"
+  },
+  {
+    "id": "bonito7",
+    "title": "Small Falls, Wide Calm",
+    "description": "A low waterfall spills gently into a pale green pool, barely disturbing the surface. There’s no rush here — just the steady sound of water and the sense that time has slowed to match it.",
+    "image": "/images/Bonito/Small/Bonito7z.webp",
+    "blogimage": "/images/Bonito/Small/Bonito7.webp",
+    "lightboxImage": "/images/Bonito/Full/Bonito7.webp",
+    "category": "Bonito",
+    "shopLink": "/nomads-shop/brazil/bonito"
+  },
+  {
+    "id": "bonito9",
+    "title": "Green Pool",
+    "description": "Water gathers beneath mossy rock, glowing an opaque green that looks almost unreal. It’s the kind of place that invites lingering — not for drama, but for the simple act of floating and listening.",
+    "image": "/images/Bonito/Small/Bonito9z.webp",
+    "blogimage": "/images/Bonito/Small/Bonito9.webp",
+    "lightboxImage": "/images/Bonito/Full/Bonito9.webp",
+    "category": "Bonito",
+    "shopLink": "/nomads-shop/brazil/bonito"
+  },
+  {
+    "id": "bonito10",
+    "title": "Crossing the Canopy",
+    "description": "A narrow suspension bridge stretches forward through layers of green. Walking it feels like moving inside the forest rather than above it, each step framed by leaves, branches, and filtered light.",
+    "image": "/images/Bonito/Small/Bonito10z.webp",
+    "blogimage": "/images/Bonito/Small/Bonito10.webp",
+    "lightboxImage": "/images/Bonito/Full/Bonito10.webp",
+    "category": "Bonito",
+    "shopLink": "/nomads-shop/brazil/bonito"
+  },
+  {
+    "id": "bonito11",
+    "title": "Layered Falls",
+    "description": "Water drops in stages through thick vegetation, each tier softening the next. The colours shift from deep green to pale gold, as if the forest itself is filtering the light before it reaches the pool.",
+    "image": "/images/Bonito/Small/Bonito11z.webp",
+    "blogimage": "/images/Bonito/Small/Bonito11.webp",
+    "lightboxImage": "/images/Bonito/Full/Bonito11.webp",
+    "category": "Bonito",
+    "shopLink": "/nomads-shop/brazil/bonito"
+  },
+  {
+    "id": "bonito14",
+    "title": "Looking Up",
+    "description": "Bamboo rises in tight formation, drawing the eye straight toward the light. From below, the forest feels vertical and enclosing, less something you walk through than something you stand inside.",
+    "image": "/images/Bonito/Small/Bonito14z.webp",
+    "blogimage": "/images/Bonito/Small/Bonito14.webp",
+    "lightboxImage": "/images/Bonito/Full/Bonito14.webp",
+    "category": "Bonito",
+    "shopLink": "/nomads-shop/brazil/bonito"
+  },
+  {
+    "id": "bonito13",
+    "title": "Stillness, Reflected",
+    "description": "A quiet pavilion sits perfectly mirrored on the surface of the water, its reflection almost sharper than the structure itself. The scene feels composed and deliberate, a pause built entirely around balance and calm.",
+    "image": "/images/Bonito/Small/Bonito13z.webp",
+    "blogimage": "/images/Bonito/Small/Bonito13.webp",
+    "lightboxImage": "/images/Bonito/Full/Bonito13.webp",
+    "category": "Bonito",
+    "shopLink": "/nomads-shop/brazil/bonito"
   }
 ]
