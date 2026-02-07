@@ -15,7 +15,8 @@ function Nav() {
   const location = useLocation();
 
   // Check if we should show the "Return to Brazil" global header link
-  const showReturnLink = ["/brazil/florianopolis", "/brazil/pantanal", "/brazil/rio", "/brazil/salvador"].includes(location.pathname);
+  const showReturnLink = ["/brazil/florianopolis", "/brazil/pantanal", "/brazil/rio", "/brazil/salvador", "/brazil/foz"].includes(location.pathname);
+
   const [hideFloatingButton, setHideFloatingButton] = useState(true);
 
   useEffect(() => {
