@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import SEO from "../components/SEO";
 
 // Gallery Data
@@ -81,8 +81,32 @@ export default function Santos({ openLightbox }) {
     return () => observer.disconnect();
   }, [isHeroExpanded]);
 
+  // Construct image list for Lightbox (Hero + Cards)
+  const allImages = useMemo(() => {
+    const list = [{
+      id: "santos_hero",
+      lightboxImage: `${process.env.PUBLIC_URL}/images/Santos/full/Santos5Drawn.jpg`,
+      title: "Santos Sketch",
+    }];
+    santosSections.forEach(s => {
+      list.push({
+        id: s.id,
+        lightboxImage: `${process.env.PUBLIC_URL}${s.imageFull}`,
+        title: s.title
+      });
+    });
+    return list;
+  }, []);
+
+  const handleImageClick = (id) => {
+    const index = allImages.findIndex(img => img.id === id);
+    if (index !== -1 && openLightbox) {
+      openLightbox(index, allImages);
+    }
+  };
+
   return (
-    <div className="bg-[#f5f5f4] min-h-screen pb-16 transition-colors duration-500">
+    <div className="bg-[#f5f5f4] min-h-screen pb-16 transition-colors duration-500 pt-20 md:pt-0">
       <SEO
         title="Santos — Port City of Legends | Nomad Scribbles"
         description="Santos isn’t a city people discover by accident. It offers air, space, and a slower rhythm, without ever trying to impress."
@@ -102,7 +126,10 @@ export default function Santos({ openLightbox }) {
           {/* Main Hero Image - Expandable */}
           <div
             className={`relative w-full overflow-hidden rounded-xl shadow-md cursor-pointer group-hover:shadow-xl transition-all duration-700 ease-in-out ${isHeroExpanded ? 'aspect-auto' : 'aspect-[16/10] md:aspect-[21/9]'}`}
-            onClick={() => setIsHeroExpanded(!isHeroExpanded)}
+            onClick={() => {
+              if (!isHeroExpanded) setIsHeroExpanded(true);
+              else handleImageClick("santos_hero");
+            }}
           >
             <img
               src={isHeroExpanded ? process.env.PUBLIC_URL + "/images/Santos/full/Santos5Drawn.jpg" : process.env.PUBLIC_URL + "/images/Santos/small/Santos5Drawnnew.webp"}
@@ -136,7 +163,7 @@ export default function Santos({ openLightbox }) {
             <StoryCard
               key={section.id}
               section={section}
-              onImageClick={() => { }}
+              onImageClick={() => handleImageClick(section.id)}
             />
           ))}
 
@@ -207,40 +234,70 @@ function StoryCard({ section, onImageClick }) {
         </div>
 
         {/* Text Side */}
-        <div className="w-full md:w-1/2 flex flex-col justify-center">
-          {/* Museum Label */}
-          <div className={`flex items-center gap-3 mb-6 opacity-60 transition-opacity duration-500 ${isExpanded ? "opacity-100" : ""}`}>
-            <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-stone-500">Feature</span>
-            <div className="h-[1px] w-8 bg-stone-400"></div>
-            <span className="text-[10px] font-serif italic text-stone-500">{section.location}</span>
-          </div>
+        <div className="w-full md:w-1/2 flex flex-col justify-center text-center md:text-left min-h-[150px]">
+          <AnimatePresence mode="wait">
+            {isExpanded ? (
+              // Expanded: Full Content
+              <motion.div
+                key="expanded-content"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.4 }}
+                className="text-left w-full"
+              >
+                <div className={`flex items-center gap-3 mb-6 opacity-100`}>
+                  <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-stone-500">Feature</span>
+                  <div className="h-[1px] w-8 bg-stone-400"></div>
+                  <span className="text-[10px] font-serif italic text-stone-500">{section.location}</span>
+                </div>
 
-          <h2 className={`font-serif text-[#2e1065] mb-4 transition-all duration-500 ${isExpanded ? "text-3xl md:text-4xl" : "text-2xl md:text-3xl"}`}>
-            {section.title}
-          </h2>
+                <h2 className="text-3xl md:text-5xl font-bold font-handwriting drop-shadow-sm text-[#2e1065] mb-2 leading-tight">
+                  {section.title}
+                </h2>
+                {section.subtitle && (
+                  <h3 className="text-sm font-bold uppercase tracking-widest text-[#ceb752] mb-4">
+                    {section.subtitle}
+                  </h3>
+                )}
+                <div className="w-12 h-[2px] bg-[#2e1065]/20 mb-6"></div>
+                <p className="text-lg leading-relaxed text-stone-800 font-medium">
+                  {section.text}
+                </p>
+              </motion.div>
+            ) : (
+              // Collapsed: Gallery Label Only
+              <motion.div
+                key="collapsed-label"
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 10 }}
+                transition={{ duration: 0.4 }}
+                className={`flex flex-col ${isReverse ? "items-start md:items-end md:text-right" : "items-start md:text-left"} w-full`}
+              >
+                {/* Museum Label Style */}
+                <div className="max-w-[280px] p-4 bg-white/60 backdrop-blur-md border-l-2 border-[#ceb752] shadow-sm group">
+                  <h4 className="text-[#2e1065] text-sm font-bold uppercase tracking-widest mb-1 font-cormorant leading-tight">
+                    {section.title}
+                  </h4>
+                  <p className="text-stone-500 text-[11px] italic font-serif leading-tight">
+                    {section.location}
+                  </p>
 
-          <h3 className={`text-sm font-bold uppercase tracking-widest text-[#D4AF37] mb-4 transition-all duration-500 ${isExpanded ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2 h-0 overflow-hidden"}`}>
-            {section.subtitle}
-          </h3>
-
-          <div className="relative overflow-hidden">
-            <p className={`text-stone-600 font-serif leading-relaxed text-lg transition-all duration-700 ${isExpanded ? "opacity-100 translate-y-0" : "opacity-60 line-clamp-3"}`}>
-              {section.text}
-            </p>
-            {!isExpanded && (
-              <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-[#f5f5f4] to-transparent"></div>
+                  {/* Interactive Arrow Cue */}
+                  <div className="mt-4 flex items-center gap-2 group-hover:gap-4 transition-all duration-300">
+                    <span className="text-[10px] uppercase tracking-widest text-[#2e1065] font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">View</span>
+                    <div className="w-6 h-6 rounded-full border border-[#2e1065]/30 flex items-center justify-center group-hover:bg-[#2e1065] group-hover:border-[#2e1065] transition-colors duration-300">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#2e1065] group-hover:text-white transition-colors duration-300">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
             )}
-          </div>
-
-          {/* Interactive Arrow Cue */}
-          <div className={`mt-6 flex items-center gap-2 group-hover:gap-4 transition-all duration-500 ${isExpanded ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
-            <span className="text-[10px] uppercase tracking-widest text-[#2e1065] font-bold">Read Story</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#2e1065]">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </div>
-
+          </AnimatePresence>
         </div>
       </div>
     </motion.div>
@@ -248,11 +305,10 @@ function StoryCard({ section, onImageClick }) {
 }
 
 // RevealImage Component
-// 70% width when collapsed, 100% when expanded
 function RevealImage({ smallSrc, fullSrc, alt, expanded, onToggle, onClick, autoCollapse }) {
   const [imgError, setImgError] = useState(false);
   const [fullLoaded, setFullLoaded] = useState(false);
-  const containerRef = React.useRef(null);
+  const containerRef = useRef(null);
 
   const isControlled = expanded !== undefined;
   const initialExpanded = isControlled ? expanded : false;
@@ -306,13 +362,14 @@ function RevealImage({ smallSrc, fullSrc, alt, expanded, onToggle, onClick, auto
         <img
           src={smallSrc}
           alt={alt}
+          loading="lazy"
           className={`transition-all duration-500 
                 ${showFullAsDriver ? "absolute inset-0 w-full h-full object-cover opacity-0" : "relative w-full h-auto object-contain z-10"}
                 ${!visuallyExpanded ? "scale-95 group-hover:scale-100 transition-transform duration-500" : "scale-100"}
             `}
         />
 
-        {!imgError && (
+        {!imgError && visuallyExpanded && (
           <img
             src={fullSrc}
             alt={alt}

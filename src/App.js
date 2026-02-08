@@ -27,6 +27,7 @@ import CookiePreferences from "./pages/CookiePreferences";
 import Florianopolis from "./pages/Florianopolis";
 import Iguazu from "./pages/Iguazu";
 import Bonito from "./pages/Bonito";
+import Manaus from "./pages/Manaus";
 
 
 // --- Components ---
@@ -72,7 +73,7 @@ function MainContent({
 }) {
   const location = useLocation();
   const isHome = location.pathname === "/" || location.pathname === "/home";
-  const lightenedRoutes = ["/brazil", "/brazil/rio", "/brazil/salvador", "/brazil/pantanal", "/brazil/saopaulo", "/brazil/foz"];
+  const lightenedRoutes = ["/brazil", "/brazil/rio", "/brazil/salvador", "/brazil/pantanal", "/brazil/saopaulo", "/brazil/foz", "/brazil/manaus"];
 
   const isLightenedPage = lightenedRoutes.includes(location.pathname) || location.pathname.includes("/saopaulo/santos");
 
@@ -102,6 +103,7 @@ function MainContent({
           <Route path="/brazil/salvador" element={<Salvador openLightbox={openLightbox} />} />
           <Route path="/brazil/pantanal" element={<Pantanal openLightbox={openLightbox} />} />
           <Route path="/brazil/foz" element={<Iguazu openLightbox={openLightbox} />} />
+          <Route path="/brazil/manaus" element={<Manaus openLightbox={openLightbox} />} />
 
           <Route path="/brazil/saopaulo" element={<SaoPaulo openLightbox={openLightbox} />} />
           <Route path="/brazil/saopaulo/parks" element={<Parks openLightbox={openLightbox} />} />

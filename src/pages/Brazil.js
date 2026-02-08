@@ -26,7 +26,8 @@ function Brazil() {
     { id: "bonito", name: "Bonito", img: "/images/Bonito/Small/Bonito3new.webp", path: "/brazil/bonito" },
     { id: "salvador", name: "Salvador", img: "/images/Salvador/small/Salvador5.webp", path: "/brazil/salvador" },
     { id: "pantanal", name: "The Pantanal", img: "/images/Pantanal/small/Pantanal5.webp", path: "/brazil/pantanal" },
-    { id: "foz", name: "Foz do Iguaçu", img: "/images/Iguazu/small/Iguazu16.webp", path: "/brazil/foz" }
+    { id: "foz", name: "Foz do Iguaçu", img: "/images/Iguazu/small/Iguazu16.webp", path: "/brazil/foz" },
+    { id: "manaus", name: "Manaus", img: "/images/Manaus/Small/Manaus13.webp", path: "/brazil/manaus" }
   ];
 
   // Map markers (excluding Santos as it's within São Paulo)

@@ -1627,5 +1627,212 @@
     "lightboxImage": "/images/Bonito/Full/Bonito13.webp",
     "category": "Bonito",
     "shopLink": "/nomads-shop/brazil/bonito"
+  },
+  {
+    "id": "manaus1",
+    "title": "Light and colour in the rainforest",
+    "description": "A butterfly pauses on cut fruit, its wings catching the light. Even small moments in the Amazon feel intense here — colour, heat, and movement packed into a few quiet seconds.",
+    "image": "/images/Manaus/Small/Manaus1z.webp",
+    "blogimage": "/images/Manaus/Small/Manaus1.webp",
+    "lightboxImage": "/images/Manaus/Full/Manaus1.webp",
+    "category": "Manaus"
+  },
+  {
+    "id": "manaus2",
+    "title": "The forest watching back",
+    "description": "Monkeys sit high in tangled branches, half-hidden by leaves. In the Amazon, wildlife doesn’t announce itself loudly — it appears briefly, observes, then melts back into the green.",
+    "image": "/images/Manaus/Small/Manaus2z.webp",
+    "blogimage": "/images/Manaus/Small/Manaus2.webp",
+    "lightboxImage": "/images/Manaus/Full/Manaus2.webp",
+    "category": "Manaus"
+  },
+  {
+    "id": "manaus3",
+    "title": "Preparing fruit at the market",
+    "description": "A street vendor peels fresh citrus by hand, surrounded by crates of fruit. Everyday life in Manaus is shaped by what grows nearby — simple, practical, and deeply local.",
+    "image": "/images/Manaus/Small/Manaus3z.webp",
+    "blogimage": "/images/Manaus/Small/Manaus3.webp",
+    "lightboxImage": "/images/Manaus/Full/Manaus3.webp",
+    "category": "Manaus"
+  },
+  {
+    "id": "manaus4",
+    "title": "Teatro Amazonas",
+    "description": "The pink façade of the opera house rises unexpectedly from the city. Built during the rubber boom, it feels almost surreal here — a European dream planted deep in the rainforest.",
+    "image": "/images/Manaus/Small/Manaus4z.webp",
+    "blogimage": "/images/Manaus/Small/Manaus4.webp",
+    "lightboxImage": "/images/Manaus/Full/Manaus4.webp",
+    "category": "Manaus"
+  },
+  {
+    "id": "manaus5",
+    "title": "Murals of Manaus",
+    "description": "Large-scale street art wraps the city’s buildings, blending Indigenous symbolism, folklore, and modern expression. Manaus tells its stories on its walls as much as in its museums.",
+    "image": "/images/Manaus/Small/Manaus5z.webp",
+    "blogimage": "/images/Manaus/Small/Manaus5.webp",
+    "lightboxImage": "/images/Manaus/Full/Manaus5.webp",
+    "category": "Manaus"
+  },
+  {
+    "id": "manaus6",
+    "title": "A rain-soaked street in Manaus",
+    "description": "Rain pools along the street as people move on under umbrellas. In Manaus, downpours arrive suddenly and leave just as fast, briefly reshaping the pace of the city.",
+    "image": "/images/Manaus/Small/Manaus6z.webp",
+    "blogimage": "/images/Manaus/Small/Manaus6.webp",
+    "lightboxImage": "/images/Manaus/Full/Manaus6.webp",
+    "category": "Manaus"
+  },
+  {
+    "id": "manaus7",
+    "title": "Indigenous presence in the city",
+    "description": "A mural rises between apartment blocks, placing Indigenous identity directly into the urban landscape. Manaus carries the Amazon’s history not just around it, but within its walls.",
+    "image": "/images/Manaus/Small/Manaus7z.webp",
+    "blogimage": "/images/Manaus/Small/Manaus7.webp",
+    "lightboxImage": "/images/Manaus/Full/Manaus7.webp",
+    "category": "Manaus"
+  },
+  {
+    "id": "manaus8",
+    "title": "Fading colour, lived-in walls",
+    "description": "Peeling paint and worn balconies mark an older building in the city centre. The colours linger even as the surface erodes, giving Manaus a layered, timeworn texture.",
+    "image": "/images/Manaus/Small/Manaus8z.webp",
+    "blogimage": "/images/Manaus/Small/Manaus8.webp",
+    "lightboxImage": "/images/Manaus/Full/Manaus8.webp",
+    "category": "Manaus"
+  },
+  {
+    "id": "manaus9",
+    "title": "Inside the market",
+    "description": "Stalls overflow with dried fish, grains, nuts, and shrimp beneath strings of bright decorations. The market is dense, noisy, and practical — built around trade rather than display.",
+    "image": "/images/Manaus/Small/Manaus9z.webp",
+    "blogimage": "/images/Manaus/Small/Manaus9.webp",
+    "lightboxImage": "/images/Manaus/Full/Manaus9.webp",
+    "category": "Manaus"
+  },
+  {
+    "id": "manaus10",
+    "title": "Faces of the market",
+    "description": "A stallholder pauses between customers, framed by shelves of oils, herbs, and remedies. These markets are as much about people as products, held together by familiarity and routine.",
+    "image": "/images/Manaus/Small/Manaus10z.webp",
+    "blogimage": "/images/Manaus/Small/Manaus10.webp",
+    "lightboxImage": "/images/Manaus/Full/Manaus10.webp",
+    "category": "Manaus"
+  },
+  {
+    "id": "manaus11",
+    "title": "Working with forest materials",
+    "description": "A man carefully shapes pieces of resin by hand. Many objects sold in Manaus markets begin slowly, using materials drawn directly from the surrounding forest.",
+    "image": "/images/Manaus/Small/Manaus11z.webp",
+    "blogimage": "/images/Manaus/Small/Manaus11.webp",
+    "lightboxImage": "/images/Manaus/Full/Manaus11.webp",
+    "category": "Manaus"
+  },
+  {
+    "id": "manaus12",
+    "title": "Looking up from the forest floor",
+    "description": "A towering tree rises into the canopy, wrapped in moss and climbing vines. From below, scale becomes hard to judge — the rainforest stretches upward as much as it spreads outward.",
+    "image": "/images/Manaus/Small/Manaus12z.webp",
+    "blogimage": "/images/Manaus/Small/Manaus12.webp",
+    "lightboxImage": "/images/Manaus/Full/Manaus12.webp",
+    "category": "Manaus"
+  },
+  {
+    "id": "manaus13new",
+    "title": "Manaus sits inside the Amazon.",
+    "description": "From above, the forest appears endless. The city exists entirely within it — dependent on what surrounds it, and quietly reshaping it at the same time.",
+    "image": "/images/Manaus/Small/Manaus13newz.webp",
+    "blogimage": "/images/Manaus/Small/Manaus13new.webp",
+    "lightboxImage": "/images/Manaus/Full/Manaus13.webp",
+    "category": "Manaus"
+  },
+  {
+    "id": "manaus13",
+    "title": "The forest from above",
+    "description": "An unbroken canopy rolls toward the horizon, layered in greens beneath a wide sky. From this height, the Amazon feels endless, dense, and quietly overwhelming.",
+    "image": "/images/Manaus/Small/Manaus13z.webp",
+    "blogimage": "/images/Manaus/Small/Manaus13.webp",
+    "lightboxImage": "/images/Manaus/Full/Manaus13.webp",
+    "category": "Manaus"
+  },
+  {
+    "id": "manaus14",
+    "title": "Shifting light over the canopy",
+    "description": "Clouds drift as sunlight moves across the treetops. Even from above, the forest never feels static — it changes minute by minute.",
+    "image": "/images/Manaus/Small/Manaus14z.webp",
+    "blogimage": "/images/Manaus/Small/Manaus14.webp",
+    "lightboxImage": "/images/Manaus/Full/Manaus14.webp",
+    "category": "Manaus"
+  },
+  {
+    "id": "manaus15",
+    "title": "Giant water lilies",
+    "description": "Broad lily pads float across still water, their surfaces wide enough to feel unreal. Here, the Amazon’s scale reveals itself through proportion rather than height.",
+    "image": "/images/Manaus/Small/Manaus15z.webp",
+    "blogimage": "/images/Manaus/Small/Manaus15.webp",
+    "lightboxImage": "/images/Manaus/Full/Manaus15.webp",
+    "category": "Manaus"
+  },
+  {
+    "id": "manaus16",
+    "title": "Still water, oversized leaves",
+    "description": "Lily pads spread across a quiet pool as the forest presses close. The water becomes a surface for scale rather than reflection.",
+    "image": "/images/Manaus/Small/Manaus16z.webp",
+    "blogimage": "/images/Manaus/Small/Manaus16.webp",
+    "lightboxImage": "/images/Manaus/Full/Manaus16.webp",
+    "category": "Manaus"
+  },
+  {
+    "id": "manaus17",
+    "title": "Colour at rest",
+    "description": "An orange butterfly settles briefly against deep green leaves. In the Amazon, stillness often arrives only for a moment.",
+    "image": "/images/Manaus/Small/Manaus17z.webp",
+    "blogimage": "/images/Manaus/Small/Manaus17.webp",
+    "lightboxImage": "/images/Manaus/Full/Manaus17.webp",
+    "category": "Manaus"
+  },
+  {
+    "id": "manaus18",
+    "title": "Watching from the canopy",
+    "description": "A monkey balances easily among layered leaves, alert and curious. Encounters like this feel unplanned, as though the forest allows itself to be seen only on its own terms.",
+    "image": "/images/Manaus/Small/Manaus18z.webp",
+    "blogimage": "/images/Manaus/Small/Manaus18.webp",
+    "lightboxImage": "/images/Manaus/Full/Manaus18.webp",
+    "category": "Manaus"
+  },
+  {
+    "id": "manaus19",
+    "title": "Beneath the surface",
+    "description": "A caiman floats almost motionless in dark water, its outline broken by reflections of trees above. Life here often reveals itself quietly, without warning.",
+    "image": "/images/Manaus/Small/Manaus19z.webp",
+    "blogimage": "/images/Manaus/Small/Manaus19.webp",
+    "lightboxImage": "/images/Manaus/Full/Manaus19.webp",
+    "category": "Manaus"
+  },
+  {
+    "id": "manaus20",
+    "title": "Water and stone",
+    "description": "Clear water flows beneath a rocky overhang, stained amber by minerals and leaves. Away from the city, the Amazon feels slower — shaped by erosion, shade, and time.",
+    "image": "/images/Manaus/Small/Manaus20z.webp",
+    "blogimage": "/images/Manaus/Small/Manaus20.webp",
+    "lightboxImage": "/images/Manaus/Full/Manaus20.webp",
+    "category": "Manaus"
+  },
+  {
+    "id": "manaus21",
+    "title": "A flash of colour on the forest floor",
+    "description": "A bright orange bird appears briefly among leaves and fallen branches. On the ground, colour feels rarer — and more striking when it does appear.",
+    "image": "/images/Manaus/Small/Manaus21z.webp",
+    "blogimage": "/images/Manaus/Small/Manaus21.webp",
+    "lightboxImage": "/images/Manaus/Full/Manaus21.webp",
+    "category": "Manaus"
+  },
+  {
+    "id": "manaus22",
+    "title": "A quiet encounter",
+    "description": "A tarantula rests motionless on the forest floor, its presence calm rather than threatening. In the Amazon, even the most intimidating creatures tend to announce themselves softly.",
+    "image": "/images/Manaus/Small/Manaus22z.webp",
+    "blogimage": "/images/Manaus/Small/Manaus22.webp",
+    "lightboxImage": "/images/Manaus/Full/Manaus22.webp",
+    "category": "Manaus"
   }
 ]

@@ -37,12 +37,6 @@ export default function NomadsGallery({ openLightbox }) {
         canonical="https://nomadscribbles.com/nomads-gallery"
       />
 
-      {/* Logo in top-left */}
-      <div className="absolute top-3 left-4 z-20">
-        <Link to="/home">
-          <Logo className="h-6 w-auto sm:h-10" />
-        </Link>
-      </div>
 
       {/* Page Title - High Priority Load */}
       <div className="flex flex-col items-center mb-10 relative z-10 mt-14 sm:mt-8">

@@ -38,6 +38,7 @@ function Home() {
     { title: "Street Murals", link: "/brazil/saopaulo/murals", img: "/images/Murals/thumbnail/Graffiti1.webp" },
     { title: "Parks", link: "/brazil/saopaulo/parks", img: "/images/SP-Parks/thumbnail/Park1.webp" },
     { title: "Nomads Gallery", link: "/nomads-gallery", img: "/images/Home/ThumbnailNG.webp" },
+    { title: "Manaus", link: "/brazil/manaus", img: "/images/Manaus/Thumbnails/Manaus1.webp" },
     { title: "Nomads Shop", link: "/nomadsshop", img: "/images/Home/ThumbnailNS.webp" },
   ];
 
