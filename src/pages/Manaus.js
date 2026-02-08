@@ -67,31 +67,29 @@ function Manaus({ openLightbox }) {
         {
             id: "city-scale-pressure",
             title: "City, Scale, Pressure",
-            expandedBg: "bg-[#701a75]/95",
+            expandedBg: "bg-[#713f12]/95",
             coverImage: "manaus6",
             content: [
-                { type: "image", id: "manaus6", caption: "A rain-soaked street in Manaus." },
                 { type: "grid", ids: ["manaus8", "manaus4"], caption: "Lived-in walls and surfacing dreams." }
             ]
         },
         {
             id: "the-forest-itself",
             title: "The Forest Itself",
-            expandedBg: "bg-[#134e4a]/95",
+            expandedBg: "bg-[#854d0e]/95",
             coverImage: "manaus12",
             content: [
                 { type: "text", text: "That is what makes Manaus so uneasy and so important. The benefits and the risks exist side by side, often for the same people, often through the same systems. Tourism can help keep land standing while increasing demand for access. Industry provides work while expanding the city’s footprint. Choices are rarely clean, and rarely made from a place of certainty." },
-                { type: "image", id: "manaus12", caption: "Looking up from the forest floor." },
                 { type: "grid", ids: ["manaus15", "manaus18"], caption: "Scale and encounter in the green." }
             ]
         },
         {
             id: "quiet-consequences",
             title: "Quiet Consequences",
-            expandedBg: "bg-[#1e1a1b]/95",
+            expandedBg: "bg-[#451a03]/95",
             coverImage: "manaus19",
             content: [
-                { type: "grid", ids: ["manaus19", "manaus22"], caption: "Life revealing itself quietly." }
+                { type: "image", id: "manaus22", caption: "Life revealing itself quietly." }
             ]
         }
     ];
@@ -139,17 +137,17 @@ function Manaus({ openLightbox }) {
                         />
                     </motion.div>
 
-                    <div className="relative md:absolute md:-bottom-12 md:left-12 lg:left-20 w-full md:max-w-xl bg-[#f5f5f4] p-8 md:p-10 shadow-xl rounded-lg border-t-4 border-[#059669] mt-[-3rem] md:mt-0 z-20">
+                    <div className="relative md:absolute md:-bottom-12 md:left-12 lg:left-20 w-full md:max-w-xl bg-[#f5f5f4] p-8 md:p-10 shadow-xl rounded-lg border-t-4 border-[#d97706] mt-[-3rem] md:mt-0 z-20">
                         <div className="flex items-center gap-3 mb-4 opacity-60">
-                            <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#065f46]">Gateway</span>
+                            <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#92400e]">Gateway</span>
                             <div className="h-[1px] w-12 bg-stone-400"></div>
                             <span className="text-xs font-serif italic text-stone-500">Amazonas</span>
                         </div>
 
                         <div className="text-xl md:text-2xl font-serif text-stone-800 leading-relaxed">
-                            <span className="text-5xl float-left mr-3 mt-[-10px] font-bold text-[#059669] font-handwriting">M</span>
+                            <span className="text-5xl float-left mr-3 mt-[-10px] font-bold text-[#d97706] font-handwriting">M</span>
                             <div className="flex flex-col">
-                                <h3 className="text-2xl font-bold text-[#059669] mb-4">Manaus sits inside the Amazon.</h3>
+                                <h3 className="text-2xl font-bold text-[#d97706] mb-4">Manaus sits inside the Amazon.</h3>
                                 <p className="inline text-lg text-stone-700">
                                     From above, the forest appears endless. The city exists entirely within it — dependent on what surrounds it, and quietly reshaping it at the same time.
                                 </p>
