@@ -155,119 +155,112 @@ function Manaus({ openLightbox }) {
                         </div>
                     </div>
                 </div>
-                <p className="inline text-lg text-stone-700">
-                    From above, the forest appears endless. The city exists entirely within it — dependent on what surrounds it, and quietly reshaping it at the same time.
-                </p>
             </div>
-        </div>
-                    </div >
-                </div >
 
-                <div className="relative w-full mb-16 overflow-hidden">
-                    <div
-                        className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[110vw] pointer-events-none z-0"
-                        style={spreadBackgroundStyle}
-                    />
+            <div className="relative w-full mb-16 overflow-hidden">
+                <div
+                    className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[110vw] pointer-events-none z-0"
+                    style={spreadBackgroundStyle}
+                />
 
-                    <div className="relative z-20 max-w-5xl mx-auto px-4 pt-0 pb-4 md:pt-2 md:pb-8 flex flex-col items-center mt-[-10px]">
-                        <div className="w-full max-w-4xl overflow-visible mb-[-10px]">
-                            <ContextMap
-                                markers={[manausCoords].filter(Boolean)}
-                                zoomToId="manaus"
-                                title="Where is Manaus?"
-                                geography={manausCoords?.geography}
-                                transparent={true}
-                            />
-                        </div>
-                    </div>
-                </div>
-
-                <main className="px-2 py-2 max-w-screen-xl mx-auto space-y-12 flex flex-col items-center pb-24">
-                    {/* Introduction Prose */}
-                    <article className="max-w-3xl mx-auto text-stone-300 space-y-6 px-4 mb-12">
-                        <h2 className="text-2xl md:text-3xl font-handwriting text-[#D4AF37]">Manaus is both an extraordinary place and a difficult one.</h2>
-                        <p className="text-lg leading-relaxed">
-                            It is a city of more than two million people, located thousands of kilometres from Brazil’s coast and accessible mainly by river and air. It is one of the largest urban centres on Earth embedded so deeply within tropical rainforest. Here, the Amazon isn’t a distant idea, but a daily presence. Rivers, trees, animals, and people intersect in ways that feel unusually close and unusually exposed.
-                        </p>
-                        <p className="text-lg leading-relaxed">
-                            That closeness creates opportunity. Wildlife remains visible even at the city’s edges. Forest products shape everyday life, from food and medicine to craft and trade. Tourism brings income and connection, particularly for Indigenous communities who use the city as a base while maintaining strong ties to the forest. Manaus makes the Amazon accessible — not as a myth or a backdrop, but as something lived with and worked through.
-                        </p>
-                    </article>
-
-                    {/* Section 1 */}
-                    <StoryCard
-                        section={sections[0]}
-                        getImage={getImage}
-                        handleImageClick={handleImageClick}
-                    />
-
-                    {/* Transition 1 */}
-                    <article className="max-w-3xl mx-auto text-stone-300 space-y-6 px-4 py-12 border-y border-white/5">
-                        <h2 className="text-2xl md:text-3xl font-handwriting text-[#D4AF37]">But access brings pressure too.</h2>
-                        <p className="text-lg leading-relaxed">
-                            Manaus is also an industrial hub, home to one of Brazil’s largest free trade zones. Factories, ports, and supply chains support hundreds of thousands of jobs, drawing people inward from across the region. Economic growth offers stability for many, but it also pulls constantly at the forest that sustains the city. Land becomes something to sell. Trees become resources. Farming, logging, and development arrive not as abstract threats, but as practical responses to immediate needs.
-                        </p>
-                        <p className="text-xl font-bold text-center italic text-[#D4AF37]">
-                            None of this happens at a distance.<br />
-                            The forest is right there.
-                        </p>
-                    </article>
-
-                    {/* Section 2 */}
-                    <StoryCard
-                        section={sections[1]}
-                        getImage={getImage}
-                        handleImageClick={handleImageClick}
-                    />
-
-                    {/* Section 3 */}
-                    <StoryCard
-                        section={sections[2]}
-                        getImage={getImage}
-                        handleImageClick={handleImageClick}
-                    />
-
-                    {/* Closing Prose */}
-                    <article className="max-w-3xl mx-auto text-stone-300 space-y-6 px-4 py-12">
-                        <h2 className="text-2xl md:text-3xl font-handwriting text-[#D4AF37]">Manaus doesn’t give you a neat ending.</h2>
-                        <p className="text-lg leading-relaxed">
-                            It is a place where the Amazon is still present and powerful, shaping daily life rather than sitting safely beyond reach. People work with the forest, learn from it, and rely on it in ways that are practical and immediate. For many, the city offers a way to stay close to the land while still engaging with the wider world.
-                        </p>
-                        <p className="text-lg leading-relaxed">
-                            At the same time, Manaus shows how fragile that balance is. Growth brings real benefits, but it also brings tension, and not every decision protects what surrounds the city. This isn’t a story of simple loss or easy solutions. It’s a story of people negotiating their future in real time.
-                        </p>
-                        <p className="text-lg leading-relaxed">
-                            To leave Manaus is to leave with that complexity intact. Not a warning, and not a celebration either — just an understanding that the Amazon’s future is being shaped in places like this, by ordinary decisions made every day.
-                        </p>
-                    </article>
-
-                    {/* Section 4 */}
-                    <StoryCard
-                        section={sections[3]}
-                        getImage={getImage}
-                        handleImageClick={handleImageClick}
-                    />
-
-                    {/* Final Visual Exhale */}
-                    <div className="w-full max-w-4xl mx-auto px-4 mt-16 group">
-                        <h3 className="text-xl font-handwriting text-[#D4AF37] mb-6 text-center">Shifting light over the canopy</h3>
-                        <RevealImage
-                            smallSrc={process.env.PUBLIC_URL + "/images/Manaus/Small/Manaus14.webp"}
-                            fullSrc={process.env.PUBLIC_URL + "/images/Manaus/Full/Manaus14.webp"}
-                            alt="Shifting light over the canopy"
-                            caption="Clouds drift as sunlight moves across the treetops. Even from above, the forest never feels static — it changes minute by minute."
-                            onClick={() => handleImageClick("manaus14")}
+                <div className="relative z-20 max-w-5xl mx-auto px-4 pt-0 pb-4 md:pt-2 md:pb-8 flex flex-col items-center mt-[-10px]">
+                    <div className="w-full max-w-4xl overflow-visible mb-[-10px]">
+                        <ContextMap
+                            markers={[manausCoords].filter(Boolean)}
+                            zoomToId="manaus"
+                            title="Where is Manaus?"
+                            geography={manausCoords?.geography}
+                            transparent={true}
                         />
                     </div>
+                </div>
+            </div>
 
-                    <div className="w-full flex flex-col items-center gap-4 mt-16 mb-8 relative z-10">
-                        <Link to="/brazil" className="flex flex-row items-center justify-center text-stone-300 hover:text-white transition-colors drop-shadow-md bg-stone-950/50 backdrop-blur-md rounded-full px-6 py-2 border border-white/10 shadow-lg hover:bg-stone-900/60 w-fit">
-                            <span className="text-xl mr-3 pb-1">←</span>
-                            <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Return to Brazil</span>
-                        </Link>
-                    </div>
-                </main>
-            </div >
+            <main className="px-2 py-2 max-w-screen-xl mx-auto space-y-12 flex flex-col items-center pb-24">
+                {/* Introduction Prose */}
+                <article className="max-w-3xl mx-auto text-amber-950 space-y-6 px-4 mb-12">
+                    <h2 className="text-2xl md:text-3xl font-handwriting text-[#d97706]">Manaus is both an extraordinary place and a difficult one.</h2>
+                    <p className="text-lg leading-relaxed">
+                        It is a city of more than two million people, located thousands of kilometres from Brazil’s coast and accessible mainly by river and air. It is one of the largest urban centres on Earth embedded so deeply within tropical rainforest. Here, the Amazon isn’t a distant idea, but a daily presence. Rivers, trees, animals, and people intersect in ways that feel unusually close and unusually exposed.
+                    </p>
+                    <p className="text-lg leading-relaxed">
+                        That closeness creates opportunity. Wildlife remains visible even at the city’s edges. Forest products shape everyday life, from food and medicine to craft and trade. Tourism brings income and connection, particularly for Indigenous communities who use the city as a base while maintaining strong ties to the forest. Manaus makes the Amazon accessible — not as a myth or a backdrop, but as something lived with and worked through.
+                    </p>
+                </article>
+
+                {/* Section 1 */}
+                <StoryCard
+                    section={sections[0]}
+                    getImage={getImage}
+                    handleImageClick={handleImageClick}
+                />
+
+                {/* Transition 1 */}
+                <article className="max-w-3xl mx-auto text-amber-950 space-y-6 px-4 py-12 border-y border-white/5">
+                    <h2 className="text-2xl md:text-3xl font-handwriting text-[#d97706]">But access brings pressure too.</h2>
+                    <p className="text-lg leading-relaxed">
+                        Manaus is also an industrial hub, home to one of Brazil’s largest free trade zones. Factories, ports, and supply chains support hundreds of thousands of jobs, drawing people inward from across the region. Economic growth offers stability for many, but it also pulls constantly at the forest that sustains the city. Land becomes something to sell. Trees become resources. Farming, logging, and development arrive not as abstract threats, but as practical responses to immediate needs.
+                    </p>
+                    <p className="text-xl font-bold text-center italic text-[#d97706]">
+                        None of this happens at a distance.<br />
+                        The forest is right there.
+                    </p>
+                </article>
+
+                {/* Section 2 */}
+                <StoryCard
+                    section={sections[1]}
+                    getImage={getImage}
+                    handleImageClick={handleImageClick}
+                />
+
+                {/* Section 3 */}
+                <StoryCard
+                    section={sections[2]}
+                    getImage={getImage}
+                    handleImageClick={handleImageClick}
+                />
+
+                {/* Closing Prose */}
+                <article className="max-w-3xl mx-auto text-amber-950 space-y-6 px-4 py-12">
+                    <h2 className="text-2xl md:text-3xl font-handwriting text-[#d97706]">Manaus doesn’t give you a neat ending.</h2>
+                    <p className="text-lg leading-relaxed">
+                        It is a place where the Amazon is still present and powerful, shaping daily life rather than sitting safely beyond reach. People work with the forest, learn from it, and rely on it in ways that are practical and immediate. For many, the city offers a way to stay close to the land while still engaging with the wider world.
+                    </p>
+                    <p className="text-lg leading-relaxed">
+                        At the same time, Manaus shows how fragile that balance is. Growth brings real benefits, but it also brings tension, and not every decision protects what surrounds the city. This isn’t a story of simple loss or easy solutions. It’s a story of people negotiating their future in real time.
+                    </p>
+                    <p className="text-lg leading-relaxed">
+                        To leave Manaus is to leave with that complexity intact. Not a warning, and not a celebration either — just an understanding that the Amazon’s future is being shaped in places like this, by ordinary decisions made every day.
+                    </p>
+                </article>
+
+                {/* Section 4 */}
+                <StoryCard
+                    section={sections[3]}
+                    getImage={getImage}
+                    handleImageClick={handleImageClick}
+                />
+
+                {/* Final Visual Exhale */}
+                <div className="w-full max-w-4xl mx-auto px-4 mt-16 group">
+                    <h3 className="text-xl font-handwriting text-[#d97706] mb-6 text-center">Shifting light over the canopy</h3>
+                    <RevealImage
+                        smallSrc={process.env.PUBLIC_URL + "/images/Manaus/Small/Manaus14.webp"}
+                        fullSrc={process.env.PUBLIC_URL + "/images/Manaus/Full/Manaus14.webp"}
+                        alt="Shifting light over the canopy"
+                        caption="Clouds drift as sunlight moves across the treetops. Even from above, the forest never feels static — it changes minute by minute."
+                        onClick={() => handleImageClick("manaus14")}
+                    />
+                </div>
+
+                <div className="w-full flex flex-col items-center gap-4 mt-16 mb-8 relative z-10">
+                    <Link to="/brazil" className="flex flex-row items-center justify-center text-amber-950 hover:text-white transition-colors drop-shadow-md bg-stone-950/50 backdrop-blur-md rounded-full px-6 py-2 border border-white/10 shadow-lg hover:bg-stone-900/60 w-fit">
+                        <span className="text-xl mr-3 pb-1">←</span>
+                        <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Return to Brazil</span>
+                    </Link>
+                </div>
+            </main>
         </div >
     );
 }
@@ -396,7 +389,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
         >
             <div className="relative p-6 md:p-10 flex flex-col items-center z-10">
                 <div className="text-center mb-8">
-                    <h2 className={`text-4xl md:text-6xl font-bold font-handwriting drop-shadow-md transition-colors duration-500 ${isExpanded ? "text-stone-100" : "text-[#D4AF37]"}`}>
+                    <h2 className={`text-4xl md:text-6xl font-bold font-handwriting drop-shadow-md transition-colors duration-500 ${isExpanded ? "text-stone-100" : "text-[#d97706]"}`}>
                         {section.title}
                     </h2>
                     {section.subtitle && (
@@ -480,7 +473,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
                         }
                         if (item.type === "quote") {
                             return (
-                                <blockquote key={idx} className="border-l-4 border-gold pl-6 italic my-6 text-xl opacity-90 max-w-2xl md:text-left text-stone-300">
+                                <blockquote key={idx} className="border-l-4 border-[#d97706] pl-6 italic my-6 text-xl opacity-90 max-w-2xl md:text-left text-stone-800">
                                     {item.text.split('\n').map((line, i) => <span key={i} className="block">{line}</span>)}
                                     {item.source && <span className="text-base not-italic block mt-2 font-bold text-stone-400">{item.source}</span>}
                                 </blockquote>
