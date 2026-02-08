@@ -118,7 +118,7 @@ function Manaus({ openLightbox }) {
 
             <div className="relative w-full overflow-hidden">
                 <div className="flex justify-center mb-6 px-4 mt-8 relative z-10">
-                    <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-[#d97706] tracking-tight text-center drop-shadow-sm">Manaus</h1>
+                    <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-[#9c6644] tracking-tight text-center drop-shadow-sm">Manaus</h1>
                 </div>
 
                 {/* Hero Image - Optimized */}
@@ -137,17 +137,17 @@ function Manaus({ openLightbox }) {
                         />
                     </motion.div>
 
-                    <div className="relative md:absolute md:-bottom-12 md:left-12 lg:left-20 w-full md:max-w-xl bg-amber-50/95 p-8 md:p-10 shadow-xl rounded-lg border-t-4 border-[#d97706] mt-[-3rem] md:mt-0 z-20 backdrop-blur-sm">
+                    <div className="relative md:absolute md:-bottom-12 md:left-12 lg:left-20 w-full md:max-w-xl bg-amber-50/95 p-8 md:p-10 shadow-xl rounded-lg border-t-4 border-[#9c6644] mt-[-3rem] md:mt-0 z-20 backdrop-blur-sm">
                         <div className="flex items-center gap-3 mb-4 opacity-60">
-                            <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#92400e]">Gateway</span>
+                            <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#9c6644]">Gateway</span>
                             <div className="h-[1px] w-12 bg-amber-200"></div>
                             <span className="text-xs font-serif italic text-amber-700">Amazonas</span>
                         </div>
 
                         <div className="text-xl md:text-2xl font-serif text-amber-950 leading-relaxed font-medium">
-                            <span className="text-5xl float-left mr-3 mt-[-10px] font-bold text-[#d97706] font-handwriting">M</span>
+                            <span className="text-5xl float-left mr-3 mt-[-10px] font-bold text-[#9c6644] font-handwriting">M</span>
                             <div className="flex flex-col">
-                                <h3 className="text-2xl font-bold text-[#b45309] mb-4">Manaus sits inside the Amazon.</h3>
+                                <h3 className="text-2xl font-bold text-[#9c6644] mb-4">Manaus sits inside the Amazon.</h3>
                                 <p className="inline text-lg text-amber-900 drop-shadow-sm">
                                     From above, the forest appears endless. The city exists entirely within it — dependent on what surrounds it, and quietly reshaping it at the same time.
                                 </p>
@@ -197,11 +197,11 @@ function Manaus({ openLightbox }) {
 
                 {/* Transition 1 */}
                 <article className="max-w-3xl mx-auto text-amber-950 space-y-6 px-4 py-12 border-y border-white/5">
-                    <h2 className="text-2xl md:text-3xl font-handwriting text-[#d97706]">But access brings pressure too.</h2>
+                    <h2 className="text-2xl md:text-3xl font-handwriting text-[#9c6644]">But access brings pressure too.</h2>
                     <p className="text-lg leading-relaxed">
                         Manaus is also an industrial hub, home to one of Brazil’s largest free trade zones. Factories, ports, and supply chains support hundreds of thousands of jobs, drawing people inward from across the region. Economic growth offers stability for many, but it also pulls constantly at the forest that sustains the city. Land becomes something to sell. Trees become resources. Farming, logging, and development arrive not as abstract threats, but as practical responses to immediate needs.
                     </p>
-                    <p className="text-xl font-bold text-center italic text-[#d97706]">
+                    <p className="text-xl font-bold text-center italic text-[#9c6644]">
                         None of this happens at a distance.<br />
                         The forest is right there.
                     </p>
@@ -223,7 +223,7 @@ function Manaus({ openLightbox }) {
 
                 {/* Closing Prose */}
                 <article className="max-w-3xl mx-auto text-amber-950 space-y-6 px-4 py-12">
-                    <h2 className="text-2xl md:text-3xl font-handwriting text-[#d97706]">Manaus doesn’t give you a neat ending.</h2>
+                    <h2 className="text-2xl md:text-3xl font-handwriting text-[#9c6644]">Manaus doesn’t give you a neat ending.</h2>
                     <p className="text-lg leading-relaxed">
                         It is a place where the Amazon is still present and powerful, shaping daily life rather than sitting safely beyond reach. People work with the forest, learn from it, and rely on it in ways that are practical and immediate. For many, the city offers a way to stay close to the land while still engaging with the wider world.
                     </p>
@@ -244,12 +244,13 @@ function Manaus({ openLightbox }) {
 
                 {/* Final Visual Exhale */}
                 <div className="w-full max-w-6xl mx-auto px-4 mt-16 group">
-                    <h3 className="text-xl font-handwriting text-[#d97706] mb-6 text-center">Shifting light over the canopy</h3>
+                    <h3 className="text-xl font-handwriting text-[#9c6644] mb-6 text-center">Shifting light over the canopy</h3>
                     <RevealImage
                         smallSrc={process.env.PUBLIC_URL + "/images/Manaus/Small/Manaus14.webp"}
                         fullSrc={process.env.PUBLIC_URL + "/images/Manaus/Full/Manaus14.webp"}
                         alt="Shifting light over the canopy"
-                        caption="Clouds drift as sunlight moves across the treetops. Even from above, the forest never feels static — it changes minute by minute."
+                        title={getImage("manaus14")?.title}
+                        caption={getImage("manaus14")?.description}
                         onClick={() => handleImageClick("manaus14")}
                     />
                 </div>
@@ -349,10 +350,10 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
                         <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="absolute bottom-0 left-0 right-0 bg-stone-950/70 backdrop-blur-md p-6 border-t border-[#d97706]/30 text-left pointer-events-none rounded-b-sm shadow-[0_-10px_30px_rgba(0,0,0,0.5)]"
+                            className="absolute bottom-0 left-0 right-0 bg-stone-950/70 backdrop-blur-md p-6 border-t border-[#9c6644]/30 text-left pointer-events-none rounded-b-sm shadow-[0_-10px_30px_rgba(0,0,0,0.5)]"
                         >
                             {(title) && (
-                                <h4 className="text-[#d97706] text-xl font-bold font-handwriting mb-2 tracking-wide drop-shadow-sm">
+                                <h4 className="text-[#9c6644] text-xl font-bold font-handwriting mb-2 tracking-wide drop-shadow-sm">
                                     {title}
                                 </h4>
                             )}
@@ -384,7 +385,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
         >
             <div className="relative p-6 md:p-10 flex flex-col items-center z-10">
                 <div className="text-center mb-8">
-                    <h2 className={`text-4xl md:text-6xl font-bold font-handwriting drop-shadow-md transition-colors duration-500 ${isExpanded ? "text-stone-100" : "text-[#d97706]"}`}>
+                    <h2 className={`text-4xl md:text-6xl font-bold font-handwriting drop-shadow-md transition-colors duration-500 ${isExpanded ? "text-stone-100" : "text-[#9c6644]"}`}>
                         {section.title}
                     </h2>
                     {section.subtitle && (
@@ -398,7 +399,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
                     smallSrc={`${process.env.PUBLIC_URL}${getImage(section.coverImage)?.image}`}
                     fullSrc={`${process.env.PUBLIC_URL}${getImage(section.coverImage)?.lightboxImage}`}
                     alt={section.title}
-                    caption={section.coverCaption}
+                    caption={section.coverCaption || getImage(section.coverImage)?.description}
                     title={getImage(section.coverImage)?.title}
                     onClick={() => handleImageClick(section.coverImage)}
                     expanded={isExpanded}
@@ -469,7 +470,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
                         }
                         if (item.type === "quote") {
                             return (
-                                <blockquote key={idx} className="border-l-4 border-[#d97706] pl-6 italic my-6 text-xl opacity-90 max-w-2xl md:text-left text-stone-800">
+                                <blockquote key={idx} className="border-l-4 border-[#9c6644] pl-6 italic my-6 text-xl opacity-90 max-w-2xl md:text-left text-stone-800">
                                     {item.text.split('\n').map((line, i) => <span key={i} className="block">{line}</span>)}
                                     {item.source && <span className="text-base not-italic block mt-2 font-bold text-stone-400">{item.source}</span>}
                                 </blockquote>
