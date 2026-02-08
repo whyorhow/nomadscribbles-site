@@ -57,7 +57,7 @@ function Manaus({ openLightbox }) {
         {
             id: "access-proximity-opportunity",
             title: "Access, Proximity, Opportunity",
-            expandedBg: "bg-[#d97706]/100",
+            expandedBg: "bg-[#9c6644]/100",
             coverImage: "manaus3",
             content: [
                 { type: "grid", ids: ["manaus10", "manaus7", "manaus1"], caption: "Daily life is shaped by the market and the forest." }
@@ -66,7 +66,7 @@ function Manaus({ openLightbox }) {
         {
             id: "city-scale-pressure",
             title: "City, Scale, Pressure",
-            expandedBg: "bg-[#b45309]/100",
+            expandedBg: "bg-[#8b5a3c]/100",
             coverImage: "manaus6",
             content: [
                 { type: "text", text: "Manaus grows outward as well as upward. Streets stretch, neighbourhoods densify, and infrastructure follows the river’s edge deeper into the forest. For many residents, this growth brings work, stability, and connection to the wider country. But expansion here is never neutral. Every new road, warehouse, or housing block sits in direct conversation with what it replaces. The city’s scale is felt not through skylines, but through the quiet accumulation of pressure on the land around it." },
@@ -76,7 +76,7 @@ function Manaus({ openLightbox }) {
         {
             id: "the-forest-itself",
             title: "The Forest Itself",
-            expandedBg: "bg-[#78350f]/100",
+            expandedBg: "bg-[#9c6644]/100",
             coverImage: "manaus12",
             content: [
                 { type: "text", text: "That is what makes Manaus so uneasy and so important. The benefits and the risks exist side by side, often for the same people, often through the same systems. Tourism can help keep land standing while increasing demand for access. Industry provides work while expanding the city’s footprint. Choices are rarely clean, and rarely made from a place of certainty." },
@@ -86,7 +86,7 @@ function Manaus({ openLightbox }) {
         {
             id: "quiet-consequences",
             title: "Quiet Consequences",
-            expandedBg: "bg-[#d97706]/100",
+            expandedBg: "bg-[#9c6644]/100",
             coverImage: "manaus19",
             content: [
                 { type: "image", id: "manaus22", caption: "Life revealing itself quietly." }
@@ -179,7 +179,7 @@ function Manaus({ openLightbox }) {
             <main className="px-2 py-2 max-w-screen-xl mx-auto space-y-12 flex flex-col items-center pb-24">
                 {/* Introduction Prose */}
                 <article className="max-w-3xl mx-auto text-amber-950 space-y-6 px-4 mb-12">
-                    <h2 className="text-2xl md:text-3xl font-handwriting text-[#d97706]">Manaus is both an extraordinary place and a difficult one.</h2>
+                    <h2 className="text-2xl md:text-3xl font-handwriting text-[#9c6644]">Manaus is both an extraordinary place and a difficult one.</h2>
                     <p className="text-lg leading-relaxed">
                         It is a city of more than two million people, located thousands of kilometres from Brazil’s coast and accessible mainly by river and air. It is one of the largest urban centres on Earth embedded so deeply within tropical rainforest. Here, the Amazon isn’t a distant idea, but a daily presence. Rivers, trees, animals, and people intersect in ways that feel unusually close and unusually exposed.
                     </p>
@@ -350,7 +350,7 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
                         <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="absolute bottom-0 left-0 right-0 bg-stone-950/70 backdrop-blur-md p-6 border-t border-[#9c6644]/30 text-left pointer-events-none rounded-b-sm shadow-[0_-10px_30px_rgba(0,0,0,0.5)]"
+                            className="absolute bottom-0 left-0 right-0 bg-stone-950/70 backdrop-blur-md p-6 border-t border-[#9c6644]/60 text-left pointer-events-none rounded-b-sm shadow-[0_-10px_30px_rgba(0,0,0,0.5)]"
                         >
                             {(title) && (
                                 <h4 className="text-[#9c6644] text-xl font-bold font-handwriting mb-2 tracking-wide drop-shadow-sm">
@@ -372,6 +372,7 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
 
 function StoryCard({ section, getImage, handleImageClick }) {
     const [isExpanded, setIsExpanded] = useState(false);
+    const [expandedGridId, setExpandedGridId] = useState(null);
     const activeBg = section.expandedBg || "bg-stone-900/80";
 
     return (
@@ -452,14 +453,17 @@ function StoryCard({ section, getImage, handleImageClick }) {
                                     {item.ids.map(id => {
                                         const img = getImage(id);
                                         if (!img) return null;
+                                        const isGridItemExpanded = expandedGridId === id;
                                         return (
-                                            <div key={id} className="flex flex-col items-center w-full">
+                                            <div key={id} className={`flex flex-col items-center w-full transition-all duration-700 ${isGridItemExpanded ? "md:col-span-full z-30" : "z-10"}`}>
                                                 <RevealImage
                                                     smallSrc={`${process.env.PUBLIC_URL}${img.image}`}
                                                     fullSrc={`${process.env.PUBLIC_URL}${img.lightboxImage}`}
                                                     alt={id}
                                                     title={img.title}
                                                     caption={img.description}
+                                                    expanded={isGridItemExpanded}
+                                                    onToggle={() => setExpandedGridId(isGridItemExpanded ? null : id)}
                                                     onClick={(e) => { e.stopPropagation(); handleImageClick(id); }}
                                                 />
                                             </div>
