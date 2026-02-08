@@ -324,7 +324,7 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
         <motion.div
             layout
             ref={containerRef}
-            className={`relative mx-auto transition-all duration-700 ease-in-out my-8 ${visuallyExpanded ? "w-full max-w-[98vw] md:max-w-screen-2xl" : "w-full md:w-1/2 max-w-3xl"}`}
+            className={`relative mx-auto transition-all duration-700 ease-in-out my-8 ${visuallyExpanded ? "w-full max-w-[98vw] md:max-w-screen-2xl" : "w-full md:w-1/2 max-w-5xl"}`}
         >
             <div className="relative w-full flex justify-center items-center">
                 {/* Small Image */}
@@ -381,7 +381,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
     return (
         <motion.div
             layout
-            className={`w-full transition-all duration-500 rounded-xl overflow-hidden shadow-lg cursor-pointer ${isExpanded ? `shadow-2xl ${activeBg} max-w-[98vw] md:max-w-screen-2xl` : "bg-[#b08968]/30 backdrop-blur-md max-w-4xl"}`}
+            className={`w-full transition-all duration-500 rounded-xl overflow-hidden shadow-lg cursor-pointer ${isExpanded ? `shadow-2xl ${activeBg} max-w-[98vw] md:max-w-screen-2xl` : "bg-[#b08968]/30 backdrop-blur-md max-w-6xl"}`}
             onClick={() => setIsExpanded(!isExpanded)}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -432,7 +432,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
                 <div className="px-6 pb-12 md:px-16 md:pb-20 flex flex-col items-center space-y-10">
                     {section.content.map((item, idx) => {
                         if (item.type === "text") {
-                            return <p key={idx} className="text-xl leading-relaxed max-w-4xl text-center md:text-left text-[#ede0d4] font-medium">{item.text}</p>;
+                            return <p key={idx} className="text-xl leading-relaxed max-w-3xl text-center md:text-left text-[#ede0d4] font-medium mx-auto">{item.text}</p>;
                         }
                         if (item.type === "image") {
                             const img = getImage(item.id);
@@ -477,14 +477,14 @@ function StoryCard({ section, getImage, handleImageClick }) {
                         }
                         if (item.type === "quote") {
                             return (
-                                <blockquote key={idx} className="border-l-4 border-[#9c6644] pl-6 italic my-6 text-xl opacity-90 max-w-2xl md:text-left text-[#3c2a21]">
+                                <blockquote key={idx} className="border-l-4 border-[#9c6644] pl-6 italic my-6 text-xl opacity-90 max-w-xl md:text-left text-[#3c2a21] mx-auto">
                                     {item.text.split('\n').map((line, i) => <span key={i} className="block">{line}</span>)}
                                     {item.source && <span className="text-base not-italic block mt-2 font-bold text-[#b08968]">{item.source}</span>}
                                 </blockquote>
                             );
                         }
                         if (item.type === "header") {
-                            return <h3 key={idx} className="text-2xl md:text-3xl font-bold font-handwriting mt-4 text-center text-[#ede0d4]">{item.text}</h3>;
+                            return <h3 key={idx} className="text-2xl md:text-3xl font-bold font-handwriting mt-4 text-center text-[#ede0d4] max-w-2xl mx-auto">{item.text}</h3>;
                         }
                         return null;
                     })}
