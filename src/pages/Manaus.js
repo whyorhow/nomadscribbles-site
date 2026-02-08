@@ -376,12 +376,12 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
 function StoryCard({ section, getImage, handleImageClick }) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [expandedGridId, setExpandedGridId] = useState(null);
-    const activeBg = section.expandedBg || "bg-stone-900/80";
+    const activeBg = section.expandedBg || "bg-[#9c6644]";
 
     return (
         <motion.div
             layout
-            className={`w-full transition-all duration-500 rounded-xl overflow-hidden shadow-lg cursor-pointer ${isExpanded ? `shadow-2xl ${activeBg} max-w-[98vw] md:max-w-screen-2xl` : "bg-[#3c2a21]/50 backdrop-blur-md max-w-6xl"}`}
+            className={`w-full transition-all duration-500 rounded-xl overflow-hidden shadow-lg cursor-pointer ${isExpanded ? `shadow-2xl ${activeBg} max-w-[98vw] md:max-w-screen-2xl` : "bg-[#b08968]/30 backdrop-blur-md max-w-6xl"}`}
             onClick={() => setIsExpanded(!isExpanded)}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -389,7 +389,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
         >
             <div className="relative p-6 md:p-10 flex flex-col items-center z-10">
                 <div className="text-center mb-8">
-                    <h2 className={`text-4xl md:text-6xl font-bold font-handwriting drop-shadow-md transition-colors duration-500 ${isExpanded ? "text-stone-100" : "text-[#9c6644]"}`}>
+                    <h2 className={`text-4xl md:text-6xl font-bold font-handwriting drop-shadow-md transition-colors duration-500 ${isExpanded ? "text-[#ede0d4]" : "text-[#9c6644]"}`}>
                         {section.title}
                     </h2>
                     {section.subtitle && (
