@@ -299,16 +299,16 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
         <motion.div
             layout // Smooth transition for width change
             ref={containerRef}
-            className={`relative max-w-5xl mx-auto cursor-pointer my-8 ${visuallyExpanded ? "w-full" : "w-full md:w-1/2"}`}
+            className={`relative mx-auto transition-all duration-700 ease-in-out my-8 ${visuallyExpanded ? "w-full max-w-[98vw] md:max-w-screen-2xl" : "w-full md:w-1/2 max-w-5xl"}`}
         >
-            <div className="relative w-full">
+            <div className="relative w-full flex justify-center items-center">
                 {/* Small Image - Always visible initially */}
                 <img
                     src={smallSrc}
                     alt={alt}
                     onClick={handleClick}
-                    loading="lazy" // OPTIMIZATION
-                    className={`rounded-sm shadow-sm transition-all duration-500 ${showFullAsDriver ? "absolute inset-0 w-full h-full object-cover opacity-0" : "relative w-full h-auto object-contain z-10"}`}
+                    loading="lazy"
+                    className={`rounded-sm shadow-sm transition-all duration-500 cursor-pointer w-full h-auto max-h-[85vh] object-contain ${showFullAsDriver ? "absolute inset-0 opacity-0" : "relative z-10 opacity-100"}`}
                 />
 
                 {/* High-Res Image - Only rendered if expanded to save bandwidth */}
@@ -319,34 +319,43 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
                         onClick={handleClick}
                         onLoad={() => setFullLoaded(true)}
                         onError={() => setImgError(true)}
-                        className={`rounded-sm transition-all duration-700 ease-out ${showFullAsDriver ? "relative w-full h-auto z-20 opacity-100 scale-100" : "absolute inset-0 w-full h-full object-cover z-20 opacity-0 scale-95"}`}
-                        loading="lazy" // OPTIMIZATION
+                        className={`rounded-sm transition-all duration-700 ease-out cursor-pointer w-full h-auto max-h-[85vh] object-contain ${showFullAsDriver ? "relative z-20 opacity-100 scale-100" : "absolute inset-0 z-20 opacity-0 scale-95"}`}
+                        loading="lazy"
                     />
+                )}
+
+                {/* Floating Metadata Card - Anchored and Constrained */}
+                {(title || caption) && visuallyExpanded && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: fullLoaded ? 1 : 0, y: fullLoaded ? 0 : 10 }}
+                        className="absolute bottom-8 left-0 right-0 mx-auto w-fit max-w-[90%] md:max-w-3xl bg-[#1c1917]/85 backdrop-blur-md p-6 md:p-8 border border-[#D4AF37]/30 text-left pointer-events-none rounded-xl shadow-2xl shadow-black/60 z-30"
+                    >
+                        <div className="max-w-2xl px-2">
+                            {title && (
+                                <h4 className="text-[#D4AF37] text-2xl md:text-3xl font-bold font-handwriting mb-3 tracking-wide drop-shadow-sm">
+                                    {title}
+                                </h4>
+                            )}
+                            {caption && (
+                                <p className="text-[#ede0d4] text-lg leading-relaxed font-serif italic opacity-95">
+                                    {caption}
+                                </p>
+                            )}
+                        </div>
+                    </motion.div>
                 )}
             </div>
 
-            {(title || caption) && (
-                <div className="grid grid-cols-1 grid-rows-1 mt-8 w-full">
-                    {title && (
-                        <div
-                            className={`col-start-1 row-start-1 flex justify-center transition-opacity duration-500 z-10 ${!visuallyExpanded ? "opacity-100" : "opacity-0 pointer-events-none"}`}
-                        >
-                            <div className="max-w-[200px] p-3 bg-white/5 backdrop-blur-sm border-l border-[#eeda8d]/50 text-center shadow-sm">
-                                <h4 className="text-stone-200 text-xs font-bold uppercase tracking-widest mb-1 font-cormorant">
-                                    {title}
-                                </h4>
-                                <div className="mx-auto mt-2 w-4 h-[1px] bg-[#eeda8d]/50" />
-                            </div>
-                        </div>
-                    )}
-
-                    {caption && (
-                        <div className={`col-start-1 row-start-1 flex justify-center items-start transition-opacity duration-500 ${visuallyExpanded ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-                            <p className="text-center text-sm italic font-medium text-stone-300">
-                                {caption}
-                            </p>
-                        </div>
-                    )}
+            {/* Collapsed Label - Minimal Gallery style */}
+            {!visuallyExpanded && title && (
+                <div className="mt-6 flex justify-center">
+                    <div className="max-w-[200px] p-3 bg-white/5 backdrop-blur-sm border-l border-[#D4AF37]/50 text-center shadow-sm">
+                        <h4 className="text-stone-200 text-xs font-bold uppercase tracking-widest mb-1 font-cormorant">
+                            {title}
+                        </h4>
+                        <div className="mx-auto mt-2 w-4 h-[1px] bg-[#D4AF37]/50" />
+                    </div>
                 </div>
             )}
         </motion.div>
@@ -360,7 +369,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
     return (
         <motion.div
             layout
-            className={`w-full max-w-6xl bg-stone-900/50 backdrop-blur-md rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-500 ${isExpanded ? `shadow-2xl ${activeBg}` : ""}`}
+            className={`w-full max-w-6xl bg-stone-900/50 backdrop-blur-md rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-500 ${isExpanded ? `shadow-2xl ${activeBg} max-w-[98vw] md:max-w-screen-2xl` : ""}`}
             onClick={() => setIsExpanded(!isExpanded)}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -411,7 +420,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
                         <div className="px-6 pb-12 md:px-16 md:pb-20 flex flex-col items-center space-y-10">
                             {section.content.map((item, idx) => {
                                 if (item.type === "text") {
-                                    return <p key={idx} className="text-xl leading-relaxed max-w-4xl text-center md:text-left text-stone-300 font-medium">{item.text}</p>;
+                                    return <p key={idx} className="text-xl leading-relaxed max-w-3xl text-center md:text-left text-stone-300 font-medium mx-auto">{item.text}</p>;
                                 }
                                 if (item.type === "image") {
                                     const img = getImage(item.id);
@@ -452,14 +461,14 @@ function StoryCard({ section, getImage, handleImageClick }) {
                                 }
                                 if (item.type === "quote") {
                                     return (
-                                        <blockquote key={idx} className="border-l-4 border-gold pl-6 italic my-6 text-xl opacity-90 max-w-2xl md:text-left text-stone-300">
+                                        <blockquote key={idx} className="border-l-4 border-[#D4AF37] pl-6 italic my-6 text-xl opacity-90 max-w-xl md:text-left text-stone-300 mx-auto">
                                             {item.text.split('\n').map((line, i) => <span key={i} className="block">{line}</span>)}
                                             {item.source && <span className="text-base not-italic block mt-2 font-bold text-stone-400">{item.source}</span>}
                                         </blockquote>
                                     );
                                 }
                                 if (item.type === "header") {
-                                    return <h3 key={idx} className="text-2xl md:text-3xl font-bold font-handwriting mt-4 text-center text-stone-100">{item.text}</h3>;
+                                    return <h3 key={idx} className="text-2xl md:text-3xl font-bold font-handwriting mt-4 text-center text-stone-100 max-w-2xl mx-auto">{item.text}</h3>;
                                 }
                                 if (item.type === "list") {
                                     return (
