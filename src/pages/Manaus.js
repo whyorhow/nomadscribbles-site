@@ -326,19 +326,19 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
             ref={containerRef}
             className={`relative mx-auto transition-all duration-700 ease-in-out my-8 ${visuallyExpanded ? "w-full max-w-[98vw] md:max-w-screen-2xl" : "w-full md:w-1/2 max-w-5xl"}`}
         >
-            <div className="relative w-full">
+            <div className="relative w-full flex justify-center items-center">
                 {/* Small Image */}
                 <img
                     src={smallSrc}
                     alt={alt}
                     onClick={handleClick}
                     loading="lazy"
-                    className={`rounded-sm shadow-sm transition-opacity duration-500 cursor-pointer ${showFullAsDriver ? "absolute inset-0 w-full h-full object-cover opacity-0" : "relative w-full h-auto object-contain z-10"} ${visuallyExpanded && !imgError && !showFullAsDriver ? "opacity-0" : "opacity-100"}`}
+                    className={`rounded-sm shadow-sm transition-all duration-500 cursor-pointer ${showFullAsDriver ? "absolute opacity-0" : "relative"} w-full h-auto max-h-[85vh] object-contain z-10`}
                 />
 
                 {/* High-Res Image - Only rendered if expanded */}
                 {!imgError && visuallyExpanded && (
-                    <div className="relative w-full z-20">
+                    <div className={`z-20 ${showFullAsDriver ? "relative w-full" : "absolute inset-0 opacity-0"}`}>
                         <img
                             src={fullSrc}
                             alt={alt}
@@ -346,7 +346,7 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
                             onLoad={() => setFullLoaded(true)}
                             onError={() => setImgError(true)}
                             loading="lazy"
-                            className={`rounded-sm transition-all duration-700 cursor-pointer ${showFullAsDriver ? "relative w-full h-auto max-h-[85vh] object-contain opacity-100 scale-100" : "absolute inset-0 w-full h-full object-cover opacity-0 scale-95"} ${visuallyExpanded && !showFullAsDriver ? "opacity-100 scale-100" : ""}`}
+                            className={`rounded-sm transition-all duration-700 cursor-pointer w-full h-auto max-h-[85vh] object-contain ${showFullAsDriver ? "opacity-100 scale-100" : "scale-95"}`}
                         />
 
                         {/* Final Overlay Version */}
