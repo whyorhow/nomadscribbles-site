@@ -76,7 +76,7 @@ function Manaus({ openLightbox }) {
         {
             id: "the-forest-itself",
             title: "The Forest Itself",
-            expandedBg: "bg-[#d97706]/95",
+            expandedBg: "bg-[#78350f]/95",
             coverImage: "manaus12",
             content: [
                 { type: "text", text: "That is what makes Manaus so uneasy and so important. The benefits and the risks exist side by side, often for the same people, often through the same systems. Tourism can help keep land standing while increasing demand for access. Industry provides work while expanding the city’s footprint. Choices are rarely clean, and rarely made from a place of certainty." },
@@ -86,7 +86,7 @@ function Manaus({ openLightbox }) {
         {
             id: "quiet-consequences",
             title: "Quiet Consequences",
-            expandedBg: "bg-[#b45309]/95",
+            expandedBg: "bg-[#d97706]/85",
             coverImage: "manaus19",
             content: [
                 { type: "image", id: "manaus22", caption: "Life revealing itself quietly." }
@@ -95,7 +95,7 @@ function Manaus({ openLightbox }) {
     ];
 
     const pageBackgroundStyle = {
-        backgroundColor: "#d9ed92",
+        backgroundColor: "#fffbeb",
         opacity: 1,
     };
 
@@ -118,7 +118,7 @@ function Manaus({ openLightbox }) {
 
             <div className="relative w-full overflow-hidden">
                 <div className="flex justify-center mb-6 px-4 mt-8 relative z-10">
-                    <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-[#D4AF37] tracking-tight text-center drop-shadow-sm">Manaus</h1>
+                    <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-[#d97706] tracking-tight text-center drop-shadow-sm">Manaus</h1>
                 </div>
 
                 {/* Hero Image - Optimized */}
@@ -137,14 +137,14 @@ function Manaus({ openLightbox }) {
                         />
                     </motion.div>
 
-                    <div className="relative md:absolute md:-bottom-12 md:left-12 lg:left-20 w-full md:max-w-xl bg-[#f5f5f4] p-8 md:p-10 shadow-xl rounded-lg border-t-4 border-[#d97706] mt-[-3rem] md:mt-0 z-20">
+                    <div className="relative md:absolute md:-bottom-12 md:left-12 lg:left-20 w-full md:max-w-xl bg-amber-50/90 p-8 md:p-10 shadow-xl rounded-lg border-t-4 border-[#d97706] mt-[-3rem] md:mt-0 z-20 backdrop-blur-sm">
                         <div className="flex items-center gap-3 mb-4 opacity-60">
                             <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#92400e]">Gateway</span>
-                            <div className="h-[1px] w-12 bg-stone-400"></div>
-                            <span className="text-xs font-serif italic text-stone-500">Amazonas</span>
+                            <div className="h-[1px] w-12 bg-amber-200"></div>
+                            <span className="text-xs font-serif italic text-amber-700">Amazonas</span>
                         </div>
 
-                        <div className="text-xl md:text-2xl font-serif text-stone-800 leading-relaxed">
+                        <div className="text-xl md:text-2xl font-serif text-amber-900 leading-relaxed">
                             <span className="text-5xl float-left mr-3 mt-[-10px] font-bold text-[#d97706] font-handwriting">M</span>
                             <div className="flex flex-col">
                                 <h3 className="text-2xl font-bold text-[#d97706] mb-4">Manaus sits inside the Amazon.</h3>
