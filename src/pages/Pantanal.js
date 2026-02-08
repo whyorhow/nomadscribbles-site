@@ -11,24 +11,6 @@ function Pantanal({ openLightbox }) {
     const pantanalCoords = destinations.find(d => d.id === "pantanal");
     const pantanalImages = artImages.filter(img => img.category === "Pantanal");
 
-    // Hero Interaction State
-    const [isHeroExpanded, setIsHeroExpanded] = useState(false);
-    const heroRef = useRef(null);
-
-    // Auto-collapse hero when scrolled out of view
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (!entry.isIntersecting && isHeroExpanded) {
-                    setIsHeroExpanded(false);
-                }
-            },
-            { threshold: 0.1 }
-        );
-
-        if (heroRef.current) observer.observe(heroRef.current);
-        return () => observer.disconnect();
-    }, [isHeroExpanded]);
 
     const spreadBackgroundStyle = {
         backgroundImage: `url(${paperTexture})`,
@@ -168,85 +150,79 @@ function Pantanal({ openLightbox }) {
                 </defs>
             </svg>
 
-            <div className="relative w-full overflow-hidden">
-                <div className="flex justify-center mb-6 px-4 mt-8 relative z-10">
-                    <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-[#D4AF37] tracking-tight text-center drop-shadow-sm">The Pantanal</h1>
-                </div>
-
-                {/* Hero Image - Optimized */}
-                <div ref={heroRef} className="w-full max-w-7xl mx-auto px-4 mb-24 relative z-10 group">
-                    <motion.div
-                        layout
-                        className={`relative w-full overflow-hidden rounded-xl shadow-md cursor-pointer group-hover:shadow-xl transition-all duration-700 ease-in-out ${isHeroExpanded ? 'aspect-auto' : 'aspect-[16/10] md:aspect-[21/9]'}`}
-                        onClick={() => setIsHeroExpanded(!isHeroExpanded)}
-                    >
-                        <img
-                            src={isHeroExpanded ? process.env.PUBLIC_URL + "/images/Pantanal/full/PantanalW7.webp" : process.env.PUBLIC_URL + "/images/Pantanal/small/Pantanal7new.webp"}
-                            alt="Palms After Rain"
-                            fetchPriority="high" // OPTIMIZATION
-                            loading="eager"      // OPTIMIZATION
-                            className={`w-full h-full object-cover transition-transform duration-700 ease-in-out ${!isHeroExpanded ? 'transform scale-100 group-hover:scale-105' : ''}`}
-                        />
-                    </motion.div>
-
-                    <div className="relative md:absolute md:-bottom-12 md:left-12 lg:left-20 w-full md:max-w-xl bg-[#f5f5f4] p-8 md:p-10 shadow-xl rounded-lg border-t-4 border-[#e9d5ff] mt-[-3rem] md:mt-0 z-20">
-                        <div className="flex items-center gap-3 mb-4 opacity-60">
-                            <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#6b21a8]">Feature</span>
-                            <div className="h-[1px] w-12 bg-stone-400"></div>
-                            <span className="text-xs font-serif italic text-stone-500">Mato Grosso do Sul</span>
-                        </div>
-
-                        <div className="text-xl md:text-2xl font-serif text-stone-800 leading-relaxed">
-                            <span className="text-5xl float-left mr-3 mt-[-10px] font-bold text-[#6b21a8] font-handwriting">P</span>
-                            <p className="inline">
-                                alm trees stand against a clearing sky, framed by open grass and distant cloud. The horizon here feels endless, a flat green expanse where water and land are constantly negotiating their boundaries.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="relative w-full mb-16 overflow-hidden">
-                    <div
-                        className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[110vw] pointer-events-none z-0"
-                        style={spreadBackgroundStyle}
+            {/* Cinematic Hero Section */}
+            <div className="relative h-[90vh] w-full overflow-hidden flex items-center justify-center">
+                <motion.div
+                    initial={{ scale: 1.1, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 1.5, ease: "easeOut" }}
+                    className="absolute inset-0 z-0"
+                >
+                    <img
+                        src={`${process.env.PUBLIC_URL}/images/Pantanal/full/PantanalW7.webp`}
+                        alt="Pantanal Wetlands Landscape Hero"
+                        className="w-full h-full object-cover"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#84935c]/40 via-transparent to-[#84935c]" />
+                </motion.div>
 
-                    <div className="relative z-20 max-w-5xl mx-auto px-4 pt-0 pb-4 md:pt-2 md:pb-8 flex flex-col items-center mt-[-10px]">
-                        <div className="w-full max-w-4xl overflow-visible mb-[-10px]">
-                            <ContextMap
-                                markers={[pantanalCoords].filter(Boolean)}
-                                zoomToId="pantanal"
-                                title="Where is the Pantanal?"
-                                geography={pantanalCoords?.geography}
-                                transparent={true}
-                            />
-                        </div>
+                <div className="relative z-10 text-center max-w-4xl px-4">
+                    <motion.div
+                        initial={{ y: 30, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.5, duration: 1 }}
+                    >
+                        <h1 className="text-7xl md:text-9xl font-bold font-handwriting text-[#D4AF37] drop-shadow-2xl mb-4">
+                            The Pantanal
+                        </h1>
+                        <p className="text-xl md:text-3xl font-light tracking-[0.2em] uppercase text-stone-200 opacity-90">
+                            Shaped by Water
+                        </p>
+                    </motion.div>
+                </div>
+            </div>
+
+            <div className="relative w-full mb-16 overflow-hidden">
+                <div
+                    className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[110vw] pointer-events-none z-0"
+                    style={spreadBackgroundStyle}
+                />
+
+                <div className="relative z-20 max-w-5xl mx-auto px-4 pt-0 pb-4 md:pt-2 md:pb-8 flex flex-col items-center mt-[-10px]">
+                    <div className="w-full max-w-4xl overflow-visible mb-[-10px]">
+                        <ContextMap
+                            markers={[pantanalCoords].filter(Boolean)}
+                            zoomToId="pantanal"
+                            title="Where is the Pantanal?"
+                            geography={pantanalCoords?.geography}
+                            transparent={true}
+                        />
                     </div>
                 </div>
-
-                <main className="px-2 py-2 max-w-screen-xl mx-auto space-y-8 flex flex-col items-center pb-24">
-                    {sections.map((section) => (
-                        <StoryCard
-                            key={section.id}
-                            section={section}
-                            getImage={getImage}
-                            handleImageClick={handleImageClick}
-                        />
-                    ))}
-
-                    <div className="w-full flex flex-col items-center gap-4 mt-16 mb-8 relative z-10">
-                        <Link to="/brazil" className="flex flex-row items-center justify-center text-stone-300 hover:text-white transition-colors drop-shadow-md bg-stone-950/50 backdrop-blur-md rounded-full px-6 py-2 border border-white/10 shadow-lg hover:bg-stone-900/60 w-fit">
-                            <span className="text-xl mr-3 pb-1">←</span>
-                            <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Return to Brazil</span>
-                        </Link>
-                        <Link to="/brazil/foz" className="flex flex-row items-center justify-center text-[#eeda8d] hover:text-white transition-colors drop-shadow-sm bg-[#ceb752]/30 backdrop-blur-md rounded-full px-6 py-2 border border-[#ceb752]/60 shadow-md hover:bg-[#ceb752]/40 w-fit">
-                            <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Next: Foz do Iguaçu</span>
-                            <span className="text-xl ml-3 pb-1">→</span>
-                        </Link>
-
-                    </div>
-                </main>
             </div>
+
+            <main className="px-2 py-2 max-w-screen-xl mx-auto space-y-8 flex flex-col items-center pb-24">
+                {sections.map((section) => (
+                    <StoryCard
+                        key={section.id}
+                        section={section}
+                        getImage={getImage}
+                        handleImageClick={handleImageClick}
+                    />
+                ))}
+
+                <div className="w-full flex flex-col items-center gap-4 mt-16 mb-8 relative z-10">
+                    <Link to="/brazil" className="flex flex-row items-center justify-center text-stone-300 hover:text-white transition-colors drop-shadow-md bg-stone-950/50 backdrop-blur-md rounded-full px-6 py-2 border border-white/10 shadow-lg hover:bg-stone-900/60 w-fit">
+                        <span className="text-xl mr-3 pb-1">←</span>
+                        <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Return to Brazil</span>
+                    </Link>
+                    <Link to="/brazil/foz" className="flex flex-row items-center justify-center text-[#eeda8d] hover:text-white transition-colors drop-shadow-sm bg-[#ceb752]/30 backdrop-blur-md rounded-full px-6 py-2 border border-[#ceb752]/60 shadow-md hover:bg-[#ceb752]/40 w-fit">
+                        <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Next: Foz do Iguaçu</span>
+                        <span className="text-xl ml-3 pb-1">→</span>
+                    </Link>
+
+                </div>
+            </main>
         </div>
     );
 }
@@ -309,15 +285,15 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
         <motion.div
             layout
             ref={containerRef}
-            className={`relative max-w-5xl mx-auto transition-all duration-700 ease-in-out my-8 ${visuallyExpanded ? "w-full" : "w-full md:w-1/2"}`}
+            className={`relative mx-auto transition-all duration-700 ease-in-out my-8 ${visuallyExpanded ? "w-full max-w-[98vw] md:max-w-screen-2xl" : "w-full md:w-1/2 max-w-5xl"}`}
         >
-            <div className="relative w-full">
+            <div className="relative w-full flex justify-center items-center">
                 <img
                     src={smallSrc}
                     alt={alt}
                     onClick={handleClick}
                     loading="lazy"
-                    className={`rounded-sm shadow-sm transition-opacity duration-500 cursor-pointer ${showFullAsDriver ? "absolute inset-0 w-full h-full object-cover opacity-0" : "relative w-full h-auto object-contain z-10"} ${visuallyExpanded && !imgError && !showFullAsDriver ? "opacity-0" : "opacity-100"}`}
+                    className={`rounded-sm shadow-sm transition-opacity duration-500 cursor-pointer w-full h-auto max-h-[85vh] object-contain ${showFullAsDriver ? "absolute inset-0 opacity-0" : "relative z-10 opacity-100"}`}
                 />
 
                 {!imgError && visuallyExpanded && (
@@ -327,34 +303,43 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
                         onClick={handleClick}
                         onLoad={() => setFullLoaded(true)}
                         onError={() => setImgError(true)}
-                        className={`rounded-sm transition-all duration-700 cursor-pointer ${showFullAsDriver ? "relative w-full h-auto z-20 opacity-100 scale-100" : "absolute inset-0 w-full h-full object-cover z-20 opacity-0 scale-95"} ${visuallyExpanded && !showFullAsDriver ? "opacity-100 scale-100" : ""}`}
+                        className={`rounded-sm transition-all duration-700 cursor-pointer w-full h-auto max-h-[85vh] object-contain ${showFullAsDriver ? "relative z-20 opacity-100 scale-100" : "absolute inset-0 z-20 opacity-0 scale-95"}`}
                         loading="lazy"
                     />
                 )}
-            </div>
 
-            {(title || caption) && (
-                <div className="grid grid-cols-1 grid-rows-1 mt-8 w-full">
-                    {title && (
-                        <div
-                            className={`col-start-1 row-start-1 flex justify-center transition-opacity duration-500 z-10 ${!visuallyExpanded ? "opacity-100" : "opacity-0 pointer-events-none"}`}
-                        >
-                            <div className="max-w-[200px] p-3 bg-white/5 backdrop-blur-sm border-l border-[#eeda8d]/50 text-center shadow-sm">
-                                <h4 className="text-stone-200 text-xs font-bold uppercase tracking-widest mb-1 font-cormorant">
+                {/* Floating Metadata Card - Anchored and Constrained */}
+                {(title || caption) && visuallyExpanded && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: fullLoaded ? 1 : 0, y: fullLoaded ? 0 : 10 }}
+                        className="absolute bottom-8 left-0 right-0 mx-auto w-fit max-w-[90%] md:max-w-3xl bg-[#1a2e05]/85 backdrop-blur-md p-6 md:p-8 border border-[#D4AF37]/30 text-left pointer-events-none rounded-xl shadow-2xl shadow-black/80 z-30"
+                    >
+                        <div className="max-w-2xl px-2">
+                            {title && (
+                                <h4 className="text-[#c6ac8f] text-2xl md:text-3xl font-bold font-handwriting mb-3 tracking-wide drop-shadow-sm">
                                     {title}
                                 </h4>
-                                <div className="mx-auto mt-2 w-4 h-[1px] bg-[#eeda8d]/50" />
-                            </div>
+                            )}
+                            {caption && (
+                                <p className="text-[#ede0d4] text-lg leading-relaxed font-serif italic opacity-95">
+                                    {caption}
+                                </p>
+                            )}
                         </div>
-                    )}
+                    </motion.div>
+                )}
+            </div>
 
-                    {caption && (
-                        <div className={`col-start-1 row-start-1 flex justify-center items-start transition-opacity duration-500 ${visuallyExpanded ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-                            <p className="text-center text-sm italic font-medium text-stone-300">
-                                {caption}
-                            </p>
-                        </div>
-                    )}
+            {/* Collapsed Label - Minimal Gallery style */}
+            {!visuallyExpanded && title && (
+                <div className="mt-6 flex justify-center">
+                    <div className="max-w-[200px] p-3 bg-white/5 backdrop-blur-sm border-l border-[#D4AF37]/50 text-center shadow-sm">
+                        <h4 className="text-stone-200 text-xs font-bold uppercase tracking-widest mb-1 font-cormorant">
+                            {title}
+                        </h4>
+                        <div className="mx-auto mt-2 w-4 h-[1px] bg-[#D4AF37]/50" />
+                    </div>
                 </div>
             )}
         </motion.div>
@@ -368,7 +353,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
     return (
         <motion.div
             layout
-            className={`w-full max-w-6xl bg-stone-900/50 backdrop-blur-md rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-500 ${isExpanded ? `shadow-2xl ${activeBg}` : ""}`}
+            className={`w-full max-w-6xl bg-stone-900/50 backdrop-blur-md rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-500 ${isExpanded ? `shadow-2xl ${activeBg} max-w-[98vw] md:max-w-screen-2xl` : ""}`}
             onClick={() => setIsExpanded(!isExpanded)}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -423,7 +408,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
                 <div className="px-6 pb-12 md:px-16 md:pb-20 flex flex-col items-center space-y-10">
                     {section.content.map((item, idx) => {
                         if (item.type === "text") {
-                            return <p key={idx} className="text-xl leading-relaxed max-w-4xl text-center md:text-left text-stone-300 font-medium">{item.text}</p>;
+                            return <p key={idx} className="text-xl leading-relaxed max-w-3xl text-center md:text-left text-stone-300 font-medium mx-auto">{item.text}</p>;
                         }
                         if (item.type === "image") {
                             const img = getImage(item.id);
@@ -464,14 +449,14 @@ function StoryCard({ section, getImage, handleImageClick }) {
                         }
                         if (item.type === "quote") {
                             return (
-                                <blockquote key={idx} className="border-l-4 border-gold pl-6 italic my-6 text-xl opacity-90 max-w-2xl md:text-left text-stone-300">
+                                <blockquote key={idx} className="border-l-4 border-[#D4AF37] pl-6 italic my-6 text-xl opacity-90 max-w-xl md:text-left text-stone-300 mx-auto">
                                     {item.text.split('\n').map((line, i) => <span key={i} className="block">{line}</span>)}
                                     {item.source && <span className="text-base not-italic block mt-2 font-bold text-stone-400">{item.source}</span>}
                                 </blockquote>
                             );
                         }
                         if (item.type === "header") {
-                            return <h3 key={idx} className="text-2xl md:text-3xl font-bold font-handwriting mt-4 text-center text-stone-100">{item.text}</h3>;
+                            return <h3 key={idx} className="text-2xl md:text-3xl font-bold font-handwriting mt-4 text-center text-stone-100 max-w-2xl mx-auto">{item.text}</h3>;
                         }
                         if (item.type === "list") {
                             return (

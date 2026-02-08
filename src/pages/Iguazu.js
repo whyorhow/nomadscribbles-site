@@ -1,124 +1,27 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
-import artImages from "../assets/artImages.json";
-import { fadeScale, staggerContainer } from "../utils/animations";
 import ContextMap from "../components/ContextMap";
 import destinations from "../assets/destinations.json";
+import artImages from "../assets/artImages.json";
 import paperTexture from '../assets/Backgrounds/PaperTexture.jpg';
 
-// Lightbox navigation order
-const IMAGE_ORDER = [
-    "iguazu16", "iguazu1", "iguazu2", "iguazu4", "iguazu3",
-    "iguazu6", "iguazu8", "iguazu5",
-    "iguazu9", "iguazu7", "iguazu10",
-    "iguazu12", "iguazu13", "iguazu17", "iguazu18",
-    "iguazu11", "iguazu14", "iguazu15"
-];
+function Iguazu() {
+    const [destination, setDestination] = useState(null);
+    const [activeImage, setActiveImage] = useState(null);
 
-const SECTIONS_DATA = [
-    {
-        id: "buildup",
-        title: "The Build-Up",
-        subtitle: "Views from above, through the trees",
-        expandedBg: "bg-stone-900/30",
-        preview: [
-            { type: "grid", ids: ["iguazu1", "iguazu2"], sizes: ["wide", "narrow"] },
-            { type: "text", text: "Long before you see the water, you hear it.\n\nAt first it’s distant, almost atmospheric — a low, continuous presence that sits beneath the forest sounds. The path moves through dense greenery, opening and closing again, offering brief glimpses of river far below. From above, Iguazu feels wide rather than tall, the water spreading out in multiple directions, broken by islands of rock and vegetation.\n\nThe noise grows gradually, building with each step. It doesn’t rise and fall — it accumulates." }
-        ],
-        content: [
-            { type: "image", id: "iguazu4", caption: "Water and forest on a scale that’s difficult to absorb all at once.", size: "narrow" },
-            { type: "image", id: "iguazu3", caption: "Iguazu reveals itself gradually, never all at once.", size: "narrow" }
-        ]
-    },
-    {
-        id: "impact",
-        title: "The Impact",
-        subtitle: "Noise, proximity, overload",
-        expandedBg: "bg-black/30",
-        preview: [
-            { type: "image", id: "iguazu6", caption: "Up close, Iguazu is overwhelming.", size: "wide" },
-            { type: "text", text: "Up close, Iguazu is overwhelming.\n\nThe sound becomes physical — a deep, relentless roar that presses into your chest and flattens conversation into gestures and half-smiles. Water crashes past at eye level, folding over itself again and again, throwing spray into the air so thick it feels like rain. The ground vibrates underfoot. Everything else recedes." }
-        ],
-        content: [
-            { type: "image", id: "iguazu8", caption: "This isn’t a single waterfall. It’s a system repeating itself across a vast arc of rock.", size: "wide" },
-            { type: "image", id: "iguazu5", caption: "Spray hangs in the air, catching the light." }
-        ]
-    },
-    {
-        id: "distance",
-        title: "Distance and Life",
-        subtitle: "Perspectives from the triple frontier",
-        expandedBg: "bg-stone-900/30",
-        preview: [
-            { type: "image", id: "iguazu9", caption: "Crossing to the Argentinian side, the tone changes.", size: "wide" },
-            { type: "text", text: "Crossing to the Argentinian side, the tone changes.\n\nThe falls are still vast, still loud, but they feel more distant, framed by forest and open sky. From here, Iguazu reveals its full width and the way it spills across borders without regard for them. Brazil and Argentina sit neatly marked on signs and platforms, while the river continues uninterrupted below." }
-        ],
-        content: [
-            { type: "grid", ids: ["iguazu7", "iguazu10"] },
-            { type: "grid", ids: ["iguazu12", "iguazu13"] },
-            { type: "grid", ids: ["iguazu17", "iguazu18"] },
-            { type: "text", text: "Away from the main viewpoints, attention shifts. Wildlife appears at the edges — birds in the canopy, coatis along the railings, butterflies pausing wherever the noise briefly softens. Upstream, the river looks almost calm, spreading wide and unhurried, giving no hint of what lies just metres ahead." }
-        ]
-    },
-    {
-        id: "closing",
-        title: "Closing / Release",
-        subtitle: "The lingering memory of scale",
-        expandedBg: "bg-black/30",
-        preview: [
-            { type: "image", id: "iguazu11", caption: "Iguazu doesn’t end with a final image.", size: "wide" },
-            { type: "text", text: "Iguazu doesn’t end with a final image.\n\nIt lingers instead as sound, pressure, and memory — the sense of having stood briefly inside something too large to fully absorb. Whether you arrive knowing only its reputation, or return already familiar with its force, the experience resists simplification." }
-        ],
-        content: [
-            { type: "grid", ids: ["iguazu14", "iguazu15"] },
-            { type: "quote", text: "This is a place people come to witness. What stays with you is how completely it surrounds you while you’re there." }
-        ]
-    }
-];
-
-function Iguazu({ openLightbox }) {
-    const fozCoords = destinations.find(d => d.id === "foz");
-    const iguazuImages = React.useMemo(() => artImages.filter(img => img.category === "Iguazu"), []);
-
-    const getImage = (id) => iguazuImages.find(i => i.id === id);
-
-    const sortedImages = React.useMemo(() =>
-        IMAGE_ORDER.map(id => iguazuImages.find(img => img.id === id)).filter(Boolean),
-        [iguazuImages]);
-
-    const handleImageClick = (imageId) => {
-        const index = sortedImages.findIndex(img => img.id === imageId);
-        if (index !== -1) {
-            openLightbox(index, sortedImages);
-        }
-    };
-
-    // Hero Interaction State
-    const [isHeroExpanded, setIsHeroExpanded] = useState(false);
-    const heroRef = useRef(null);
-
-    // Auto-collapse hero when scrolled out of view
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (!entry.isIntersecting && isHeroExpanded) {
-                    setIsHeroExpanded(false);
-                }
-            },
-            { threshold: 0.1 }
-        );
+        const found = destinations.find((d) => d.id === "foz");
+        setDestination(found);
+    }, []);
 
-        if (heroRef.current) observer.observe(heroRef.current);
-        return () => observer.disconnect();
-    }, [isHeroExpanded]);
+    const getImage = (id) => artImages.find((img) => img.id === id);
 
-    const handleHeroClick = () => {
-        if (!isHeroExpanded) {
-            setIsHeroExpanded(true);
-        } else {
-            handleImageClick("iguazu16");
+    const handleImageClick = (id) => {
+        const img = getImage(id);
+        if (img) {
+            setActiveImage(img);
         }
     };
 
@@ -130,19 +33,107 @@ function Iguazu({ openLightbox }) {
         opacity: 0.95,
     };
 
-    const pageBackgroundStyle = {
-        backgroundColor: "rgba(6, 78, 59, 0.3)", // Deep emerald green @ 30%
-        minHeight: "100vh"
-    };
+    const sections = useMemo(() => [
+        {
+            id: "buildup",
+            title: "The Build-Up",
+            subtitle: "Views from above, through the trees",
+            expandedBg: "bg-[#064e3b]/80",
+            coverImage: "iguazu16",
+            coverCaption: "Water and forest on a scale that’s difficult to absorb all at once.",
+            content: [
+                { type: "text", text: "Long before you see the water, you hear it.\n\nAt first it’s distant, almost atmospheric — a low, continuous presence that sits beneath the forest sounds. The path moves through dense greenery, opening and closing again, offering brief glimpses of river far below. From above, Iguazu feels wide rather than tall, the water spreading out in multiple directions, broken by islands of rock and vegetation." },
+                { type: "grid", ids: ["iguazu1", "iguazu2"] },
+                { type: "text", text: "The noise grows gradually, building with each step. It doesn’t rise and fall — it accumulates." },
+                { type: "image", id: "iguazu4", caption: "Water and forest on a scale that’s difficult to absorb all at once." },
+                { type: "image", id: "iguazu3", caption: "Iguazu reveals itself gradually, never all at once." }
+            ]
+        },
+        {
+            id: "impact",
+            title: "The Impact",
+            subtitle: "Noise, proximity, overload",
+            expandedBg: "bg-[#04332a]/90",
+            coverImage: "iguazu6",
+            coverCaption: "Up close, Iguazu is overwhelming.",
+            content: [
+                { type: "text", text: "Up close, Iguazu is overwhelming.\n\nThe sound becomes physical — a deep, relentless roar that presses into your chest and flattens conversation into gestures and half-smiles. Water crashes past at eye level, folding over itself again and again, throwing spray into the air so thick it feels like rain. The ground vibrates underfoot. Everything else recedes." },
+                { type: "image", id: "iguazu8", caption: "This isn’t a single waterfall. It’s a system repeating itself across a vast arc of rock." },
+                { type: "image", id: "iguazu5", caption: "Spray hangs in the air, catching the light." }
+            ]
+        },
+        {
+            id: "distance",
+            title: "Distance and Life",
+            subtitle: "Perspectives from the triple frontier",
+            expandedBg: "bg-[#022c22]/95",
+            coverImage: "iguazu9",
+            coverCaption: "Crossing to the Argentinian side, the tone changes.",
+            content: [
+                { type: "text", text: "Crossing to the Argentinian side, the tone changes.\n\nThe falls are still vast, still loud, but they feel more distant, framed by forest and open sky. From here, Iguazu reveals its full width and the way it spills across borders without regard for them. Brazil and Argentina sit neatly marked on signs and platforms, while the river continues uninterrupted below." },
+                { type: "grid", ids: ["iguazu7", "iguazu10"] },
+                { type: "grid", ids: ["iguazu12", "iguazu13"] },
+                { type: "grid", ids: ["iguazu17", "iguazu18"] },
+                { type: "text", text: "Away from the main viewpoints, attention shifts. Wildlife appears at the edges — birds in the canopy, coatis along the railings, butterflies pausing wherever the noise briefly softens. Upstream, the river looks almost calm, spreading wide and unhurried, giving no hint of what lies just metres ahead." }
+            ]
+        },
+        {
+            id: "closing",
+            title: "The Lingering Memory",
+            subtitle: "The memory of scale",
+            expandedBg: "bg-[#011a14]/98",
+            coverImage: "iguazu11",
+            coverCaption: "Iguazu doesn’t end with a final image.",
+            content: [
+                { type: "text", text: "Iguazu doesn’t end with a final image.\n\nIt lingers instead as sound, pressure, and memory — the sense of having stood briefly inside something too large to fully absorb. Whether you arrive knowing only its reputation, or return already familiar with its force, the experience resists simplification." },
+                { type: "grid", ids: ["iguazu14", "iguazu15"] },
+                { type: "quote", text: "This is a place people come to witness. What stays with you is how completely it surrounds you while you’re there." }
+            ]
+        }
+    ], []);
 
+    if (!destination) return null;
 
     return (
-        <div style={pageBackgroundStyle} className="text-stone-200 font-serif">
+        <div className="min-h-screen bg-[#064e3b] text-stone-100 font-serif selection:bg-[#eeda8d] selection:text-[#064e3b]">
             <SEO
-                title="Foz do Iguaçu | Nomad Scribbles"
+                title="Iguazu Falls: A Force of Nature"
                 description="Iguazu is a landscape of falling water and dense subtropical forest, where the river ignores borders and life thrives in the spray."
-                keywords={["Iguazu Falls", "Foz do Iguaçu", "Brazil Nature", "Wildlife Photography", "Paraná"]}
+                image="/images/destinations/iguazu/hero-small.jpg"
+                slug="brazil/iguazu"
             />
+
+            {/* Cinematic Hero Section */}
+            <div className="relative h-[90vh] w-full overflow-hidden flex items-center justify-center">
+                <motion.div
+                    initial={{ scale: 1.1, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 1.5, ease: "easeOut" }}
+                    className="absolute inset-0 z-0"
+                >
+                    <img
+                        src={`${process.env.PUBLIC_URL}/images/Iguazu/full/Iguazu16.webp`}
+                        alt="Iguazu Falls Landscape"
+                        className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#064e3b]/40 via-transparent to-[#064e3b]" />
+                </motion.div>
+
+                <div className="relative z-10 text-center max-w-4xl px-4">
+                    <motion.div
+                        initial={{ y: 30, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.5, duration: 1 }}
+                    >
+                        <h1 className="text-7xl md:text-9xl font-bold font-handwriting text-[#eeda8d] drop-shadow-2xl mb-4">
+                            Iguazu
+                        </h1>
+                        <p className="text-xl md:text-3xl font-light tracking-[0.2em] uppercase text-stone-200 opacity-90">
+                            The Great Waters
+                        </p>
+                    </motion.div>
+                </div>
+            </div>
 
             <svg style={{ visibility: 'hidden', position: 'absolute' }} width="0" height="0">
                 <defs>
@@ -153,60 +144,39 @@ function Iguazu({ openLightbox }) {
                 </defs>
             </svg>
 
-            {/* Title Section */}
-            <div className="flex justify-center mb-6 px-4 mt-8 relative z-10">
-                <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-[#D4AF37] tracking-tight text-center drop-shadow-sm">Iguazu Falls</h1>
-            </div>
-
-            <div ref={heroRef} className="w-full max-w-7xl mx-auto px-4 mb-24 relative z-10 group">
-                <motion.div
-                    layout
-                    className={`relative w-full overflow-hidden rounded-xl shadow-md cursor-pointer group-hover:shadow-xl transition-all duration-1000 ease-in-out ${isHeroExpanded ? 'aspect-auto h-auto' : 'aspect-[16/10] md:aspect-[21/9] h-[60vh] md:h-auto'}`}
-                    onClick={handleHeroClick}
-                >
-                    <img
-                        src={process.env.PUBLIC_URL + (isHeroExpanded ? "/images/Iguazu/full/Iguazu16.webp" : "/images/Iguazu/small/Iguazu16new.webp")}
-                        alt="Iguazu Falls Hero"
-                        fetchPriority="high"
-                        loading="eager"
-                        className={`w-full h-full object-cover transition-transform duration-1000 ease-in-out`}
-                    />
-                </motion.div>
-
-                <div className="relative md:absolute md:-bottom-10 md:left-12 lg:left-20 w-full md:max-w-xl bg-stone-900/40 backdrop-blur-md p-8 md:p-10 shadow-xl rounded-lg border-l-4 border-[#D4AF37]/30 mt-[-2rem] md:mt-0 z-20">
-                    <div className="flex items-center gap-3 mb-4 opacity-60">
-                        <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#D4AF37]">Feature</span>
-                        <div className="h-[1px] w-12 bg-[#D4AF37]/40"></div>
-                        <span className="text-xs font-serif italic text-stone-300/80">Iguazu Falls</span>
-                    </div>
-
-                    <div className="text-xl md:text-2xl font-serif text-stone-200/90 leading-relaxed italic">
-                        Water and forest on a scale that’s difficult to absorb all at once.
-                    </div>
+            {/* Context Map & Intro */}
+            <div className="max-w-screen-xl mx-auto px-6 pt-24 pb-8">
+                <div className="max-w-3xl mx-auto text-center space-y-8">
+                    <h2 className="text-4xl md:text-5xl font-bold font-handwriting text-[#eeda8d]">
+                        Into the Mist
+                    </h2>
+                    <p className="text-xl leading-relaxed text-stone-300">
+                        Iguazu is not a single fall, but a system of 275 cascades that spread across nearly three kilometres. It is a place of profound noise and overwhelming proximity, where the Atlantic Forest meets the river in a relentless display of power and life.
+                    </p>
                 </div>
             </div>
 
-            {/* Banner Spread with Map */}
             <div className="relative w-full mb-16 overflow-hidden">
                 <div
                     className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[110vw] pointer-events-none z-0"
                     style={spreadBackgroundStyle}
                 />
-                <div className="relative z-20 max-w-5xl mx-auto px-4 pt-8 pb-8 flex flex-col items-center">
-                    <div className="w-full max-w-4xl overflow-visible">
+
+                <div className="relative z-20 max-w-5xl mx-auto px-4 pt-0 pb-4 md:pt-2 md:pb-8 flex flex-col items-center mt-[-10px]">
+                    <div className="w-full max-w-4xl overflow-visible mb-[-10px]">
                         <ContextMap
-                            markers={[fozCoords].filter(Boolean)}
-                            zoomToId="foz"
-                            title="Where is Foz do Iguaçu?"
-                            geography={fozCoords?.geography}
+                            markers={[{ id: 'iguazu', name: 'Iguazu Falls', lat: -25.6953, lng: -54.4367 }]}
+                            zoomToId="iguazu"
+                            title="Where is Iguazu?"
+                            geography={destination?.geography}
                             transparent={true}
                         />
                     </div>
                 </div>
             </div>
 
-            <main className="max-w-screen-xl mx-auto px-4 pb-24 space-y-24 flex flex-col items-center">
-                {SECTIONS_DATA.map((section) => (
+            <main className="px-2 py-2 max-w-screen-xl mx-auto space-y-12 flex flex-col items-center pb-24 mt-24">
+                {sections.map((section) => (
                     <StoryCard
                         key={section.id}
                         section={section}
@@ -215,122 +185,185 @@ function Iguazu({ openLightbox }) {
                     />
                 ))}
 
-                <div className="w-full flex flex-col items-center gap-4 mt-16 mb-8 relative z-10">
-                    <Link to="/brazil" className="flex flex-row items-center justify-center text-stone-300 hover:text-white transition-colors drop-shadow-md bg-stone-950/50 backdrop-blur-md rounded-full px-6 py-2 border border-white/10 shadow-lg hover:bg-stone-900/60 w-fit">
+                <div className="w-full flex md:flex-row flex-col items-center justify-center gap-6 mt-20 mb-12 relative z-10">
+                    <Link to="/brazil/salvador" className="flex flex-row items-center justify-center text-stone-300 hover:text-white transition-colors drop-shadow-md bg-stone-950/60 backdrop-blur-md rounded-full px-8 py-3 border border-white/10 shadow-lg hover:bg-stone-900/80 w-fit">
                         <span className="text-xl mr-3 pb-1">←</span>
-                        <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Return to Brazil</span>
+                        <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Return to Salvador</span>
                     </Link>
-                    <Link to="/brazil/rio" className="flex flex-row items-center justify-center text-[#eeda8d] hover:text-white transition-colors drop-shadow-sm bg-[#ceb752]/30 backdrop-blur-md rounded-full px-6 py-2 border border-[#ceb752]/60 shadow-md hover:bg-[#ceb752]/40 w-fit">
-                        <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Next: Rio de Janeiro</span>
+                    <Link to="/brazil/rio" className="flex flex-row items-center justify-center text-[#eeda8d] hover:text-white transition-colors drop-shadow-sm bg-[#ceb752]/20 backdrop-blur-md rounded-full px-8 py-3 border border-[#ceb752]/40 shadow-md hover:bg-[#ceb752]/30 w-fit">
+                        <span className="text-md font-bold tracking-widest uppercase text-center leading-tight">Back to Rio</span>
                         <span className="text-xl ml-3 pb-1">→</span>
                     </Link>
                 </div>
             </main>
+
+            {/* Lightbox placeholder if needed */}
+            {activeImage && (
+                <div
+                    className="fixed inset-0 bg-black/95 z-[100] flex items-center justify-center p-4 cursor-zoom-out"
+                    onClick={() => setActiveImage(null)}
+                >
+                    <img
+                        src={`${process.env.PUBLIC_URL}${activeImage.lightboxImage}`}
+                        alt={activeImage.title}
+                        className="max-w-full max-h-[90vh] object-contain shadow-2xl"
+                    />
+                    <div className="absolute bottom-10 left-0 right-0 text-center text-white px-6">
+                        <h4 className="text-2xl font-handwriting text-[#D4AF37] mb-2">{activeImage.title}</h4>
+                        <p className="text-stone-300 italic max-w-2xl mx-auto">{activeImage.description}</p>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
 
-// Interactive Section Component
-function StoryCard({ section, getImage, handleImageClick }) {
-    const [isExpanded, setIsExpanded] = useState(false);
-    const activeBg = section.expandedBg || "bg-stone-900/30";
+// Refined Reusable Image Component
+function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onToggle, autoCollapse, title }) {
+    const isControlled = expanded !== undefined;
+    const [visuallyExpanded, setVisuallyExpanded] = useState(isControlled ? expanded : false);
+    const [imgError, setImgError] = useState(false);
+    const [fullLoaded, setFullLoaded] = useState(false);
+    const containerRef = useRef(null);
 
-    const renderContent = (items, isPreview = false) => {
-        return items.map((item, idx) => {
-            if (item.type === "text") {
-                return (
-                    <p key={idx} className={`text-xl leading-relaxed max-w-4xl mx-auto text-stone-300 font-medium whitespace-pre-line ${isPreview ? "text-center mb-8" : "mb-0"}`}>
-                        {item.text}
-                    </p>
-                );
+    useEffect(() => {
+        if (isControlled) {
+            setVisuallyExpanded(expanded);
+        }
+    }, [expanded, isControlled]);
+
+    const shouldAutoCollapse = autoCollapse !== undefined ? autoCollapse : true;
+
+    useEffect(() => {
+        if (!shouldAutoCollapse || !visuallyExpanded) return;
+
+        const observer = new IntersectionObserver(entry => {
+            if (!entry[0].isIntersecting) {
+                setVisuallyExpanded(false);
             }
-            if (item.type === "image") {
-                return (
-                    <InteractiveImage
-                        key={idx}
-                        id={item.id}
-                        getImage={getImage}
-                        onClick={() => handleImageClick(item.id)}
-                        caption={item.caption}
-                        size={item.size}
-                    />
-                );
+        }, { threshold: 0 });
+
+        if (containerRef.current) observer.observe(containerRef.current);
+        return () => observer.disconnect();
+    }, [shouldAutoCollapse, visuallyExpanded]);
+
+    const handleClick = (e) => {
+        e.stopPropagation();
+        if (isControlled && onToggle) {
+            if (!visuallyExpanded) {
+                setVisuallyExpanded(true);
+                if (!expanded) onToggle();
+            } else {
+                if (onClick) onClick(e);
             }
-            if (item.type === "grid") {
-                return (
-                    <div key={idx} className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto w-full items-center">
-                        {item.ids.map((id, gridIdx) => (
-                            <InteractiveImage
-                                key={id}
-                                id={id}
-                                getImage={getImage}
-                                onClick={() => handleImageClick(id)}
-                                size={item.sizes ? item.sizes[gridIdx] : undefined}
-                            />
-                        ))}
-                    </div>
-                );
+        } else {
+            if (!visuallyExpanded) {
+                setVisuallyExpanded(true);
+            } else {
+                if (onClick) onClick(e);
             }
-            if (item.type === "quote") {
-                return (
-                    <div key={idx} className="text-center pt-8">
-                        <p className="text-2xl md:text-3xl font-handwriting text-[#D4AF37] max-w-2xl mx-auto leading-relaxed">
-                            {item.text}
-                        </p>
-                    </div>
-                );
-            }
-            return null;
-        });
+        }
     };
+
+    const showFullAsDriver = visuallyExpanded && fullLoaded && !imgError;
 
     return (
         <motion.div
             layout
-            className={`w-full max-w-6xl bg-stone-900/30 backdrop-blur-md rounded-xl overflow-hidden shadow-lg transition-all duration-500 ${isExpanded ? `shadow-2xl ${activeBg}` : ""}`}
+            ref={containerRef}
+            className={`relative mx-auto transition-all duration-700 ease-in-out my-8 ${visuallyExpanded ? "w-full max-w-[98vw] md:max-w-screen-2xl" : "w-full md:w-1/2 max-w-5xl"}`}
         >
-            <div className={`p-6 md:p-10 flex flex-col items-center z-10 transition-colors duration-500`}
-                onClick={() => !isExpanded && setIsExpanded(true)}
-                style={{ cursor: isExpanded ? "default" : "pointer" }}
-            >
+            <div className="relative w-full flex justify-center items-center">
+                <img
+                    src={smallSrc}
+                    alt={alt}
+                    onClick={handleClick}
+                    loading="lazy"
+                    className={`rounded-sm shadow-sm transition-all duration-500 cursor-pointer w-full h-auto max-h-[85vh] object-contain ${showFullAsDriver ? "absolute inset-0 opacity-0" : "relative z-10 opacity-100"}`}
+                />
+
+                {!imgError && visuallyExpanded && (
+                    <img
+                        src={fullSrc}
+                        alt={alt}
+                        onClick={handleClick}
+                        onLoad={() => setFullLoaded(true)}
+                        onError={() => setImgError(true)}
+                        className={`rounded-sm transition-all duration-700 ease-out cursor-pointer w-full h-auto max-h-[85vh] object-contain ${showFullAsDriver ? "relative z-20 opacity-100 scale-100" : "absolute inset-0 z-20 opacity-0 scale-95"}`}
+                        loading="lazy"
+                    />
+                )}
+
+                {(title || caption) && visuallyExpanded && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: fullLoaded ? 1 : 0, y: fullLoaded ? 0 : 10 }}
+                        className="absolute bottom-8 left-0 right-0 mx-auto w-fit max-w-[90%] md:max-w-3xl bg-[#064e3b]/85 backdrop-blur-md p-6 md:p-8 border border-white/20 text-left pointer-events-none rounded-xl shadow-2xl shadow-black/60 z-30"
+                    >
+                        <div className="max-w-2xl px-2">
+                            {title && <h4 className="text-[#D4AF37] text-2xl md:text-3xl font-bold font-handwriting mb-3 tracking-wide drop-shadow-sm">{title}</h4>}
+                            {caption && <p className="text-white text-lg leading-relaxed font-serif italic opacity-95">{caption}</p>}
+                        </div>
+                    </motion.div>
+                )}
+            </div>
+
+            {!visuallyExpanded && title && (
+                <div className="mt-6 flex justify-center">
+                    <div className="max-w-[200px] p-3 bg-white/5 backdrop-blur-sm border-l border-[#D4AF37]/50 text-center shadow-sm">
+                        <h4 className="text-stone-200 text-xs font-bold uppercase tracking-widest mb-1 font-cormorant">{title}</h4>
+                        <div className="mx-auto mt-2 w-4 h-[1px] bg-[#D4AF37]/50" />
+                    </div>
+                </div>
+            )}
+        </motion.div>
+    );
+}
+
+function StoryCard({ section, getImage, handleImageClick }) {
+    const [isExpanded, setIsExpanded] = useState(false);
+    const activeBg = section.expandedBg || "bg-stone-900/80";
+
+    return (
+        <motion.div
+            layout
+            className={`w-full max-w-6xl bg-stone-900/40 backdrop-blur-md rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-500 ${isExpanded ? `shadow-2xl ${activeBg} max-w-[98vw] md:max-w-screen-2xl` : ""}`}
+            onClick={() => setIsExpanded(!isExpanded)}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+        >
+            <div className="relative p-6 md:p-10 flex flex-col items-center z-10">
                 <div className="text-center mb-8">
                     <h2 className={`text-4xl md:text-6xl font-bold font-handwriting drop-shadow-md transition-colors duration-500 ${isExpanded ? "text-stone-100" : "text-[#D4AF37]"}`}>
                         {section.title}
                     </h2>
                     {section.subtitle && (
-                        <h3 className="text-lg md:text-xl font-light tracking-wide mt-2 text-stone-400">
+                        <h3 className={`text-lg md:text-xl font-light tracking-wide mt-2 transition-colors duration-500 ${isExpanded ? "text-stone-300" : "text-stone-400"}`}>
                             {section.subtitle}
                         </h3>
                     )}
                 </div>
 
-                {/* Preview Content - Always visible */}
-                <div className="w-full flex flex-col items-center">
-                    {renderContent(section.preview, true)}
-                </div>
+                <RevealImage
+                    smallSrc={`${process.env.PUBLIC_URL}${getImage(section.coverImage)?.image}`}
+                    fullSrc={`${process.env.PUBLIC_URL}${getImage(section.coverImage)?.lightboxImage}`}
+                    alt={section.title}
+                    caption={section.coverCaption || getImage(section.coverImage)?.description}
+                    title={getImage(section.coverImage)?.title}
+                    onClick={() => handleImageClick(section.coverImage)}
+                    expanded={isExpanded}
+                    onToggle={() => setIsExpanded(!isExpanded)}
+                />
 
-                {/* Explore Trigger - Museum Gallery Label Style (Rio pattern) */}
-                {!isExpanded && (
-                    <div className="flex flex-col items-center mt-12 w-full">
-                        {/* Section Label Box */}
-                        <div className="mb-8 p-3 bg-white/5 backdrop-blur-sm border-l border-[#D4AF37]/50 text-center shadow-sm transform transition-all duration-700 hover:scale-105">
-                            <h4 className="text-stone-200 text-xs md:text-sm font-bold uppercase tracking-[0.3em] mb-1 font-serif">
-                                {section.title}
-                            </h4>
-                            <div className="mx-auto mt-2 w-6 h-[1px] bg-[#D4AF37]/50" />
-                        </div>
-
-                        {/* Explore Indicator */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            className="flex flex-col items-center gap-3"
-                        >
-                            <p className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-stone-500 font-bold">Explore Section</p>
-                            <div className="w-[1px] h-8 bg-gradient-to-b from-stone-500/50 to-transparent"></div>
-                        </motion.div>
-                    </div>
-                )}
+                <motion.div
+                    initial={{ opacity: 1, height: "auto" }}
+                    animate={{ opacity: isExpanded ? 0 : 1, height: isExpanded ? 0 : "auto" }}
+                    className="flex flex-col items-center h-8"
+                >
+                    <p className="text-xs uppercase tracking-widest opacity-40 mt-2 font-semibold text-stone-400">Explore Section</p>
+                    <div className="w-px h-4 bg-stone-400/20 mt-1"></div>
+                </motion.div>
             </div>
 
             <AnimatePresence>
@@ -339,126 +372,76 @@ function StoryCard({ section, getImage, handleImageClick }) {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="overflow-hidden"
+                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                        className="overflow-hidden bg-transparent"
                     >
-                        <div className="px-6 pb-12 md:px-16 md:pb-20 space-y-12 flex flex-col items-center">
-                            {renderContent(section.content)}
-
-                            {/* Collapse Button */}
-                            <button
-                                onClick={(e) => { e.stopPropagation(); setIsExpanded(false); }}
-                                className="mt-8 text-xs uppercase tracking-widest opacity-40 hover:opacity-80 transition-opacity font-bold border-t border-stone-500 pt-4 w-32"
-                            >
-                                Close Section
-                            </button>
+                        <div className="px-6 pb-12 md:px-20 md:pb-24 flex flex-col items-center space-y-12">
+                            {section.content.map((item, idx) => {
+                                if (item.type === "text") {
+                                    return <p key={idx} className="text-xl leading-relaxed max-w-3xl text-center md:text-left text-stone-300 font-medium mx-auto">{item.text}</p>;
+                                }
+                                if (item.type === "image") {
+                                    const img = getImage(item.id);
+                                    if (!img) return null;
+                                    return (
+                                        <div key={idx} className="w-full">
+                                            <RevealImage
+                                                smallSrc={`${process.env.PUBLIC_URL}${img.image}`}
+                                                fullSrc={`${process.env.PUBLIC_URL}${img.lightboxImage}`}
+                                                alt={img.title || ""}
+                                                caption={item.caption || img.description}
+                                                title={img.title}
+                                                onClick={(e) => { e.stopPropagation(); handleImageClick(item.id); }}
+                                            />
+                                        </div>
+                                    );
+                                }
+                                if (item.type === "grid") {
+                                    return (
+                                        <div key={idx} className={`grid grid-cols-1 md:grid-cols-${item.ids.length > 2 ? '3' : '2'} gap-8 md:gap-12 w-full max-w-7xl`}>
+                                            {item.ids.map(id => {
+                                                const img = getImage(id);
+                                                if (!img) return null;
+                                                return (
+                                                    <div key={id} className="flex flex-col items-center w-full">
+                                                        <RevealImage
+                                                            smallSrc={`${process.env.PUBLIC_URL}${img.image}`}
+                                                            fullSrc={`${process.env.PUBLIC_URL}${img.lightboxImage}`}
+                                                            alt={id}
+                                                            caption={img.description}
+                                                            title={img.title}
+                                                            onClick={(e) => { e.stopPropagation(); handleImageClick(id); }}
+                                                        />
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    );
+                                }
+                                if (item.type === "quote") {
+                                    return (
+                                        <blockquote key={idx} className="border-l-4 border-[#D4AF37] pl-8 italic my-10 text-2xl opacity-90 max-w-2xl md:text-left text-stone-300 mx-auto">
+                                            {item.text.split('\n').map((line, i) => <span key={i} className="block">{line}</span>)}
+                                            {item.source && <span className="text-base not-italic block mt-3 font-bold text-stone-400 tracking-wider uppercase">{item.source}</span>}
+                                        </blockquote>
+                                    );
+                                }
+                                if (item.type === "header") {
+                                    return <h3 key={idx} className="text-3xl md:text-4xl font-bold font-handwriting mt-8 text-center text-stone-100 max-w-2xl mx-auto">{item.text}</h3>;
+                                }
+                                if (item.type === "list") {
+                                    return (
+                                        <ul key={idx} className="list-disc pl-8 space-y-6 text-xl max-w-2xl text-left text-stone-300">
+                                            {item.items.map((li, i) => <li key={i}>{li}</li>)}
+                                        </ul>
+                                    );
+                                }
+                                return null;
+                            })}
                         </div>
                     </motion.div>
                 )}
             </AnimatePresence>
-        </motion.div>
-    );
-}
-
-// Semantic Size Mapping
-const SIZES = {
-    wide: "100%",
-    standard: "90%",
-    medium: "70%",
-    narrow: "50%",
-    z: "44%" // Baseline for z-images
-};
-
-// Reusable animated image component that expands to /full src
-// Forces object-contain for z-images and expanded state
-function InteractiveImage({ id, getImage, onClick, caption, size = "standard" }) {
-    const img = getImage(id);
-    if (!img) return null;
-
-    const [isImageExpanded, setIsImageExpanded] = useState(false);
-    const containerRef = useRef(null);
-    const isZImage = id.endsWith('z') || (img.image && img.image.includes('z.webp'));
-
-    // Auto-collapse image when scrolled out of view
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (!entry.isIntersecting && isImageExpanded) {
-                    setIsImageExpanded(false);
-                }
-            },
-            { threshold: 0.1 }
-        );
-
-        if (containerRef.current) observer.observe(containerRef.current);
-        return () => observer.disconnect();
-    }, [isImageExpanded]);
-
-    const handleClick = (e) => {
-        e.stopPropagation();
-        if (!isImageExpanded) {
-            setIsImageExpanded(true);
-        } else {
-            onClick();
-        }
-    };
-
-    // Calculate width based on scale and state
-    const currentSize = isImageExpanded ? "wide" : (isZImage ? "z" : size);
-    const width = SIZES[currentSize] || SIZES.standard;
-
-    return (
-        <motion.div
-            layout
-            ref={containerRef}
-            className={`relative mx-auto transition-all duration-1000 ease-in-out cursor-pointer group my-4 ${currentSize === "wide" ? "max-w-none" : "max-w-5xl"}`}
-            style={{ width }}
-            onClick={handleClick}
-        >
-            <div className={`relative overflow-hidden transition-all duration-1000 ease-in-out ${isImageExpanded || isZImage ? "aspect-auto" : "aspect-[16/10] md:aspect-[3/2]"}`}>
-                {/* Base Small Image - Always rendered, lazy loaded */}
-                <img
-                    src={process.env.PUBLIC_URL + img.image}
-                    alt={img.title}
-                    loading="lazy"
-                    className={`w-full h-auto block transition-all duration-1000 ease-in-out ${isImageExpanded || isZImage ? "object-contain" : "object-cover h-full"} ${isImageExpanded ? "opacity-0" : "opacity-100"}`}
-                />
-
-                {/* Overlay High-Res Image - Only rendered if expanded to save bandwidth */}
-                {isImageExpanded && (
-                    <img
-                        src={process.env.PUBLIC_URL + img.lightboxImage}
-                        alt={`${img.title} high-res`}
-                        className={`absolute inset-0 w-full h-full object-contain`}
-                    />
-                )}
-
-                {/* Subtle Overlay for small state */}
-                <div className={`absolute inset-0 bg-black/5 transition-opacity duration-1000 ${isImageExpanded ? "opacity-0" : "opacity-100 group-hover:opacity-0"}`} />
-            </div>
-
-            {/* Label / Caption Container - Below Image like Rio page */}
-            {(img.title || caption) && (
-                <div className="grid grid-cols-1 grid-rows-1 mt-8 w-full">
-                    {/* Museum Gallery Label - Visible when NOT expanded */}
-                    <div className={`col-start-1 row-start-1 flex justify-center transition-all duration-1000 ${!isImageExpanded ? "opacity-100 transform translate-y-0" : "opacity-0 pointer-events-none -translate-y-4"}`}>
-                        <div className="max-w-[200px] p-3 bg-white/5 backdrop-blur-sm border-l border-[#D4AF37]/50 text-center shadow-sm">
-                            <h4 className="text-stone-200 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-1 font-serif">
-                                {img.title}
-                            </h4>
-                            <div className="mx-auto mt-2 w-4 h-[1px] bg-[#D4AF37]/50" />
-                        </div>
-                    </div>
-
-                    {/* Detailed Caption - Visible when expanded */}
-                    {caption && (
-                        <div className={`col-start-1 row-start-1 flex justify-center items-start transition-all duration-1000 ${isImageExpanded ? "opacity-100 transform translate-y-0" : "opacity-0 pointer-events-none translate-y-4"}`}>
-                            <p className="text-center text-sm md:text-base italic font-medium text-stone-300 max-w-2xl px-4">
-                                {caption}
-                            </p>
-                        </div>
-                    )}
-                </div>
-            )}
         </motion.div>
     );
 }

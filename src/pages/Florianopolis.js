@@ -11,24 +11,6 @@ function Florianopolis({ openLightbox }) {
     const florianopolisCoords = destinations.find(d => d.id === "florianopolis");
     const floripaImages = artImages.filter(img => img.category === "Florianopolis");
 
-    // Hero Interaction State
-    const [isHeroExpanded, setIsHeroExpanded] = useState(false);
-    const heroRef = useRef(null);
-
-    // Auto-collapse hero when scrolled out of view
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (!entry.isIntersecting && isHeroExpanded) {
-                    setIsHeroExpanded(false);
-                }
-            },
-            { threshold: 0.1 }
-        );
-
-        if (heroRef.current) observer.observe(heroRef.current);
-        return () => observer.disconnect();
-    }, [isHeroExpanded]);
 
     const spreadBackgroundStyle = {
         backgroundImage: `url(${paperTexture})`,
@@ -148,7 +130,7 @@ function Florianopolis({ openLightbox }) {
     ];
 
     const pageBackgroundStyle = {
-        backgroundColor: "#84935c",
+        backgroundColor: "#0f172a", // Deeper, more high-fidelity navy/teal
         opacity: 1,
     };
 
@@ -177,89 +159,83 @@ function Florianopolis({ openLightbox }) {
 
             <h1 className="sr-only">Florianópolis | Nomad Scribbles</h1>
 
-            <div className="relative z-10">
-                <div className="flex justify-center mb-6 px-4 mt-8">
-                    <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-[#D4AF37] tracking-tight text-center drop-shadow-sm">Florianópolis</h1>
-                </div>
-
-                {/* Hero Image - Optimized */}
-                <div ref={heroRef} className="w-full max-w-7xl mx-auto px-4 mb-24 relative z-10 group">
-                    <motion.div
-                        layout
-                        className={`relative w-full overflow-hidden rounded-xl shadow-md cursor-pointer group-hover:shadow-xl transition-all duration-700 ease-in-out ${isHeroExpanded ? 'aspect-auto' : 'aspect-[16/10] md:aspect-[21/9]'}`}
-                        onClick={() => setIsHeroExpanded(!isHeroExpanded)}
-                    >
-                        <img
-                            src={isHeroExpanded ? process.env.PUBLIC_URL + "/images/Floripa/full/Floripa14.webp" : process.env.PUBLIC_URL + "/images/Floripa/small/Floripa14new.webp"}
-                            alt="Florianopolis Beach Hero"
-                            fetchPriority="high" // OPTIMIZATION
-                            loading="eager"      // OPTIMIZATION
-                            className={`w-full h-full object-cover transition-transform duration-700 ease-in-out ${!isHeroExpanded ? 'transform scale-100 group-hover:scale-105' : ''}`}
-                        />
-                    </motion.div>
-
-                    <div className="relative md:absolute md:-bottom-12 md:left-12 lg:left-20 w-full md:max-w-xl bg-[#f5f5f4] p-8 md:p-10 shadow-xl rounded-lg border-t-4 border-[#e9d5ff] mt-[-3rem] md:mt-0 z-20">
-                        <div className="flex items-center gap-3 mb-4 opacity-60">
-                            <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#6b21a8]">Feature</span>
-                            <div className="h-[1px] w-12 bg-stone-400"></div>
-                            <span className="text-xs font-serif italic text-stone-500">Santa Catarina Island</span>
-                        </div>
-
-                        <div className="text-xl md:text-2xl font-serif text-stone-800 leading-relaxed">
-                            <span className="text-5xl float-left mr-3 mt-[-10px] font-bold text-[#6b21a8] font-handwriting">F</span>
-                            <p className="inline">
-                                lorianópolis reveals itself slowly. Footsteps fade into the tide, coastlines widen and narrow again, and the island shifts gently between city, beach, and forest. The built details feel like suggestions rather than instructions.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="relative w-full mb-16 overflow-hidden">
-                    <div
-                        className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[110vw] pointer-events-none z-0"
-                        style={spreadBackgroundStyle}
+            {/* Cinematic Hero Section */}
+            <div className="relative h-[90vh] w-full overflow-hidden flex items-center justify-center">
+                <motion.div
+                    initial={{ scale: 1.1, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 1.5, ease: "easeOut" }}
+                    className="absolute inset-0 z-0"
+                >
+                    <img
+                        src={`${process.env.PUBLIC_URL}/images/Floripa/full/Floripa14.webp`}
+                        alt="Florianopolis Beach Hero"
+                        className="w-full h-full object-cover"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#0f172a]/40 via-transparent to-[#0f172a]" />
+                </motion.div>
 
-                    <div className="relative z-20 max-w-5xl mx-auto px-4 pt-0 pb-4 md:pt-2 md:pb-8 flex flex-col items-center mt-[-10px]">
-                        <div className="w-full max-w-4xl overflow-visible mb-[-10px]">
-                            <ContextMap
-                                markers={[florianopolisCoords].filter(Boolean)}
-                                zoomToId="florianopolis"
-                                title="Where is Florianópolis?"
-                                geography={florianopolisCoords?.geography}
-                                transparent={true}
-                            />
-                        </div>
+                <div className="relative z-10 text-center max-w-4xl px-4">
+                    <motion.div
+                        initial={{ y: 30, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.5, duration: 1 }}
+                    >
+                        <h1 className="text-7xl md:text-9xl font-bold font-handwriting text-[#D4AF37] drop-shadow-2xl mb-4">
+                            Florianópolis
+                        </h1>
+                        <p className="text-xl md:text-3xl font-light tracking-[0.2em] uppercase text-stone-200 opacity-90">
+                            The Magic Island
+                        </p>
+                    </motion.div>
+                </div>
+            </div>
+
+            <div className="relative w-full mb-16 overflow-hidden">
+                <div
+                    className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[110vw] pointer-events-none z-0"
+                    style={spreadBackgroundStyle}
+                />
+
+                <div className="relative z-20 max-w-5xl mx-auto px-4 pt-0 pb-4 md:pt-2 md:pb-8 flex flex-col items-center mt-[-10px]">
+                    <div className="w-full max-w-4xl overflow-visible mb-[-10px]">
+                        <ContextMap
+                            markers={[florianopolisCoords].filter(Boolean)}
+                            zoomToId="florianopolis"
+                            title="Where is Florianópolis?"
+                            geography={florianopolisCoords?.geography}
+                            transparent={true}
+                        />
                     </div>
                 </div>
-
-                <main className="px-2 py-2 max-w-screen-xl mx-auto space-y-8 flex flex-col items-center pb-24">
-                    {sections.map((section) => (
-                        <StoryCard
-                            key={section.id}
-                            section={section}
-                            getImage={getImage}
-                            handleImageClick={handleImageClick}
-                        />
-                    ))}
-
-                    <div className="w-full flex flex-col items-center gap-4 mt-16 mb-8 relative z-10">
-                        <Link to="/brazil" className="flex flex-row items-center justify-center text-stone-300 hover:text-white transition-colors drop-shadow-md bg-stone-950/50 backdrop-blur-md rounded-full px-6 py-2 border border-white/10 shadow-lg hover:bg-stone-900/60 w-fit">
-                            <span className="text-xl mr-3 pb-1">←</span>
-                            <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Return to Brazil</span>
-                        </Link>
-                        <Link to="/brazil/pantanal" className="flex flex-row items-center justify-center text-[#eeda8d] hover:text-white transition-colors drop-shadow-sm bg-[#ceb752]/30 backdrop-blur-md rounded-full px-6 py-2 border border-[#ceb752]/60 shadow-md hover:bg-[#ceb752]/40 w-fit">
-                            <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Next: The Pantanal</span>
-                            <span className="text-xl ml-3 pb-1">→</span>
-                        </Link>
-                    </div>
-                </main>
             </div>
+
+            <main className="px-2 py-2 max-w-screen-xl mx-auto space-y-12 flex flex-col items-center pb-24">
+                {sections.map((section) => (
+                    <StoryCard
+                        key={section.id}
+                        section={section}
+                        getImage={getImage}
+                        handleImageClick={handleImageClick}
+                    />
+                ))}
+
+                <div className="w-full flex md:flex-row flex-col items-center justify-center gap-6 mt-20 mb-12 relative z-10">
+                    <Link to="/brazil" className="flex flex-row items-center justify-center text-stone-300 hover:text-white transition-colors drop-shadow-md bg-stone-950/60 backdrop-blur-md rounded-full px-8 py-3 border border-white/10 shadow-lg hover:bg-stone-900/80 w-fit">
+                        <span className="text-xl mr-3 pb-1">←</span>
+                        <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Return to Brazil</span>
+                    </Link>
+                    <Link to="/brazil/pantanal" className="flex flex-row items-center justify-center text-[#eeda8d] hover:text-white transition-colors drop-shadow-sm bg-[#ceb752]/20 backdrop-blur-md rounded-full px-8 py-3 border border-[#ceb752]/40 shadow-md hover:bg-[#ceb752]/30 w-fit">
+                        <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Next: The Pantanal</span>
+                        <span className="text-xl ml-3 pb-1">→</span>
+                    </Link>
+                </div>
+            </main>
         </div>
     );
 }
 
-// Optimized Reusable Image Component
+// Refined Reusable Image Component
 function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onToggle, autoCollapse, title }) {
     const isControlled = expanded !== undefined;
     const [visuallyExpanded, setVisuallyExpanded] = useState(isControlled ? expanded : false);
@@ -288,7 +264,6 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
         );
 
         if (containerRef.current) observer.observe(containerRef.current);
-
         return () => observer.disconnect();
     }, [shouldAutoCollapse, visuallyExpanded]);
 
@@ -316,18 +291,17 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
         <motion.div
             layout
             ref={containerRef}
-            className={`relative max-w-5xl mx-auto transition-all duration-700 ease-in-out my-8 ${visuallyExpanded ? "w-full" : "w-full md:w-1/2"}`}
+            className={`relative mx-auto transition-all duration-700 ease-in-out my-8 ${visuallyExpanded ? "w-full max-w-[98vw] md:max-w-screen-2xl" : "w-full md:w-1/2 max-w-5xl"}`}
         >
-            <div className="relative w-full">
+            <div className="relative w-full flex justify-center items-center">
                 <img
                     src={smallSrc}
                     alt={alt}
                     onClick={handleClick}
                     loading="lazy"
-                    className={`rounded-sm shadow-sm transition-opacity duration-500 cursor-pointer ${showFullAsDriver ? "absolute inset-0 w-full h-full object-cover opacity-0" : "relative w-full h-auto object-contain z-10"} ${visuallyExpanded && !imgError && !showFullAsDriver ? "opacity-0" : "opacity-100"}`}
+                    className={`rounded-sm shadow-sm transition-all duration-500 cursor-pointer w-full h-auto max-h-[85vh] object-contain ${showFullAsDriver ? "absolute inset-0 opacity-0" : "relative z-10 opacity-100"}`}
                 />
 
-                {/* High-Res Image - Only rendered if expanded */}
                 {!imgError && visuallyExpanded && (
                     <img
                         src={fullSrc}
@@ -335,34 +309,41 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
                         onClick={handleClick}
                         onLoad={() => setFullLoaded(true)}
                         onError={() => setImgError(true)}
+                        className={`rounded-sm transition-all duration-700 ease-out cursor-pointer w-full h-auto max-h-[85vh] object-contain ${showFullAsDriver ? "relative z-20 opacity-100 scale-100" : "absolute inset-0 z-20 opacity-0 scale-95"}`}
                         loading="lazy"
-                        className={`rounded-sm transition-all duration-700 cursor-pointer ${showFullAsDriver ? "relative w-full h-auto z-20 opacity-100 scale-100" : "absolute inset-0 w-full h-full object-cover z-20 opacity-0 scale-95"} ${visuallyExpanded && !showFullAsDriver ? "opacity-100 scale-100" : ""}`}
                     />
+                )}
+
+                {(title || caption) && visuallyExpanded && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: fullLoaded ? 1 : 0, y: fullLoaded ? 0 : 10 }}
+                        className="absolute bottom-8 left-0 right-0 mx-auto w-fit max-w-[90%] md:max-w-3xl bg-[#0f172a]/85 backdrop-blur-md p-6 md:p-8 border border-white/20 text-left pointer-events-none rounded-xl shadow-2xl shadow-black/60 z-30"
+                    >
+                        <div className="max-w-2xl px-2">
+                            {title && (
+                                <h4 className="text-[#D4AF37] text-2xl md:text-3xl font-bold font-handwriting mb-3 tracking-wide drop-shadow-sm">
+                                    {title}
+                                </h4>
+                            )}
+                            {caption && (
+                                <p className="text-white text-lg leading-relaxed font-serif italic opacity-95">
+                                    {caption}
+                                </p>
+                            )}
+                        </div>
+                    </motion.div>
                 )}
             </div>
 
-            {(title || caption) && (
-                <div className="grid grid-cols-1 grid-rows-1 mt-8 w-full">
-                    {title && (
-                        <div
-                            className={`col-start-1 row-start-1 flex justify-center transition-opacity duration-500 z-10 ${!visuallyExpanded ? "opacity-100" : "opacity-0 pointer-events-none"}`}
-                        >
-                            <div className="max-w-[200px] p-3 bg-white/5 backdrop-blur-sm border-l border-[#eeda8d]/50 text-center shadow-sm">
-                                <h4 className="text-stone-200 text-xs font-bold uppercase tracking-widest mb-1 font-cormorant">
-                                    {title}
-                                </h4>
-                                <div className="mx-auto mt-2 w-4 h-[1px] bg-[#eeda8d]/50" />
-                            </div>
-                        </div>
-                    )}
-
-                    {caption && (
-                        <div className={`col-start-1 row-start-1 flex justify-center items-start transition-opacity duration-500 ${visuallyExpanded ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-                            <p className="text-center text-sm italic font-medium text-stone-300">
-                                {caption}
-                            </p>
-                        </div>
-                    )}
+            {!visuallyExpanded && title && (
+                <div className="mt-6 flex justify-center">
+                    <div className="max-w-[200px] p-3 bg-white/5 backdrop-blur-sm border-l border-[#D4AF37]/50 text-center shadow-sm">
+                        <h4 className="text-stone-200 text-xs font-bold uppercase tracking-widest mb-1 font-cormorant">
+                            {title}
+                        </h4>
+                        <div className="mx-auto mt-2 w-4 h-[1px] bg-[#D4AF37]/50" />
+                    </div>
                 </div>
             )}
         </motion.div>
@@ -376,7 +357,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
     return (
         <motion.div
             layout
-            className={`w-full max-w-6xl bg-stone-900/50 backdrop-blur-md rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-500 ${isExpanded ? `shadow-2xl ${activeBg}` : ""}`}
+            className={`w-full max-w-6xl bg-stone-900/40 backdrop-blur-md rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-500 ${isExpanded ? `shadow-2xl ${activeBg} max-w-[98vw] md:max-w-screen-2xl` : ""}`}
             onClick={() => setIsExpanded(!isExpanded)}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -388,7 +369,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
                         {section.title}
                     </h2>
                     {section.subtitle && (
-                        <h3 className={`text-lg md:text-xl font-light tracking-wide mt-2 transition-colors duration-500 ${isExpanded ? "text-stone-300" : "text-stone-300"}`}>
+                        <h3 className={`text-lg md:text-xl font-light tracking-wide mt-2 transition-colors duration-500 ${isExpanded ? "text-stone-300" : "text-stone-400"}`}>
                             {section.subtitle}
                         </h3>
                     )}
@@ -398,7 +379,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
                     smallSrc={`${process.env.PUBLIC_URL}${getImage(section.coverImage)?.image}`}
                     fullSrc={`${process.env.PUBLIC_URL}${getImage(section.coverImage)?.lightboxImage}`}
                     alt={section.title}
-                    caption={section.coverCaption}
+                    caption={section.coverCaption || getImage(section.coverImage)?.description}
                     title={getImage(section.coverImage)?.title}
                     onClick={() => handleImageClick(section.coverImage)}
                     expanded={isExpanded}
@@ -410,84 +391,87 @@ function StoryCard({ section, getImage, handleImageClick }) {
                     animate={{ opacity: isExpanded ? 0 : 1, height: isExpanded ? 0 : "auto" }}
                     className="flex flex-col items-center h-8"
                 >
-                    <p className="text-xs uppercase tracking-widest opacity-50 mt-2 font-semibold text-stone-400">Explore Section</p>
-                    <div className="w-px h-4 bg-stone-400/30 mt-1"></div>
+                    <p className="text-xs uppercase tracking-widest opacity-40 mt-2 font-semibold text-stone-400">Explore Section</p>
+                    <div className="w-px h-4 bg-stone-400/20 mt-1"></div>
                 </motion.div>
             </div>
 
-            <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{
-                    opacity: isExpanded ? 1 : 0,
-                    height: isExpanded ? "auto" : 0
-                }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="overflow-hidden bg-transparent"
-            >
-                <div className="px-6 pb-12 md:px-16 md:pb-20 flex flex-col items-center space-y-10">
-                    {section.content.map((item, idx) => {
-                        if (item.type === "text") {
-                            return <p key={idx} className="text-xl leading-relaxed max-w-4xl text-center md:text-left text-stone-300 font-medium">{item.text}</p>;
-                        }
-                        if (item.type === "image") {
-                            const img = getImage(item.id);
-                            if (!img) return null;
-                            return (
-                                <div key={idx} className="w-full">
-                                    <RevealImage
-                                        smallSrc={`${process.env.PUBLIC_URL}${img.image}`}
-                                        fullSrc={`${process.env.PUBLIC_URL}${img.lightboxImage}`}
-                                        alt={img.title || ""}
-                                        caption={item.caption}
-                                        title={img.title}
-                                        onClick={(e) => { e.stopPropagation(); handleImageClick(item.id); }}
-                                    />
-                                </div>
-                            );
-                        }
-                        if (item.type === "grid") {
-                            return (
-                                <div key={idx} className={`grid grid-cols-1 md:grid-cols-${item.ids.length > 2 ? '3' : '2'} gap-6 md:gap-10 w-full max-w-6xl`}>
-                                    {item.ids.map(id => {
-                                        const img = getImage(id);
-                                        if (!img) return null;
-                                        return (
-                                            <div key={id} className="flex flex-col items-center w-full">
-                                                <RevealImage
-                                                    smallSrc={`${process.env.PUBLIC_URL}${img.image}`}
-                                                    fullSrc={`${process.env.PUBLIC_URL}${img.lightboxImage}`}
-                                                    alt={id}
-                                                    title={img.title}
-                                                    onClick={(e) => { e.stopPropagation(); handleImageClick(id); }}
-                                                />
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            );
-                        }
-                        if (item.type === "quote") {
-                            return (
-                                <blockquote key={idx} className="border-l-4 border-gold pl-6 italic my-6 text-xl opacity-90 max-w-2xl md:text-left text-stone-300">
-                                    {item.text.split('\n').map((line, i) => <span key={i} className="block">{line}</span>)}
-                                    {item.source && <span className="text-base not-italic block mt-2 font-bold text-stone-400">{item.source}</span>}
-                                </blockquote>
-                            );
-                        }
-                        if (item.type === "header") {
-                            return <h3 key={idx} className="text-2xl md:text-3xl font-bold font-handwriting mt-4 text-center text-stone-100">{item.text}</h3>;
-                        }
-                        if (item.type === "list") {
-                            return (
-                                <ul key={idx} className="list-disc pl-5 space-y-4 text-lg max-w-2xl text-left text-stone-300">
-                                    {item.items.map((li, i) => <li key={i}>{li}</li>)}
-                                </ul>
-                            );
-                        }
-                        return null;
-                    })}
-                </div>
-            </motion.div>
+            <AnimatePresence>
+                {isExpanded && (
+                    <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                        className="overflow-hidden bg-transparent"
+                    >
+                        <div className="px-6 pb-12 md:px-20 md:pb-24 flex flex-col items-center space-y-12">
+                            {section.content.map((item, idx) => {
+                                if (item.type === "text") {
+                                    return <p key={idx} className="text-xl leading-relaxed max-w-3xl text-center md:text-left text-stone-300 font-medium mx-auto">{item.text}</p>;
+                                }
+                                if (item.type === "image") {
+                                    const img = getImage(item.id);
+                                    if (!img) return null;
+                                    return (
+                                        <div key={idx} className="w-full">
+                                            <RevealImage
+                                                smallSrc={`${process.env.PUBLIC_URL}${img.image}`}
+                                                fullSrc={`${process.env.PUBLIC_URL}${img.lightboxImage}`}
+                                                alt={img.title || ""}
+                                                caption={item.caption || img.description}
+                                                title={img.title}
+                                                onClick={(e) => { e.stopPropagation(); handleImageClick(item.id); }}
+                                            />
+                                        </div>
+                                    );
+                                }
+                                if (item.type === "grid") {
+                                    return (
+                                        <div key={idx} className={`grid grid-cols-1 md:grid-cols-${item.ids.length > 2 ? '3' : '2'} gap-8 md:gap-12 w-full max-w-7xl`}>
+                                            {item.ids.map(id => {
+                                                const img = getImage(id);
+                                                if (!img) return null;
+                                                return (
+                                                    <div key={id} className="flex flex-col items-center w-full">
+                                                        <RevealImage
+                                                            smallSrc={`${process.env.PUBLIC_URL}${img.image}`}
+                                                            fullSrc={`${process.env.PUBLIC_URL}${img.lightboxImage}`}
+                                                            alt={id}
+                                                            caption={img.description}
+                                                            title={img.title}
+                                                            onClick={(e) => { e.stopPropagation(); handleImageClick(id); }}
+                                                        />
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    );
+                                }
+                                if (item.type === "quote") {
+                                    return (
+                                        <blockquote key={idx} className="border-l-4 border-[#D4AF37] pl-8 italic my-10 text-2xl opacity-90 max-w-2xl md:text-left text-stone-300 mx-auto">
+                                            {item.text.split('\n').map((line, i) => <span key={i} className="block">{line}</span>)}
+                                            {item.source && <span className="text-base not-italic block mt-3 font-bold text-stone-400 tracking-wider uppercase">{item.source}</span>}
+                                        </blockquote>
+                                    );
+                                }
+                                if (item.type === "header") {
+                                    return <h3 key={idx} className="text-3xl md:text-4xl font-bold font-handwriting mt-8 text-center text-stone-100 max-w-2xl mx-auto">{item.text}</h3>;
+                                }
+                                if (item.type === "list") {
+                                    return (
+                                        <ul key={idx} className="list-disc pl-8 space-y-6 text-xl max-w-2xl text-left text-stone-300">
+                                            {item.items.map((li, i) => <li key={i}>{li}</li>)}
+                                        </ul>
+                                    );
+                                }
+                                return null;
+                            })}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </motion.div>
     );
 }

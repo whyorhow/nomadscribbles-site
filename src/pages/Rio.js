@@ -11,24 +11,6 @@ function Rio({ openLightbox }) {
     const rioCoords = destinations.find(d => d.id === "rio");
     const rioImages = artImages.filter(img => img.category === "Rio");
 
-    // Hero Interaction State
-    const [isHeroExpanded, setIsHeroExpanded] = useState(false);
-    const heroRef = useRef(null);
-
-    // Auto-collapse hero when scrolled out of view
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (!entry.isIntersecting && isHeroExpanded) {
-                    setIsHeroExpanded(false);
-                }
-            },
-            { threshold: 0.1 }
-        );
-
-        if (heroRef.current) observer.observe(heroRef.current);
-        return () => observer.disconnect();
-    }, [isHeroExpanded]);
 
     const spreadBackgroundStyle = {
         backgroundImage: `url(${paperTexture})`,
@@ -60,11 +42,11 @@ function Rio({ openLightbox }) {
             subtitle: "Carnival Works Because Everyone Is Involved",
             expandedBg: "bg-[#262626]/95",
             coverImage: "rio2",
-            coverCaption: "Carnival is as much about collective participation as spectacle.",
+            coverCaption: "From the stands, the Sambadrome collapses into a dense field of light, sound, and movement.",
             content: [
                 { type: "text", text: "From above, the Sambadrome compresses into a dense field of sound, light, and choreography. Each section performs with precision, but the scale of the crowd makes it clear that Carnival only works because it is shared. What looks overwhelming from a distance becomes cohesive only through collective effort." },
                 { type: "header", text: "The Effort Behind the Fantasy" },
-                { type: "image", id: "rio3", caption: "What reads as excess is the result of months of work." },
+                { type: "image", id: "rio3", caption: "A vast carnival float advances slowly, revealing the scale and labour behind the display." },
                 { type: "text", text: "Large-scale floats move slowly through the avenue, combining mythology, politics, humour, and craftsmanship. Entire neighbourhoods work for months to create these fleeting moments of perfection, assembled collectively long before they ever reach the avenue." },
                 { type: "grid", ids: ["rio4", "rio5"] },
                 { type: "text", text: "Close up, the detail becomes human again — hands raised, figures layered, performers and mechanics working side by side. Seen in daylight, the structures expose their construction, reminding us that Carnival exists within everyday Rio, not apart from it, and returns to it once the music fades." }
@@ -76,13 +58,13 @@ function Rio({ openLightbox }) {
             subtitle: "Geography Forces the City Upward",
             expandedBg: "bg-[#1c1917]/95",
             coverImage: "rio8",
-            coverCaption: "Geography here forces the city upward.",
+            coverCaption: "Dense neighbourhoods press tightly against the coastline and steep green slopes.",
             content: [
                 { type: "text", text: "Dense neighbourhoods climb the slopes between forest and sea, filling every available space. Rio’s geography leaves little room for sprawl; instead, it layers daily life vertically, compressing homes, streets, and routines against the hills." },
                 { type: "header", text: "Granite Foundations" },
-                { type: "image", id: "rio7", caption: "The landscape isn’t a backdrop — it sets the limits." },
+                { type: "image", id: "rio7", caption: "As daylight fades, Rio softens into shadow and colour across hills and streets." },
                 { type: "text", text: "The city wakes beneath massive stone hills as early light skims across bare rock. In Rio, the landscape isn’t a backdrop — it sets the limits and the mood. Daily life adapts to this terrain rather than resisting it, shaped by shadow, elevation, and constraint." },
-                { type: "image", id: "rio6", caption: "Quiet courtyards operate in the shadow of the mountain." }
+                { type: "image", id: "rio6", caption: "Café tables sit quietly below a towering rock face that presses the city into view." }
             ]
         },
         {
@@ -91,18 +73,18 @@ function Rio({ openLightbox }) {
             subtitle: "A Fixed Point in a Moving City",
             expandedBg: "bg-[#0c0a09]/95",
             coverImage: "rio9",
-            coverCaption: "Distant yet constant.",
+            coverCaption: "Christ the Redeemer stands open-armed as the city stretches quietly below.",
             content: [
                 { type: "text", text: "Christ the Redeemer stands above the city, distant yet constant. From this height, Rio unfolds as a mix of water, forest, and dense urban movement, all held in uneasy balance." },
                 { type: "text", text: "Up close, the monument feels heavier and quieter than expected. Weathered stone, passing clouds, and surrounding forest pull attention back to the setting rather than the monument itself. It becomes a human pause within a monumental landscape." },
-                { type: "image", id: "rio10", caption: "Weathered stone and passing clouds." }
+                { type: "image", id: "rio10", caption: "From ground level, the statue becomes stone, scale, and weather rather than symbol." }
             ]
         },
         {
             id: "transition_shade",
             type: "transition_image",
             imageId: "rio13",
-            caption: "Looking up from beneath a beach umbrella, the world reduces to fabric, tension, and blue. The sun is present but softened, filtered through canvas and salt air, turning heat into something almost gentle."
+            caption: "Stretched fabric shifts gently against the sky, offering momentary relief from the sun."
         },
         {
             id: "sea",
@@ -110,10 +92,10 @@ function Rio({ openLightbox }) {
             subtitle: "The Shoreline Isn’t an Escape; It’s Part of Everyday Life",
             expandedBg: "bg-[#0f172a]/95",
             coverImage: "rio14",
-            coverCaption: "The shoreline isn’t an escape; it’s part of everyday life.",
+            coverCaption: "As the light changes, the beach thins and the day slips quietly toward evening.",
             content: [
                 { type: "text", text: "The beach marks a shift in pace. Conversations slow. Bodies stretch. The city exhales. In Rio, the shoreline isn’t an escape; it’s where daily life loosens without ever fully stopping, opening outward while still remaining unmistakably urban." },
-                { type: "image", id: "rio12", caption: "Nothing here feels precious for long." }
+                { type: "image", id: "rio12", caption: "A pair of flip-flops rests briefly before the beach erases all trace of them." }
             ]
         }
     ];
@@ -140,104 +122,97 @@ function Rio({ openLightbox }) {
                 </defs>
             </svg>
 
-            <div className="relative w-full overflow-hidden">
-                <div className="flex justify-center mb-6 px-4 mt-8 relative z-10">
-                    <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-[#D4AF37] tracking-tight text-center drop-shadow-sm">Rio de Janeiro</h1>
-                </div>
-
-                {/* Hero Image - Optimized with Priority Loading */}
-                <div ref={heroRef} className="w-full max-w-7xl mx-auto px-4 mb-24 relative z-10 group">
-                    <motion.div
-                        layout
-                        className={`relative w-full overflow-hidden rounded-xl shadow-md cursor-pointer group-hover:shadow-xl transition-all duration-700 ease-in-out ${isHeroExpanded ? 'aspect-auto' : 'aspect-[16/10] md:aspect-[21/9]'}`}
-                        onClick={() => setIsHeroExpanded(!isHeroExpanded)}
-                    >
-                        <img
-                            src={isHeroExpanded ? process.env.PUBLIC_URL + "/images/Rio/full/RioW1.webp" : process.env.PUBLIC_URL + "/images/Rio/small/Rio1new.webp"}
-                            alt="Selarón Steps at Night"
-                            fetchPriority="high" // OPTIMIZATION
-                            loading="eager"      // OPTIMIZATION
-                            className={`w-full h-full object-cover transition-transform duration-700 ease-in-out ${!isHeroExpanded ? 'transform scale-100 group-hover:scale-105' : ''}`}
-                        />
-                    </motion.div>
-
-                    <div className="relative md:absolute md:-bottom-12 md:left-12 lg:left-20 w-full md:max-w-xl bg-[#f5f5f4] p-8 md:p-10 shadow-xl rounded-lg border-t-4 border-[#e9d5ff] mt-[-3rem] md:mt-0 z-20">
-                        <div className="flex items-center gap-3 mb-4 opacity-60">
-                            <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#6b21a8]">Feature</span>
-                            <div className="h-[1px] w-12 bg-stone-400"></div>
-                            <span className="text-xs font-serif italic text-stone-500">Lapa, Rio de Janeiro</span>
-                        </div>
-
-                        <div className="text-xl md:text-2xl font-serif text-stone-800 leading-relaxed">
-                            <span className="text-5xl float-left mr-3 mt-[-10px] font-bold text-[#6b21a8] font-handwriting">T</span>
-                            <p className="inline">
-                                he tiled staircase in Lapa fills after dark, becoming a narrow pocket where movement, noise, and colour gather. That density reminds you that in Rio, public spaces are rarely empty — they are stages for daily life.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="relative w-full mb-16 overflow-hidden">
-                    <div
-                        className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[110vw] pointer-events-none z-0"
-                        style={spreadBackgroundStyle}
+            {/* Cinematic Hero Section */}
+            <div className="relative h-[90vh] w-full overflow-hidden flex items-center justify-center">
+                <motion.div
+                    initial={{ scale: 1.1, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 1.5, ease: "easeOut" }}
+                    className="absolute inset-0 z-0"
+                >
+                    <img
+                        src={`${process.env.PUBLIC_URL}/images/Rio/full/RioW1.webp`}
+                        alt="Rio de Janeiro Landscape Hero"
+                        className="w-full h-full object-cover"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#1c1917]/40 via-transparent to-[#1c1917]" />
+                </motion.div>
 
-                    <div className="relative z-20 max-w-5xl mx-auto px-4 pt-0 pb-4 md:pt-2 md:pb-8 flex flex-col items-center mt-[-10px]">
-                        <div className="w-full max-w-4xl overflow-visible mb-[-10px]">
-                            <ContextMap
-                                markers={[rioCoords].filter(Boolean)}
-                                zoomToId="rio"
-                                title="Where is Rio?"
-                                geography={rioCoords?.geography}
-                                transparent={true}
-                            />
-                        </div>
+                <div className="relative z-10 text-center max-w-4xl px-4">
+                    <motion.div
+                        initial={{ y: 30, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.5, duration: 1 }}
+                    >
+                        <h1 className="text-7xl md:text-9xl font-bold font-handwriting text-[#D4AF37] drop-shadow-2xl mb-4">
+                            Rio de Janeiro
+                        </h1>
+                        <p className="text-xl md:text-3xl font-light tracking-[0.2em] uppercase text-stone-200 opacity-90">
+                            The Marvellous City
+                        </p>
+                    </motion.div>
+                </div>
+            </div>
+            <div className="relative w-full mb-16 overflow-hidden">
+                <div
+                    className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[110vw] pointer-events-none z-0"
+                    style={spreadBackgroundStyle}
+                />
+
+                <div className="relative z-20 max-w-5xl mx-auto px-4 pt-0 pb-4 md:pt-2 md:pb-8 flex flex-col items-center mt-[-10px]">
+                    <div className="w-full max-w-4xl overflow-visible mb-[-10px]">
+                        <ContextMap
+                            markers={[rioCoords].filter(Boolean)}
+                            zoomToId="rio"
+                            title="Where is Rio?"
+                            geography={rioCoords?.geography}
+                            transparent={true}
+                        />
                     </div>
                 </div>
-
-                <main className="px-2 py-2 max-w-screen-xl mx-auto space-y-8 flex flex-col items-center pb-24">
-                    {sections.map((section) => {
-                        if (section.type === "transition_image") {
-                            const img = getImage(section.imageId);
-                            if (!img) return null;
-                            return (
-                                <div key={section.id} className="w-full max-w-6xl py-12">
-                                    <RevealImage
-                                        smallSrc={process.env.PUBLIC_URL + img.image}
-                                        fullSrc={process.env.PUBLIC_URL + img.lightboxImage}
-                                        alt={img.title}
-                                        caption={section.caption}
-                                        title={img.title}
-                                        onClick={() => handleImageClick(section.imageId)}
-                                        expanded={true}
-                                        autoCollapse={false}
-                                    />
-                                </div>
-                            );
-                        }
-                        return (
-                            <StoryCard
-                                key={section.id}
-                                section={section}
-                                getImage={getImage}
-                                handleImageClick={handleImageClick}
-                            />
-                        );
-                    })}
-
-                    <div className="w-full flex flex-col items-center gap-4 mt-16 mb-8 relative z-10">
-                        <Link to="/brazil" className="flex flex-row items-center justify-center text-stone-300 hover:text-white transition-colors drop-shadow-md bg-stone-950/50 backdrop-blur-md rounded-full px-6 py-2 border border-white/10 shadow-lg hover:bg-stone-900/60 w-fit">
-                            <span className="text-xl mr-3 pb-1">←</span>
-                            <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Return to Brazil</span>
-                        </Link>
-                        <Link to="/brazil/salvador" className="flex flex-row items-center justify-center text-[#eeda8d] hover:text-white transition-colors drop-shadow-sm bg-[#ceb752]/30 backdrop-blur-md rounded-full px-6 py-2 border border-[#ceb752]/60 shadow-md hover:bg-[#ceb752]/40 w-fit">
-                            <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Next: Salvador</span>
-                            <span className="text-xl ml-3 pb-1">→</span>
-                        </Link>
-                    </div>
-                </main>
             </div>
+
+            <main className="px-2 py-2 max-w-screen-xl mx-auto space-y-8 flex flex-col items-center pb-24">
+                {sections.map((section) => {
+                    if (section.type === "transition_image") {
+                        const img = getImage(section.imageId);
+                        if (!img) return null;
+                        return (
+                            <div key={section.id} className="w-full max-w-6xl py-12">
+                                <RevealImage
+                                    smallSrc={process.env.PUBLIC_URL + img.image}
+                                    fullSrc={process.env.PUBLIC_URL + img.lightboxImage}
+                                    alt={img.title}
+                                    caption={section.caption}
+                                    title={img.title}
+                                    onClick={() => handleImageClick(section.imageId)}
+                                    expanded={true}
+                                    autoCollapse={false}
+                                />
+                            </div>
+                        );
+                    }
+                    return (
+                        <StoryCard
+                            key={section.id}
+                            section={section}
+                            getImage={getImage}
+                            handleImageClick={handleImageClick}
+                        />
+                    );
+                })}
+
+                <div className="w-full flex flex-col items-center gap-4 mt-16 mb-8 relative z-10">
+                    <Link to="/brazil" className="flex flex-row items-center justify-center text-stone-300 hover:text-white transition-colors drop-shadow-md bg-stone-950/50 backdrop-blur-md rounded-full px-6 py-2 border border-white/10 shadow-lg hover:bg-stone-900/60 w-fit">
+                        <span className="text-xl mr-3 pb-1">←</span>
+                        <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Return to Brazil</span>
+                    </Link>
+                    <Link to="/brazil/salvador" className="flex flex-row items-center justify-center text-[#eeda8d] hover:text-white transition-colors drop-shadow-sm bg-[#ceb752]/30 backdrop-blur-md rounded-full px-6 py-2 border border-[#ceb752]/60 shadow-md hover:bg-[#ceb752]/40 w-fit">
+                        <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Next: Salvador</span>
+                        <span className="text-xl ml-3 pb-1">→</span>
+                    </Link>
+                </div>
+            </main>
         </div>
     );
 }
@@ -391,7 +366,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
                     smallSrc={`${process.env.PUBLIC_URL}${getImage(section.coverImage)?.image}`}
                     fullSrc={`${process.env.PUBLIC_URL}${getImage(section.coverImage)?.lightboxImage}`}
                     alt={section.title}
-                    caption={section.coverCaption}
+                    caption={section.coverCaption || getImage(section.coverImage)?.description}
                     title={getImage(section.coverImage)?.title}
                     onClick={() => handleImageClick(section.coverImage)}
                     expanded={isExpanded}
@@ -431,7 +406,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
                                                 smallSrc={`${process.env.PUBLIC_URL}${img.image}`}
                                                 fullSrc={`${process.env.PUBLIC_URL}${img.lightboxImage}`}
                                                 alt={img.title || ""}
-                                                caption={item.caption}
+                                                caption={item.caption || img.description}
                                                 title={img.title}
                                                 onClick={(e) => { e.stopPropagation(); handleImageClick(item.id); }}
                                             />
@@ -450,6 +425,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
                                                             smallSrc={`${process.env.PUBLIC_URL}${img.image}`}
                                                             fullSrc={`${process.env.PUBLIC_URL}${img.lightboxImage}`}
                                                             alt={id}
+                                                            caption={img.description}
                                                             title={img.title}
                                                             onClick={(e) => { e.stopPropagation(); handleImageClick(id); }}
                                                         />

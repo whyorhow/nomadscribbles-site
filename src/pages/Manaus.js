@@ -11,25 +11,6 @@ function Manaus({ openLightbox }) {
     const manausCoords = destinations.find(d => d.id === "manaus");
     const manausImages = artImages.filter(img => img.category === "Manaus");
 
-    // Hero Interaction State
-    const [isHeroExpanded, setIsHeroExpanded] = useState(false);
-    const heroRef = useRef(null);
-
-    // Auto-collapse hero when scrolled out of view
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (!entry.isIntersecting && isHeroExpanded) {
-                    setIsHeroExpanded(false);
-                }
-            },
-            { threshold: 0.1 }
-        );
-
-        if (heroRef.current) observer.observe(heroRef.current);
-        return () => observer.disconnect();
-    }, [isHeroExpanded]);
-
     const spreadBackgroundStyle = {
         backgroundImage: `url(${paperTexture})`,
         backgroundSize: "cover",
@@ -116,44 +97,35 @@ function Manaus({ openLightbox }) {
                 </defs>
             </svg>
 
-            <div className="relative w-full overflow-hidden">
-                <div className="flex justify-center mb-6 px-4 mt-8 relative z-10">
-                    <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-[#9c6644] tracking-tight text-center drop-shadow-sm">Manaus</h1>
-                </div>
+            {/* Cinematic Hero Section */}
+            <div className="relative h-[90vh] w-full overflow-hidden flex items-center justify-center">
+                <motion.div
+                    initial={{ scale: 1.1, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 1.5, ease: "easeOut" }}
+                    className="absolute inset-0 z-0"
+                >
+                    <img
+                        src={`${process.env.PUBLIC_URL}/images/Manaus/Full/Manaus13.webp`}
+                        alt="Manaus Rainforest Hero"
+                        className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#9c6644]/40 via-transparent to-[#fffbeb]" />
+                </motion.div>
 
-                {/* Hero Image - Optimized */}
-                <div ref={heroRef} className="w-full max-w-7xl mx-auto px-4 mb-24 relative z-10 group">
+                <div className="relative z-10 text-center max-w-4xl px-4">
                     <motion.div
-                        layout
-                        className={`relative w-full overflow-hidden rounded-xl shadow-md cursor-pointer group-hover:shadow-xl transition-all duration-700 ease-in-out ${isHeroExpanded ? 'aspect-auto' : 'aspect-[16/10] md:aspect-[21/9]'}`}
-                        onClick={() => setIsHeroExpanded(!isHeroExpanded)}
+                        initial={{ y: 30, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.5, duration: 1 }}
                     >
-                        <img
-                            src={isHeroExpanded ? process.env.PUBLIC_URL + "/images/Manaus/Full/Manaus13.webp" : process.env.PUBLIC_URL + "/images/Manaus/Small/Manaus13new.webp"}
-                            alt="The forest from above"
-                            fetchPriority="high"
-                            loading="eager"
-                            className={`w-full h-full object-cover transition-transform duration-700 ease-in-out ${!isHeroExpanded ? 'transform scale-100 group-hover:scale-105' : ''}`}
-                        />
+                        <h1 className="text-7xl md:text-9xl font-bold font-handwriting text-[#9c6644] drop-shadow-2xl mb-4">
+                            Manaus
+                        </h1>
+                        <p className="text-xl md:text-3xl font-light tracking-[0.2em] uppercase text-stone-800 opacity-90">
+                            Gateway to the Amazon
+                        </p>
                     </motion.div>
-
-                    <div className="relative md:absolute md:-bottom-12 md:left-12 lg:left-20 w-full md:max-w-xl bg-amber-50/95 p-8 md:p-10 shadow-xl rounded-lg border-t-4 border-[#9c6644] mt-[-3rem] md:mt-0 z-20 backdrop-blur-sm">
-                        <div className="flex items-center gap-3 mb-4 opacity-60">
-                            <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#9c6644]">Gateway</span>
-                            <div className="h-[1px] w-12 bg-amber-200"></div>
-                            <span className="text-xs font-serif italic text-amber-700">Amazonas</span>
-                        </div>
-
-                        <div className="text-xl md:text-2xl font-serif text-amber-950 leading-relaxed font-medium">
-                            <span className="text-5xl float-left mr-3 mt-[-10px] font-bold text-[#9c6644] font-handwriting">M</span>
-                            <div className="flex flex-col">
-                                <h3 className="text-2xl font-bold text-[#9c6644] mb-4">Manaus sits inside the Amazon.</h3>
-                                <p className="inline text-lg text-amber-900 drop-shadow-sm">
-                                    From above, the forest appears endless. The city exists entirely within it — dependent on what surrounds it, and quietly reshaping it at the same time.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -262,7 +234,7 @@ function Manaus({ openLightbox }) {
                     </Link>
                 </div>
             </main>
-        </div >
+        </div>
     );
 }
 
@@ -327,7 +299,6 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
             className={`relative mx-auto transition-all duration-700 ease-in-out my-8 ${visuallyExpanded ? "w-full max-w-[98vw] md:max-w-screen-2xl" : "w-full md:w-1/2 max-w-5xl"}`}
         >
             <div className="relative w-full flex justify-center items-center">
-                {/* Small Image */}
                 <img
                     src={smallSrc}
                     alt={alt}
@@ -336,7 +307,6 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
                     className={`rounded-sm shadow-sm transition-all duration-500 cursor-pointer ${showFullAsDriver ? "absolute opacity-0" : "relative"} w-full h-auto max-h-[85vh] object-contain z-10`}
                 />
 
-                {/* High-Res Image - Only rendered if expanded */}
                 {!imgError && visuallyExpanded && (
                     <div className={`z-20 ${showFullAsDriver ? "relative w-full" : "absolute inset-0 opacity-0"}`}>
                         <img
@@ -349,14 +319,13 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
                             className={`rounded-sm transition-all duration-700 cursor-pointer w-full h-auto max-h-[85vh] object-contain ${showFullAsDriver ? "opacity-100 scale-100" : "scale-95"}`}
                         />
 
-                        {/* Final Overlay Version - Focused Card */}
                         <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             className="absolute bottom-8 left-0 right-0 mx-auto w-fit max-w-[90%] md:max-w-3xl bg-[#25180f]/80 backdrop-blur-md p-6 md:p-8 border border-[#9c6644]/40 text-left pointer-events-none rounded-xl shadow-2xl shadow-black/50"
                         >
                             <div className="max-w-2xl px-2">
-                                {(title) && (
+                                {title && (
                                     <h4 className="text-[#c6ac8f] text-2xl md:text-3xl font-bold font-handwriting mb-3 tracking-wide drop-shadow-sm">
                                         {title}
                                     </h4>

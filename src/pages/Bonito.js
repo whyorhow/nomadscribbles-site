@@ -1,34 +1,29 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
-import artImages from "../assets/artImages.json";
 import ContextMap from "../components/ContextMap";
 import destinations from "../assets/destinations.json";
+import artImages from "../assets/artImages.json";
 import paperTexture from '../assets/Backgrounds/PaperTexture.jpg';
 
-function Bonito({ openLightbox }) {
-    const bonitoCoords = destinations.find(d => d.id === "bonito");
-    const bonitoImages = artImages.filter(img => img.category === "Bonito");
+function Bonito() {
+    const [destination, setDestination] = useState(null);
+    const [activeImage, setActiveImage] = useState(null);
 
-    // Hero Interaction State
-    const [isHeroExpanded, setIsHeroExpanded] = useState(false);
-    const heroRef = useRef(null);
-
-    // Auto-collapse hero when scrolled out of view
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (!entry.isIntersecting && isHeroExpanded) {
-                    setIsHeroExpanded(false);
-                }
-            },
-            { threshold: 0.1 }
-        );
+        const found = destinations.find((d) => d.id === "bonito");
+        setDestination(found);
+    }, []);
 
-        if (heroRef.current) observer.observe(heroRef.current);
-        return () => observer.disconnect();
-    }, [isHeroExpanded]);
+    const getImage = (id) => artImages.find((img) => img.id === id);
+
+    const handleImageClick = (id) => {
+        const img = getImage(id);
+        if (img) {
+            setActiveImage(img);
+        }
+    };
 
     const spreadBackgroundStyle = {
         backgroundImage: `url(${paperTexture})`,
@@ -38,208 +33,206 @@ function Bonito({ openLightbox }) {
         opacity: 0.95,
     };
 
-    // Define the visual order of images for Lightbox navigation
-    const imageOrder = [
-        "bonito1", "bonito5", "bonito12", "bonito2", "bonito3",
-        "bonito4", "bonito6", "bonito8", "bonito7", "bonito9",
-        "bonito10", "bonito11", "bonito14", "bonito13"
-    ];
-
-    const sortedImages = imageOrder.map(id => bonitoImages.find(img => img.id === id)).filter(Boolean);
-
-    const handleImageClick = (imageId) => {
-        const index = sortedImages.findIndex(img => img.id === imageId);
-        if (index !== -1) {
-            openLightbox(index, sortedImages);
-        }
-    };
-
-    const getImage = (id) => bonitoImages.find(i => i.id === id);
-
-    const sections = [
+    const sections = useMemo(() => [
         {
-            id: "arrival",
-            title: "Arrival & Orientation",
-            subtitle: "Controlled Perspective",
-            expandedBg: "bg-[#262626]/95",
-            coverImage: "bonito1",
-            coverCaption: "Bonito doesn’t announce itself loudly. There are no sweeping viewpoints or dramatic entrances...",
+            id: "waterfalls",
+            title: "Crystal Cascades",
+            subtitle: "The liquid heart of the Serra da Bodoquena",
+            coverImage: "bonito-waterfall-main",
+            expandedBg: "bg-[#07332f]/90",
             content: [
-                { type: "text", text: "Bonito doesn’t announce itself loudly. There are no sweeping viewpoints or dramatic entrances, just small signs, dirt roads, and the quiet sense that you’re being allowed into something carefully managed rather than put on display." },
-                { type: "text", text: "Places like Rio da Prata set the tone immediately. Entry is controlled, with guides, time slots, and visitor limits that are easy to notice but never heavy-handed. You sense quickly that these systems exist to keep the water as clear as it is, rather than to manage crowds." },
-                { type: "image", id: "bonito5", caption: "Beyond the rivers, life continues at an agricultural pace. Horses rest in the shade, fields stretch beside forest edges, and tourism fits around daily routines rather than reshaping them." },
-                { type: "text", text: "Bonito doesn’t feel separated from its surroundings. It feels folded into them." },
-                { type: "image", id: "bonito12", caption: "Much of the land around Bonito remains privately owned, with conservation managed through cooperation rather than exclusion. Farms, forests, and tourism often share the same ground." }
+                {
+                    type: "text",
+                    text: "Bonito's waterfalls are not just features of the landscape; they are architected by nature over millennia. High concentrations of calcium carbonate in the water create tufa deposits, essentially living stone that grows and shapes the cascades into terraced pools of impossible clarity."
+                },
+                {
+                    type: "quote",
+                    text: "In Bonito, the water doesn't just flow; it creates.",
+                    source: "Local Guide"
+                },
+                {
+                    type: "grid",
+                    ids: ["bonito-cascade-1", "bonito-cascade-2", "bonito-cascade-3"]
+                },
+                {
+                    type: "text",
+                    text: "Whether it's the towering Boca da Onça or the intimate falls of Estância Mimosa, each site offers a different perspective on this aquatic paradise. The trails lead you through lush riparian forests where monkeys and tropical birds watch from the canopy."
+                }
             ]
         },
         {
-            id: "water",
-            title: "Water & Clarity",
-            subtitle: "Literal Transparency",
-            expandedBg: "bg-[#0f172a]/90",
-            coverImage: "bonito2",
-            coverCaption: "The first glimpse of the water is almost disarming. From the bank, it looks reflective and calm...",
+            id: "snorkeling",
+            title: "Aquarium of the Earth",
+            subtitle: "Floating through an emerald dream",
+            coverImage: "bonito-snorkeling-main",
+            expandedBg: "bg-[#042d2a]/95",
             content: [
-                { type: "text", text: "The first glimpse of the water is almost disarming. From the bank, it looks reflective and calm, its surface mirroring trees and sky so cleanly it feels shallow. Then you look down." },
-                { type: "image", id: "bonito3", caption: "Fish drift through open water, branches hang suspended in sharp focus, and the riverbed appears as clearly as if the water weren’t there at all." },
-                { type: "text", text: "In places, visibility stretches for tens of metres, turning swimming into something closer to hovering." },
-                { type: "image", id: "bonito4", caption: "This clarity comes from the limestone landscape around Bonito. Water filters naturally through rock long before it reaches the surface, arriving already stripped of sediment." },
-                { type: "text", text: "The effect is immediate and slightly disorienting — you slow down without being told to." },
-                { type: "image", id: "bonito6", caption: "Most people drift rather than swim, letting the river carry them. Movement feels softened here, guided as much by instinct as by rules." }
+                {
+                    type: "text",
+                    text: "Floating down the Rio da Prata or the Rio Sucuri is a transcendent experience. The water is so clear it feels like flying through an underwater garden. Schools of Piraputanga, with their bright orange tails, and the golden Dorado glide alongside you in a silent, colorful parade."
+                },
+                {
+                    type: "image",
+                    id: "bonito-fish-1",
+                    caption: "Schools of Piraputanga reflecting the morning sun."
+                },
+                {
+                    type: "text",
+                    text: "This clarity is natural filtration at its finest—the limestone floor of the riverbeds acts as a giant filter, removing all impurities and leaving only the pristine, mineral-rich turquoise that has made Bonito world-famous."
+                }
             ]
         },
         {
-            id: "forest",
-            title: "Forest & Movement",
-            subtitle: "Into the Canvas",
-            expandedBg: "bg-[#141c14]/95",
-            coverImage: "bonito8",
-            coverCaption: "Away from the open stretches of river, Bonito unfolds gradually.",
+            id: "caves",
+            title: "Abyssal Blue",
+            subtitle: "Journeying into the prehistoric silence",
+            coverImage: "bonito-cave-main",
+            expandedBg: "bg-[#021f1d]/98",
             content: [
-                { type: "text", text: "Away from the open stretches of river, Bonito unfolds gradually. Trails follow bends in the water, disappear under tree cover, and reappear at shaded pools where sound and light soften together." },
-                { type: "grid", ids: ["bonito7", "bonito9"] },
-                { type: "text", text: "Small falls spill gently into pale green basins, barely disturbing the surface. These aren’t moments designed to impress. They work quietly, accumulating rather than announcing themselves." },
-                { type: "image", id: "bonito10", caption: "Crossing suspension bridges and forest walkways feels less like observation and more like passage. The canopy closes in, insects replace open water as the dominant sound, and the pace settles into something unhurried." }
-            ]
-        },
-        {
-            id: "closing",
-            title: "Stillness & Balance",
-            subtitle: "Everything in its Place",
-            expandedBg: "bg-[#292524]/95",
-            coverImage: "bonito11",
-            coverCaption: "As the page draws to a close, perspective widens again.",
-            content: [
-                { type: "text", text: "As the page draws to a close, perspective widens again. Water drops in layers through dense vegetation, light filtered by leaves before it ever reaches the pool below." },
-                { type: "image", id: "bonito14", caption: "Looking upward, bamboo and forest rise vertically, enclosing rather than opening the space. The landscape feels contained, held in balance rather than stretched for effect." },
-                { type: "image", id: "bonito13" },
-                { type: "text", text: "Bonito doesn’t rely on scale or spectacle. What stays with you is how carefully everything seems held in place — water, forest, movement — so nothing needs to compete for attention." },
-                { type: "quote", text: "It’s a place that rewards slowness, simply by allowing clarity to remain." }
+                {
+                    type: "text",
+                    text: "Descend into the Gruta do Lago Azul, where a steep climb down reveals a subterranean lake of an electric blue that defies belief. Periodic columns and stalactites frame the view, some dating back hundreds of thousands of years."
+                },
+                {
+                    type: "image",
+                    id: "bonito-cave-depths",
+                    caption: "The prehistoric silence of the Blue Lake Cave."
+                },
+                {
+                    type: "text",
+                    text: "For the adventurous, the Abismo Anhumas offers a 72-meter rappel into a massive cavern where you can snorkel among gigantic underwater stalagmites in water over 80 meters deep."
+                }
             ]
         }
-    ];
+    ], []);
 
-    const pageBackgroundStyle = {
-        backgroundColor: "#5c7c93",
-        opacity: 1,
-    };
+    if (!destination) return null;
 
     return (
-        <div className="relative pt-2">
+        <div className="min-h-screen bg-[#07332f] text-stone-100 font-serif selection:bg-[#eeda8d] selection:text-[#07332f]">
             <SEO
-                title="Bonito | Nomad Scribbles"
-                description="Bonito: A hub for ecotourism, famous for its crystal-clear rivers, limestone caves, and the lush Cerrado plateau."
-                image="/images/Bonito/Small/Bonito1z.webp"
-                slug="/brazil/bonito"
+                title="Bonito: The Aquatic Paradise"
+                description="Explore the crystal clear waters, breathtaking waterfalls, and surreal caves of Bonito, Brazil's premier ecotourism destination."
+                image="/images/destinations/bonito/hero-small.jpg"
+                slug="brazil/bonito"
             />
 
-            <svg className="absolute w-0 h-0 invisible" aria-hidden="true" focusable="false">
+            {/* Cinematic Hero Section */}
+            <div className="relative h-[90vh] w-full overflow-hidden flex items-center justify-center">
+                <motion.div
+                    initial={{ scale: 1.1, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 1.5, ease: "easeOut" }}
+                    className="absolute inset-0 z-0"
+                >
+                    <img
+                        src={`${process.env.PUBLIC_URL}/images/Bonito/Full/Bonito3.webp`}
+                        alt="Bonito Landscape"
+                        className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#07332f]/40 via-transparent to-[#07332f]" />
+                </motion.div>
+
+                <div className="relative z-10 text-center max-w-4xl px-4">
+                    <motion.div
+                        initial={{ y: 30, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.5, duration: 1 }}
+                    >
+                        <h1 className="text-7xl md:text-9xl font-bold font-handwriting text-[#eeda8d] drop-shadow-2xl mb-4">
+                            Bonito
+                        </h1>
+                        <p className="text-xl md:text-3xl font-light tracking-[0.2em] uppercase text-stone-200 opacity-90">
+                            The Source of Purity
+                        </p>
+                    </motion.div>
+                </div>
+            </div>
+
+            <svg style={{ visibility: 'hidden', position: 'absolute' }} width="0" height="0">
                 <defs>
-                    <filter id="torn-paper-filter" x="-20%" y="-20%" width="140%" height="140%">
-                        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" seed="5" result="noise" />
-                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G" />
+                    <filter id="torn-paper-filter">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="5" result="noise" />
+                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="20" />
                     </filter>
                 </defs>
             </svg>
 
-            <div
-                className="fixed inset-0 pointer-events-none z-0"
-                style={pageBackgroundStyle}
-            />
-
-            <h1 className="sr-only">Bonito | Nomad Scribbles</h1>
-
-            <div className="relative z-10">
-                <div className="flex justify-center mb-6 px-4 mt-8">
-                    <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-[#D4AF37] tracking-tight text-center drop-shadow-sm">Bonito</h1>
+            {/* Context Map & Intro */}
+            <div className="max-w-screen-xl mx-auto px-6 pt-24 pb-8">
+                <div className="max-w-3xl mx-auto text-center space-y-8">
+                    <h2 className="text-4xl md:text-5xl font-bold font-handwriting text-[#eeda8d]">
+                        Beyond the Surface
+                    </h2>
+                    <p className="text-xl leading-relaxed text-stone-300">
+                        Located in the heart of Mato Grosso do Sul, Bonito is a testament to the preservation of nature. It's a place where the water is so clear that it seems to vanish, where fish swim in liquid crystal, and where the Earth's inner beauty is revealed in every cave and waterfall.
+                    </p>
                 </div>
-
-                {/* Hero Image - Optimized */}
-                <div ref={heroRef} className="w-full max-w-7xl mx-auto px-4 mb-24 relative z-10 group">
-                    <motion.div
-                        layout
-                        className={`relative w-full overflow-hidden rounded-xl shadow-md cursor-pointer group-hover:shadow-xl transition-all duration-700 ease-in-out ${isHeroExpanded ? 'aspect-auto' : 'aspect-[16/10] md:aspect-[21/9]'}`}
-                        onClick={() => setIsHeroExpanded(!isHeroExpanded)}
-                    >
-                        <img
-                            src={isHeroExpanded ? process.env.PUBLIC_URL + "/images/Bonito/Full/Bonito3.webp" : process.env.PUBLIC_URL + "/images/Bonito/Small/Bonito3new.webp"}
-                            alt="Bonito Water Clarity Hero"
-                            fetchPriority="high"
-                            loading="eager"
-                            className={`w-full h-full object-cover transition-transform duration-700 ease-in-out ${!isHeroExpanded ? 'transform scale-100 group-hover:scale-105' : ''}`}
-                        />
-
-                        {/* Hero Overlay Text */}
-                        {!isHeroExpanded && (
-                            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                                <h2 className="text-4xl md:text-6xl font-bold font-handwriting text-white drop-shadow-lg mb-2">Bonito</h2>
-                                <p className="text-xl md:text-2xl font-serif text-white/90 drop-shadow-md">Water so clear it feels unreal.</p>
-                            </div>
-                        )}
-                    </motion.div>
-
-                    <div className="relative md:absolute md:-bottom-12 md:left-12 lg:left-20 w-full md:max-w-xl bg-[#f5f5f4] p-8 md:p-10 shadow-xl rounded-lg border-t-4 border-[#7dd3fc] mt-[-3rem] md:mt-0 z-20">
-                        <div className="flex items-center gap-3 mb-4 opacity-60">
-                            <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#0369a1]">Feature</span>
-                            <div className="h-[1px] w-12 bg-stone-400"></div>
-                            <span className="text-xs font-serif italic text-stone-500">Mato Grosso do Sul</span>
-                        </div>
-
-                        <div className="text-xl md:text-2xl font-serif text-stone-800 leading-relaxed">
-                            <span className="text-5xl float-left mr-3 mt-[-10px] font-bold text-[#0369a1] font-handwriting">B</span>
-                            <p className="inline">
-                                onito doesn’t announce itself loudly. There are no sweeping viewpoints or dramatic entrances, just small signs, dirt roads, and the quiet sense that you’re being allowed into something carefully managed.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="relative w-full mb-16 overflow-hidden">
-                    <div
-                        className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[110vw] pointer-events-none z-0"
-                        style={spreadBackgroundStyle}
-                    />
-
-                    <div className="relative z-20 max-w-5xl mx-auto px-4 pt-0 pb-4 md:pt-2 md:pb-8 flex flex-col items-center mt-[-10px]">
-                        <div className="w-full max-w-4xl overflow-visible mb-[-10px]">
-                            <ContextMap
-                                markers={[bonitoCoords].filter(Boolean)}
-                                zoomToId="bonito"
-                                title="Where is Bonito?"
-                                geography={bonitoCoords?.geography}
-                                transparent={true}
-                            />
-                        </div>
-                    </div>
-                </div>
-
-                <main className="px-2 py-2 max-w-screen-xl mx-auto space-y-8 flex flex-col items-center pb-24">
-                    {sections.map((section) => (
-                        <StoryCard
-                            key={section.id}
-                            section={section}
-                            getImage={getImage}
-                            handleImageClick={handleImageClick}
-                        />
-                    ))}
-
-                    <div className="w-full flex flex-col items-center gap-4 mt-16 mb-8 relative z-10">
-                        <Link to="/brazil" className="flex flex-row items-center justify-center text-stone-300 hover:text-white transition-colors drop-shadow-md bg-stone-950/50 backdrop-blur-md rounded-full px-6 py-2 border border-white/10 shadow-lg hover:bg-stone-900/60 w-fit">
-                            <span className="text-xl mr-3 pb-1">←</span>
-                            <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Return to Brazil</span>
-                        </Link>
-                        <Link to="/brazil/pantanal" className="flex flex-row items-center justify-center text-[#eeda8d] hover:text-white transition-colors drop-shadow-sm bg-[#ceb752]/30 backdrop-blur-md rounded-full px-6 py-2 border border-[#ceb752]/60 shadow-md hover:bg-[#ceb752]/40 w-fit">
-                            <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Next: The Pantanal</span>
-                            <span className="text-xl ml-3 pb-1">→</span>
-                        </Link>
-                    </div>
-                </main>
             </div>
+
+            <div className="relative w-full mb-16 overflow-hidden">
+                <div
+                    className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[110vw] pointer-events-none z-0"
+                    style={spreadBackgroundStyle}
+                />
+
+                <div className="relative z-20 max-w-5xl mx-auto px-4 pt-0 pb-4 md:pt-2 md:pb-8 flex flex-col items-center mt-[-10px]">
+                    <div className="w-full max-w-4xl overflow-visible mb-[-10px]">
+                        <ContextMap
+                            markers={[{ id: 'bonito', name: 'Bonito', lat: -21.1272, lng: -56.4815 }]}
+                            zoomToId="bonito"
+                            title="Where is Bonito?"
+                            geography={destination?.geography}
+                            transparent={true}
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <main className="px-2 py-2 max-w-screen-xl mx-auto space-y-12 flex flex-col items-center pb-24 mt-24">
+                {sections.map((section) => (
+                    <StoryCard
+                        key={section.id}
+                        section={section}
+                        getImage={getImage}
+                        handleImageClick={handleImageClick}
+                    />
+                ))}
+
+                <div className="w-full flex md:flex-row flex-col items-center justify-center gap-6 mt-20 mb-12 relative z-10">
+                    <Link to="/brazil/florianopolis" className="flex flex-row items-center justify-center text-stone-300 hover:text-white transition-colors drop-shadow-md bg-stone-950/60 backdrop-blur-md rounded-full px-8 py-3 border border-white/10 shadow-lg hover:bg-stone-900/80 w-fit">
+                        <span className="text-xl mr-3 pb-1">←</span>
+                        <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Return to Florianopolis</span>
+                    </Link>
+                    <Link to="/brazil/salvador" className="flex flex-row items-center justify-center text-[#eeda8d] hover:text-white transition-colors drop-shadow-sm bg-[#ceb752]/20 backdrop-blur-md rounded-full px-8 py-3 border border-[#ceb752]/40 shadow-md hover:bg-[#ceb752]/30 w-fit">
+                        <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Next: Salvador</span>
+                        <span className="text-xl ml-3 pb-1">→</span>
+                    </Link>
+                </div>
+            </main>
+
+            {/* Lightbox placeholder if needed */}
+            {activeImage && (
+                <div
+                    className="fixed inset-0 bg-black/95 z-[100] flex items-center justify-center p-4 cursor-zoom-out"
+                    onClick={() => setActiveImage(null)}
+                >
+                    <img
+                        src={`${process.env.PUBLIC_URL}${activeImage.lightboxImage}`}
+                        alt={activeImage.title}
+                        className="max-w-full max-h-[90vh] object-contain shadow-2xl"
+                    />
+                    <div className="absolute bottom-10 left-0 right-0 text-center text-white px-6">
+                        <h4 className="text-2xl font-handwriting text-[#D4AF37] mb-2">{activeImage.title}</h4>
+                        <p className="text-stone-300 italic max-w-2xl mx-auto">{activeImage.description}</p>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
 
-// Optimized Reusable Image Component
+// Refined Reusable Image Component
 function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onToggle, autoCollapse, title }) {
     const isControlled = expanded !== undefined;
     const [visuallyExpanded, setVisuallyExpanded] = useState(isControlled ? expanded : false);
@@ -258,17 +251,13 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
     useEffect(() => {
         if (!shouldAutoCollapse || !visuallyExpanded) return;
 
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (!entry.isIntersecting) {
-                    setVisuallyExpanded(false);
-                }
-            },
-            { threshold: 0 }
-        );
+        const observer = new IntersectionObserver(entry => {
+            if (!entry[0].isIntersecting) {
+                setVisuallyExpanded(false);
+            }
+        }, { threshold: 0 });
 
         if (containerRef.current) observer.observe(containerRef.current);
-
         return () => observer.disconnect();
     }, [shouldAutoCollapse, visuallyExpanded]);
 
@@ -296,15 +285,15 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
         <motion.div
             layout
             ref={containerRef}
-            className={`relative max-w-5xl mx-auto transition-all duration-700 ease-in-out my-8 ${visuallyExpanded ? "w-full" : "w-full md:w-1/2"}`}
+            className={`relative mx-auto transition-all duration-700 ease-in-out my-8 ${visuallyExpanded ? "w-full max-w-[98vw] md:max-w-screen-2xl" : "w-full md:w-1/2 max-w-5xl"}`}
         >
-            <div className="relative w-full">
+            <div className="relative w-full flex justify-center items-center">
                 <img
                     src={smallSrc}
                     alt={alt}
                     onClick={handleClick}
                     loading="lazy"
-                    className={`rounded-sm shadow-sm transition-opacity duration-500 cursor-pointer ${showFullAsDriver ? "absolute inset-0 w-full h-full object-cover opacity-0" : "relative w-full h-auto object-contain z-10"} ${visuallyExpanded && !imgError && !showFullAsDriver ? "opacity-0" : "opacity-100"}`}
+                    className={`rounded-sm shadow-sm transition-all duration-500 cursor-pointer w-full h-auto max-h-[85vh] object-contain ${showFullAsDriver ? "absolute inset-0 opacity-0" : "relative z-10 opacity-100"}`}
                 />
 
                 {!imgError && visuallyExpanded && (
@@ -314,34 +303,31 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
                         onClick={handleClick}
                         onLoad={() => setFullLoaded(true)}
                         onError={() => setImgError(true)}
+                        className={`rounded-sm transition-all duration-700 ease-out cursor-pointer w-full h-auto max-h-[85vh] object-contain ${showFullAsDriver ? "relative z-20 opacity-100 scale-100" : "absolute inset-0 z-20 opacity-0 scale-95"}`}
                         loading="lazy"
-                        className={`rounded-sm transition-all duration-700 cursor-pointer ${showFullAsDriver ? "relative w-full h-auto z-20 opacity-100 scale-100" : "absolute inset-0 w-full h-full object-cover z-20 opacity-0 scale-95"} ${visuallyExpanded && !showFullAsDriver ? "opacity-100 scale-100" : ""}`}
                     />
+                )}
+
+                {(title || caption) && visuallyExpanded && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: fullLoaded ? 1 : 0, y: fullLoaded ? 0 : 10 }}
+                        className="absolute bottom-8 left-0 right-0 mx-auto w-fit max-w-[90%] md:max-w-3xl bg-[#07332f]/85 backdrop-blur-md p-6 md:p-8 border border-white/20 text-left pointer-events-none rounded-xl shadow-2xl shadow-black/60 z-30"
+                    >
+                        <div className="max-w-2xl px-2">
+                            {title && <h4 className="text-[#D4AF37] text-2xl md:text-3xl font-bold font-handwriting mb-3 tracking-wide drop-shadow-sm">{title}</h4>}
+                            {caption && <p className="text-white text-lg leading-relaxed font-serif italic opacity-95">{caption}</p>}
+                        </div>
+                    </motion.div>
                 )}
             </div>
 
-            {(title || caption) && (
-                <div className="grid grid-cols-1 grid-rows-1 mt-8 w-full">
-                    {title && (
-                        <div
-                            className={`col-start-1 row-start-1 flex justify-center transition-opacity duration-500 z-10 ${!visuallyExpanded ? "opacity-100" : "opacity-0 pointer-events-none"}`}
-                        >
-                            <div className="max-w-[200px] p-3 bg-white/5 backdrop-blur-sm border-l border-[#eeda8d]/50 text-center shadow-sm">
-                                <h4 className="text-stone-200 text-xs font-bold uppercase tracking-widest mb-1 font-cormorant">
-                                    {title}
-                                </h4>
-                                <div className="mx-auto mt-2 w-4 h-[1px] bg-[#eeda8d]/50" />
-                            </div>
-                        </div>
-                    )}
-
-                    {caption && (
-                        <div className={`col-start-1 row-start-1 flex justify-center items-start transition-opacity duration-500 ${visuallyExpanded ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-                            <p className="text-center text-sm italic font-medium text-stone-300">
-                                {caption}
-                            </p>
-                        </div>
-                    )}
+            {!visuallyExpanded && title && (
+                <div className="mt-6 flex justify-center">
+                    <div className="max-w-[200px] p-3 bg-white/5 backdrop-blur-sm border-l border-[#D4AF37]/50 text-center shadow-sm">
+                        <h4 className="text-stone-200 text-xs font-bold uppercase tracking-widest mb-1 font-cormorant">{title}</h4>
+                        <div className="mx-auto mt-2 w-4 h-[1px] bg-[#D4AF37]/50" />
+                    </div>
                 </div>
             )}
         </motion.div>
@@ -355,7 +341,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
     return (
         <motion.div
             layout
-            className={`w-full max-w-6xl bg-stone-900/50 backdrop-blur-md rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-500 ${isExpanded ? `shadow-2xl ${activeBg}` : ""}`}
+            className={`w-full max-w-6xl bg-stone-900/40 backdrop-blur-md rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-500 ${isExpanded ? `shadow-2xl ${activeBg} max-w-[98vw] md:max-w-screen-2xl` : ""}`}
             onClick={() => setIsExpanded(!isExpanded)}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -367,7 +353,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
                         {section.title}
                     </h2>
                     {section.subtitle && (
-                        <h3 className={`text-lg md:text-xl font-light tracking-wide mt-2 transition-colors duration-500 ${isExpanded ? "text-stone-300" : "text-stone-300"}`}>
+                        <h3 className={`text-lg md:text-xl font-light tracking-wide mt-2 transition-colors duration-500 ${isExpanded ? "text-stone-300" : "text-stone-400"}`}>
                             {section.subtitle}
                         </h3>
                     )}
@@ -377,7 +363,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
                     smallSrc={`${process.env.PUBLIC_URL}${getImage(section.coverImage)?.image}`}
                     fullSrc={`${process.env.PUBLIC_URL}${getImage(section.coverImage)?.lightboxImage}`}
                     alt={section.title}
-                    caption={section.coverCaption}
+                    caption={section.coverCaption || getImage(section.coverImage)?.description}
                     title={getImage(section.coverImage)?.title}
                     onClick={() => handleImageClick(section.coverImage)}
                     expanded={isExpanded}
@@ -389,73 +375,87 @@ function StoryCard({ section, getImage, handleImageClick }) {
                     animate={{ opacity: isExpanded ? 0 : 1, height: isExpanded ? 0 : "auto" }}
                     className="flex flex-col items-center h-8"
                 >
-                    <p className="text-xs uppercase tracking-widest opacity-50 mt-2 font-semibold text-stone-400">Explore Section</p>
-                    <div className="w-px h-4 bg-stone-400/30 mt-1"></div>
+                    <p className="text-xs uppercase tracking-widest opacity-40 mt-2 font-semibold text-stone-400">Explore Section</p>
+                    <div className="w-px h-4 bg-stone-400/20 mt-1"></div>
                 </motion.div>
             </div>
 
-            <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{
-                    opacity: isExpanded ? 1 : 0,
-                    height: isExpanded ? "auto" : 0
-                }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="overflow-hidden bg-transparent"
-            >
-                <div className="px-6 pb-12 md:px-16 md:pb-20 flex flex-col items-center space-y-10">
-                    {section.content.map((item, idx) => {
-                        if (item.type === "text") {
-                            return <p key={idx} className="text-xl leading-relaxed max-w-4xl text-center md:text-left text-stone-300 font-medium">{item.text}</p>;
-                        }
-                        if (item.type === "image") {
-                            const img = getImage(item.id);
-                            if (!img) return null;
-                            return (
-                                <div key={idx} className="w-full">
-                                    <RevealImage
-                                        smallSrc={`${process.env.PUBLIC_URL}${img.image}`}
-                                        fullSrc={`${process.env.PUBLIC_URL}${img.lightboxImage}`}
-                                        alt={img.title || ""}
-                                        caption={item.caption}
-                                        title={img.title}
-                                        onClick={(e) => { e.stopPropagation(); handleImageClick(item.id); }}
-                                    />
-                                </div>
-                            );
-                        }
-                        if (item.type === "grid") {
-                            return (
-                                <div key={idx} className={`grid grid-cols-1 md:grid-cols-${item.ids.length > 2 ? '3' : '2'} gap-6 md:gap-10 w-full max-w-6xl`}>
-                                    {item.ids.map(id => {
-                                        const img = getImage(id);
-                                        if (!img) return null;
-                                        return (
-                                            <div key={id} className="flex flex-col items-center w-full">
-                                                <RevealImage
-                                                    smallSrc={`${process.env.PUBLIC_URL}${img.image}`}
-                                                    fullSrc={`${process.env.PUBLIC_URL}${img.lightboxImage}`}
-                                                    alt={id}
-                                                    title={img.title}
-                                                    onClick={(e) => { e.stopPropagation(); handleImageClick(id); }}
-                                                />
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            );
-                        }
-                        if (item.type === "quote") {
-                            return (
-                                <blockquote key={idx} className="border-l-4 border-gold pl-6 italic my-6 text-xl opacity-90 max-w-2xl text-center text-stone-300">
-                                    {item.text}
-                                </blockquote>
-                            );
-                        }
-                        return null;
-                    })}
-                </div>
-            </motion.div>
+            <AnimatePresence>
+                {isExpanded && (
+                    <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                        className="overflow-hidden bg-transparent"
+                    >
+                        <div className="px-6 pb-12 md:px-20 md:pb-24 flex flex-col items-center space-y-12">
+                            {section.content.map((item, idx) => {
+                                if (item.type === "text") {
+                                    return <p key={idx} className="text-xl leading-relaxed max-w-3xl text-center md:text-left text-stone-300 font-medium mx-auto">{item.text}</p>;
+                                }
+                                if (item.type === "image") {
+                                    const img = getImage(item.id);
+                                    if (!img) return null;
+                                    return (
+                                        <div key={idx} className="w-full">
+                                            <RevealImage
+                                                smallSrc={`${process.env.PUBLIC_URL}${img.image}`}
+                                                fullSrc={`${process.env.PUBLIC_URL}${img.lightboxImage}`}
+                                                alt={img.title || ""}
+                                                caption={item.caption || img.description}
+                                                title={img.title}
+                                                onClick={(e) => { e.stopPropagation(); handleImageClick(item.id); }}
+                                            />
+                                        </div>
+                                    );
+                                }
+                                if (item.type === "grid") {
+                                    return (
+                                        <div key={idx} className={`grid grid-cols-1 md:grid-cols-${item.ids.length > 2 ? '3' : '2'} gap-8 md:gap-12 w-full max-w-7xl`}>
+                                            {item.ids.map(id => {
+                                                const img = getImage(id);
+                                                if (!img) return null;
+                                                return (
+                                                    <div key={id} className="flex flex-col items-center w-full">
+                                                        <RevealImage
+                                                            smallSrc={`${process.env.PUBLIC_URL}${img.image}`}
+                                                            fullSrc={`${process.env.PUBLIC_URL}${img.lightboxImage}`}
+                                                            alt={id}
+                                                            caption={img.description}
+                                                            title={img.title}
+                                                            onClick={(e) => { e.stopPropagation(); handleImageClick(id); }}
+                                                        />
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    );
+                                }
+                                if (item.type === "quote") {
+                                    return (
+                                        <blockquote key={idx} className="border-l-4 border-[#D4AF37] pl-8 italic my-10 text-2xl opacity-90 max-w-2xl md:text-left text-stone-300 mx-auto">
+                                            {item.text.split('\n').map((line, i) => <span key={i} className="block">{line}</span>)}
+                                            {item.source && <span className="text-base not-italic block mt-3 font-bold text-stone-400 tracking-wider uppercase">{item.source}</span>}
+                                        </blockquote>
+                                    );
+                                }
+                                if (item.type === "header") {
+                                    return <h3 key={idx} className="text-3xl md:text-4xl font-bold font-handwriting mt-8 text-center text-stone-100 max-w-2xl mx-auto">{item.text}</h3>;
+                                }
+                                if (item.type === "list") {
+                                    return (
+                                        <ul key={idx} className="list-disc pl-8 space-y-6 text-xl max-w-2xl text-left text-stone-300">
+                                            {item.items.map((li, i) => <li key={i}>{li}</li>)}
+                                        </ul>
+                                    );
+                                }
+                                return null;
+                            })}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </motion.div>
     );
 }
