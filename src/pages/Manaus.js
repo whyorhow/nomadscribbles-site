@@ -324,7 +324,7 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
         <motion.div
             layout
             ref={containerRef}
-            className={`relative mx-auto transition-all duration-700 ease-in-out my-8 ${visuallyExpanded ? "w-full max-w-7xl" : "w-full md:w-1/2 max-w-5xl"}`}
+            className={`relative mx-auto transition-all duration-700 ease-in-out my-8 ${visuallyExpanded ? "w-full max-w-[98vw] md:max-w-screen-2xl" : "w-full md:w-1/2 max-w-5xl"}`}
         >
             <div className="relative w-full">
                 {/* Small Image */}
@@ -346,7 +346,7 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
                             onLoad={() => setFullLoaded(true)}
                             onError={() => setImgError(true)}
                             loading="lazy"
-                            className={`rounded-sm transition-all duration-700 cursor-pointer ${showFullAsDriver ? "relative w-full h-auto opacity-100 scale-100" : "absolute inset-0 w-full h-full object-cover opacity-0 scale-95"} ${visuallyExpanded && !showFullAsDriver ? "opacity-100 scale-100" : ""}`}
+                            className={`rounded-sm transition-all duration-700 cursor-pointer ${showFullAsDriver ? "relative w-full h-auto max-h-[85vh] object-contain opacity-100 scale-100" : "absolute inset-0 w-full h-full object-cover opacity-0 scale-95"} ${visuallyExpanded && !showFullAsDriver ? "opacity-100 scale-100" : ""}`}
                         />
 
                         {/* Final Overlay Version */}
@@ -381,7 +381,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
     return (
         <motion.div
             layout
-            className={`w-full transition-all duration-500 rounded-xl overflow-hidden shadow-lg cursor-pointer ${isExpanded ? `shadow-2xl ${activeBg} max-w-7xl` : "bg-stone-900/50 backdrop-blur-md max-w-6xl"}`}
+            className={`w-full transition-all duration-500 rounded-xl overflow-hidden shadow-lg cursor-pointer ${isExpanded ? `shadow-2xl ${activeBg} max-w-[98vw] md:max-w-screen-2xl` : "bg-stone-900/50 backdrop-blur-md max-w-6xl"}`}
             onClick={() => setIsExpanded(!isExpanded)}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
