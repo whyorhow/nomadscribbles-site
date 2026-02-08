@@ -76,7 +76,7 @@ function Manaus({ openLightbox }) {
         {
             id: "the-forest-itself",
             title: "The Forest Itself",
-            expandedBg: "bg-[#9c6644]/100",
+            expandedBg: "bg-[#6d4731]/100",
             coverImage: "manaus12",
             content: [
                 { type: "text", text: "That is what makes Manaus so uneasy and so important. The benefits and the risks exist side by side, often for the same people, often through the same systems. Tourism can help keep land standing while increasing demand for access. Industry provides work while expanding the city’s footprint. Choices are rarely clean, and rarely made from a place of certainty." },
@@ -266,6 +266,7 @@ function Manaus({ openLightbox }) {
     );
 }
 
+// Optimized Reusable Image Component
 function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onToggle, autoCollapse, title }) {
     const isControlled = expanded !== undefined;
     const [visuallyExpanded, setVisuallyExpanded] = useState(isControlled ? expanded : false);
@@ -326,6 +327,7 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
             className={`relative mx-auto transition-all duration-700 ease-in-out my-8 ${visuallyExpanded ? "w-full max-w-7xl" : "w-full md:w-1/2 max-w-5xl"}`}
         >
             <div className="relative w-full">
+                {/* Small Image */}
                 <img
                     src={smallSrc}
                     alt={alt}
@@ -334,6 +336,7 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
                     className={`rounded-sm shadow-sm transition-opacity duration-500 cursor-pointer ${showFullAsDriver ? "absolute inset-0 w-full h-full object-cover opacity-0" : "relative w-full h-auto object-contain z-10"} ${visuallyExpanded && !imgError && !showFullAsDriver ? "opacity-0" : "opacity-100"}`}
                 />
 
+                {/* High-Res Image - Only rendered if expanded */}
                 {!imgError && visuallyExpanded && (
                     <div className="relative w-full z-20">
                         <img
@@ -342,8 +345,8 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
                             onClick={handleClick}
                             onLoad={() => setFullLoaded(true)}
                             onError={() => setImgError(true)}
-                            className={`rounded-sm transition-all duration-700 cursor-pointer ${showFullAsDriver ? "relative w-full h-auto opacity-100 scale-100" : "absolute inset-0 w-full h-full object-cover opacity-0 scale-95"} ${visuallyExpanded && !showFullAsDriver ? "opacity-100 scale-100" : ""}`}
                             loading="lazy"
+                            className={`rounded-sm transition-all duration-700 cursor-pointer ${showFullAsDriver ? "relative w-full h-auto opacity-100 scale-100" : "absolute inset-0 w-full h-full object-cover opacity-0 scale-95"} ${visuallyExpanded && !showFullAsDriver ? "opacity-100 scale-100" : ""}`}
                         />
 
                         {/* Final Overlay Version */}
