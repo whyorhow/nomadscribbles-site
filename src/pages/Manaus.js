@@ -60,8 +60,7 @@ function Manaus({ openLightbox }) {
             expandedBg: "bg-[#d97706]/100",
             coverImage: "manaus3",
             content: [
-                { type: "grid", ids: ["manaus9", "manaus10"], caption: "Daily life is shaped by what grows nearby." },
-                { type: "grid", ids: ["manaus7", "manaus1"], caption: "Indigenous identity and forest flashes." }
+                { type: "grid", ids: ["manaus10", "manaus7", "manaus1"], caption: "Daily life is shaped by the market and the forest." }
             ]
         },
         {
@@ -70,6 +69,7 @@ function Manaus({ openLightbox }) {
             expandedBg: "bg-[#b45309]/100",
             coverImage: "manaus6",
             content: [
+                { type: "text", text: "Manaus grows outward as well as upward. Streets stretch, neighbourhoods densify, and infrastructure follows the river’s edge deeper into the forest. For many residents, this growth brings work, stability, and connection to the wider country. But expansion here is never neutral. Every new road, warehouse, or housing block sits in direct conversation with what it replaces. The city’s scale is felt not through skylines, but through the quiet accumulation of pressure on the land around it." },
                 { type: "grid", ids: ["manaus8", "manaus4"], caption: "Lived-in walls and surfacing dreams." }
             ]
         },
@@ -334,42 +334,37 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
                 />
 
                 {!imgError && visuallyExpanded && (
-                    <img
-                        src={fullSrc}
-                        alt={alt}
-                        onClick={handleClick}
-                        onLoad={() => setFullLoaded(true)}
-                        onError={() => setImgError(true)}
-                        className={`rounded-sm transition-all duration-700 cursor-pointer ${showFullAsDriver ? "relative w-full h-auto z-20 opacity-100 scale-100" : "absolute inset-0 w-full h-full object-cover z-20 opacity-0 scale-95"} ${visuallyExpanded && !showFullAsDriver ? "opacity-100 scale-100" : ""}`}
-                        loading="lazy"
-                    />
-                )}
-            </div>
+                    <div className="relative w-full z-20">
+                        <img
+                            src={fullSrc}
+                            alt={alt}
+                            onClick={handleClick}
+                            onLoad={() => setFullLoaded(true)}
+                            onError={() => setImgError(true)}
+                            className={`rounded-sm transition-all duration-700 cursor-pointer ${showFullAsDriver ? "relative w-full h-auto opacity-100 scale-100" : "absolute inset-0 w-full h-full object-cover opacity-0 scale-95"} ${visuallyExpanded && !showFullAsDriver ? "opacity-100 scale-100" : ""}`}
+                            loading="lazy"
+                        />
 
-            {(title || caption) && (
-                <div className="grid grid-cols-1 grid-rows-1 mt-8 w-full">
-                    {title && (
-                        <div
-                            className={`col-start-1 row-start-1 flex justify-center transition-opacity duration-500 z-10 ${!visuallyExpanded ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+                        {/* Final Overlay Version */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="absolute bottom-0 left-0 right-0 bg-stone-950/70 backdrop-blur-md p-6 border-t border-[#d97706]/30 text-left pointer-events-none rounded-b-sm shadow-[0_-10px_30px_rgba(0,0,0,0.5)]"
                         >
-                            <div className="max-w-[200px] p-3 bg-white/5 backdrop-blur-sm border-l border-[#eeda8d]/50 text-center shadow-sm">
-                                <h4 className="text-stone-200 text-xs font-bold uppercase tracking-widest mb-1 font-cormorant">
+                            {(title) && (
+                                <h4 className="text-[#d97706] text-xl font-bold font-handwriting mb-2 tracking-wide drop-shadow-sm">
                                     {title}
                                 </h4>
-                                <div className="mx-auto mt-2 w-4 h-[1px] bg-[#eeda8d]/50" />
-                            </div>
-                        </div>
-                    )}
-
-                    {caption && (
-                        <div className={`col-start-1 row-start-1 flex justify-center items-start transition-opacity duration-500 ${visuallyExpanded ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-                            <p className="text-center text-sm italic font-medium text-stone-300">
-                                {caption}
-                            </p>
-                        </div>
-                    )}
-                </div>
-            )}
+                            )}
+                            {caption && (
+                                <p className="text-amber-50 text-base leading-relaxed font-serif italic opacity-95">
+                                    {caption}
+                                </p>
+                            )}
+                        </motion.div>
+                    </div>
+                )}
+            </div>
         </motion.div>
     );
 }
@@ -443,7 +438,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
                                         smallSrc={`${process.env.PUBLIC_URL}${img.image}`}
                                         fullSrc={`${process.env.PUBLIC_URL}${img.lightboxImage}`}
                                         alt={img.title || ""}
-                                        caption={item.caption}
+                                        caption={img.description || item.caption}
                                         title={img.title}
                                         onClick={(e) => { e.stopPropagation(); handleImageClick(item.id); }}
                                     />
@@ -463,6 +458,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
                                                     fullSrc={`${process.env.PUBLIC_URL}${img.lightboxImage}`}
                                                     alt={id}
                                                     title={img.title}
+                                                    caption={img.description}
                                                     onClick={(e) => { e.stopPropagation(); handleImageClick(id); }}
                                                 />
                                             </div>
