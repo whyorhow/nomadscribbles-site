@@ -1,10 +1,9 @@
 // src/Home.js
 import React, { useRef, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
-// UPDATED IMPORTS
-import SEO from "../components/SEO"; // Moved up one level
-import { fadeScale, hoverScale, staggerContainer } from "../utils/animations"; // Moved up and into utils
+import { motion, useScroll, useTransform } from "framer-motion";
+import SEO from "../components/SEO";
+import { fadeScale, hoverScale, staggerContainer } from "../utils/animations";
 import HandwritingTagline from "../components/HandwritingTagline";
 import { trackEvent } from "../utils/analytics";
 
@@ -30,7 +29,7 @@ function Home() {
 
   const [logoReady, setLogoReady] = useState(false);
 
-  const originalCards = [
+  const cards = [
     { title: "Rio de Janeiro", link: "/brazil/rio", img: "/images/Rio/thumbnail/Rio1.webp" },
     { title: "Florianópolis", link: "/brazil/florianopolis", img: "/images/Floripa/thumbnail/Floripa1.webp" },
     { title: "Salvador", link: "/brazil/salvador", img: "/images/Salvador/thumbnail/Salvador1.webp" },
@@ -41,10 +40,6 @@ function Home() {
     { title: "Nomads Gallery", link: "/nomads-gallery", img: "/images/Home/ThumbnailNG.webp" },
     { title: "Nomads Shop", link: "/nomadsshop", img: "/images/Home/ThumbnailNS.webp" },
   ];
-
-
-  const [cards, setCards] = useState(originalCards); // No need to duplicate for Swiper
-  // const carouselRef = useRef(null); // Removed manual carousel ref
 
   const [showMiniSP, setShowMiniSP] = useState(false);
   const [showMiniSantos, setShowMiniSantos] = useState(false); // Used for Salvador
@@ -126,7 +121,7 @@ function Home() {
       window.scrollBy({
         top: speed,
         left: 0,
-        behavior: 'auto' // Use auto for precise frame-by-frame control
+        behavior: 'auto'
       });
 
       animationFrameId = requestAnimationFrame(animateScroll);
@@ -135,7 +130,7 @@ function Home() {
     // Delay start slightly to allow load
     timeoutId = setTimeout(() => {
       animationFrameId = requestAnimationFrame(animateScroll);
-    }, 1500); // Start after 1.5s
+    }, 1500);
 
     return () => {
       stopScroll();
@@ -180,10 +175,9 @@ function Home() {
 
   return (
     <div className="relative w-screen min-h-[250vh] overflow-hidden bg-[#342508ff]">
-      {/* Parallax background - separated to keep Home component static during scroll */}
+      {/* Parallax background */}
       <ParallaxBackground scrollY={scrollY} viewportHeight={viewportHeight} viewportWidth={viewportWidth} />
 
-      {/* Existing SEO + content */}
       <SEO
         title="Nomad Scribbles | Travel Stories Across the World"
         description="Join Nomad Scribbles on a journey through cities, culture, travel tips, and inspiring adventures."
@@ -193,7 +187,7 @@ function Home() {
 
       <h1 className="sr-only">Nomad Scribbles | Travel Stories Across the World</h1>
 
-      {/* Sticky Hero Section - Individual Sticky Layers */}
+      {/* Sticky Hero Section */}
       <div className="absolute top-0 left-0 w-full h-[200vh] z-30 pointer-events-none flex flex-col items-center">
 
         {/* Tagline Sticky Layer */}
@@ -210,13 +204,13 @@ function Home() {
           </motion.div>
         </div>
 
-        {/* Logo Sticky Layer - Positioned lower (75vh), hidden at scroll 0 */}
+        {/* Logo Sticky Layer */}
         <div className="sticky top-[75vh] w-full flex flex-col items-center">
           <motion.div
             className="text-center w-full flex justify-center"
             style={{
               opacity: logoOpacity,
-              display: logoReady ? "flex" : "none" // Only show after initial delay
+              display: logoReady ? "flex" : "none"
             }}
           >
             <motion.div
@@ -236,8 +230,9 @@ function Home() {
 
       </div>
 
+      {/* Feature 1: São Paulo */}
       <motion.div
-        ref={firstFeatureRef} // Targeted for autoscroll
+        ref={firstFeatureRef}
         initial="hidden"
         whileInView="visible"
         viewport={{ amount: 0.3 }}
@@ -260,6 +255,7 @@ function Home() {
           <motion.img
             src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/street.webp"}
             alt="São Paulo city travel feature"
+            loading="lazy" // OPTIMIZATION: Below the fold
             className="w-full h-full object-cover transition-transform duration-2000 group-hover:scale-105"
             variants={hoverScale}
           />
@@ -284,12 +280,14 @@ function Home() {
               <motion.img
                 src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/pizza.webp"}
                 alt=""
+                loading="lazy"
                 className="absolute top-4 right-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[6deg]"
                 variants={fadeScale}
               />
               <motion.img
                 src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/caparinha.webp"}
                 alt=""
+                loading="lazy"
                 className="absolute bottom-4 left-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[-3deg]"
                 variants={fadeScale}
               />
@@ -298,8 +296,7 @@ function Home() {
         </motion.div>
       </motion.div>
 
-      {/* Santos Feature */}
-      {/* Salvador Feature (Replaces Santos) */}
+      {/* Feature 2: Salvador */}
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -310,7 +307,7 @@ function Home() {
         <motion.div
           className="relative block w-full max-w-full sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[4/3] cursor-pointer overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/20 group transition-all duration-[2000ms]"
           onMouseEnter={() => {
-            setShowMiniSantos(true); // Reusing state variable for simplicity as "Feature 2 state"
+            setShowMiniSantos(true); // Reusing state variable for simplicity
             trackEvent("hover_feature", "Home Page", "Salvador Feature");
           }}
           onMouseLeave={() => setShowMiniSantos(false)}
@@ -323,6 +320,7 @@ function Home() {
           <motion.img
             src={process.env.PUBLIC_URL + "/images/Salvador/full/SalvadorW1.webp"}
             alt="Salvador city travel feature"
+            loading="lazy" // OPTIMIZATION
             className="w-full h-full object-cover transition-transform duration-2000 group-hover:scale-105"
             variants={hoverScale}
           />
@@ -347,12 +345,14 @@ function Home() {
               <motion.img
                 src={process.env.PUBLIC_URL + "/images/Salvador/small/Salvador20z.webp"}
                 alt=""
+                loading="lazy"
                 className="absolute top-4 left-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[-6deg]"
                 variants={fadeScale}
               />
               <motion.img
                 src={process.env.PUBLIC_URL + "/images/Salvador/small/Salvador15z.webp"}
                 alt=""
+                loading="lazy"
                 className="absolute bottom-4 right-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[3deg]"
                 variants={fadeScale}
               />
@@ -361,7 +361,7 @@ function Home() {
         </motion.div>
       </motion.div>
 
-      {/* Rio Feature */}
+      {/* Feature 3: Rio */}
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -385,6 +385,7 @@ function Home() {
           <motion.img
             src={process.env.PUBLIC_URL + "/images/Rio/Rio1.jpg"}
             alt="Rio de Janeiro city travel feature"
+            loading="lazy" // OPTIMIZATION
             className="w-full h-full object-cover transition-transform duration-2000 group-hover:scale-105"
             variants={hoverScale}
           />
@@ -408,7 +409,7 @@ function Home() {
         </motion.div>
       </motion.div>
 
-      {/* Florianópolis Feature */}
+      {/* Feature 4: Florianópolis */}
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -432,6 +433,7 @@ function Home() {
           <motion.img
             src={process.env.PUBLIC_URL + "/images/Floripa/full/Floripa20.webp"}
             alt="Florianópolis island travel feature"
+            loading="lazy" // OPTIMIZATION
             className="w-full h-full object-cover transition-transform duration-2000 group-hover:scale-105"
             variants={hoverScale}
           />
@@ -456,12 +458,14 @@ function Home() {
               <motion.img
                 src={process.env.PUBLIC_URL + "/images/Floripa/small/Floripa9z.webp"}
                 alt=""
+                loading="lazy"
                 className="absolute bottom-4 left-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[-3deg]"
                 variants={fadeScale}
               />
               <motion.img
                 src={process.env.PUBLIC_URL + "/images/Floripa/small/Floripa1z.webp"}
                 alt=""
+                loading="lazy"
                 className="absolute top-4 right-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[6deg]"
                 variants={fadeScale}
               />
@@ -495,14 +499,12 @@ function Home() {
           {cards.map((card, idx) => (
             <SwiperSlide key={idx} className="!h-auto flex items-stretch">
               {card.external ? (
-                <a
-                  href={card.link}
-                  className="block w-full"
-                >
+                <a href={card.link} className="block w-full">
                   <div className="relative shadow-xl hover:shadow-2xl transition-all duration-300 w-full h-full rounded-2xl overflow-hidden aspect-[16/9] group">
                     <img
                       src={process.env.PUBLIC_URL + card.img}
                       alt={card.title}
+                      loading="lazy" // OPTIMIZATION
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
@@ -516,6 +518,7 @@ function Home() {
                     <img
                       src={process.env.PUBLIC_URL + card.img}
                       alt={card.title}
+                      loading="lazy" // OPTIMIZATION
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">

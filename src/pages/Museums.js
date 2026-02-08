@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import SEO from "../components/SEO";
 
 // Gallery Data
@@ -8,8 +8,8 @@ const heroSection = {
   id: "gallery1",
   title: "Art Galleries",
   text: "In São Paulo, galleries are places people return to rather than pass through. They sit inside the city’s noise and movement, offering rooms where attention slows and perspective shifts. For many residents, these spaces aren’t about spectacle — they’re about pause, reflection, and the quiet habit of looking closely.",
-  imageSmall: "/images/ArtGallery/small/ArtGallery1new.webp",
-  imageFull: "/images/ArtGallery/full/ArtGallery1.jpg",
+  imageSmall: "/images/ArtGallery/small/ArtGallery1.webp",
+  imageFull: "/images/ArtGallery/full/ArtGallery1.webp",
 };
 
 const cardSections = [
@@ -18,8 +18,8 @@ const cardSections = [
     title: "MASP, Held Above the Avenue",
     subtitle: "Suspended Over Paulista",
     text: "MASP doesn’t retreat from the city — it hovers above it. Suspended over Avenida Paulista, the building remains open beneath, allowing traffic, protest, and daily movement to pass through. Inside, artworks rest on glass easels, visible from all sides. Visitors don’t follow walls so much as drift, building their own paths through time, style, and geography. It’s a space designed for looking without hurry.",
-    imageSmall: "/images/ArtGallery/small/ArtGallery1z.webp",
-    imageFull: "/images/ArtGallery/full/ArtGallery1.jpg",
+    imageSmall: "/images/ArtGallery/small/ArtGallery1.webp",
+    imageFull: "/images/ArtGallery/full/ArtGallery1.webp",
     expandedBg: "bg-[#e5e7eb]",
     layout: "left",
     location: "Paulista Avenue",
@@ -29,8 +29,8 @@ const cardSections = [
     title: "Learning How to Linger",
     subtitle: "Time Loosens Here",
     text: "Near the centre, Degas’ ballerina stands in quiet suspension. People circle, pause, return. Time loosens here. Light shifts across the floor, shadows lengthen, and the room changes without announcement. Regular visitors know this feeling — that certain works reveal themselves slowly, rewarding repeated visits rather than quick recognition.",
-    imageSmall: "/images/ArtGallery/small/ArtGallery2z.webp",
-    imageFull: "/images/ArtGallery/full/ArtGallery2.jpg",
+    imageSmall: "/images/ArtGallery/small/ArtGallery2.webp",
+    imageFull: "/images/ArtGallery/full/ArtGallery2.webp",
     expandedBg: "bg-[#E6EFF5]",
     layout: "right",
     location: "Centro",
@@ -40,8 +40,8 @@ const cardSections = [
     title: "Tracing the City Through Art",
     subtitle: "Extensions of the Streets",
     text: "Sketches and studies echo the city outside — structure meeting imagination, concrete softened by colour. São Paulo’s galleries often feel like extensions of the streets themselves. Visitors move between observation and interpretation, letting form, repetition, and negative space guide attention rather than instruction.",
-    imageSmall: "/images/ArtGallery/small/ArtGallery4Drawnz.webp",
-    imageFull: "/images/ArtGallery/full/ArtGallery4Drawn.jpg",
+    imageSmall: "/images/ArtGallery/small/ArtGallery4Drawn.webp",
+    imageFull: "/images/ArtGallery/full/ArtGallery4Drawn.webp",
     expandedBg: "bg-[#E6EFF5]",
     layout: "left",
     location: "Citywide",
@@ -51,8 +51,8 @@ const cardSections = [
     title: "Holding Multiple Histories",
     subtitle: "Living Knowledge",
     text: "Below MASP’s main floors, the tone shifts. Indigenous Brazilian art brings depth rooted far beyond the city itself. These works aren’t framed as relics — they’re presented as living knowledge. For many Paulistanos, this balance matters: imported narratives held alongside those that began here, long before concrete arrived.",
-    imageSmall: "/images/ArtGallery/small/ArtGallery3z.webp",
-    imageFull: "/images/ArtGallery/full/ArtGallery3.jpg",
+    imageSmall: "/images/ArtGallery/small/ArtGallery3.webp",
+    imageFull: "/images/ArtGallery/full/ArtGallery3.webp",
     expandedBg: "bg-[#E6EFF5]",
     layout: "right",
     location: "Paulista Avenue",
@@ -62,8 +62,8 @@ const cardSections = [
     title: "The Pinacoteca’s Quiet Pace",
     subtitle: "Shaped by Shadow",
     text: "Across the city, the Pinacoteca moves more slowly. Brick walls absorb sound. Light enters carefully through high windows. Visitors lower their voices without noticing. The building encourages patience — each room unfolding gently into the next, shaped by shadow, texture, and distance rather than spectacle.",
-    imageSmall: "/images/ArtGallery/small/ArtGallery4z.webp",
-    imageFull: "/images/ArtGallery/full/ArtGallery4.jpg",
+    imageSmall: "/images/ArtGallery/small/ArtGallery4.webp",
+    imageFull: "/images/ArtGallery/full/ArtGallery4.webp",
     expandedBg: "bg-[#E6EFF5]",
     layout: "left",
     location: "Luz",
@@ -73,8 +73,8 @@ const cardSections = [
     title: "A Building That Watches Back",
     subtitle: "Supported by Structure",
     text: "The Pinacoteca’s architecture is part of the experience. Exposed brick, iron beams, and open walkways remain visible, refusing to disappear behind exhibitions. For regular visitors, the building itself becomes familiar — a constant presence that frames changing work. Art here isn’t isolated from structure; it’s supported by it.",
-    imageSmall: "/images/ArtGallery/small/ArtGallery5z.webp",
-    imageFull: "/images/ArtGallery/full/ArtGallery5.jpg",
+    imageSmall: "/images/ArtGallery/small/ArtGallery5.webp",
+    imageFull: "/images/ArtGallery/full/ArtGallery5.webp",
     expandedBg: "bg-[#E6EFF5]",
     layout: "right",
     location: "Luz",
@@ -126,6 +126,8 @@ export default function Museums({ openLightbox }) {
             <img
               src={isHeroExpanded ? process.env.PUBLIC_URL + heroSection.imageFull : process.env.PUBLIC_URL + heroSection.imageSmall}
               alt="Gallery Hero"
+              fetchPriority="high" // OPTIMIZATION
+              loading="eager"      // OPTIMIZATION
               className={`w-full h-full object-cover transition-transform duration-700 ease-in-out ${!isHeroExpanded ? 'transform scale-100 group-hover:scale-105' : ''}`}
             />
           </div>
@@ -265,12 +267,11 @@ function StoryCard({ section, onImageClick }) {
   );
 }
 
-// RevealImage Component
-// 70% width when collapsed, 100% when expanded
+// Optimized RevealImage Component
 function RevealImage({ smallSrc, fullSrc, alt, expanded, onToggle, onClick, autoCollapse }) {
   const [imgError, setImgError] = useState(false);
   const [fullLoaded, setFullLoaded] = useState(false);
-  const containerRef = React.useRef(null);
+  const containerRef = useRef(null);
 
   const isControlled = expanded !== undefined;
   const initialExpanded = isControlled ? expanded : false;
@@ -324,13 +325,14 @@ function RevealImage({ smallSrc, fullSrc, alt, expanded, onToggle, onClick, auto
         <img
           src={smallSrc}
           alt={alt}
+          loading="lazy"
           className={`transition-all duration-500 
                 ${showFullAsDriver ? "absolute inset-0 w-full h-full object-cover opacity-0" : "relative w-full h-auto object-contain z-10"}
                 ${!visuallyExpanded ? "scale-95 group-hover:scale-100 transition-transform duration-500" : "scale-100"}
             `}
         />
 
-        {!imgError && (
+        {!imgError && visuallyExpanded && (
           <img
             src={fullSrc}
             alt={alt}

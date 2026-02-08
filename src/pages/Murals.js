@@ -174,6 +174,8 @@ export default function Murals({ openLightbox }) {
             <img
               src={isHeroExpanded ? process.env.PUBLIC_URL + "/images/Murals/full/Graffiti1.webp" : process.env.PUBLIC_URL + "/images/Murals/small/Graffiti1new.webp"}
               alt="Murals Hero"
+              fetchPriority="high" // OPTIMIZATION
+              loading="eager"      // OPTIMIZATION
               className={`w-full h-full object-cover transition-transform duration-700 ease-in-out ${!isHeroExpanded ? 'transform scale-100 group-hover:scale-105' : ''}`}
             />
           </div>
@@ -190,7 +192,7 @@ export default function Murals({ openLightbox }) {
             <div className="text-xl md:text-2xl font-serif text-stone-800 leading-relaxed">
               <span className="text-5xl float-left mr-3 mt-[-10px] font-bold text-[#6b21a8] font-handwriting">P</span>
               <p className="inline">
-                Wait, paint appears, disappears, and returns altered. Walls in São Paulo are rarely neutral. Murals stretch across facades like open letters, layered with joy, protest, memory, and response. For people who live here, these images aren’t landmarks — they’re part of the daily landscape, absorbing the city’s rhythm and reflecting it back in colour and form.
+                aint appears, disappears, and returns altered. Walls in São Paulo are rarely neutral. Murals stretch across facades like open letters, layered with joy, protest, memory, and response. For people who live here, these images aren’t landmarks — they’re part of the daily landscape, absorbing the city’s rhythm and reflecting it back in colour and form.
               </p>
             </div>
           </div>
@@ -330,12 +332,11 @@ function StoryCard({ section, onImageClick }) {
 }
 
 
-// RevealImage Component
-// 70% width when collapsed, 100% when expanded
+// Optimized RevealImage Component
 function RevealImage({ smallSrc, fullSrc, alt, expanded, onToggle, onClick, autoCollapse }) {
   const [imgError, setImgError] = useState(false);
   const [fullLoaded, setFullLoaded] = useState(false);
-  const containerRef = React.useRef(null);
+  const containerRef = useRef(null);
 
   const isControlled = expanded !== undefined;
   const initialExpanded = isControlled ? expanded : false;
@@ -389,13 +390,14 @@ function RevealImage({ smallSrc, fullSrc, alt, expanded, onToggle, onClick, auto
         <img
           src={smallSrc}
           alt={alt}
+          loading="lazy"
           className={`transition-all duration-500 
                 ${showFullAsDriver ? "absolute inset-0 w-full h-full object-cover opacity-0" : "relative w-full h-auto object-contain z-10"}
                 ${!visuallyExpanded ? "scale-95 group-hover:scale-100 transition-transform duration-500" : "scale-100"}
             `}
         />
 
-        {!imgError && (
+        {!imgError && visuallyExpanded && (
           <img
             src={fullSrc}
             alt={alt}
