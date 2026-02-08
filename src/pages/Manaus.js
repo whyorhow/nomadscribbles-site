@@ -349,22 +349,24 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
                             className={`rounded-sm transition-all duration-700 cursor-pointer w-full h-auto max-h-[85vh] object-contain ${showFullAsDriver ? "opacity-100 scale-100" : "scale-95"}`}
                         />
 
-                        {/* Final Overlay Version */}
+                        {/* Final Overlay Version - Focused Card */}
                         <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="absolute bottom-0 left-0 right-0 bg-[#25180f]/60 backdrop-blur-md p-6 border-t border-[#9c6644]/60 text-left pointer-events-none rounded-b-sm shadow-[0_-10px_30px_rgba(0,0,0,0.5)]"
+                            className="absolute bottom-8 left-0 right-0 mx-auto w-fit max-w-[90%] md:max-w-3xl bg-[#25180f]/80 backdrop-blur-md p-6 md:p-8 border border-[#9c6644]/40 text-left pointer-events-none rounded-xl shadow-2xl shadow-black/50"
                         >
-                            {(title) && (
-                                <h4 className="text-[#9c6644] text-2xl md:text-3xl font-bold font-handwriting mb-2 tracking-wide drop-shadow-sm">
-                                    {title}
-                                </h4>
-                            )}
-                            {caption && (
-                                <p className="text-amber-50 text-base leading-relaxed font-serif italic opacity-95">
-                                    {caption}
-                                </p>
-                            )}
+                            <div className="max-w-2xl px-2">
+                                {(title) && (
+                                    <h4 className="text-[#9c6644] text-2xl md:text-3xl font-bold font-handwriting mb-3 tracking-wide drop-shadow-sm">
+                                        {title}
+                                    </h4>
+                                )}
+                                {caption && (
+                                    <p className="text-[#ede0d4] text-lg leading-relaxed font-serif italic opacity-95">
+                                        {caption}
+                                    </p>
+                                )}
+                            </div>
                         </motion.div>
                     </div>
                 )}
