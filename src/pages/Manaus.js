@@ -57,10 +57,10 @@ function Manaus({ openLightbox }) {
         {
             id: "access-proximity-opportunity",
             title: "Access, Proximity, Opportunity",
-            expandedBg: "bg-[#064e3b]/95",
+            expandedBg: "bg-[#423c14]/95",
             coverImage: "manaus3",
             content: [
-                { type: "grid", ids: ["manaus3", "manaus10"], caption: "Daily life is shaped by what grows nearby." },
+                { type: "grid", ids: ["manaus9", "manaus10"], caption: "Daily life is shaped by what grows nearby." },
                 { type: "grid", ids: ["manaus7", "manaus1"], caption: "Indigenous identity and forest flashes." }
             ]
         },
@@ -97,7 +97,7 @@ function Manaus({ openLightbox }) {
     ];
 
     const pageBackgroundStyle = {
-        backgroundColor: "#2d5a4c",
+        backgroundColor: "#423c14",
         opacity: 1,
     };
 
