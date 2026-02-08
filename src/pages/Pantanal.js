@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import SEO from "../components/SEO";
-import Lightbox from "../components/Lightbox";
 import artImages from "../assets/artImages.json";
-import { fadeScale, staggerContainer } from "../utils/animations";
 import ContextMap from "../components/ContextMap";
 import destinations from "../assets/destinations.json";
 import paperTexture from '../assets/Backgrounds/PaperTexture.jpg';
@@ -15,10 +13,10 @@ function Pantanal({ openLightbox }) {
 
     // Hero Interaction State
     const [isHeroExpanded, setIsHeroExpanded] = useState(false);
-    const heroRef = React.useRef(null);
+    const heroRef = useRef(null);
 
     // Auto-collapse hero when scrolled out of view
-    React.useEffect(() => {
+    useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (!entry.isIntersecting && isHeroExpanded) {
@@ -45,10 +43,8 @@ function Pantanal({ openLightbox }) {
         "pantanal1", "pantanal2", "pantanal3", "pantanal4", "pantanal5", "pantanal6", "pantanal7"
     ];
 
-    // Derived list of images sorted by their appearance
     const sortedImages = imageOrder.map(id => pantanalImages.find(img => img.id === id)).filter(Boolean);
 
-    // Helper to open lightbox with correct index
     const handleImageClick = (imageId) => {
         const index = sortedImages.findIndex(img => img.id === imageId);
         if (index !== -1) {
@@ -58,14 +54,12 @@ function Pantanal({ openLightbox }) {
 
     const getImage = (id) => pantanalImages.find(i => i.id === id);
 
-    // --- Section Data Structure ---
-    // --- Section Data Structure ---
     const sections = [
         {
             id: "intro",
             title: "The Pantanal",
             subtitle: "Shaped by Water — Not by Us",
-            expandedBg: "bg-[#262626]/95", // Neutral Dark
+            expandedBg: "bg-[#262626]/95",
             coverImage: "pantanal6",
             coverCaption: "As the sun drops, water reflects light and cloud in equal measure.",
             content: [
@@ -77,7 +71,7 @@ function Pantanal({ openLightbox }) {
             id: "flooding",
             title: "Water That Moves the World",
             subtitle: "Seasonal Flooding Reshapes Everything",
-            expandedBg: "bg-[#0c4a6e]/95", // Deep Water Blue
+            expandedBg: "bg-[#0c4a6e]/95",
             coverImage: "pantanal1",
             coverCaption: "A caiman pauses where water meets land.",
             content: [
@@ -93,7 +87,7 @@ function Pantanal({ openLightbox }) {
             id: "brazil-context",
             title: "If You’ve Never Been to Brazil",
             subtitle: "Travel Here Is Slower and More Deliberate",
-            expandedBg: "bg-[#1c1917]/95", // Warm Dark
+            expandedBg: "bg-[#1c1917]/95",
             coverImage: "pantanal5",
             coverCaption: "Traces like this often say more about presence than any direct encounter.",
             content: [
@@ -105,8 +99,8 @@ function Pantanal({ openLightbox }) {
             id: "caimans",
             title: "Ancient Survivors",
             subtitle: "Caimans: Quiet Engineers of the Ecosystem",
-            expandedBg: "bg-[#1a2e05]/95", // Deep Swamp Green
-            coverImage: "pantanal4", // Still Water/Caiman
+            expandedBg: "bg-[#1a2e05]/95",
+            coverImage: "pantanal4",
             coverCaption: "Much of the Pantanal’s activity unfolds slowly.",
             content: [
                 { type: "text", text: "Caimans are among the Pantanal’s most recognisable residents, descendants of lineages that have survived millions of years of environmental change. Perfectly adapted to wetland life, they are both predators and quiet engineers of the ecosystem." },
@@ -117,12 +111,12 @@ function Pantanal({ openLightbox }) {
             id: "canopy",
             title: "Voices of the Canopy",
             subtitle: "Macaws and Toucans Are More Than Spectacle",
-            expandedBg: "bg-[#3f6212]/95", // Vibrant Green Dark
-            coverImage: "pantanal2", // Macaw
+            expandedBg: "bg-[#3f6212]/95",
+            coverImage: "pantanal2",
             coverCaption: "Sightings here feel incidental rather than orchestrated.",
             content: [
                 { type: "text", text: "Macaws and toucans bring colour and sound to the Pantanal’s upper layers, but their role goes far beyond spectacle. Feeding on fruit across wide distances, they disperse seeds that help regenerate forests after floods or fires." },
-                { type: "image", id: "pantanal3", caption: "Elevation offers perspective as much as safety." }, // Toucan
+                { type: "image", id: "pantanal3", caption: "Elevation offers perspective as much as safety." },
                 { type: "text", text: "In a landscape where water and foliage blur visibility, sound becomes a way of mapping space. Calls carry presence, warning, and territory — reminders that not everything here is meant to be seen." }
             ]
         },
@@ -130,7 +124,7 @@ function Pantanal({ openLightbox }) {
             id: "seasons",
             title: "A Wetland of Extremes",
             subtitle: "Shifting Dramatically Between Dust and Flood",
-            expandedBg: "bg-[#451a03]/95", // Dry/Muddy Brown Dark
+            expandedBg: "bg-[#451a03]/95",
             coverImage: "pantanal6",
             coverCaption: "Evening arrives gently here, without urgency or spectacle.",
             content: [
@@ -142,7 +136,7 @@ function Pantanal({ openLightbox }) {
             id: "balance",
             title: "A Delicate Balance",
             subtitle: "Preserving the Natural Rhythms",
-            expandedBg: "bg-[#0f172a]/95", // Neutral Slate
+            expandedBg: "bg-[#0f172a]/95",
             coverImage: "pantanal7",
             coverCaption: "The Pantanal briefly holds still.",
             content: [
@@ -153,7 +147,7 @@ function Pantanal({ openLightbox }) {
     ];
 
     const pageBackgroundStyle = {
-        backgroundColor: "#84935c", // Deep olive green to match Florianopolis
+        backgroundColor: "#84935c",
         opacity: 1,
     };
 
@@ -165,7 +159,6 @@ function Pantanal({ openLightbox }) {
                 keywords={["Pantanal", "Brazil Wetlands", "Wildlife", "Travel Brazil", "Nature Photography"]}
             />
 
-            {/* SVG Filter for Torn Paper Effect */}
             <svg style={{ visibility: 'hidden', position: 'absolute' }} width="0" height="0">
                 <defs>
                     <filter id="torn-paper-filter">
@@ -175,31 +168,27 @@ function Pantanal({ openLightbox }) {
                 </defs>
             </svg>
 
-            {/* Global Background Wrapper */}
             <div className="relative w-full overflow-hidden">
-
-                {/* Title Section */}
                 <div className="flex justify-center mb-6 px-4 mt-8 relative z-10">
                     <h1 className="text-6xl md:text-8xl font-bold font-handwriting text-[#D4AF37] tracking-tight text-center drop-shadow-sm">The Pantanal</h1>
                 </div>
 
-                {/* Feature Image */}
-                {/* Magazine Style Hero Section */}
+                {/* Hero Image - Optimized */}
                 <div ref={heroRef} className="w-full max-w-7xl mx-auto px-4 mb-24 relative z-10 group">
-
-                    {/* Main Hero Image - Expandable */}
-                    <div
+                    <motion.div
+                        layout
                         className={`relative w-full overflow-hidden rounded-xl shadow-md cursor-pointer group-hover:shadow-xl transition-all duration-700 ease-in-out ${isHeroExpanded ? 'aspect-auto' : 'aspect-[16/10] md:aspect-[21/9]'}`}
                         onClick={() => setIsHeroExpanded(!isHeroExpanded)}
                     >
                         <img
                             src={isHeroExpanded ? process.env.PUBLIC_URL + "/images/Pantanal/full/PantanalW7.webp" : process.env.PUBLIC_URL + "/images/Pantanal/small/Pantanal7new.webp"}
                             alt="Palms After Rain"
+                            fetchPriority="high" // OPTIMIZATION
+                            loading="eager"      // OPTIMIZATION
                             className={`w-full h-full object-cover transition-transform duration-700 ease-in-out ${!isHeroExpanded ? 'transform scale-100 group-hover:scale-105' : ''}`}
                         />
-                    </div>
+                    </motion.div>
 
-                    {/* Overlapping Text Card */}
                     <div className="relative md:absolute md:-bottom-12 md:left-12 lg:left-20 w-full md:max-w-xl bg-[#f5f5f4] p-8 md:p-10 shadow-xl rounded-lg border-t-4 border-[#e9d5ff] mt-[-3rem] md:mt-0 z-20">
                         <div className="flex items-center gap-3 mb-4 opacity-60">
                             <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#6b21a8]">Feature</span>
@@ -216,7 +205,6 @@ function Pantanal({ openLightbox }) {
                     </div>
                 </div>
 
-                {/* Banner Spread with Map */}
                 <div className="relative w-full mb-16 overflow-hidden">
                     <div
                         className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[110vw] pointer-events-none z-0"
@@ -236,7 +224,6 @@ function Pantanal({ openLightbox }) {
                     </div>
                 </div>
 
-                {/* Main Content with Interactive Sections */}
                 <main className="px-2 py-2 max-w-screen-xl mx-auto space-y-8 flex flex-col items-center pb-24">
                     {sections.map((section) => (
                         <StoryCard
@@ -264,41 +251,29 @@ function Pantanal({ openLightbox }) {
     );
 }
 
-// Reusable animated image component
+// Optimized Reusable Image Component
 function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onToggle, autoCollapse, title }) {
-    // Determine if we are controlled or uncontrolled
     const isControlled = expanded !== undefined;
-
-    // Internal state for "uncontrolled" usage OR for visual overrides (auto-collapse)
-    // We initialize based on the prop if valid
     const [visuallyExpanded, setVisuallyExpanded] = useState(isControlled ? expanded : false);
     const [imgError, setImgError] = useState(false);
     const [fullLoaded, setFullLoaded] = useState(false);
-    const containerRef = React.useRef(null);
+    const containerRef = useRef(null);
 
-    // Sync with controlled prop, but only if the prop changes to TRUE or we are sync
-    // We want to allow the prop to stay TRUE (text open) while we visually collapse
-    React.useEffect(() => {
+    useEffect(() => {
         if (isControlled) {
             setVisuallyExpanded(expanded);
         }
     }, [expanded, isControlled]);
 
-    // Auto-collapse logic
-    // Default: true for everything (as requested by user)
     const shouldAutoCollapse = autoCollapse !== undefined ? autoCollapse : true;
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (!shouldAutoCollapse || !visuallyExpanded) return;
 
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (!entry.isIntersecting) {
-                    // Element has left the screen -> Collapse visually
                     setVisuallyExpanded(false);
-                    // NOTE: We do NOT call onToggle() here. 
-                    // This keeps the text section open (as requested essentially)
-                    // but shrinks the image.
                 }
             },
             { threshold: 0 }
@@ -314,24 +289,12 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
 
         if (isControlled && onToggle) {
             if (!visuallyExpanded) {
-                // If it looks small, expand it visually
-                // If the parent thinks it's already expanded (text open), we just update visual
                 setVisuallyExpanded(true);
-
-                // If parent thinks it's NOT expanded, we must tell it to expand
-                if (!expanded) {
-                    onToggle();
-                }
+                if (!expanded) onToggle();
             } else {
-                // It is fully expanded visually. 
-                // Now we trigger the Lightbox (onClick)
-                // We do NOT toggle closed on click anymore (unless it's the only interaction?)
-                // Actually, typically clicking an expanded image opens lightbox. 
-                // Clicking HEADING toggles section.
                 if (onClick) onClick(e);
             }
         } else {
-            // Uncontrolled
             if (!visuallyExpanded) {
                 setVisuallyExpanded(true);
             } else {
@@ -340,26 +303,24 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
         }
     };
 
-    // Determine which image drives the layout
-    // If expanded and full image is loaded, it becomes the relative one (driver)
     const showFullAsDriver = visuallyExpanded && fullLoaded && !imgError;
 
     return (
-        <div
+        <motion.div
+            layout
             ref={containerRef}
             className={`relative max-w-5xl mx-auto transition-all duration-700 ease-in-out my-8 ${visuallyExpanded ? "w-full" : "w-full md:w-1/2"}`}
         >
             <div className="relative w-full">
-                {/* Small Framed Image (Visible by default, or if full image fails) */}
                 <img
                     src={smallSrc}
                     alt={alt}
                     onClick={handleClick}
+                    loading="lazy"
                     className={`rounded-sm shadow-sm transition-opacity duration-500 cursor-pointer ${showFullAsDriver ? "absolute inset-0 w-full h-full object-cover opacity-0" : "relative w-full h-auto object-contain z-10"} ${visuallyExpanded && !imgError && !showFullAsDriver ? "opacity-0" : "opacity-100"}`}
                 />
 
-                {/* High-Res Full Image (Fades in on hover/expand) */}
-                {!imgError && (
+                {!imgError && visuallyExpanded && (
                     <img
                         src={fullSrc}
                         alt={alt}
@@ -372,10 +333,8 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
                 )}
             </div>
 
-            {/* Label / Caption Container - Grid Stack to ensure height adapts to tallest element */}
             {(title || caption) && (
                 <div className="grid grid-cols-1 grid-rows-1 mt-8 w-full">
-                    {/* Gallery Label (Title) - Visible when NOT expanded */}
                     {title && (
                         <div
                             className={`col-start-1 row-start-1 flex justify-center transition-opacity duration-500 z-10 ${!visuallyExpanded ? "opacity-100" : "opacity-0 pointer-events-none"}`}
@@ -389,7 +348,6 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
                         </div>
                     )}
 
-                    {/* Caption - Visible when expanded */}
                     {caption && (
                         <div className={`col-start-1 row-start-1 flex justify-center items-start transition-opacity duration-500 ${visuallyExpanded ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
                             <p className="text-center text-sm italic font-medium text-stone-300">
@@ -399,7 +357,7 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
                     )}
                 </div>
             )}
-        </div>
+        </motion.div>
     );
 }
 
