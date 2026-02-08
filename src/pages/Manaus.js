@@ -57,7 +57,7 @@ function Manaus({ openLightbox }) {
         {
             id: "access-proximity-opportunity",
             title: "Access, Proximity, Opportunity",
-            expandedBg: "bg-[#d9ed92]/95",
+            expandedBg: "bg-[#fef08a]/95",
             coverImage: "manaus3",
             content: [
                 { type: "grid", ids: ["manaus9", "manaus10"], caption: "Daily life is shaped by what grows nearby." },
@@ -67,7 +67,7 @@ function Manaus({ openLightbox }) {
         {
             id: "city-scale-pressure",
             title: "City, Scale, Pressure",
-            expandedBg: "bg-[#99d98c]/95",
+            expandedBg: "bg-[#fde047]/95",
             coverImage: "manaus6",
             content: [
                 { type: "grid", ids: ["manaus8", "manaus4"], caption: "Lived-in walls and surfacing dreams." }
@@ -76,7 +76,7 @@ function Manaus({ openLightbox }) {
         {
             id: "the-forest-itself",
             title: "The Forest Itself",
-            expandedBg: "bg-[#d9ed92]/95",
+            expandedBg: "bg-[#fef08a]/95",
             coverImage: "manaus12",
             content: [
                 { type: "text", text: "That is what makes Manaus so uneasy and so important. The benefits and the risks exist side by side, often for the same people, often through the same systems. Tourism can help keep land standing while increasing demand for access. Industry provides work while expanding the city’s footprint. Choices are rarely clean, and rarely made from a place of certainty." },
@@ -86,7 +86,7 @@ function Manaus({ openLightbox }) {
         {
             id: "quiet-consequences",
             title: "Quiet Consequences",
-            expandedBg: "bg-[#99d98c]/95",
+            expandedBg: "bg-[#fde047]/95",
             coverImage: "manaus19",
             content: [
                 { type: "image", id: "manaus22", caption: "Life revealing itself quietly." }
