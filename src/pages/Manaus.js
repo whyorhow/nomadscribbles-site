@@ -256,7 +256,7 @@ function Manaus({ openLightbox }) {
                 </div>
 
                 <div className="w-full flex flex-col items-center gap-4 mt-16 mb-8 relative z-10">
-                    <Link to="/brazil" className="flex flex-row items-center justify-center text-amber-950 hover:text-white transition-colors drop-shadow-md bg-stone-950/50 backdrop-blur-md rounded-full px-6 py-2 border border-white/10 shadow-lg hover:bg-stone-900/60 w-fit">
+                    <Link to="/brazil" className="flex flex-row items-center justify-center text-amber-950 hover:text-white transition-colors drop-shadow-md bg-[#25180f]/50 backdrop-blur-md rounded-full px-6 py-2 border border-white/10 shadow-lg hover:bg-[#3c2a21]/60 w-fit">
                         <span className="text-xl mr-3 pb-1">←</span>
                         <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Return to Brazil</span>
                     </Link>
@@ -381,7 +381,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
     return (
         <motion.div
             layout
-            className={`w-full transition-all duration-500 rounded-xl overflow-hidden shadow-lg cursor-pointer ${isExpanded ? `shadow-2xl ${activeBg} max-w-[98vw] md:max-w-screen-2xl` : "bg-stone-900/50 backdrop-blur-md max-w-6xl"}`}
+            className={`w-full transition-all duration-500 rounded-xl overflow-hidden shadow-lg cursor-pointer ${isExpanded ? `shadow-2xl ${activeBg} max-w-[98vw] md:max-w-screen-2xl` : "bg-[#3c2a21]/50 backdrop-blur-md max-w-6xl"}`}
             onClick={() => setIsExpanded(!isExpanded)}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -393,7 +393,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
                         {section.title}
                     </h2>
                     {section.subtitle && (
-                        <h3 className={`text-lg md:text-xl font-light tracking-wide mt-2 transition-colors duration-500 ${isExpanded ? "text-stone-300" : "text-stone-300"}`}>
+                        <h3 className={`text-lg md:text-xl font-light tracking-wide mt-2 transition-colors duration-500 ${isExpanded ? "text-[#ede0d4]" : "text-[#ede0d4]"}`}>
                             {section.subtitle}
                         </h3>
                     )}
@@ -415,8 +415,8 @@ function StoryCard({ section, getImage, handleImageClick }) {
                     animate={{ opacity: isExpanded ? 0 : 1, height: isExpanded ? 0 : "auto" }}
                     className="flex flex-col items-center h-8"
                 >
-                    <p className="text-xs uppercase tracking-widest opacity-50 mt-2 font-semibold text-stone-400">Explore Section</p>
-                    <div className="w-px h-4 bg-stone-400/30 mt-1"></div>
+                    <p className="text-xs uppercase tracking-widest opacity-50 mt-2 font-semibold text-[#b08968]">Explore Section</p>
+                    <div className="w-px h-4 bg-[#b08968]/30 mt-1"></div>
                 </motion.div>
             </div>
 
@@ -432,7 +432,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
                 <div className="px-6 pb-12 md:px-16 md:pb-20 flex flex-col items-center space-y-10">
                     {section.content.map((item, idx) => {
                         if (item.type === "text") {
-                            return <p key={idx} className="text-xl leading-relaxed max-w-4xl text-center md:text-left text-stone-300 font-medium">{item.text}</p>;
+                            return <p key={idx} className="text-xl leading-relaxed max-w-4xl text-center md:text-left text-[#ede0d4] font-medium">{item.text}</p>;
                         }
                         if (item.type === "image") {
                             const img = getImage(item.id);
@@ -477,14 +477,14 @@ function StoryCard({ section, getImage, handleImageClick }) {
                         }
                         if (item.type === "quote") {
                             return (
-                                <blockquote key={idx} className="border-l-4 border-[#9c6644] pl-6 italic my-6 text-xl opacity-90 max-w-2xl md:text-left text-stone-800">
+                                <blockquote key={idx} className="border-l-4 border-[#9c6644] pl-6 italic my-6 text-xl opacity-90 max-w-2xl md:text-left text-[#3c2a21]">
                                     {item.text.split('\n').map((line, i) => <span key={i} className="block">{line}</span>)}
-                                    {item.source && <span className="text-base not-italic block mt-2 font-bold text-stone-400">{item.source}</span>}
+                                    {item.source && <span className="text-base not-italic block mt-2 font-bold text-[#b08968]">{item.source}</span>}
                                 </blockquote>
                             );
                         }
                         if (item.type === "header") {
-                            return <h3 key={idx} className="text-2xl md:text-3xl font-bold font-handwriting mt-4 text-center text-stone-100">{item.text}</h3>;
+                            return <h3 key={idx} className="text-2xl md:text-3xl font-bold font-handwriting mt-4 text-center text-[#ede0d4]">{item.text}</h3>;
                         }
                         return null;
                     })}
