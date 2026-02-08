@@ -356,7 +356,7 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
                             className="absolute bottom-0 left-0 right-0 bg-stone-950/70 backdrop-blur-md p-6 border-t border-[#9c6644]/60 text-left pointer-events-none rounded-b-sm shadow-[0_-10px_30px_rgba(0,0,0,0.5)]"
                         >
                             {(title) && (
-                                <h4 className="text-[#9c6644] text-xl font-bold font-handwriting mb-2 tracking-wide drop-shadow-sm">
+                                <h4 className="text-[#9c6644] text-2xl md:text-3xl font-bold font-handwriting mb-2 tracking-wide drop-shadow-sm">
                                     {title}
                                 </h4>
                             )}
