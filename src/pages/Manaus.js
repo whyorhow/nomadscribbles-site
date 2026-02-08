@@ -243,7 +243,7 @@ function Manaus({ openLightbox }) {
                 />
 
                 {/* Final Visual Exhale */}
-                <div className="w-full max-w-4xl mx-auto px-4 mt-16 group">
+                <div className="w-full max-w-6xl mx-auto px-4 mt-16 group">
                     <h3 className="text-xl font-handwriting text-[#d97706] mb-6 text-center">Shifting light over the canopy</h3>
                     <RevealImage
                         smallSrc={process.env.PUBLIC_URL + "/images/Manaus/Small/Manaus14.webp"}
@@ -322,7 +322,7 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
         <motion.div
             layout
             ref={containerRef}
-            className={`relative max-w-5xl mx-auto transition-all duration-700 ease-in-out my-8 ${visuallyExpanded ? "w-full" : "w-full md:w-1/2"}`}
+            className={`relative mx-auto transition-all duration-700 ease-in-out my-8 ${visuallyExpanded ? "w-full max-w-7xl" : "w-full md:w-1/2 max-w-5xl"}`}
         >
             <div className="relative w-full">
                 <img
@@ -376,7 +376,7 @@ function StoryCard({ section, getImage, handleImageClick }) {
     return (
         <motion.div
             layout
-            className={`w-full max-w-6xl bg-stone-900/50 backdrop-blur-md rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-500 ${isExpanded ? `shadow-2xl ${activeBg}` : ""}`}
+            className={`w-full transition-all duration-500 rounded-xl overflow-hidden shadow-lg cursor-pointer ${isExpanded ? `shadow-2xl ${activeBg} max-w-7xl` : "bg-stone-900/50 backdrop-blur-md max-w-6xl"}`}
             onClick={() => setIsExpanded(!isExpanded)}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
