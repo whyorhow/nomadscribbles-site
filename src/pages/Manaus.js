@@ -357,7 +357,7 @@ function RevealImage({ smallSrc, fullSrc, alt, onClick, caption, expanded, onTog
                         >
                             <div className="max-w-2xl px-2">
                                 {(title) && (
-                                    <h4 className="text-[#9c6644] text-2xl md:text-3xl font-bold font-handwriting mb-3 tracking-wide drop-shadow-sm">
+                                    <h4 className="text-[#c6ac8f] text-2xl md:text-3xl font-bold font-handwriting mb-3 tracking-wide drop-shadow-sm">
                                         {title}
                                     </h4>
                                 )}
