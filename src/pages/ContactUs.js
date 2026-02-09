@@ -82,12 +82,48 @@ export default function ContactUs() {
         />
       </div>
 
+      {/* Decorative Images Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl px-4 mt-8 mb-12 opacity-80">
+        <motion.img
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.2 }}
+          src={process.env.PUBLIC_URL + "/images/Rio/small/Rio12z.webp"}
+          alt="Travel detail"
+          className="w-full aspect-square object-cover rounded-xl shadow-lg -rotate-3"
+        />
+        <motion.img
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.4 }}
+          src={process.env.PUBLIC_URL + "/images/Salvador/small/Salvador6z.webp"}
+          alt="Travel detail"
+          className="w-full aspect-square object-cover rounded-xl shadow-lg rotate-2"
+        />
+        <motion.img
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.6 }}
+          src={process.env.PUBLIC_URL + "/images/Floripa/small/Floripa1z.webp"}
+          alt="Travel detail"
+          className="w-full aspect-square object-cover rounded-xl shadow-lg -rotate-1"
+        />
+        <motion.img
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.8 }}
+          src={process.env.PUBLIC_URL + "/images/Pantanal/small/Pantanal1z.webp"}
+          alt="Travel detail"
+          className="w-full aspect-square object-cover rounded-xl shadow-lg rotate-3"
+        />
+      </div>
+
       {/* Contact Form */}
       <motion.main
         initial="hidden"
         animate="visible"
         variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.2 } } }}
-        className="relative z-10 w-full max-w-md bg-white/80 backdrop-blur-md p-6 sm:p-8 rounded-2xl shadow-xl text-center"
+        className="relative z-10 w-full max-w-md bg-white/90 backdrop-blur-md p-6 sm:p-8 rounded-2xl shadow-xl text-center border border-white/20"
       >
         <form onSubmit={handleSubmit} className="space-y-5 text-left">
           {/* Name */}
@@ -154,6 +190,13 @@ export default function ContactUs() {
           </motion.div>
         </form>
       </motion.main>
+
+      <div className="flex flex-col items-center gap-6 mt-12 mb-12 relative z-10">
+        <Link to="/" className="flex flex-row items-center justify-center text-stone-300 hover:text-white transition-colors drop-shadow-md bg-stone-950/50 backdrop-blur-md rounded-full px-8 py-3 border border-white/10 shadow-lg hover:bg-stone-900/60 w-fit min-w-[240px]">
+          <span className="text-xl mr-3 pb-1">←</span>
+          <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Return Home</span>
+        </Link>
+      </div>
     </div>
   );
 }

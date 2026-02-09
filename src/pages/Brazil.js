@@ -31,8 +31,8 @@ function Brazil() {
     { id: "ilha-grande", name: "Ilha Grande", img: "/images/Ilha Grande/small/Ilha20new.webp", path: "/brazil/ilha-grande" }
   ];
 
-  // Map markers (excluding Santos as it's within São Paulo)
-  const mapMarkers = destinations.filter(d => d.id !== 'santos');
+  // Map markers
+  const mapMarkers = destinations;
 
   const [showOverlay, setShowOverlay] = useState(false);
   const [hoveredDestId, setHoveredDestId] = useState(null);
@@ -192,6 +192,13 @@ function Brazil() {
             </motion.div>
           ))}
         </motion.div>
+      </div>
+
+      <div className="flex flex-col items-center gap-6 mb-12 relative z-10">
+        <Link to="/" className="flex flex-row items-center justify-center text-stone-300 hover:text-white transition-colors drop-shadow-md bg-stone-950/50 backdrop-blur-md rounded-full px-8 py-3 border border-white/10 shadow-lg hover:bg-stone-900/60 w-fit min-w-[240px]">
+          <span className="text-xl mr-3 pb-1">←</span>
+          <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Return Home</span>
+        </Link>
       </div>
     </motion.div>
   );

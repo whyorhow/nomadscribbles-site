@@ -33,12 +33,16 @@ function Home() {
     { title: "Rio de Janeiro", link: "/brazil/rio", img: "/images/Rio/thumbnail/Rio1.webp" },
     { title: "Florianópolis", link: "/brazil/florianopolis", img: "/images/Floripa/thumbnail/Floripa1.webp" },
     { title: "Salvador", link: "/brazil/salvador", img: "/images/Salvador/thumbnail/Salvador1.webp" },
-    { title: "Pantanal", link: "/brazil/pantanal", img: "/images/Pantanal/thumbnail/Pantanal1.webp" },
+    { title: "The Pantanal", link: "/brazil/pantanal", img: "/images/Pantanal/thumbnail/Pantanal1.webp" },
+    { title: "Bonito", link: "/brazil/bonito", img: "/images/Bonito/Thumbnail/Bonito1.webp" },
+    { title: "Foz do Iguaçu", link: "/brazil/foz", img: "/images/Iguazu/thumbnail/Iguazu1.webp" },
+    { title: "Manaus", link: "/brazil/manaus", img: "/images/Manaus/Thumbnails/Manaus1.webp" },
+    { title: "Ilha Grande", link: "/brazil/ilha-grande", img: "/images/Ilha Grande/thumbnail/Ilha1.webp" },
+    { title: "Santos", link: "/brazil/saopaulo/santos", img: "/images/Santos/small/Santos1z.webp" },
     { title: "Carnival", link: "/brazil/saopaulo/carnival", img: "/images/CarnivalSP/thumbnail/Carnival1.webp" },
     { title: "Street Murals", link: "/brazil/saopaulo/murals", img: "/images/Murals/thumbnail/Graffiti1.webp" },
     { title: "Parks", link: "/brazil/saopaulo/parks", img: "/images/SP-Parks/thumbnail/Park1.webp" },
     { title: "Nomads Gallery", link: "/nomads-gallery", img: "/images/Home/ThumbnailNG.webp" },
-    { title: "Manaus", link: "/brazil/manaus", img: "/images/Manaus/Thumbnails/Manaus1.webp" },
     { title: "Nomads Shop", link: "/nomadsshop", img: "/images/Home/ThumbnailNS.webp" },
   ];
 
@@ -122,7 +126,7 @@ function Home() {
       window.scrollBy({
         top: speed,
         left: 0,
-        behavior: 'auto'
+        behavior: 'smooth'
       });
 
       animationFrameId = requestAnimationFrame(animateScroll);
@@ -175,7 +179,25 @@ function Home() {
 
 
   return (
-    <div className="relative w-screen min-h-[250vh] overflow-hidden bg-[#342508ff]">
+    <div className="relative w-screen min-h-[250vh] overflow-hidden bg-[#342508ff] home-bg-textured">
+      <svg className="absolute w-0 h-0 invisible">
+        <filter id="noiseFilter">
+          <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+        </filter>
+      </svg>
+      <style>{`
+        .home-bg-textured::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0.15;
+          pointer-events: none;
+          filter: url(#noiseFilter);
+          z-index: 1;
+        }
+      `}</style>
       {/* Parallax background */}
       <ParallaxBackground scrollY={scrollY} viewportHeight={viewportHeight} viewportWidth={viewportWidth} />
 
@@ -194,7 +216,7 @@ function Home() {
         {/* Tagline Sticky Layer */}
         <div className="sticky top-[10vh] w-full flex flex-col items-center">
           <motion.div
-            className="text-center mb-2 w-full flex justify-center"
+            className="text-center mb-2 w-full flex justify-center pointer-events-none"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
@@ -271,7 +293,7 @@ function Home() {
           {showMiniSP && (
             <>
               <motion.div
-                className={`absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-[2000ms] ${showMiniSP ? "opacity-100" : "opacity-0"}`}
+                className={`absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-[2000ms] pointer-events-none ${showMiniSP ? "opacity-100" : "opacity-0"}`}
               >
                 <h3 className="font-handwriting text-5xl sm:text-7xl text-white drop-shadow-xl text-center px-4">
                   Concrete Jungle
@@ -282,14 +304,14 @@ function Home() {
                 src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/pizza.webp"}
                 alt=""
                 loading="lazy"
-                className="absolute top-4 right-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[6deg]"
+                className="absolute top-4 right-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[6deg] pointer-events-none"
                 variants={fadeScale}
               />
               <motion.img
                 src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/caparinha.webp"}
                 alt=""
                 loading="lazy"
-                className="absolute bottom-4 left-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[-3deg]"
+                className="absolute bottom-4 left-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[-3deg] pointer-events-none"
                 variants={fadeScale}
               />
             </>
@@ -336,7 +358,7 @@ function Home() {
           {showMiniSantos && (
             <>
               <motion.div
-                className={`absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-[2000ms] ${showMiniSantos ? "opacity-100" : "opacity-0"}`}
+                className={`absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-[2000ms] pointer-events-none ${showMiniSantos ? "opacity-100" : "opacity-0"}`}
               >
                 <h3 className="font-handwriting text-5xl sm:text-7xl text-white drop-shadow-xl text-center px-4">
                   Soul of Brazil
@@ -347,14 +369,14 @@ function Home() {
                 src={process.env.PUBLIC_URL + "/images/Salvador/small/Salvador20z.webp"}
                 alt=""
                 loading="lazy"
-                className="absolute top-4 left-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[-6deg]"
+                className="absolute top-4 left-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[-6deg] pointer-events-none"
                 variants={fadeScale}
               />
               <motion.img
                 src={process.env.PUBLIC_URL + "/images/Salvador/small/Salvador15z.webp"}
                 alt=""
                 loading="lazy"
-                className="absolute bottom-4 right-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[3deg]"
+                className="absolute bottom-4 right-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[3deg] pointer-events-none"
                 variants={fadeScale}
               />
             </>
@@ -432,7 +454,7 @@ function Home() {
           variants={fadeScale}
         >
           <motion.img
-            src={process.env.PUBLIC_URL + "/images/Floripa/full/Floripa20.webp"}
+            src={process.env.PUBLIC_URL + "/images/Floripa/full/Floripa18.webp"}
             alt="Florianópolis island travel feature"
             loading="lazy" // OPTIMIZATION
             className="w-full h-full object-cover transition-transform duration-2000 group-hover:scale-105"
@@ -449,7 +471,7 @@ function Home() {
           {showMiniFloripa && (
             <>
               <motion.div
-                className={`absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-[2000ms] ${showMiniFloripa ? "opacity-100" : "opacity-0"}`}
+                className={`absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-[2000ms] pointer-events-none ${showMiniFloripa ? "opacity-100" : "opacity-0"}`}
               >
                 <h3 className="font-handwriting text-5xl sm:text-7xl text-white drop-shadow-xl text-center px-4">
                   Island of Magic
@@ -501,29 +523,29 @@ function Home() {
             <SwiperSlide key={idx} className="!h-auto flex items-stretch">
               {card.external ? (
                 <a href={card.link} className="block w-full">
-                  <div className="relative shadow-xl hover:shadow-2xl transition-all duration-300 w-full h-full rounded-2xl overflow-hidden aspect-[16/9] group">
+                  <div className="relative shadow-xl hover:shadow-2xl transition-all duration-300 w-full h-full rounded-2xl overflow-hidden aspect-square group">
                     <img
                       src={process.env.PUBLIC_URL + card.img}
                       alt={card.title}
-                      loading="lazy" // OPTIMIZATION
+                      loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
-                      <p className="text-white font-semibold text-lg drop-shadow-md">{card.title}</p>
+                      <p className="text-white font-semibold text-sm drop-shadow-md">{card.title}</p>
                     </div>
                   </div>
                 </a>
               ) : (
                 <Link to={card.link} className="block w-full">
-                  <div className="relative shadow-xl hover:shadow-2xl transition-all duration-300 w-full h-full rounded-2xl overflow-hidden aspect-[16/9] group">
+                  <div className="relative shadow-xl hover:shadow-2xl transition-all duration-300 w-full h-full rounded-2xl overflow-hidden aspect-square group">
                     <img
                       src={process.env.PUBLIC_URL + card.img}
                       alt={card.title}
-                      loading="lazy" // OPTIMIZATION
+                      loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
-                      <p className="text-white font-semibold text-lg drop-shadow-md">{card.title}</p>
+                      <p className="text-white font-semibold text-sm drop-shadow-md">{card.title}</p>
                     </div>
                   </div>
                 </Link>

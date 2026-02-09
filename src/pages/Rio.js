@@ -40,7 +40,7 @@ function Rio({ openLightbox }) {
             id: "carnival",
             title: "Spectacle and scale",
             subtitle: "Carnival Works Because Everyone Is Involved",
-            expandedBg: "bg-[#262626]/95",
+            expandedBg: "bg-[#4a044e]/95", // Deep Fuchsia
             coverImage: "rio2",
             coverCaption: "From the stands, the Sambadrome collapses into a dense field of light, sound, and movement.",
             content: [
@@ -56,7 +56,7 @@ function Rio({ openLightbox }) {
             id: "geography",
             title: "Pressed to the Mountain",
             subtitle: "Geography Forces the City Upward",
-            expandedBg: "bg-[#1c1917]/95",
+            expandedBg: "bg-[#3b0764]/95", // Deep Violet
             coverImage: "rio8",
             coverCaption: "Dense neighbourhoods press tightly against the coastline and steep green slopes.",
             content: [
@@ -71,7 +71,7 @@ function Rio({ openLightbox }) {
             id: "corcovado",
             title: "Watching from Above",
             subtitle: "A Fixed Point in a Moving City",
-            expandedBg: "bg-[#0c0a09]/95",
+            expandedBg: "bg-[#2e1065]/95", // Black/Violet
             coverImage: "rio9",
             coverCaption: "Christ the Redeemer stands open-armed as the city stretches quietly below.",
             content: [
@@ -90,7 +90,7 @@ function Rio({ openLightbox }) {
             id: "sea",
             title: "The City Meets the Sea",
             subtitle: "The Shoreline Isn’t an Escape; It’s Part of Everyday Life",
-            expandedBg: "bg-[#0f172a]/95",
+            expandedBg: "bg-[#1e1b4b]/95", // Indigo/Black
             coverImage: "rio14",
             coverCaption: "As the light changes, the beach thins and the day slips quietly toward evening.",
             content: [
@@ -101,7 +101,7 @@ function Rio({ openLightbox }) {
     ];
 
     const pageBackgroundStyle = {
-        backgroundColor: "#84935c",
+        backgroundColor: "#581c87", // Deep purple
         opacity: 1,
     };
 
@@ -160,15 +160,34 @@ function Rio({ openLightbox }) {
                 />
 
                 <div className="relative z-20 max-w-5xl mx-auto px-4 pt-0 pb-4 md:pt-2 md:pb-8 flex flex-col items-center mt-[-10px]">
-                    <div className="w-full max-w-4xl overflow-visible mb-[-10px]">
+                    <div className="w-full max-w-6xl overflow-visible mb-12">
                         <ContextMap
                             markers={[rioCoords].filter(Boolean)}
                             zoomToId="rio"
                             title="Where is Rio?"
                             geography={rioCoords?.geography}
                             transparent={true}
+                            sliderImages={[
+                                { url: "/images/Rio/small/Rio1.webp", caption: "Escadaria Selarón details" },
+                                { url: "/images/Rio/small/Rio4.webp", caption: "Beach life at Ipanema" },
+                                { url: "/images/Rio/small/Rio7.webp", caption: "Colonial architecture in Santa Teresa" }
+                            ]}
                         />
                     </div>
+
+                    {/* Decorative Art Stamp */}
+                    <motion.div
+                        initial={{ opacity: 0, rotate: -10 }}
+                        whileInView={{ opacity: 0.6, rotate: -5 }}
+                        viewport={{ once: true }}
+                        className="absolute right-[5%] top-[15%] w-32 md:w-48 pointer-events-none z-0 hidden lg:block"
+                    >
+                        <img
+                            src={process.env.PUBLIC_URL + "/images/Rio/small/Rio12z.webp"}
+                            alt="Artistic detail"
+                            className="w-full h-auto grayscale opacity-50 sepia-[.2]"
+                        />
+                    </motion.div>
                 </div>
             </div>
 
@@ -202,13 +221,13 @@ function Rio({ openLightbox }) {
                     );
                 })}
 
-                <div className="w-full flex flex-col items-center gap-4 mt-16 mb-8 relative z-10">
-                    <Link to="/brazil" className="flex flex-row items-center justify-center text-stone-300 hover:text-white transition-colors drop-shadow-md bg-stone-950/50 backdrop-blur-md rounded-full px-6 py-2 border border-white/10 shadow-lg hover:bg-stone-900/60 w-fit">
+                <div className="w-full flex flex-col items-center gap-6 mt-20 mb-12 relative z-10">
+                    <Link to="/brazil" className="flex flex-row items-center justify-center text-stone-300 hover:text-white transition-colors drop-shadow-md bg-stone-950/50 backdrop-blur-md rounded-full px-8 py-3 border border-white/10 shadow-lg hover:bg-stone-900/60 w-fit min-w-[240px]">
                         <span className="text-xl mr-3 pb-1">←</span>
                         <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Return to Brazil</span>
                     </Link>
-                    <Link to="/brazil/salvador" className="flex flex-row items-center justify-center text-[#eeda8d] hover:text-white transition-colors drop-shadow-sm bg-[#ceb752]/30 backdrop-blur-md rounded-full px-6 py-2 border border-[#ceb752]/60 shadow-md hover:bg-[#ceb752]/40 w-fit">
-                        <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Next: Salvador</span>
+                    <Link to="/brazil/bonito" className="flex flex-row items-center justify-center text-[#eeda8d] hover:text-white transition-colors drop-shadow-sm bg-[#ceb752]/20 backdrop-blur-md rounded-full px-8 py-3 border border-[#ceb752]/40 shadow-md hover:bg-[#ceb752]/30 w-fit min-w-[240px]">
+                        <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Next: Bonito</span>
                         <span className="text-xl ml-3 pb-1">→</span>
                     </Link>
                 </div>

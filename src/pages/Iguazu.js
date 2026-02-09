@@ -38,7 +38,7 @@ function Iguazu() {
             id: "buildup",
             title: "The Build-Up",
             subtitle: "Views from above, through the trees",
-            expandedBg: "bg-[#064e3b]/80",
+            expandedBg: "bg-[#1e3a8a]/80",
             coverImage: "iguazu16",
             coverCaption: "Water and forest on a scale that’s difficult to absorb all at once.",
             content: [
@@ -53,7 +53,7 @@ function Iguazu() {
             id: "impact",
             title: "The Impact",
             subtitle: "Noise, proximity, overload",
-            expandedBg: "bg-[#04332a]/90",
+            expandedBg: "bg-[#1e40af]/90",
             coverImage: "iguazu6",
             coverCaption: "Up close, Iguazu is overwhelming.",
             content: [
@@ -66,7 +66,7 @@ function Iguazu() {
             id: "distance",
             title: "Distance and Life",
             subtitle: "Perspectives from the triple frontier",
-            expandedBg: "bg-[#022c22]/95",
+            expandedBg: "bg-[#101b4c]/95",
             coverImage: "iguazu9",
             coverCaption: "Crossing to the Argentinian side, the tone changes.",
             content: [
@@ -81,7 +81,7 @@ function Iguazu() {
             id: "closing",
             title: "The Lingering Memory",
             subtitle: "The memory of scale",
-            expandedBg: "bg-[#011a14]/98",
+            expandedBg: "bg-[#0f172a]/98",
             coverImage: "iguazu11",
             coverCaption: "Iguazu doesn’t end with a final image.",
             content: [
@@ -95,7 +95,7 @@ function Iguazu() {
     if (!destination) return null;
 
     return (
-        <div className="min-h-screen bg-[#064e3b] text-stone-100 font-serif selection:bg-[#eeda8d] selection:text-[#064e3b]">
+        <div className="min-h-screen bg-[#1e3a8a] text-stone-100 font-serif selection:bg-[#eeda8d] selection:text-[#1e3a8a]">
             <SEO
                 title="Iguazu Falls: A Force of Nature"
                 description="Iguazu is a landscape of falling water and dense subtropical forest, where the river ignores borders and life thrives in the spray."
@@ -116,7 +116,7 @@ function Iguazu() {
                         alt="Iguazu Falls Landscape"
                         className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#064e3b]/40 via-transparent to-[#064e3b]" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#1e3a8a]/40 via-transparent to-[#1e3a8a]" />
                 </motion.div>
 
                 <div className="relative z-10 text-center max-w-4xl px-4 mt-[-20vh] md:mt-[-40vh]">
@@ -144,7 +144,6 @@ function Iguazu() {
                 </defs>
             </svg>
 
-            {/* Context Map & Intro */}
             <div className="max-w-screen-xl mx-auto px-6 pt-24 pb-8">
                 <div className="max-w-3xl mx-auto text-center space-y-8">
                     <h2 className="text-4xl md:text-5xl font-bold font-handwriting text-[#eeda8d]">
@@ -163,15 +162,34 @@ function Iguazu() {
                 />
 
                 <div className="relative z-20 max-w-5xl mx-auto px-4 pt-0 pb-4 md:pt-2 md:pb-8 flex flex-col items-center mt-[-10px]">
-                    <div className="w-full max-w-4xl overflow-visible mb-[-10px]">
+                    <div className="max-w-6xl mx-auto mb-16 px-4">
                         <ContextMap
-                            markers={[{ id: 'iguazu', name: 'Iguazu Falls', lat: -25.6953, lng: -54.4367 }]}
-                            zoomToId="iguazu"
+                            markers={[destination].filter(Boolean)}
+                            zoomToId="foz"
                             title="Where is Iguazu?"
                             geography={destination?.geography}
                             transparent={true}
+                            sliderImages={[
+                                { url: "/images/Iguazu/small/Iguazu1.webp", caption: "The power of the Devil's Throat" },
+                                { url: "/images/Iguazu/small/Iguazu5.webp", caption: "Subtropical forest details" },
+                                { url: "/images/Iguazu/small/Iguazu8.webp", caption: "Approaching the falls by boat" }
+                            ]}
                         />
                     </div>
+
+                    {/* Decorative Art Stamp - Iguazu */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 0.4, scale: 1 }}
+                        viewport={{ once: true }}
+                        className="absolute left-[5%] bottom-[10%] w-32 md:w-48 pointer-events-none z-0 hidden lg:block"
+                    >
+                        <img
+                            src={process.env.PUBLIC_URL + "/images/Iguazu/small/Iguazu10z.webp"}
+                            alt="Artistic detail"
+                            className="w-full h-auto grayscale opacity-40 brightness-110"
+                        />
+                    </motion.div>
                 </div>
             </div>
 
@@ -186,12 +204,12 @@ function Iguazu() {
                 ))}
 
                 <div className="w-full flex flex-col items-center justify-center gap-6 mt-20 mb-12 relative z-10">
-                    <Link to="/brazil/salvador" className="flex flex-row items-center justify-center text-stone-300 hover:text-white transition-colors drop-shadow-md bg-stone-950/60 backdrop-blur-md rounded-full px-8 py-3 border border-white/10 shadow-lg hover:bg-stone-900/80 w-fit">
+                    <Link to="/brazil" className="flex flex-row items-center justify-center text-stone-300 hover:text-white transition-colors drop-shadow-md bg-stone-950/60 backdrop-blur-md rounded-full px-8 py-3 border border-white/10 shadow-lg hover:bg-stone-900/80 w-fit min-w-[240px]">
                         <span className="text-xl mr-3 pb-1">←</span>
-                        <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Return to Salvador</span>
+                        <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Return to Brazil</span>
                     </Link>
-                    <Link to="/brazil/rio" className="flex flex-row items-center justify-center text-[#eeda8d] hover:text-white transition-colors drop-shadow-sm bg-[#ceb752]/20 backdrop-blur-md rounded-full px-8 py-3 border border-[#ceb752]/40 shadow-md hover:bg-[#ceb752]/30 w-fit">
-                        <span className="text-md font-bold tracking-widest uppercase text-center leading-tight">Back to Rio</span>
+                    <Link to="/brazil/manaus" className="flex flex-row items-center justify-center text-[#eeda8d] hover:text-white transition-colors drop-shadow-sm bg-[#ceb752]/20 backdrop-blur-md rounded-full px-8 py-3 border border-[#ceb752]/40 shadow-md hover:bg-[#ceb752]/30 w-fit min-w-[240px]">
+                        <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Next: Manaus</span>
                         <span className="text-xl ml-3 pb-1">→</span>
                     </Link>
                 </div>

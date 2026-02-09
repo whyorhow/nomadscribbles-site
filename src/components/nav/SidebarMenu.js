@@ -55,7 +55,7 @@ const SidebarMenu = ({ menuOpen, setMenuOpen, handleMenuEnter, handleMenuLeave }
     };
 
     const submenuClass = (isOpen) =>
-        `ml-6 flex flex-col gap-2 overflow-hidden transition-all duration-300 ${isOpen ? "max-h-[500px] opacity-100 mt-2 mb-4" : "max-h-0 opacity-0"
+        `ml-6 flex flex-col gap-2 overflow-hidden transition-all duration-300 ${isOpen ? "max-h-[2000px] opacity-100 mt-2 mb-4" : "max-h-0 opacity-0"
         }`;
 
     return (
@@ -108,7 +108,7 @@ const SidebarMenu = ({ menuOpen, setMenuOpen, handleMenuEnter, handleMenuLeave }
                             <Link to="/brazil/saopaulo/museums" className="text-stone-300 text-base hover:text-white transition-colors" onClick={() => setMenuOpen(false)}>Art Galleries</Link>
                             <Link to="/brazil/saopaulo/carnival" className="text-stone-300 text-base hover:text-white transition-colors" onClick={() => setMenuOpen(false)}>Carnival</Link>
                             <Link to="/brazil/saopaulo/murals" className="text-stone-300 text-base hover:text-white transition-colors" onClick={() => setMenuOpen(false)}>Street Murals</Link>
-                            <Link to="/brazil/saopaulo/santos" className="text-stone-300 text-base hover:text-white transition-colors" onClick={() => setMenuOpen(false)}>Santos</Link>
+                            <Link className="text-stone-300 text-base hover:text-white transition-colors" to="/brazil/saopaulo/santos" onClick={() => setMenuOpen(false)}>Santos</Link>
                         </div>
                         <Link className="text-stone-300 text-base hover:text-white transition-colors" to="/brazil/florianopolis" onClick={() => setMenuOpen(false)}>Florianópolis</Link>
                         <Link className="text-stone-300 text-base hover:text-white transition-colors" to="/brazil/pantanal" onClick={() => setMenuOpen(false)}>The Pantanal</Link>

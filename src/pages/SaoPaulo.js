@@ -238,6 +238,23 @@ function SaoPaulo() {
           </motion.div>
         ))}
       </main>
+
+      <div className="w-full flex flex-col items-center gap-6 mt-12 mb-20 relative z-10">
+        <Link
+          to="/brazil"
+          className="flex flex-row items-center justify-center text-stone-300 hover:text-white transition-colors drop-shadow-md bg-stone-950/50 backdrop-blur-md rounded-full px-8 py-3 border border-white/10 shadow-lg hover:bg-stone-900/60 w-fit min-w-[240px]"
+        >
+          <span className="text-xl mr-3 pb-1">←</span>
+          <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Return to Brazil</span>
+        </Link>
+        <Link
+          to="/brazil/florianopolis"
+          className="flex flex-row items-center justify-center text-[#ceb752] hover:text-[#e8eac7] transition-colors drop-shadow-sm bg-[#ceb752]/20 backdrop-blur-md rounded-full px-8 py-3 border border-[#ceb752]/50 shadow-md hover:bg-[#ceb752]/30 w-fit min-w-[240px]"
+        >
+          <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Next: Florianópolis</span>
+          <span className="text-xl ml-3 pb-1">→</span>
+        </Link>
+      </div>
     </div>
   );
 }

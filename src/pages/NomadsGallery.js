@@ -59,62 +59,122 @@ export default function NomadsGallery({ openLightbox }) {
         </div>
       </div>
 
-      {/* Masonry Grid */}
+      {/* Organic Flex Layout */}
       <motion.main
-        className="px-4 sm:px-8 max-w-screen-2xl mx-auto columns-1 sm:columns-2 md:columns-3 gap-12 sm:gap-16 md:gap-24 relative z-10"
+        className="px-6 sm:px-12 md:px-20 lg:px-32 max-w-[2000px] mx-auto flex flex-wrap relative z-10"
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
       >
         {shuffledImages.map((img, index) => {
+          // Calculate pseudo-random offsets and rotation
+          const charSum = img.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+          const rotation = (charSum % 7) - 3; // -3deg to 3deg
+
+          // Determine layout type based on index for a curated yet random feel
+          // 0: Centered Large, 1: Left Half, 2: Right Half, 3: Centered Regular, 4: Staggered Wide
+          const layoutType = index % 5;
+          let widthClass = "w-full";
+          let alignClass = "justify-center";
+          let innerWidth = "w-full max-w-4xl";
+          let offsetMultiplier = 1;
+
+          switch (layoutType) {
+            case 0: // Centered Large (Single width)
+              widthClass = "w-full mb-48 lg:mb-72";
+              alignClass = "justify-center";
+              innerWidth = "w-full max-w-5xl";
+              offsetMultiplier = 0.5;
+              break;
+            case 1: // Left Half
+              widthClass = "w-full md:w-1/2 mb-32 lg:mb-48 pr-4 md:pr-12";
+              alignClass = "justify-start";
+              innerWidth = "w-full";
+              break;
+            case 2: // Right Half
+              widthClass = "w-full md:w-1/2 mb-32 lg:mb-48 pl-4 md:pl-12";
+              alignClass = "justify-end";
+              innerWidth = "w-full";
+              break;
+            case 3: // Centered Regular (Single width)
+              widthClass = "w-full mb-48 lg:mb-72";
+              alignClass = "justify-center";
+              innerWidth = "w-full max-w-3xl";
+              offsetMultiplier = 0.7;
+              break;
+            case 4: // Staggered Wide
+              widthClass = "w-full mb-32 lg:mb-48 px-4 md:px-20";
+              alignClass = index % 2 === 0 ? "justify-start" : "justify-end";
+              innerWidth = "w-full md:w-2/3";
+              break;
+            default:
+              widthClass = "w-full md:w-1/2 mb-32";
+          }
+
+          const offsetX = ((charSum % 101) - 50) * offsetMultiplier;
+          const offsetY = (((charSum * 7) % 81) - 40) * offsetMultiplier;
+
           return (
             <motion.div
               key={`${img.id}-${index}`}
-              className="mb-16 sm:mb-24 break-inside-avoid relative flex flex-col group"
+              className={`${widthClass} flex ${alignClass} group`}
               variants={fadeScale}
               onClick={() => handleClick(index)}
               onMouseEnter={() => trackEvent("hover_gallery_image", "Nomads Gallery", img.title)}
-              tabIndex={0}
-              onKeyPress={(e) => {
-                if (e.key === "Enter") handleClick(index);
-              }}
-              whileHover="hover"
             >
-              {/* Frame Container */}
-              <div className="relative group-hover:scale-[1.02] transition-transform duration-500 cursor-pointer">
-                <img
-                  src={process.env.PUBLIC_URL + img.image.replace(/\.(jpg|jpeg|png)$/, ".webp")}
-                  alt={img.title}
-                  className="w-full h-auto block drop-shadow-2xl rounded-sm"
-                  loading="lazy"
-                />
-              </div>
-
-              {/* Label */}
-              <motion.div
-                className="mt-6 ml-auto max-w-[180px] p-3 bg-white/40 backdrop-blur-md self-end transform transition-all duration-500 group-hover:translate-x-1 border-l border-[#eeda8d]/30"
-                initial={{ opacity: 0.6, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
+              <div
+                className={`${innerWidth} relative flex flex-col`}
+                style={{
+                  transform: `translate(${offsetX}px, ${offsetY}px)`,
+                }}
               >
-                <h4 className="text-gray-900 text-xs font-bold uppercase tracking-widest mb-1 font-cormorant">
-                  {img.title}
-                </h4>
-                {img.category && (
-                  <p className="text-gray-600 text-[10px] italic font-serif leading-tight">
-                    {img.category}
-                  </p>
-                )}
-                <div className="mt-2 w-4 h-[1px] bg-[#eeda8d]/50" />
-              </motion.div>
+                {/* Frame Container */}
+                <motion.div
+                  className="relative cursor-pointer shadow-[0_35px_60px_-15px_rgba(0,0,0,0.5)] rounded-sm overflow-hidden"
+                  whileHover={{
+                    scale: 1.02,
+                    zIndex: 20,
+                    transition: { duration: 0.6, ease: "easeOut" }
+                  }}
+                >
+                  <img
+                    src={process.env.PUBLIC_URL + img.image.replace(/\.(jpg|jpeg|png)$/, ".webp")}
+                    alt={img.title}
+                    className="w-full h-auto block brightness-[0.98] group-hover:brightness-100 transition-all duration-700"
+                    loading="lazy"
+                  />
+                </motion.div>
+
+                {/* Label */}
+                <motion.div
+                  className="mt-8 ml-auto max-w-[240px] p-5 bg-white/10 backdrop-blur-xl self-end transform transition-all duration-700 group-hover:translate-x-4 border-l-4 border-[#eeda8d]/40 shadow-2xl"
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  <h4 className="text-gray-950 text-sm font-bold uppercase tracking-[0.3em] mb-3 font-cormorant leading-tight">
+                    {img.title}
+                  </h4>
+                  {img.category && (
+                    <p className="text-gray-800 text-xs italic font-serif leading-tight opacity-90">
+                      {img.category}
+                    </p>
+                  )}
+                  <div className="mt-4 w-10 h-[1.5px] bg-[#eeda8d]/70" />
+                </motion.div>
+              </div>
             </motion.div>
           );
         })}
       </motion.main>
 
-      <div className="flex justify-center my-10">
-        <Link to="/" className="text-white hover:text-[#eeda8d] underline decoration-1 underline-offset-4 text-sm">
-          ← Return Home
-        </Link>
+      <div className="flex flex-col items-center gap-6 my-16 relative z-10">
+        <button
+          onClick={() => window.history.back()}
+          className="flex flex-row items-center justify-center text-stone-300 hover:text-white transition-colors drop-shadow-md bg-stone-950/50 backdrop-blur-md rounded-full px-8 py-3 border border-white/10 shadow-lg hover:bg-stone-900/60 w-fit min-w-[240px] cursor-pointer"
+        >
+          <span className="text-xl mr-3 pb-1">←</span>
+          <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Return to Previous Page</span>
+        </button>
       </div>
     </div>
   );

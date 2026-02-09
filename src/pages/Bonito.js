@@ -200,11 +200,11 @@ function Bonito() {
                 ))}
 
                 <div className="w-full flex flex-col items-center justify-center gap-6 mt-20 mb-12 relative z-10">
-                    <Link to="/brazil/florianopolis" className="flex flex-row items-center justify-center text-stone-300 hover:text-white transition-colors drop-shadow-md bg-stone-950/60 backdrop-blur-md rounded-full px-8 py-3 border border-white/10 shadow-lg hover:bg-stone-900/80 w-fit">
+                    <Link to="/brazil" className="flex flex-row items-center justify-center text-stone-300 hover:text-white transition-colors drop-shadow-md bg-stone-950/60 backdrop-blur-md rounded-full px-8 py-3 border border-white/10 shadow-lg hover:bg-stone-900/80 w-fit min-w-[240px]">
                         <span className="text-xl mr-3 pb-1">←</span>
-                        <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Return to Florianopolis</span>
+                        <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Return to Brazil</span>
                     </Link>
-                    <Link to="/brazil/salvador" className="flex flex-row items-center justify-center text-[#eeda8d] hover:text-white transition-colors drop-shadow-sm bg-[#ceb752]/20 backdrop-blur-md rounded-full px-8 py-3 border border-[#ceb752]/40 shadow-md hover:bg-[#ceb752]/30 w-fit">
+                    <Link to="/brazil/salvador" className="flex flex-row items-center justify-center text-[#eeda8d] hover:text-white transition-colors drop-shadow-sm bg-[#ceb752]/20 backdrop-blur-md rounded-full px-8 py-3 border border-[#ceb752]/40 shadow-md hover:bg-[#ceb752]/30 w-fit min-w-[240px]">
                         <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Next: Salvador</span>
                         <span className="text-xl ml-3 pb-1">→</span>
                     </Link>
