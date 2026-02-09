@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Arrow = ({ isOpen }) => (
     <svg
@@ -32,10 +32,14 @@ const Arrow = ({ isOpen }) => (
 );
 
 const SidebarMenu = ({ menuOpen, setMenuOpen, handleMenuEnter, handleMenuLeave }) => {
+    const location = useLocation();
+
     // Submenus open by default and remember their state
     const [openAdventures, setOpenAdventures] = useState(true);
     const [openBrazil, setOpenBrazil] = useState(true);
-    const [openSaoPaulo, setOpenSaoPaulo] = useState(true);
+
+    // São Paulo section is collapsed by default
+    const [openSaoPaulo, setOpenSaoPaulo] = useState(false);
 
     const toggleSubmenu = (name, setter) => {
         setter((s) => {
@@ -51,7 +55,7 @@ const SidebarMenu = ({ menuOpen, setMenuOpen, handleMenuEnter, handleMenuLeave }
     };
 
     const submenuClass = (isOpen) =>
-        `ml-4 flex flex-col gap-1 overflow-hidden transition-all duration-300 ${isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        `ml-6 flex flex-col gap-2 overflow-hidden transition-all duration-300 ${isOpen ? "max-h-[500px] opacity-100 mt-2 mb-4" : "max-h-0 opacity-0"
         }`;
 
     return (
@@ -59,19 +63,19 @@ const SidebarMenu = ({ menuOpen, setMenuOpen, handleMenuEnter, handleMenuLeave }
             id="site-menu"
             className={`fixed top-0 right-0 h-full w-64 z-[9998] flex flex-col pt-12 p-4 gap-2 text-lg overflow-y-auto
     transform transition-transform duration-300
-    bg-[#e8eac7]/80
+    bg-stone-950/95
     ${menuOpen ? "translate-x-0 pointer-events-auto" : "translate-x-full pointer-events-none"}`}
             onMouseEnter={handleMenuEnter}
             onMouseLeave={handleMenuLeave}
         >
-            <Link className="text-[#38350b] text-lg hover:text-[#0c0b01]" to="/home" onClick={() => setMenuOpen(false)}>Home</Link>
+            <Link className="text-stone-300 text-lg hover:text-white transition-colors" to="/home" onClick={() => setMenuOpen(false)}>Home</Link>
 
             <div className="flex flex-col">
                 <div
                     className="flex justify-between items-center w-full cursor-pointer"
                     onMouseEnter={() => setOpenAdventures(true)}
                 >
-                    <Link className="text-[#38350b] text-lg hover:text-[#0c0b01]" to="/adventures" onClick={() => setMenuOpen(false)}>Adventures Blog</Link>
+                    <Link className="text-stone-300 text-lg hover:text-white transition-colors" to="/adventures" onClick={() => setMenuOpen(false)}>Adventures Blog</Link>
                     <button onClick={() => toggleSubmenu("adventures", setOpenAdventures)} className="focus:outline-none" aria-label="Toggle travel submenu">
                         <Arrow isOpen={openAdventures} />
                     </button>
@@ -82,7 +86,7 @@ const SidebarMenu = ({ menuOpen, setMenuOpen, handleMenuEnter, handleMenuLeave }
                         className="flex justify-between items-center w-full cursor-pointer"
                         onMouseEnter={() => setOpenBrazil(true)}
                     >
-                        <Link className="text-[#38350b] text-base hover:text-[#0c0b01]" to="/brazil" onClick={() => setMenuOpen(false)}>Brazil</Link>
+                        <Link className="text-stone-300 text-base hover:text-white transition-colors" to="/brazil" onClick={() => setMenuOpen(false)}>Brazil</Link>
                         <button onClick={() => toggleSubmenu("brazil", setOpenBrazil)} className="focus:outline-none" aria-label="Toggle brazil submenu">
                             <Arrow isOpen={openBrazil} />
                         </button>
@@ -93,26 +97,27 @@ const SidebarMenu = ({ menuOpen, setMenuOpen, handleMenuEnter, handleMenuLeave }
                             className="flex justify-between items-center w-full cursor-pointer"
                             onMouseEnter={() => setOpenSaoPaulo(true)}
                         >
-                            <Link className="text-[#38350b] text-base hover:text-[#0c0b01]" to="/brazil/saopaulo" onClick={() => setMenuOpen(false)}>São Paulo</Link>
+                            <Link className="text-stone-300 text-base hover:text-white transition-colors" to="/brazil/saopaulo" onClick={() => setMenuOpen(false)}>São Paulo</Link>
                             <button onClick={() => toggleSubmenu("saopaulo", setOpenSaoPaulo)} className="focus:outline-none" aria-label="Toggle saopaulo submenu">
                                 <Arrow isOpen={openSaoPaulo} />
                             </button>
                         </div>
 
                         <div className={submenuClass(openSaoPaulo)}>
-                            <Link to="/brazil/saopaulo/parks" className="text-[#38350b] text-base hover:text-[#0c0b01]" onClick={() => setMenuOpen(false)}>Parks</Link>
-                            <Link to="/brazil/saopaulo/museums" className="text-[#38350b] text-base hover:text-[#0c0b01]" onClick={() => setMenuOpen(false)}>Art Galleries</Link>
-                            <Link to="/brazil/saopaulo/carnival" className="text-[#38350b] text-base hover:text-[#0c0b01]" onClick={() => setMenuOpen(false)}>Carnival</Link>
-                            <Link to="/brazil/saopaulo/murals" className="text-[#38350b] text-base hover:text-[#0c0b01]" onClick={() => setMenuOpen(false)}>Street Murals</Link>
-                            <Link to="/brazil/saopaulo/santos" className="text-[#38350b] text-base hover:text-[#0c0b01]" onClick={() => setMenuOpen(false)}>Santos</Link>
+                            <Link to="/brazil/saopaulo/parks" className="text-stone-300 text-base hover:text-white transition-colors" onClick={() => setMenuOpen(false)}>Parks</Link>
+                            <Link to="/brazil/saopaulo/museums" className="text-stone-300 text-base hover:text-white transition-colors" onClick={() => setMenuOpen(false)}>Art Galleries</Link>
+                            <Link to="/brazil/saopaulo/carnival" className="text-stone-300 text-base hover:text-white transition-colors" onClick={() => setMenuOpen(false)}>Carnival</Link>
+                            <Link to="/brazil/saopaulo/murals" className="text-stone-300 text-base hover:text-white transition-colors" onClick={() => setMenuOpen(false)}>Street Murals</Link>
+                            <Link to="/brazil/saopaulo/santos" className="text-stone-300 text-base hover:text-white transition-colors" onClick={() => setMenuOpen(false)}>Santos</Link>
                         </div>
-                        <Link className="text-[#38350b] text-base hover:text-[#0c0b01]" to="/brazil/florianopolis" onClick={() => setMenuOpen(false)}>Florianópolis</Link>
-                        <Link className="text-[#38350b] text-base hover:text-[#0c0b01]" to="/brazil/pantanal" onClick={() => setMenuOpen(false)}>The Pantanal</Link>
-                        <Link className="text-[#38350b] text-base hover:text-[#0c0b01]" to="/brazil/bonito" onClick={() => setMenuOpen(false)}>Bonito</Link>
-                        <Link className="text-[#38350b] text-base hover:text-[#0c0b01]" to="/brazil/manaus" onClick={() => setMenuOpen(false)}>Manaus</Link>
-                        <Link className="text-[#38350b] text-base hover:text-[#0c0b01]" to="/brazil/rio" onClick={() => setMenuOpen(false)}>Rio de Janeiro</Link>
-                        <Link className="text-[#38350b] text-base hover:text-[#0c0b01]" to="/brazil/salvador" onClick={() => setMenuOpen(false)}>Salvador</Link>
-                        <Link className="text-[#38350b] text-base hover:text-[#0c0b01]" to="/brazil/foz" onClick={() => setMenuOpen(false)}>Foz do Iguaçu</Link>
+                        <Link className="text-stone-300 text-base hover:text-white transition-colors" to="/brazil/florianopolis" onClick={() => setMenuOpen(false)}>Florianópolis</Link>
+                        <Link className="text-stone-300 text-base hover:text-white transition-colors" to="/brazil/pantanal" onClick={() => setMenuOpen(false)}>The Pantanal</Link>
+                        <Link className="text-stone-300 text-base hover:text-white transition-colors" to="/brazil/bonito" onClick={() => setMenuOpen(false)}>Bonito</Link>
+                        <Link className="text-stone-300 text-base hover:text-white transition-colors" to="/brazil/manaus" onClick={() => setMenuOpen(false)}>Manaus</Link>
+                        <Link className="text-stone-300 text-base hover:text-white transition-colors" to="/brazil/ilha-grande" onClick={() => setMenuOpen(false)}>Ilha Grande</Link>
+                        <Link className="text-stone-300 text-base hover:text-white transition-colors" to="/brazil/rio" onClick={() => setMenuOpen(false)}>Rio de Janeiro</Link>
+                        <Link className="text-stone-300 text-base hover:text-white transition-colors" to="/brazil/salvador" onClick={() => setMenuOpen(false)}>Salvador</Link>
+                        <Link className="text-stone-300 text-base hover:text-white transition-colors" to="/brazil/foz" onClick={() => setMenuOpen(false)}>Foz do Iguaçu</Link>
                     </div>
 
 
@@ -122,20 +127,20 @@ const SidebarMenu = ({ menuOpen, setMenuOpen, handleMenuEnter, handleMenuLeave }
             <Link
                 to="/nomadsshop"
                 onClick={() => setMenuOpen(false)}
-                className="text-[#38350b] text-lg hover:text-[#0c0b01]"
+                className="text-stone-300 text-lg hover:text-white transition-colors"
             >
                 Nomads Shop
             </Link>
 
             <Link
-                className="text-[#38350b] text-lg hover:text-[#0c0b01]"
+                className="text-stone-300 text-lg hover:text-white transition-colors"
                 to="/nomads-gallery"
                 onClick={() => setMenuOpen(false)}
             >
                 Nomads Gallery
             </Link>
             <Link
-                className="text-[#38350b] text-lg hover:text-[#0c0b01]"
+                className="text-stone-300 text-lg hover:text-white transition-colors"
                 to="/contact-us"
                 onClick={() => setMenuOpen(false)}
             >

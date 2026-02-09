@@ -119,7 +119,7 @@ function Iguazu() {
                     <div className="absolute inset-0 bg-gradient-to-b from-[#064e3b]/40 via-transparent to-[#064e3b]" />
                 </motion.div>
 
-                <div className="relative z-10 text-center max-w-4xl px-4">
+                <div className="relative z-10 text-center max-w-4xl px-4 mt-[-20vh] md:mt-[-40vh]">
                     <motion.div
                         initial={{ y: 30, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
@@ -128,7 +128,7 @@ function Iguazu() {
                         <h1 className="text-7xl md:text-9xl font-bold font-handwriting text-[#eeda8d] drop-shadow-2xl mb-4">
                             Iguazu
                         </h1>
-                        <p className="text-xl md:text-3xl font-light tracking-[0.2em] uppercase text-stone-200 opacity-90">
+                        <p className="text-xl md:text-3xl font-bold tracking-[0.2em] uppercase text-stone-200 opacity-90">
                             The Great Waters
                         </p>
                     </motion.div>
@@ -185,7 +185,7 @@ function Iguazu() {
                     />
                 ))}
 
-                <div className="w-full flex md:flex-row flex-col items-center justify-center gap-6 mt-20 mb-12 relative z-10">
+                <div className="w-full flex flex-col items-center justify-center gap-6 mt-20 mb-12 relative z-10">
                     <Link to="/brazil/salvador" className="flex flex-row items-center justify-center text-stone-300 hover:text-white transition-colors drop-shadow-md bg-stone-950/60 backdrop-blur-md rounded-full px-8 py-3 border border-white/10 shadow-lg hover:bg-stone-900/80 w-fit">
                         <span className="text-xl mr-3 pb-1">←</span>
                         <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Return to Salvador</span>

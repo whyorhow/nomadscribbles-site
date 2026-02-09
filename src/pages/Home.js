@@ -392,7 +392,7 @@ function Home() {
           />
           <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px] group-hover:bg-black/10 group-hover:backdrop-blur-none transition-all duration-[2000ms]"></div>
 
-          <div className={`absolute top-8 left-8 z-20 transition-opacity duration-[2000ms] ${!showMiniRio ? "opacity-100" : "opacity-0"}`}>
+          <div className={`absolute top-4 left-8 z-20 transition-opacity duration-[2000ms] ${!showMiniRio ? "opacity-100" : "opacity-0"}`}>
             <h2 className="font-handwriting text-6xl sm:text-8xl md:text-9xl text-white drop-shadow-lg -rotate-6">
               Rio de Janeiro
             </h2>
@@ -402,7 +402,7 @@ function Home() {
             <motion.div
               className={`absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-[2000ms] ${showMiniRio ? "opacity-100" : "opacity-0"}`}
             >
-              <h3 className="font-handwriting text-5xl sm:text-7xl text-white drop-shadow-xl text-center px-4">
+              <h3 className="font-handwriting text-5xl sm:text-7xl text-white drop-shadow-xl text-center px-4 font-bold mt-[-15%]">
                 Marvelous City
               </h3>
             </motion.div>

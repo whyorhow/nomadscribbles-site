@@ -28,6 +28,7 @@ import Florianopolis from "./pages/Florianopolis";
 import Iguazu from "./pages/Iguazu";
 import Bonito from "./pages/Bonito";
 import Manaus from "./pages/Manaus";
+import IlhaGrande from "./pages/IlhaGrande";
 
 
 // --- Components ---
@@ -73,7 +74,7 @@ function MainContent({
 }) {
   const location = useLocation();
   const isHome = location.pathname === "/" || location.pathname === "/home";
-  const lightenedRoutes = ["/brazil", "/brazil/rio", "/brazil/salvador", "/brazil/pantanal", "/brazil/saopaulo", "/brazil/foz", "/brazil/manaus"];
+  const lightenedRoutes = ["/brazil", "/brazil/rio", "/brazil/salvador", "/brazil/pantanal", "/brazil/saopaulo", "/brazil/foz", "/brazil/manaus", "/brazil/ilha-grande"];
 
   const isLightenedPage = lightenedRoutes.includes(location.pathname) || location.pathname.includes("/saopaulo/santos");
 
@@ -104,6 +105,7 @@ function MainContent({
           <Route path="/brazil/pantanal" element={<Pantanal openLightbox={openLightbox} />} />
           <Route path="/brazil/foz" element={<Iguazu openLightbox={openLightbox} />} />
           <Route path="/brazil/manaus" element={<Manaus openLightbox={openLightbox} />} />
+          <Route path="/brazil/ilha-grande" element={<IlhaGrande openLightbox={openLightbox} />} />
 
           <Route path="/brazil/saopaulo" element={<SaoPaulo openLightbox={openLightbox} />} />
           <Route path="/brazil/saopaulo/parks" element={<Parks openLightbox={openLightbox} />} />

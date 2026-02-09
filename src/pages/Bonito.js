@@ -38,7 +38,7 @@ function Bonito() {
             id: "waterfalls",
             title: "Crystal Cascades",
             subtitle: "The liquid heart of the Serra da Bodoquena",
-            coverImage: "bonito-waterfall-main",
+            coverImage: "bonito11",
             expandedBg: "bg-[#07332f]/90",
             content: [
                 {
@@ -52,7 +52,7 @@ function Bonito() {
                 },
                 {
                     type: "grid",
-                    ids: ["bonito-cascade-1", "bonito-cascade-2", "bonito-cascade-3"]
+                    ids: ["bonito7", "bonito9", "bonito6"]
                 },
                 {
                     type: "text",
@@ -64,7 +64,7 @@ function Bonito() {
             id: "snorkeling",
             title: "Aquarium of the Earth",
             subtitle: "Floating through an emerald dream",
-            coverImage: "bonito-snorkeling-main",
+            coverImage: "bonito3",
             expandedBg: "bg-[#042d2a]/95",
             content: [
                 {
@@ -73,7 +73,7 @@ function Bonito() {
                 },
                 {
                     type: "image",
-                    id: "bonito-fish-1",
+                    id: "bonito4",
                     caption: "Schools of Piraputanga reflecting the morning sun."
                 },
                 {
@@ -86,7 +86,7 @@ function Bonito() {
             id: "caves",
             title: "Abyssal Blue",
             subtitle: "Journeying into the prehistoric silence",
-            coverImage: "bonito-cave-main",
+            coverImage: "bonito2",
             expandedBg: "bg-[#021f1d]/98",
             content: [
                 {
@@ -95,7 +95,7 @@ function Bonito() {
                 },
                 {
                     type: "image",
-                    id: "bonito-cave-depths",
+                    id: "bonito8",
                     caption: "The prehistoric silence of the Blue Lake Cave."
                 },
                 {
@@ -113,7 +113,7 @@ function Bonito() {
             <SEO
                 title="Bonito: The Aquatic Paradise"
                 description="Explore the crystal clear waters, breathtaking waterfalls, and surreal caves of Bonito, Brazil's premier ecotourism destination."
-                image="/images/destinations/bonito/hero-small.jpg"
+                image="/images/Bonito/Small/Bonito3z.webp"
                 slug="brazil/bonito"
             />
 
@@ -133,16 +133,16 @@ function Bonito() {
                     <div className="absolute inset-0 bg-gradient-to-b from-[#07332f]/40 via-transparent to-[#07332f]" />
                 </motion.div>
 
-                <div className="relative z-10 text-center max-w-4xl px-4">
+                <div className="relative z-10 text-center max-w-4xl px-4 mt-[-25vh] md:mt-[-45vh]">
                     <motion.div
                         initial={{ y: 30, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.5, duration: 1 }}
                     >
-                        <h1 className="text-7xl md:text-9xl font-bold font-handwriting text-[#eeda8d] drop-shadow-2xl mb-4">
+                        <h1 className="text-7xl md:text-9xl font-black font-handwriting text-[#07221f] drop-shadow-2xl mb-4">
                             Bonito
                         </h1>
-                        <p className="text-xl md:text-3xl font-light tracking-[0.2em] uppercase text-stone-200 opacity-90">
+                        <p className="text-xl md:text-3xl font-bold tracking-[0.2em] uppercase text-black opacity-90">
                             The Source of Purity
                         </p>
                     </motion.div>
@@ -199,7 +199,7 @@ function Bonito() {
                     />
                 ))}
 
-                <div className="w-full flex md:flex-row flex-col items-center justify-center gap-6 mt-20 mb-12 relative z-10">
+                <div className="w-full flex flex-col items-center justify-center gap-6 mt-20 mb-12 relative z-10">
                     <Link to="/brazil/florianopolis" className="flex flex-row items-center justify-center text-stone-300 hover:text-white transition-colors drop-shadow-md bg-stone-950/60 backdrop-blur-md rounded-full px-8 py-3 border border-white/10 shadow-lg hover:bg-stone-900/80 w-fit">
                         <span className="text-xl mr-3 pb-1">←</span>
                         <span className="text-sm md:text-base font-bold tracking-widest uppercase text-center leading-tight">Return to Florianopolis</span>

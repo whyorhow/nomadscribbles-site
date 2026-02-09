@@ -17,7 +17,7 @@ const SearchInput = ({ searchOpen, toggleSearch, searchQuery, setSearchQuery, ha
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className={`absolute right-0 px-3 py-1 rounded border border-gray-700 outline-none
-        bg-[#ceb752]/40 text-[#ceb752]
+                        bg-stone-950/80 text-stone-200
         transition-all duration-300 ease-in-out
         ${searchOpen ? "w-40 sm:w-48 md:w-56 opacity-100 pointer-events-auto" : "w-0 opacity-0 pointer-events-none"}`}
                     style={{ transformOrigin: "right center" }}

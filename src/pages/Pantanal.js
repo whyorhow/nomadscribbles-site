@@ -166,16 +166,16 @@ function Pantanal({ openLightbox }) {
                     <div className="absolute inset-0 bg-gradient-to-b from-[#84935c]/40 via-transparent to-[#84935c]" />
                 </motion.div>
 
-                <div className="relative z-10 text-center max-w-4xl px-4">
+                <div className="relative z-10 text-center max-w-4xl px-4 mt-[-15vh] md:mt-[-25vh]">
                     <motion.div
                         initial={{ y: 30, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.5, duration: 1 }}
                     >
-                        <h1 className="text-7xl md:text-9xl font-bold font-handwriting text-[#D4AF37] drop-shadow-2xl mb-4">
+                        <h1 className="text-7xl md:text-9xl font-black font-handwriting text-[#D4AF37] drop-shadow-2xl mb-4">
                             The Pantanal
                         </h1>
-                        <p className="text-xl md:text-3xl font-light tracking-[0.2em] uppercase text-stone-200 opacity-90">
+                        <p className="text-xl md:text-3xl font-bold tracking-[0.2em] uppercase text-stone-200 opacity-90">
                             Shaped by Water
                         </p>
                     </motion.div>

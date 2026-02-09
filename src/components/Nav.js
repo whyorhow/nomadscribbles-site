@@ -15,7 +15,7 @@ function Nav() {
   const location = useLocation();
 
   // Check if we should show the "Return to Brazil" global header link
-  const showReturnLink = ["/brazil/florianopolis", "/brazil/bonito", "/brazil/pantanal", "/brazil/rio", "/brazil/salvador", "/brazil/foz", "/brazil/manaus"].includes(location.pathname);
+  const showReturnLink = ["/brazil/florianopolis", "/brazil/bonito", "/brazil/pantanal", "/brazil/rio", "/brazil/salvador", "/brazil/foz", "/brazil/manaus", "/brazil/ilha-grande"].includes(location.pathname);
 
   const [hideFloatingButton, setHideFloatingButton] = useState(true);
 
@@ -97,7 +97,7 @@ function Nav() {
     <>
       {showReturnLink && (
         <div className={`fixed top-16 lg:top-3 left-1/2 -translate-x-1/2 z-[10000] transition-opacity duration-500 ${hideFloatingButton ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
-          <Link to="/brazil" className="flex flex-row items-center justify-center text-[#ceb752] hover:text-[#e8eac7] transition-colors drop-shadow-md bg-stone-900/40 backdrop-blur-md rounded-full px-4 py-0.5 border border-white/10 shadow-lg">
+          <Link to="/brazil" className="flex flex-row items-center justify-center text-[#ceb752] hover:text-[#e8eac7] transition-colors drop-shadow-md bg-stone-950/80 backdrop-blur-md rounded-full px-4 py-0.5 border border-white/10 shadow-lg">
             <span className="text-lg mr-2 mb-0">←</span>
             <span className="text-[10px] md:text-sm font-bold tracking-widest uppercase text-center leading-tight whitespace-nowrap">
               Return to Brazil

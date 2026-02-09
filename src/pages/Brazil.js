@@ -27,7 +27,8 @@ function Brazil() {
     { id: "salvador", name: "Salvador", img: "/images/Salvador/small/Salvador5.webp", path: "/brazil/salvador" },
     { id: "pantanal", name: "The Pantanal", img: "/images/Pantanal/small/Pantanal5.webp", path: "/brazil/pantanal" },
     { id: "foz", name: "Foz do Iguaçu", img: "/images/Iguazu/small/Iguazu16.webp", path: "/brazil/foz" },
-    { id: "manaus", name: "Manaus", img: "/images/Manaus/Small/Manaus13.webp", path: "/brazil/manaus" }
+    { id: "manaus", name: "Manaus", img: "/images/Manaus/Small/Manaus13.webp", path: "/brazil/manaus" },
+    { id: "ilha-grande", name: "Ilha Grande", img: "/images/Ilha Grande/small/Ilha20new.webp", path: "/brazil/ilha-grande" }
   ];
 
   // Map markers (excluding Santos as it's within São Paulo)

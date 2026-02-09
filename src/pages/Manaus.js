@@ -122,7 +122,7 @@ function Manaus({ openLightbox }) {
                         <h1 className="text-7xl md:text-9xl font-bold font-handwriting text-[#9c6644] drop-shadow-2xl mb-4">
                             Manaus
                         </h1>
-                        <p className="text-xl md:text-3xl font-light tracking-[0.2em] uppercase text-stone-800 opacity-90">
+                        <p className="text-xl md:text-3xl font-bold tracking-[0.2em] uppercase text-stone-100 opacity-90">
                             Gateway to the Amazon
                         </p>
                     </motion.div>

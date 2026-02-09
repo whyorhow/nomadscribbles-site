@@ -138,7 +138,7 @@ function Rio({ openLightbox }) {
                     <div className="absolute inset-0 bg-gradient-to-b from-[#1c1917]/40 via-transparent to-[#1c1917]" />
                 </motion.div>
 
-                <div className="relative z-10 text-center max-w-4xl px-4">
+                <div className="relative z-10 text-center max-w-4xl px-4 mt-[-36vh] md:mt-[-66vh]">
                     <motion.div
                         initial={{ y: 30, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
@@ -147,7 +147,7 @@ function Rio({ openLightbox }) {
                         <h1 className="text-7xl md:text-9xl font-bold font-handwriting text-[#D4AF37] drop-shadow-2xl mb-4">
                             Rio de Janeiro
                         </h1>
-                        <p className="text-xl md:text-3xl font-light tracking-[0.2em] uppercase text-stone-200 opacity-90">
+                        <p className="text-xl md:text-3xl font-bold tracking-[0.2em] uppercase text-stone-200 opacity-90">
                             The Marvellous City
                         </p>
                     </motion.div>

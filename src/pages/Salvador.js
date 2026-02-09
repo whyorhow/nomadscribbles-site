@@ -157,7 +157,7 @@ function Salvador() {
                     <div className="absolute inset-0 bg-gradient-to-b from-[#451a03]/40 via-transparent to-[#451a03]" />
                 </motion.div>
 
-                <div className="relative z-10 text-center max-w-4xl px-4">
+                <div className="relative z-10 text-center max-w-4xl px-4 mt-[-20vh] md:mt-[-40vh]">
                     <motion.div
                         initial={{ y: 30, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}

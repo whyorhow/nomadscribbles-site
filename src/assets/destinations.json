@@ -88,5 +88,15 @@
         "googleMapsUrl": "https://www.google.com/maps/place/Bonito,+MS,+Brazil/",
         "locationContext": "Mato Grosso do Sul, Central-West Brazil",
         "geography": "A hub for ecotourism, Bonito is famous for its karst landscape, where crystal-clear rivers emerge from limestone caves and flow through the lush Cerrado plateau."
+    },
+    {
+        "id": "ilha-grande",
+        "name": "Ilha Grande",
+        "lat": -23.1485,
+        "lng": -44.1810,
+        "path": "/brazil/ilha-grande",
+        "googleMapsUrl": "https://www.google.com/maps/place/Ilha+Grande/@-23.1441666,-44.3316972,12z/",
+        "locationContext": "Rio de Janeiro State, Southeast Brazil",
+        "geography": "A car-free island defined by its preserved Atlantic Forest, crystal-clear inlets, and over 100 beaches where the jungle meets the South Atlantic shoreline."
     }
 ]
