@@ -170,26 +170,13 @@ function Iguazu() {
                             geography={destination?.geography}
                             transparent={true}
                             sliderImages={[
-                                { url: "/images/Iguazu/small/Iguazu1.webp", caption: "The power of the Devil's Throat" },
-                                { url: "/images/Iguazu/small/Iguazu5.webp", caption: "Subtropical forest details" },
-                                { url: "/images/Iguazu/small/Iguazu8.webp", caption: "Approaching the falls by boat" }
+                                { url: "/images/Iguazu/thumbnail/Iguazu1.webp", caption: "The power of the Devil's Throat" },
+                                { url: "/images/Iguazu/thumbnail/Iguazu5.webp", caption: "Subtropical forest details" },
+                                { url: "/images/Iguazu/thumbnail/Iguazu8.webp", caption: "Approaching the falls by boat" }
                             ]}
                         />
                     </div>
 
-                    {/* Decorative Art Stamp - Iguazu */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 0.4, scale: 1 }}
-                        viewport={{ once: true }}
-                        className="absolute left-[5%] bottom-[10%] w-32 md:w-48 pointer-events-none z-0 hidden lg:block"
-                    >
-                        <img
-                            src={process.env.PUBLIC_URL + "/images/Iguazu/small/Iguazu10z.webp"}
-                            alt="Artistic detail"
-                            className="w-full h-auto grayscale opacity-40 brightness-110"
-                        />
-                    </motion.div>
                 </div>
             </div>
 

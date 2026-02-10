@@ -208,6 +208,11 @@ function Salvador() {
                             title="Where is Salvador?"
                             geography={destination?.geography}
                             transparent={true}
+                            sliderImages={[
+                                { url: "/images/Salvador/thumbnail/Salvador1.webp", caption: "The historic heart of Pelourinho" },
+                                { url: "/images/Salvador/thumbnail/Salvador5.webp", caption: "Colonial architecture and vibrant colors" },
+                                { url: "/images/Salvador/thumbnail/Salvador9.webp", caption: "The rhythm of those who stay" }
+                            ]}
                         />
                     </div>
                 </div>

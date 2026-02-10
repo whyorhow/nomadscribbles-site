@@ -1,4 +1,3 @@
-// src/Home.js
 import React, { useRef, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -15,80 +14,67 @@ import "swiper/css/navigation";
 
 import ParallaxBackground from "../components/ParallaxBackground";
 
+/**
+ * HOME PAGE
+ * Optimized for "Liquid Silk" auto-scrolling and rich clumpy red soil texture.
+ */
 function Home() {
   const navigate = useNavigate();
 
-  // Parallax tracking
-  const [scrollY, setScrollY] = useState(window.scrollY);
+  // OPTIMIZATION: Use viewport state sparingly
   const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
 
-  // Framer Motion useScroll for high-performance logo animation
+  // Framer Motion useScroll for high-performance values
   const { scrollY: scrollYMotion } = useScroll();
   const logoOpacity = useTransform(scrollYMotion, [100, 300], [0, 1]);
 
-  const [logoReady, setLogoReady] = useState(false);
-
   const cards = [
-    { title: "Rio de Janeiro", link: "/brazil/rio", img: "/images/Rio/thumbnail/Rio1.webp" },
-    { title: "Florianópolis", link: "/brazil/florianopolis", img: "/images/Floripa/thumbnail/Floripa1.webp" },
-    { title: "Salvador", link: "/brazil/salvador", img: "/images/Salvador/thumbnail/Salvador1.webp" },
-    { title: "The Pantanal", link: "/brazil/pantanal", img: "/images/Pantanal/thumbnail/Pantanal1.webp" },
-    { title: "Bonito", link: "/brazil/bonito", img: "/images/Bonito/Thumbnail/Bonito1.webp" },
-    { title: "Foz do Iguaçu", link: "/brazil/foz", img: "/images/Iguazu/thumbnail/Iguazu1.webp" },
-    { title: "Manaus", link: "/brazil/manaus", img: "/images/Manaus/Thumbnails/Manaus1.webp" },
-    { title: "Ilha Grande", link: "/brazil/ilha-grande", img: "/images/Ilha Grande/thumbnail/Ilha1.webp" },
-    { title: "Santos", link: "/brazil/saopaulo/santos", img: "/images/Santos/small/Santos1z.webp" },
-    { title: "Carnival", link: "/brazil/saopaulo/carnival", img: "/images/CarnivalSP/thumbnail/Carnival1.webp" },
-    { title: "Street Murals", link: "/brazil/saopaulo/murals", img: "/images/Murals/thumbnail/Graffiti1.webp" },
-    { title: "Parks", link: "/brazil/saopaulo/parks", img: "/images/SP-Parks/thumbnail/Park1.webp" },
-    { title: "Nomads Gallery", link: "/nomads-gallery", img: "/images/Home/ThumbnailNG.webp" },
-    { title: "Nomads Shop", link: "/nomadsshop", img: "/images/Home/ThumbnailNS.webp" },
+    { title: "Bonito", link: "/brazil/bonito", img: "/images/Bonito/thumbnail/Bonito7.webp" },
+    { title: "Florianópolis", link: "/brazil/florianopolis", img: "/images/Floripa/thumbnail/Floripa7.webp" },
+    { title: "Iguazu", link: "/brazil/iguazu", img: "/images/Iguazu/thumbnail/Iguazu7.webp" },
+    { title: "Ilha Grande", link: "/brazil/ilhagrande", img: "/images/Ilha Grande/Thumbnails/Ilha7.webp" },
+    { title: "Manaus", link: "/brazil/manaus", img: "/images/Manaus/Thumbnails/Manaus7.webp" },
+    { title: "Pantanal", link: "/brazil/pantanal", img: "/images/Pantanal/thumbnail/Pantanal7.webp" },
+    { title: "Santos", link: "/brazil/santos", img: "/images/Santos/thumbnail/Santos1.webp" },
   ];
 
+  const [showMiniGallery, setShowMiniGallery] = useState(false);
   const [showMiniSP, setShowMiniSP] = useState(false);
-  const [showMiniSantos, setShowMiniSantos] = useState(false); // Used for Salvador
+  const [showMiniSantos, setShowMiniSantos] = useState(false);
   const [showMiniRio, setShowMiniRio] = useState(false);
-  const [showMiniFloripa, setShowMiniFloripa] = useState(false);
 
   const firstFeatureRef = useRef(null); // For autoscroll
-
-  // ✅ responsive now
   const isMobile = viewportWidth <= 768;
 
-  // Manual delay for Logo
+  // Resize listener
   useEffect(() => {
-    const timer = setTimeout(() => setLogoReady(true), 1000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Scroll + resize listeners
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
     const handleResize = () => {
       setViewportHeight(window.innerHeight);
       setViewportWidth(window.innerWidth);
     };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Ensure page starts at top on refresh
+  // Ensure page starts at top
   useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
     window.scrollTo(0, 0);
   }, []);
 
-  // Autoscroll Feature
+  // --- SMOOTH TIME-BASED AUTOSCROLL (No Stutter) ---
   useEffect(() => {
     let animationFrameId;
     let timeoutId;
     let isStopped = false;
+    let startTime = null;
+    let startScrollY = 0;
+
+    const SCROLL_SPEED_PX_PER_SEC = isMobile ? 80 : 120;
+    const START_DELAY_MS = 3500;
 
     const stopScroll = () => {
       isStopped = true;
@@ -96,46 +82,41 @@ function Home() {
       clearTimeout(timeoutId);
     };
 
-    // Listen for user interaction to stop autoscroll
-    window.addEventListener("wheel", stopScroll);
-    window.addEventListener("touchmove", stopScroll);
+    window.addEventListener("wheel", stopScroll, { passive: true });
+    window.addEventListener("touchmove", stopScroll, { passive: true });
     window.addEventListener("keydown", stopScroll);
 
-    const animateScroll = () => {
+    const animateScroll = (timestamp) => {
       if (isStopped) return;
+      if (!startTime) {
+        startTime = timestamp;
+        startScrollY = window.scrollY;
+      }
 
-      const target = firstFeatureRef.current;
-      if (!target) {
-        animationFrameId = requestAnimationFrame(animateScroll);
+      const elapsed = timestamp - startTime;
+      const targetScroll = startScrollY + (elapsed / 1000) * SCROLL_SPEED_PX_PER_SEC;
+
+      const targetElement = firstFeatureRef.current;
+      if (targetElement) {
+        const rect = targetElement.getBoundingClientRect();
+        if (rect.top <= window.innerHeight * 0.45) {
+          isStopped = true;
+          return;
+        }
+      }
+
+      if ((window.innerHeight + targetScroll) >= document.body.offsetHeight - 5) {
+        isStopped = true;
         return;
       }
 
-      const rect = target.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-
-      // Stop when the first feature's top edge reaches the middle of the viewport
-      if (rect.top <= viewportHeight / 2) {
-        return;
-      }
-
-      // If we are close to bottom of page
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 2) return;
-
-      // Consistent scrolling speed
-      const speed = window.innerWidth <= 768 ? 2.5 : 1.5;
-      window.scrollBy({
-        top: speed,
-        left: 0,
-        behavior: 'smooth'
-      });
-
+      window.scrollTo(0, targetScroll);
       animationFrameId = requestAnimationFrame(animateScroll);
     };
 
-    // Delay start slightly to allow load
     timeoutId = setTimeout(() => {
       animationFrameId = requestAnimationFrame(animateScroll);
-    }, 1500);
+    }, START_DELAY_MS);
 
     return () => {
       stopScroll();
@@ -143,20 +124,12 @@ function Home() {
       window.removeEventListener("touchmove", stopScroll);
       window.removeEventListener("keydown", stopScroll);
     };
-  }, []);
+  }, [isMobile]);
 
   const handleSPClick = () => {
     setShowMiniSP((prev) => {
       if (!prev && isMobile) return true;
       navigate("/brazil/saopaulo");
-      return prev;
-    });
-  };
-
-  const handleSantosClick = () => {
-    setShowMiniSantos((prev) => {
-      if (!prev) return true;
-      navigate("/brazil/saopaulo/santos");
       return prev;
     });
   };
@@ -177,29 +150,20 @@ function Home() {
     });
   };
 
-
   return (
-    <div className="relative w-screen min-h-[250vh] overflow-hidden bg-[#342508ff] home-bg-textured">
-      <svg className="absolute w-0 h-0 invisible">
-        <filter id="noiseFilter">
-          <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
-        </filter>
-      </svg>
-      <style>{`
-        .home-bg-textured::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
-          opacity: 0.15;
-          pointer-events: none;
-          filter: url(#noiseFilter);
-          z-index: 1;
-        }
-      `}</style>
-      {/* Parallax background */}
-      <ParallaxBackground scrollY={scrollY} viewportHeight={viewportHeight} viewportWidth={viewportWidth} />
+    <div className="relative w-screen min-h-[250vh] overflow-hidden bg-[#2e1208]">
+      {/* Background Texture Overlay: Photographic Clumpy Red Soil */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none opacity-60"
+        style={{
+          backgroundImage: `url(${process.env.PUBLIC_URL}/images/Home/clumpy_red_soil_texture_v2.png)`,
+          backgroundRepeat: 'repeat',
+          backgroundSize: '800px',
+          mixBlendMode: 'multiply'
+        }}
+      />
+
+      <ParallaxBackground scrollYMotion={scrollYMotion} viewportHeight={viewportHeight} viewportWidth={viewportWidth} />
 
       <SEO
         title="Nomad Scribbles | Travel Stories Across the World"
@@ -208,15 +172,46 @@ function Home() {
         slug=""
       />
 
+      {/* Tagline Sticky Filter - Supporting Detail Grit */}
+      <svg className="hidden">
+        <filter id="soilTexture" filterUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="3" result="noise" />
+          <feColorMatrix in="noise" type="matrix" values="0.33 0.33 0.33 0 0  0.33 0.33 0.33 0 0  0.33 0.33 0.33 0 0  0 0 0 1 0" result="monoNoise" />
+          <feGaussianBlur in="monoNoise" stdDeviation="0.4" result="softNoise" />
+          <feDiffuseLighting in="softNoise" lightingColor="#7d5a3e" surfaceScale="1.2" result="light">
+            <feDistantLight azimuth="45" elevation="65" />
+          </feDiffuseLighting>
+          <feComposite in="light" in2="SourceGraphic" operator="arithmetic" k1="1.0" k2="0.6" k3="0.1" k4="0" />
+        </filter>
+        {/* NEW: Exaggerated "Clumpy Red Earth" Filter for the Bottom Layers */}
+        <filter
+          id="exaggeratedSoilFilter"
+          filterUnits="userSpaceOnUse"
+          x="0" y="0" width="100%" height="100%"
+        >
+          <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" result="clods" />
+          <feTurbulence type="fractalNoise" baseFrequency="0.4" numOctaves="3" result="grit" />
+          <feBlend in="clods" in2="grit" mode="overlay" result="combinedNoise" />
+          <feComponentTransfer in="combinedNoise" result="sharpNoise">
+            <feFuncR type="gamma" exponent="2.2" />
+            <feFuncG type="gamma" exponent="2.2" />
+            <feFuncB type="gamma" exponent="2.2" />
+          </feComponentTransfer>
+          <feDiffuseLighting in="sharpNoise" lightingColor="#a52a2a" surfaceScale="4.5" result="light">
+            <feDistantLight azimuth="225" elevation="45" />
+          </feDiffuseLighting>
+          <feComposite in="light" in2="SourceGraphic" operator="arithmetic" k1="1.6" k2="0.3" k3="0.05" k4="0" />
+        </filter>
+      </svg>
+
       <h1 className="sr-only">Nomad Scribbles | Travel Stories Across the World</h1>
 
       {/* Sticky Hero Section */}
       <div className="absolute top-0 left-0 w-full h-[200vh] z-30 pointer-events-none flex flex-col items-center">
-
         {/* Tagline Sticky Layer */}
-        <div className="sticky top-[10vh] w-full flex flex-col items-center">
+        <div className="sticky top-[25vh] w-full flex flex-col items-center">
           <motion.div
-            className="text-center mb-2 w-full flex justify-center pointer-events-none"
+            className="text-center mb-2 w-full flex justify-center"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
@@ -227,20 +222,17 @@ function Home() {
           </motion.div>
         </div>
 
-        {/* Logo Sticky Layer */}
+        {/* Logo Sticky Layer - Instant Fade (No Delay Timer) */}
         <div className="sticky top-[75vh] w-full flex flex-col items-center">
           <motion.div
             className="text-center w-full flex justify-center"
-            style={{
-              opacity: logoOpacity,
-              display: logoReady ? "flex" : "none"
-            }}
+            style={{ opacity: logoOpacity }}
           >
             <motion.div
               className="w-full sm:w-4/5 md:w-3/4 lg:w-3/4 max-w-4xl mx-auto"
               variants={fadeScale}
-              initial="hidden"
-              animate={logoReady ? "visible" : "hidden"}
+              initial="visible"
+              animate="visible"
             >
               <img
                 src={process.env.PUBLIC_URL + "/images/Home/LogoNew.png"}
@@ -250,10 +242,9 @@ function Home() {
             </motion.div>
           </motion.div>
         </div>
-
       </div>
 
-      {/* Feature 1: São Paulo */}
+      {/* Feature 1: Nomads Gallery */}
       <motion.div
         ref={firstFeatureRef}
         initial="hidden"
@@ -263,7 +254,72 @@ function Home() {
         className="w-full mt-[120vh] px-2 sm:px-4 relative z-40"
       >
         <motion.div
-          className="relative block w-full max-w-full sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[4/3] cursor-pointer overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/20 group transition-all duration-[2000ms]"
+          className="relative block w-full max-w-full sm:max-w-[85%] md:max-w-[80%] mx-auto aspect-[4/3] cursor-pointer overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/20 group transition-all duration-[2000ms]"
+          onMouseEnter={() => setShowMiniGallery(true)}
+          onMouseLeave={() => setShowMiniGallery(false)}
+          onClick={() => {
+            navigate("/nomads-gallery");
+            trackEvent("click_feature", "Home Page", "Nomads Gallery Feature");
+          }}
+          variants={fadeScale}
+        >
+          <motion.img
+            src={process.env.PUBLIC_URL + "/images/Home/ThumbnailNG_UserPreference.png"}
+            alt="Nomads Gallery feature"
+            loading="lazy"
+            className="w-full h-full object-cover transition-transform duration-2000 group-hover:scale-105"
+            variants={hoverScale}
+          />
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px] group-hover:bg-black/10 group-hover:backdrop-blur-none transition-all duration-[2000ms]"></div>
+
+          <div className={`absolute top-8 left-8 z-20 transition-opacity duration-[2000ms] ${!showMiniGallery ? "opacity-100" : "opacity-0"}`}>
+            <h2 className="font-handwriting text-6xl sm:text-8xl md:text-9xl text-[hsl(49,70%,66%)] drop-shadow-lg -rotate-6">
+              Nomads Gallery
+            </h2>
+          </div>
+
+          {showMiniGallery && (
+            <>
+              <motion.div
+                className="absolute inset-0 flex items-end justify-center z-20 pb-12 sm:pb-16"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1.5, delay: 1.2 }} // Delay appearance until first text fades
+              >
+                <h3 className="font-handwriting text-3xl sm:text-5xl text-[hsl(49,80%,75%)] drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] text-center px-4">
+                  The World through Art
+                </h3>
+              </motion.div>
+
+              <motion.img
+                src={process.env.PUBLIC_URL + "/images/ArtGallery/small/ArtGallery1z.webp"}
+                alt=""
+                loading="lazy"
+                className="absolute top-4 right-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[6deg]"
+                variants={fadeScale}
+              />
+              <motion.img
+                src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/small/caparinhaz.webp"}
+                alt=""
+                loading="lazy"
+                className="absolute bottom-4 left-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[-3deg]"
+                variants={fadeScale}
+              />
+            </>
+          )}
+        </motion.div>
+      </motion.div>
+
+      {/* Feature 2: São Paulo */}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ amount: 0.3 }}
+        variants={staggerContainer}
+        className="w-full mt-24 px-2 sm:px-4 relative z-40"
+      >
+        <motion.div
+          className="relative block w-full max-w-full sm:max-w-[85%] md:max-w-[80%] mx-auto aspect-[4/3] cursor-pointer overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/20 group transition-all duration-[2000ms]"
           onMouseEnter={() => {
             if (!isMobile) setShowMiniSP(true);
             trackEvent("hover_feature", "Home Page", "São Paulo Feature");
@@ -278,14 +334,14 @@ function Home() {
           <motion.img
             src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/street.webp"}
             alt="São Paulo city travel feature"
-            loading="lazy" // OPTIMIZATION: Below the fold
+            loading="lazy"
             className="w-full h-full object-cover transition-transform duration-2000 group-hover:scale-105"
             variants={hoverScale}
           />
           <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px] group-hover:bg-black/10 group-hover:backdrop-blur-none transition-all duration-[2000ms]"></div>
 
           <div className={`absolute top-8 left-8 z-20 transition-opacity duration-[2000ms] ${!showMiniSP ? "opacity-100" : "opacity-0"}`}>
-            <h2 className="font-handwriting text-6xl sm:text-8xl md:text-9xl text-white drop-shadow-lg -rotate-6">
+            <h2 className="font-handwriting text-6xl sm:text-8xl md:text-9xl text-[hsl(49,70%,66%)] drop-shadow-lg -rotate-6">
               São Paulo
             </h2>
           </div>
@@ -293,9 +349,12 @@ function Home() {
           {showMiniSP && (
             <>
               <motion.div
-                className={`absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-[2000ms] pointer-events-none ${showMiniSP ? "opacity-100" : "opacity-0"}`}
+                className="absolute inset-0 flex items-end justify-center z-20 pb-12 sm:pb-16"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 2, delay: 2 }}
               >
-                <h3 className="font-handwriting text-5xl sm:text-7xl text-white drop-shadow-xl text-center px-4">
+                <h3 className="font-handwriting text-3xl sm:text-5xl text-[hsl(49,80%,75%)] drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] text-center px-4">
                   Concrete Jungle
                 </h3>
               </motion.div>
@@ -304,14 +363,14 @@ function Home() {
                 src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/pizza.webp"}
                 alt=""
                 loading="lazy"
-                className="absolute top-4 right-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[6deg] pointer-events-none"
+                className="absolute top-4 right-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[6deg]"
                 variants={fadeScale}
               />
               <motion.img
                 src={process.env.PUBLIC_URL + "/images/SaoPauloLanding/caparinha.webp"}
                 alt=""
                 loading="lazy"
-                className="absolute bottom-4 left-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[-3deg] pointer-events-none"
+                className="absolute bottom-4 left-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[-3deg]"
                 variants={fadeScale}
               />
             </>
@@ -328,9 +387,9 @@ function Home() {
         className="w-full mt-24 px-2 sm:px-4 relative z-40"
       >
         <motion.div
-          className="relative block w-full max-w-full sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[4/3] cursor-pointer overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/20 group transition-all duration-[2000ms]"
+          className="relative block w-full max-w-full sm:max-w-[85%] md:max-w-[80%] mx-auto aspect-[4/3] cursor-pointer overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/20 group transition-all duration-[2000ms]"
           onMouseEnter={() => {
-            setShowMiniSantos(true); // Reusing state variable for simplicity
+            setShowMiniSantos(true);
             trackEvent("hover_feature", "Home Page", "Salvador Feature");
           }}
           onMouseLeave={() => setShowMiniSantos(false)}
@@ -343,14 +402,14 @@ function Home() {
           <motion.img
             src={process.env.PUBLIC_URL + "/images/Salvador/full/SalvadorW1.webp"}
             alt="Salvador city travel feature"
-            loading="lazy" // OPTIMIZATION
+            loading="lazy"
             className="w-full h-full object-cover transition-transform duration-2000 group-hover:scale-105"
             variants={hoverScale}
           />
           <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px] group-hover:bg-black/10 group-hover:backdrop-blur-none transition-all duration-[2000ms]"></div>
 
           <div className={`absolute top-8 right-8 z-20 transition-opacity duration-[2000ms] ${!showMiniSantos ? "opacity-100" : "opacity-0"}`}>
-            <h2 className="font-handwriting text-6xl sm:text-8xl md:text-9xl text-white drop-shadow-lg rotate-3 text-right">
+            <h2 className="font-handwriting text-6xl sm:text-8xl md:text-9xl text-[hsl(49,70%,66%)] drop-shadow-lg rotate-3 text-right">
               Salvador
             </h2>
           </div>
@@ -358,9 +417,12 @@ function Home() {
           {showMiniSantos && (
             <>
               <motion.div
-                className={`absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-[2000ms] pointer-events-none ${showMiniSantos ? "opacity-100" : "opacity-0"}`}
+                className="absolute inset-0 flex items-end justify-center z-20 pb-12 sm:pb-16"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 2, delay: 2 }}
               >
-                <h3 className="font-handwriting text-5xl sm:text-7xl text-white drop-shadow-xl text-center px-4">
+                <h3 className="font-handwriting text-3xl sm:text-5xl text-[hsl(49,80%,75%)] drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] text-center px-4">
                   Soul of Brazil
                 </h3>
               </motion.div>
@@ -369,14 +431,14 @@ function Home() {
                 src={process.env.PUBLIC_URL + "/images/Salvador/small/Salvador20z.webp"}
                 alt=""
                 loading="lazy"
-                className="absolute top-4 left-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[-6deg] pointer-events-none"
+                className="absolute top-4 left-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[-6deg]"
                 variants={fadeScale}
               />
               <motion.img
                 src={process.env.PUBLIC_URL + "/images/Salvador/small/Salvador15z.webp"}
                 alt=""
                 loading="lazy"
-                className="absolute bottom-4 right-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[3deg] pointer-events-none"
+                className="absolute bottom-4 right-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[3deg]"
                 variants={fadeScale}
               />
             </>
@@ -384,7 +446,7 @@ function Home() {
         </motion.div>
       </motion.div>
 
-      {/* Feature 3: Rio */}
+      {/* Feature 4: Rio */}
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -393,7 +455,7 @@ function Home() {
         className="w-full mt-24 px-2 sm:px-4 relative z-40"
       >
         <motion.div
-          className="relative block w-full max-w-full sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[4/3] cursor-pointer overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/20 group transition-all duration-[2000ms]"
+          className="relative block w-full max-w-full sm:max-w-[85%] md:max-w-[80%] mx-auto aspect-[4/3] cursor-pointer overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/20 group transition-all duration-[2000ms]"
           onMouseEnter={() => {
             setShowMiniRio(true);
             trackEvent("hover_feature", "Home Page", "Rio Feature");
@@ -408,91 +470,29 @@ function Home() {
           <motion.img
             src={process.env.PUBLIC_URL + "/images/Rio/Rio1.jpg"}
             alt="Rio de Janeiro city travel feature"
-            loading="lazy" // OPTIMIZATION
+            loading="lazy"
             className="w-full h-full object-cover transition-transform duration-2000 group-hover:scale-105"
             variants={hoverScale}
           />
           <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px] group-hover:bg-black/10 group-hover:backdrop-blur-none transition-all duration-[2000ms]"></div>
 
-          <div className={`absolute top-4 left-8 z-20 transition-opacity duration-[2000ms] ${!showMiniRio ? "opacity-100" : "opacity-0"}`}>
-            <h2 className="font-handwriting text-6xl sm:text-8xl md:text-9xl text-white drop-shadow-lg -rotate-6">
+          <div className={`absolute top-8 left-8 z-20 transition-opacity duration-[2000ms] ${!showMiniRio ? "opacity-100" : "opacity-0"}`}>
+            <h2 className="font-handwriting text-6xl sm:text-8xl md:text-9xl text-[hsl(49,70%,66%)] drop-shadow-lg -rotate-6">
               Rio de Janeiro
             </h2>
           </div>
 
           {showMiniRio && (
             <motion.div
-              className={`absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-[2000ms] ${showMiniRio ? "opacity-100" : "opacity-0"}`}
+              className="absolute inset-0 flex items-end justify-center z-20 pb-12 sm:pb-16"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 2, delay: 2 }}
             >
-              <h3 className="font-handwriting text-5xl sm:text-7xl text-white drop-shadow-xl text-center px-4 font-bold mt-[-15%]">
+              <h3 className="font-handwriting text-3xl sm:text-5xl text-[hsl(49,80%,75%)] drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] text-center px-4">
                 Marvelous City
               </h3>
             </motion.div>
-          )}
-        </motion.div>
-      </motion.div>
-
-      {/* Feature 4: Florianópolis */}
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ amount: 0.3 }}
-        variants={staggerContainer}
-        className="w-full mt-24 px-2 sm:px-4 relative z-40"
-      >
-        <motion.div
-          className="relative block w-full max-w-full sm:max-w-[70%] md:max-w-[60%] mx-auto aspect-[4/3] cursor-pointer overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/20 group transition-all duration-[2000ms]"
-          onMouseEnter={() => {
-            setShowMiniFloripa(true);
-            trackEvent("hover_feature", "Home Page", "Florianopolis Feature");
-          }}
-          onMouseLeave={() => setShowMiniFloripa(false)}
-          onClick={() => {
-            handleFloripaClick();
-            trackEvent("click_feature", "Home Page", "Florianopolis Feature");
-          }}
-          variants={fadeScale}
-        >
-          <motion.img
-            src={process.env.PUBLIC_URL + "/images/Floripa/full/Floripa18.webp"}
-            alt="Florianópolis island travel feature"
-            loading="lazy" // OPTIMIZATION
-            className="w-full h-full object-cover transition-transform duration-2000 group-hover:scale-105"
-            variants={hoverScale}
-          />
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px] group-hover:bg-black/10 group-hover:backdrop-blur-none transition-all duration-[2000ms]"></div>
-
-          <div className={`absolute top-8 left-8 z-20 transition-opacity duration-[2000ms] ${!showMiniFloripa ? "opacity-100" : "opacity-0"}`}>
-            <h2 className="font-handwriting text-6xl sm:text-8xl md:text-9xl text-white drop-shadow-lg -rotate-3">
-              Florianópolis
-            </h2>
-          </div>
-
-          {showMiniFloripa && (
-            <>
-              <motion.div
-                className={`absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-[2000ms] pointer-events-none ${showMiniFloripa ? "opacity-100" : "opacity-0"}`}
-              >
-                <h3 className="font-handwriting text-5xl sm:text-7xl text-white drop-shadow-xl text-center px-4">
-                  Island of Magic
-                </h3>
-              </motion.div>
-
-              <motion.img
-                src={process.env.PUBLIC_URL + "/images/Floripa/small/Floripa9z.webp"}
-                alt=""
-                loading="lazy"
-                className="absolute bottom-4 left-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[-3deg]"
-                variants={fadeScale}
-              />
-              <motion.img
-                src={process.env.PUBLIC_URL + "/images/Floripa/small/Floripa1z.webp"}
-                alt=""
-                loading="lazy"
-                className="absolute top-4 right-4 w-32 sm:w-48 md:w-56 lg:w-64 z-20 transition-opacity duration-[2000ms] rounded-lg shadow-lg rotate-[6deg]"
-                variants={fadeScale}
-              />
-            </>
           )}
         </motion.div>
       </motion.div>
@@ -521,42 +521,25 @@ function Home() {
         >
           {cards.map((card, idx) => (
             <SwiperSlide key={idx} className="!h-auto flex items-stretch">
-              {card.external ? (
-                <a href={card.link} className="block w-full">
-                  <div className="relative shadow-xl hover:shadow-2xl transition-all duration-300 w-full h-full rounded-2xl overflow-hidden aspect-square group">
-                    <img
-                      src={process.env.PUBLIC_URL + card.img}
-                      alt={card.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
-                      <p className="text-white font-semibold text-sm drop-shadow-md">{card.title}</p>
-                    </div>
+              <Link to={card.link} className="block w-full">
+                <div className="relative shadow-xl hover:shadow-2xl transition-all duration-300 w-full h-full rounded-2xl overflow-hidden aspect-square group">
+                  <img
+                    src={process.env.PUBLIC_URL + card.img}
+                    alt={card.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
+                    <p className="text-[hsl(49,70%,66%)] font-semibold text-lg drop-shadow-md">{card.title}</p>
                   </div>
-                </a>
-              ) : (
-                <Link to={card.link} className="block w-full">
-                  <div className="relative shadow-xl hover:shadow-2xl transition-all duration-300 w-full h-full rounded-2xl overflow-hidden aspect-square group">
-                    <img
-                      src={process.env.PUBLIC_URL + card.img}
-                      alt={card.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
-                      <p className="text-white font-semibold text-sm drop-shadow-md">{card.title}</p>
-                    </div>
-                  </div>
-                </Link>
-              )}
+                </div>
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
 
       <style>{`
-        /* Custom swiper navigation buttons if needed, or rely on default */
         .swiper-button-next, .swiper-button-prev {
           color: rgba(255,255,255, 0.8);
           background-color: rgba(0,0,0, 0.3);

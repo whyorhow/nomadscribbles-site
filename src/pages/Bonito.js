@@ -184,6 +184,11 @@ function Bonito() {
                             title="Where is Bonito?"
                             geography={destination?.geography}
                             transparent={true}
+                            sliderImages={[
+                                { url: "/images/Bonito/thumbnail/Bonito3.webp", caption: "Crystal clear waters" },
+                                { url: "/images/Bonito/thumbnail/Bonito7.webp", caption: "Stunning waterfalls" },
+                                { url: "/images/Bonito/thumbnail/Bonito11.webp", caption: "Lush riparian forests" }
+                            ]}
                         />
                     </div>
                 </div>

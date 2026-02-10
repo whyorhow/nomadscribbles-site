@@ -168,26 +168,13 @@ function Rio({ openLightbox }) {
                             geography={rioCoords?.geography}
                             transparent={true}
                             sliderImages={[
-                                { url: "/images/Rio/small/Rio1.webp", caption: "Escadaria Selarón details" },
-                                { url: "/images/Rio/small/Rio4.webp", caption: "Beach life at Ipanema" },
-                                { url: "/images/Rio/small/Rio7.webp", caption: "Colonial architecture in Santa Teresa" }
+                                { url: "/images/Rio/thumbnail/Rio1.webp", caption: "Escadaria Selarón details" },
+                                { url: "/images/Rio/thumbnail/Rio4.webp", caption: "Beach life at Ipanema" },
+                                { url: "/images/Rio/thumbnail/Rio7.webp", caption: "Colonial architecture in Santa Teresa" }
                             ]}
                         />
                     </div>
 
-                    {/* Decorative Art Stamp */}
-                    <motion.div
-                        initial={{ opacity: 0, rotate: -10 }}
-                        whileInView={{ opacity: 0.6, rotate: -5 }}
-                        viewport={{ once: true }}
-                        className="absolute right-[5%] top-[15%] w-32 md:w-48 pointer-events-none z-0 hidden lg:block"
-                    >
-                        <img
-                            src={process.env.PUBLIC_URL + "/images/Rio/small/Rio12z.webp"}
-                            alt="Artistic detail"
-                            className="w-full h-auto grayscale opacity-50 sepia-[.2]"
-                        />
-                    </motion.div>
                 </div>
             </div>
 

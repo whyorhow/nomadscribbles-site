@@ -196,6 +196,11 @@ function Pantanal({ openLightbox }) {
                             title="Where is the Pantanal?"
                             geography={pantanalCoords?.geography}
                             transparent={true}
+                            sliderImages={[
+                                { url: "/images/Pantanal/thumbnail/Pantanal1.webp", caption: "Wildlife encounters" },
+                                { url: "/images/Pantanal/thumbnail/Pantanal4.webp", caption: "The rhythm of the wetlands" },
+                                { url: "/images/Pantanal/thumbnail/Pantanal6.webp", caption: "Evening light on the water" }
+                            ]}
                         />
                     </div>
                 </div>

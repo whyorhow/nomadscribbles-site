@@ -134,7 +134,7 @@ const ContextMap = ({
                             <motion.div
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
-                                className="w-full lg:w-[320px] aspect-[4/5] rounded-xl overflow-hidden shadow-2xl z-20"
+                                className="w-48 sm:w-52 lg:w-[220px] aspect-[4/5] rounded-xl overflow-hidden shadow-2xl z-20"
                             >
                                 <Swiper
                                     modules={[Navigation, Autoplay, Pagination]}

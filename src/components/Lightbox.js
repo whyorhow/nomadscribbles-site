@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
+import { useLocation, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { trackEvent } from "../utils/analytics"; // FIX: .. to go up
 
@@ -19,6 +20,7 @@ function getTextColorForBg(hexColor) {
 }
 
 export default function Lightbox({ images = [], currentIndex, setCurrentIndex, description: descriptionProp }) {
+  const location = useLocation();
   const containerRef = useRef(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -49,6 +51,10 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex, d
   const description = isObject ? current.shortDescription || descriptionProp || "" : "";
   const gumroadLink = isObject ? current.gumroadLink : null;
   const shopLink = isObject ? current.shopLink : null;
+  const storyLink = isObject ? current.storyLink : null;
+
+  // Logic to hide story link if we're already on that page
+  const showStoryBtn = storyLink && location.pathname !== storyLink;
 
   const cookiesAccepted = localStorage.getItem("cookiesAccepted") === "true";
 
@@ -203,6 +209,19 @@ export default function Lightbox({ images = [], currentIndex, setCurrentIndex, d
                   >
                     Shop
                   </a>
+                )}
+                {showStoryBtn && (
+                  <Link
+                    to={storyLink}
+                    onClick={() => {
+                      if (cookiesAccepted) trackEvent("lightbox_story", "Engagement", storyLink);
+                      setCurrentIndex(null); // Close lightbox when navigating
+                    }}
+                    className={`px-4 py-2 font-medium rounded-sm shadow hover:opacity-90 transition-opacity ${overlayTextClass === "text-darkText" ? "bg-[#B48B3D] text-white" : "bg-[#f1cd8f] text-[#101E0E]"
+                      }`}
+                  >
+                    View Story
+                  </Link>
                 )}
               </div>
             </div>

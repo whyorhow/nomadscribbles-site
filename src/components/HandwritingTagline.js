@@ -22,6 +22,7 @@ export default function HandwritingTagline({
       viewBox="0 0 303 18"
       xmlns="http://www.w3.org/2000/svg"
       className="w-full max-w-[1212px] h-auto mx-auto"
+      style={{ willChange: "transform", shapeRendering: "geometricPrecision" }}
     >
       <defs>
         <clipPath id="reveal-tagline">
@@ -31,6 +32,7 @@ export default function HandwritingTagline({
       <style>{`
         .reveal-rect {
           animation: reveal ${duration}s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+          will-change: width;
         }
         @keyframes reveal {
           from { width: 0; }

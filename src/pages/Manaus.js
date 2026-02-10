@@ -143,6 +143,11 @@ function Manaus({ openLightbox }) {
                             title="Where is Manaus?"
                             geography={manausCoords?.geography}
                             transparent={true}
+                            sliderImages={[
+                                { url: "/images/Manaus/Thumbnails/Manaus1.webp", caption: "Urbanism by the river" },
+                                { url: "/images/Manaus/Thumbnails/Manaus13.webp", caption: "Deep in the Amazon" },
+                                { url: "/images/Manaus/Thumbnails/Manaus19.webp", caption: "The scale of the forest" }
+                            ]}
                         />
                     </div>
                 </div>
