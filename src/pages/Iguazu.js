@@ -164,16 +164,11 @@ function Iguazu() {
                 <div className="relative z-20 max-w-5xl mx-auto px-4 pt-0 pb-4 md:pt-2 md:pb-8 flex flex-col items-center mt-[-10px]">
                     <div className="max-w-6xl mx-auto mb-16 px-4">
                         <ContextMap
-                            markers={[destination].filter(Boolean)}
-                            zoomToId="foz"
+                            markers={[{ id: 'iguazu', name: 'Iguazu Falls', lat: -25.6953, lng: -54.4367 }]}
+                            zoomToId="iguazu"
                             title="Where is Iguazu?"
                             geography={destination?.geography}
                             transparent={true}
-                            sliderImages={[
-                                { url: "/images/Iguazu/thumbnail/Iguazu1.webp", caption: "The power of the Devil's Throat" },
-                                { url: "/images/Iguazu/thumbnail/Iguazu5.webp", caption: "Subtropical forest details" },
-                                { url: "/images/Iguazu/thumbnail/Iguazu8.webp", caption: "Approaching the falls by boat" }
-                            ]}
                         />
                     </div>
 

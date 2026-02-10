@@ -159,13 +159,9 @@ function IlhaGrande({ openLightbox }) {
                             title="Where is Ilha Grande?"
                             geography={ilhaCoords?.geography}
                             transparent={true}
-                            sliderImages={[
-                                { url: "/images/Ilha Grande/Thumbnails/Ilha1.webp", caption: "Arriving at the roadless island" },
-                                { url: "/images/Ilha Grande/Thumbnails/Ilha13.webp", caption: "The Atlantic Forest meets the sea" },
-                                { url: "/images/Ilha Grande/Thumbnails/Ilha20.webp", caption: "Quiet trails and unhurried rhythms" }
-                            ]}
                         />
                     </div>
+
                 </div>
             </div>
 

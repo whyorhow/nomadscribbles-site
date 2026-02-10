@@ -130,7 +130,7 @@ const ContextMap = ({
 
                 <div className="relative z-10 pt-8 pb-8">
                     <div className={`flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-12 w-full ${sliderImages.length > 0 ? 'max-w-6xl' : 'max-w-5xl'} mx-auto px-4`}>
-                        {sliderImages.length > 0 && (
+                        {sliderImages && sliderImages.length > 0 && (
                             <motion.div
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}

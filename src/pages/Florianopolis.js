@@ -205,13 +205,9 @@ function Florianopolis({ openLightbox }) {
                             title="Where is Florianópolis?"
                             geography={florianopolisCoords?.geography}
                             transparent={true}
-                            sliderImages={[
-                                { url: "/images/Floripa/thumbnail/Floripa1.webp", caption: "Island life and greenery" },
-                                { url: "/images/Floripa/thumbnail/Floripa4.webp", caption: "Colonial charm in Santo Antônio" },
-                                { url: "/images/Floripa/thumbnail/Floripa10.webp", caption: "Sunset over the bay" }
-                            ]}
                         />
                     </div>
+
                 </div>
             </div>
 

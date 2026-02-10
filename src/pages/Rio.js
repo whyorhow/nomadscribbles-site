@@ -162,16 +162,11 @@ function Rio({ openLightbox }) {
                 <div className="relative z-20 max-w-5xl mx-auto px-4 pt-0 pb-4 md:pt-2 md:pb-8 flex flex-col items-center mt-[-10px]">
                     <div className="w-full max-w-6xl overflow-visible mb-12">
                         <ContextMap
-                            markers={[rioCoords].filter(Boolean)}
+                            markers={[{ id: 'rio', name: 'Rio de Janeiro', lat: -22.9068, lng: -43.1729 }]}
                             zoomToId="rio"
                             title="Where is Rio?"
-                            geography={rioCoords?.geography}
+                            geography={destination?.geography}
                             transparent={true}
-                            sliderImages={[
-                                { url: "/images/Rio/thumbnail/Rio1.webp", caption: "Escadaria Selarón details" },
-                                { url: "/images/Rio/thumbnail/Rio4.webp", caption: "Beach life at Ipanema" },
-                                { url: "/images/Rio/thumbnail/Rio7.webp", caption: "Colonial architecture in Santa Teresa" }
-                            ]}
                         />
                     </div>
 
