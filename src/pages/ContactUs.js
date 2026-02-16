@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { trackEvent } from "../utils/analytics";
 
@@ -82,41 +83,6 @@ export default function ContactUs() {
         />
       </div>
 
-      {/* Decorative Images Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl px-4 mt-8 mb-12 opacity-80">
-        <motion.img
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2 }}
-          src={process.env.PUBLIC_URL + "/images/Rio/small/Rio12z.webp"}
-          alt="Travel detail"
-          className="w-full aspect-square object-cover rounded-xl shadow-lg -rotate-3"
-        />
-        <motion.img
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.4 }}
-          src={process.env.PUBLIC_URL + "/images/Salvador/small/Salvador6z.webp"}
-          alt="Travel detail"
-          className="w-full aspect-square object-cover rounded-xl shadow-lg rotate-2"
-        />
-        <motion.img
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.6 }}
-          src={process.env.PUBLIC_URL + "/images/Floripa/small/Floripa1z.webp"}
-          alt="Travel detail"
-          className="w-full aspect-square object-cover rounded-xl shadow-lg -rotate-1"
-        />
-        <motion.img
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.8 }}
-          src={process.env.PUBLIC_URL + "/images/Pantanal/small/Pantanal1z.webp"}
-          alt="Travel detail"
-          className="w-full aspect-square object-cover rounded-xl shadow-lg rotate-3"
-        />
-      </div>
 
       {/* Contact Form */}
       <motion.main

@@ -165,7 +165,7 @@ function Rio({ openLightbox }) {
                             markers={[{ id: 'rio', name: 'Rio de Janeiro', lat: -22.9068, lng: -43.1729 }]}
                             zoomToId="rio"
                             title="Where is Rio?"
-                            geography={destination?.geography}
+                            geography={rioCoords?.geography}
                             transparent={true}
                         />
                     </div>
