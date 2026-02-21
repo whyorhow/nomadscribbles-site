@@ -79,7 +79,7 @@ export default function NomadsGallery({ openLightbox }) {
           alt="Nomads Gallery"
           fetchPriority="high"
           loading="eager"
-          className="w-4/5 max-w-[12rem] sm:max-w-xs md:max-w-md lg:max-w-lg h-auto"
+          className="w-[56%] max-w-[8.4rem] sm:max-w-[14rem] md:max-w-[19.6rem] lg:max-w-[22.4rem] h-auto"
         />
 
         <div className="text-center text-sm sm:text-lg font-bold mt-4 text-[#eeda8d] drop-shadow-md opacity-80 flex flex-wrap justify-center gap-2 items-baseline">

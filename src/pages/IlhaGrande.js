@@ -122,7 +122,7 @@ function IlhaGrande({ openLightbox }) {
                     className="absolute inset-0 z-0"
                 >
                     <img
-                        src={`${process.env.PUBLIC_URL}/images/Ilha Grande/Small/Ilha20new.webp`}
+                        src={`${process.env.PUBLIC_URL}/images/IlhaGrande/Small/Ilha20new.webp`}
                         alt="Ilha Grande Hero"
                         className="w-full h-full object-cover"
                     />
