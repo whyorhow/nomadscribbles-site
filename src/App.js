@@ -29,6 +29,7 @@ import Iguazu from "./pages/Iguazu";
 import Bonito from "./pages/Bonito";
 import Manaus from "./pages/Manaus";
 import IlhaGrande from "./pages/IlhaGrande";
+import Tennessee from "./pages/Tennessee";
 
 
 // --- Components ---
@@ -74,7 +75,7 @@ function MainContent({
 }) {
   const location = useLocation();
   const isHome = location.pathname === "/" || location.pathname === "/home";
-  const lightenedRoutes = ["/brazil", "/brazil/rio", "/brazil/salvador", "/brazil/pantanal", "/brazil/saopaulo", "/brazil/foz", "/brazil/manaus", "/brazil/ilha-grande"];
+  const lightenedRoutes = ["/brazil", "/brazil/rio", "/brazil/salvador", "/brazil/pantanal", "/brazil/saopaulo", "/brazil/foz", "/brazil/manaus", "/brazil/ilha-grande", "/united-states/tennessee"];
 
   const isLightenedPage = lightenedRoutes.includes(location.pathname) || location.pathname.includes("/saopaulo/santos");
 
@@ -115,6 +116,7 @@ function MainContent({
           <Route path="/brazil/saopaulo/santos" element={<Santos openLightbox={openLightbox} />} />
           <Route path="/brazil/florianopolis" element={<Florianopolis openLightbox={openLightbox} />} />
           <Route path="/brazil/bonito" element={<Bonito openLightbox={openLightbox} />} />
+          <Route path="/united-states/tennessee" element={<Tennessee openLightbox={openLightbox} />} />
           <Route path="/nomads-gallery" element={<NomadsGallery openLightbox={openLightbox} />} />
           <Route path="/contact-us" element={<ContactUs openLightbox={openLightbox} />} />
           <Route path="/search" element={<SearchResults openLightbox={openLightbox} />} />
