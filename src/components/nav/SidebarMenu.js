@@ -37,9 +37,11 @@ const SidebarMenu = ({ menuOpen, setMenuOpen, handleMenuEnter, handleMenuLeave }
     // Submenus open by default and remember their state
     const [openAdventures, setOpenAdventures] = useState(true);
     const [openBrazil, setOpenBrazil] = useState(true);
+    const [openUS, setOpenUS] = useState(true);
 
-    // São Paulo section is collapsed by default
+    // Sub-locations collapsed by default
     const [openSaoPaulo, setOpenSaoPaulo] = useState(false);
+    const [openTennessee, setOpenTennessee] = useState(false);
 
     const toggleSubmenu = (name, setter) => {
         setter((s) => {
@@ -120,6 +122,34 @@ const SidebarMenu = ({ menuOpen, setMenuOpen, handleMenuEnter, handleMenuLeave }
                         <Link className="text-stone-300 text-base hover:text-white transition-colors" to="/brazil/foz" onClick={() => setMenuOpen(false)}>Foz do Iguaçu</Link>
                     </div>
 
+                    {/* United States Section */}
+                    <div
+                        className="flex justify-between items-center w-full cursor-pointer"
+                        onMouseEnter={() => setOpenUS(true)}
+                    >
+                        <Link className="text-stone-300 text-base hover:text-white transition-colors" to="/united-states" onClick={() => setMenuOpen(false)}>United States</Link>
+                        <button onClick={() => toggleSubmenu("us", setOpenUS)} className="focus:outline-none" aria-label="Toggle US submenu">
+                            <Arrow isOpen={openUS} />
+                        </button>
+                    </div>
+
+                    <div className={submenuClass(openUS)}>
+                        <div
+                            className="flex justify-between items-center w-full cursor-pointer"
+                            onMouseEnter={() => setOpenTennessee(true)}
+                        >
+                            <Link className="text-stone-300 text-base hover:text-white transition-colors" to="/united-states/tennessee" onClick={() => setMenuOpen(false)}>Tennessee</Link>
+                            <button onClick={() => toggleSubmenu("tennessee", setOpenTennessee)} className="focus:outline-none" aria-label="Toggle tennessee submenu">
+                                <Arrow isOpen={openTennessee} />
+                            </button>
+                        </div>
+
+                        <div className={submenuClass(openTennessee)}>
+                            <Link to="/united-states/tennessee/mountains" className="text-stone-300 text-base hover:text-white transition-colors" onClick={() => setMenuOpen(false)}>Mountains</Link>
+                            <Link to="/united-states/tennessee/memphis" className="text-stone-300 text-base hover:text-white transition-colors" onClick={() => setMenuOpen(false)}>Memphis</Link>
+                            <Link to="/united-states/tennessee/nashville" className="text-stone-300 text-base hover:text-white transition-colors" onClick={() => setMenuOpen(false)}>Nashville</Link>
+                        </div>
+                    </div>
 
                 </div>
             </div>

@@ -18,7 +18,7 @@ function Adventures() {
     { name: "Scotland", img: "/images/Adventures/ScotlandFlag.webp" },
     { name: "Switzerland", img: "/images/Adventures/SwissFlag.webp" },
     { name: "Thailand", img: "/images/Adventures/ThaiFlag.webp" },
-    { name: "United States", img: "/images/Adventures/USAFlag.webp" },
+    { name: "United States", img: "/images/Adventures/USAFlag.webp", link: "/united-states" },
     { name: "Wales", img: "/images/Adventures/WalesFlag.webp" }
   ];
 
@@ -60,28 +60,31 @@ function Adventures() {
     Every adventure is a story, and every story is a memory — welcome to Nomad Scribbles.
   </p>
         {/* Country Flags */}
-        {/* Current Destination Highlight */}
-        <div className="flex justify-center mt-12 mb-16">
-          <Link
-            to="/brazil"
-            className="group relative w-full max-w-lg aspect-video rounded-2xl overflow-hidden shadow-2xl ring-1 ring-[#eeda8d]/20 transition-all duration-500 hover:scale-[1.02]"
-          >
-            <img
-              src={process.env.PUBLIC_URL + "/images/Adventures/BrazilFlag.webp"}
-              alt="Explore Brazil"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors" />
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-              <h2 className="text-5xl md:text-7xl font-handwriting drop-shadow-lg mb-2">Brazil</h2>
-              <span className="text-sm uppercase tracking-[0.3em] font-bold text-[#eeda8d]">Explore Stories</span>
-            </div>
-          </Link>
+        {/* Current Destination Highlights */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 mb-16 max-w-4xl mx-auto">
+          {countries.filter(c => c.link).map((country, index) => (
+            <Link
+              key={index}
+              to={country.link}
+              className="group relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl ring-1 ring-[#eeda8d]/20 transition-all duration-500 hover:scale-[1.02]"
+            >
+              <img
+                src={process.env.PUBLIC_URL + country.img}
+                alt={`Explore ${country.name}`}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
+                <h2 className="text-4xl md:text-5xl font-handwriting drop-shadow-lg mb-2">{country.name}</h2>
+                <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#eeda8d]">Explore Stories</span>
+              </div>
+            </Link>
+          ))}
         </div>
 
         <h3 className="text-sm uppercase tracking-widest text-[#eeda8d]/40 mb-8">Future Destinations</h3>
         <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 gap-4 opacity-40">
-          {countries.filter(c => c.name !== "Brazil").map((country, index) => (
+          {countries.filter(c => !c.link).map((country, index) => (
             <div key={index} className="flex flex-col items-center gap-2 grayscale brightness-75">
               <div className="w-full aspect-[3/2] rounded overflow-hidden">
                 <img src={process.env.PUBLIC_URL + country.img} alt={country.name} className="w-full h-full object-cover" />

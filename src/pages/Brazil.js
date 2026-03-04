@@ -16,7 +16,7 @@ import "swiper/css/pagination";
 
 function Brazil() {
   // Destinations for the carousel/grid
-  const gridCities = destinations.filter(d => d.id !== 'saopaulo');
+  const gridCities = destinations.filter(d => d.country === 'Brazil' && d.id !== 'saopaulo');
 
   // Featured destinations for the carousel
   const featuredDestinations = [
@@ -32,7 +32,7 @@ function Brazil() {
   ];
 
   // Map markers
-  const mapMarkers = destinations;
+  const mapMarkers = destinations.filter(d => d.country === 'Brazil');
 
   const [showOverlay, setShowOverlay] = useState(false);
   const [hoveredDestId, setHoveredDestId] = useState(null);
