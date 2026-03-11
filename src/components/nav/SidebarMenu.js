@@ -85,7 +85,7 @@ const menuData = [
 ];
 
 const MenuItem = ({ item, depth = 0, setMenuOpen }) => {
-    const [isOpen, setIsOpen] = useState(depth < 2); // Adventures and Top levels open by default
+    const [isOpen, setIsOpen] = useState(false);
 
     const hasChildren = item.children && item.children.length > 0;
 
@@ -107,7 +107,6 @@ const MenuItem = ({ item, depth = 0, setMenuOpen }) => {
         <div className="flex flex-col">
             <div
                 className="flex justify-between items-center w-full cursor-pointer group"
-                onMouseEnter={() => hasChildren && depth < 2 && setIsOpen(true)}
             >
                 <Link
                     className={`text-stone-300 hover:text-white transition-colors ${depth === 0 ? "text-lg" : "text-base"}`}
