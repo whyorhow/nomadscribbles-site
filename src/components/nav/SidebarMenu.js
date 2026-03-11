@@ -151,7 +151,7 @@ const MenuItem = ({ item, depth = 0, setMenuOpen }) => {
     );
 };
 
-const SidebarMenu = ({ menuOpen, setMenuOpen, handleMenuEnter, handleMenuLeave }) => {
+const SidebarMenu = ({ menuOpen, setMenuOpen }) => {
     return (
         <motion.div
             id="site-menu"
@@ -161,8 +161,6 @@ const SidebarMenu = ({ menuOpen, setMenuOpen, handleMenuEnter, handleMenuLeave }
             className={`fixed top-0 right-0 h-full w-64 z-[9998] flex flex-col pt-16 p-6 gap-4 text-lg overflow-y-auto
                 bg-stone-950/95 backdrop-blur-sm border-l border-white/5 shadow-2xl
                 ${menuOpen ? "pointer-events-auto" : "pointer-events-none"}`}
-            onMouseEnter={handleMenuEnter}
-            onMouseLeave={handleMenuLeave}
         >
             {menuData.map((item, index) => (
                 <MenuItem

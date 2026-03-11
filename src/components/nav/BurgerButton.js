@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const BurgerButton = ({ menuOpen, toggleMenu, handleMenuEnter, handleMenuLeave }) => {
+const BurgerButton = ({ menuOpen, toggleMenu }) => {
     const svgCenterX = 47.3 / 2;
     // vertical offsets for initial positions
     const topYPos = 8;
@@ -18,11 +18,10 @@ const BurgerButton = ({ menuOpen, toggleMenu, handleMenuEnter, handleMenuLeave }
         <div
             className="burger-menu-container fixed top-6 md:top-8 right-1 z-[9999] cursor-pointer"
             role="button"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
             aria-controls="site-menu"
             onClick={toggleMenu}
-            onMouseEnter={handleMenuEnter}
-            onMouseLeave={handleMenuLeave}
         >
             <div
                 className="w-14 h-7 sm:w-16 sm:h-11 md:w-18 md:h-17 flex items-center justify-center
