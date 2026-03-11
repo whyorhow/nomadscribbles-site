@@ -68,7 +68,16 @@ function Nav() {
         setSearchOpen(false);
       }
     };
+
+    const handleEsc = (e) => {
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+        setSearchOpen(false);
+      }
+    };
+
     document.addEventListener("click", handleClickOutside);
+    document.addEventListener("keydown", handleEsc);
 
     let timeout;
     if (menuOpen || searchOpen) {
@@ -77,6 +86,7 @@ function Nav() {
 
     return () => {
       document.removeEventListener("click", handleClickOutside);
+      document.removeEventListener("keydown", handleEsc);
       if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
     };
   }, [menuOpen, searchOpen]);

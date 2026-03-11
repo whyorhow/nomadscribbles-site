@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const BurgerButton = ({ menuOpen, toggleMenu, handleMenuEnter, handleMenuLeave }) => {
     const svgCenterX = 47.3 / 2;
@@ -9,7 +10,9 @@ const BurgerButton = ({ menuOpen, toggleMenu, handleMenuEnter, handleMenuLeave }
 
     const topRotateDeg = 25;
     const bottomRotateDeg = -22;
-    const middleShiftX = 2;
+    const middleShiftX = 5;
+
+    const transition = { duration: 0.3, ease: "easeInOut" };
 
     return (
         <div
@@ -18,7 +21,8 @@ const BurgerButton = ({ menuOpen, toggleMenu, handleMenuEnter, handleMenuLeave }
             aria-expanded={menuOpen}
             aria-controls="site-menu"
             onClick={toggleMenu}
-            style={{ zIndex: 9999 }}
+            onMouseEnter={handleMenuEnter}
+            onMouseLeave={handleMenuLeave}
         >
             <div
                 className="w-14 h-7 sm:w-16 sm:h-11 md:w-18 md:h-17 flex items-center justify-center
@@ -26,15 +30,18 @@ const BurgerButton = ({ menuOpen, toggleMenu, handleMenuEnter, handleMenuLeave }
             >
                 <svg viewBox="0 0 47.3 47.3" className="w-10 h-10" style={{ overflow: "visible" }}>
                     {/* Top bar */}
-                    <g
+                    <motion.g
                         id="top"
+                        initial={false}
+                        animate={{
+                            y: menuOpen ? -1 : 0,
+                            rotate: menuOpen ? topRotateDeg : 0,
+                            scaleX: menuOpen ? 1.3 : 1
+                        }}
+                        transition={transition}
                         style={{
                             transformBox: "fill-box",
                             transformOrigin: `${svgCenterX}px ${topYPos}px`,
-                            transform: menuOpen
-                                ? `translateY(-1px) rotate(${topRotateDeg}deg) scaleX(1.3)`
-                                : `translateY(0px) rotate(0deg) scaleX(1)`,
-                            transition: "transform 300ms ease-in-out",
                         }}
                     >
                         <path
@@ -47,18 +54,20 @@ const BurgerButton = ({ menuOpen, toggleMenu, handleMenuEnter, handleMenuLeave }
                   c-0.8,0.1-1.2,0.3-2.2,0.3c-0.9,0-1.3-0.1-1.6-0.4c-0.1-0.1-0.3-0.4-0.4-1c0-0.3,0-0.6,0.1-1.1c0-0.4,0.1-0.6,0.1-0.7
                   c0.2-0.7,0.7-1,0.8-1.1C7.3,0.8,7.8,0.8,8.1,1z"
                         />
-                    </g>
+                    </motion.g>
 
                     {/* Middle bar */}
-                    <g
+                    <motion.g
                         id="middle"
+                        initial={false}
+                        animate={{
+                            x: menuOpen ? middleShiftX : 0,
+                            opacity: menuOpen ? 0 : 1
+                        }}
+                        transition={transition}
                         style={{
                             transformBox: "fill-box",
                             transformOrigin: `${svgCenterX}px ${middleYPos}px`,
-                            transform: menuOpen
-                                ? `translateX(${middleShiftX + 3}px)`
-                                : `translateX(0px)`,
-                            transition: "transform 300ms ease-in-out",
                         }}
                     >
                         <path
@@ -71,18 +80,22 @@ const BurgerButton = ({ menuOpen, toggleMenu, handleMenuEnter, handleMenuLeave }
                    c0.9,0.1,1.2,0.3,2.2,0.3c0.9,0,1.3-0.1,1.6-0.4c0.1-0.1,0.3-0.4,0.4-1c0-0.3,0-0.6-0.1-1.1c0-0.4-0.1-0.6-0.1-0.7
                    c-0.2-0.7-0.7-1-0.8-1.1C40.1,10.9,39.6,11,39.3,11z"
                         />
-                    </g>
+                    </motion.g>
 
                     {/* Bottom bar */}
-                    <g
+                    <motion.g
                         id="bottom"
+                        initial={false}
+                        animate={{
+                            y: menuOpen ? -1 : 0,
+                            x: menuOpen ? 3 : 0,
+                            rotate: menuOpen ? bottomRotateDeg : 0,
+                            scaleX: menuOpen ? 1.3 : 1
+                        }}
+                        transition={transition}
                         style={{
                             transformBox: "fill-box",
                             transformOrigin: `${svgCenterX}px ${bottomYPos}px`,
-                            transform: menuOpen
-                                ? `translateY(-1px) translateX(3px) rotate(${bottomRotateDeg}deg) scaleX(1.3)`
-                                : `translateY(-1px) translateX(0px) rotate(0deg) scaleX(1)`,
-                            transition: "transform 300ms ease-in-out",
                         }}
                     >
                         <path
@@ -95,7 +108,7 @@ const BurgerButton = ({ menuOpen, toggleMenu, handleMenuEnter, handleMenuLeave }
                    c0.2,0.4,0.3,0.9,0.4,1.6c0,0.6,0,1.1-0.1,1.5c-0.2,0.2-0.4,0.5-0.8,0.7c-0.8,0.5-1.5,0.6-1.9,0.6
                    C36.9,25.7,35.3,25.5,33.9,25.5z"
                         />
-                    </g>
+                    </motion.g>
                 </svg>
             </div>
         </div >
