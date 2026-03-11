@@ -3,7 +3,7 @@ import { ReactComponent as SearchIcon } from "../../assets/images/Search.svg";
 
 const SearchInput = ({ searchOpen, toggleSearch, searchQuery, setSearchQuery, handleSearchSubmit }) => {
     return (
-        <div className="search-container fixed top-2 md:top-2 right-12 z-50 flex items-center">
+        <div className="search-container fixed top-6 md:top-8 right-14 md:right-20 z-[10000] flex items-center">
             <SearchIcon
                 className={`cursor-pointer transition-transform duration-300 p-1 w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11
       ${searchOpen ? "scale-125" : "scale-100"}`} // slightly bigger when active

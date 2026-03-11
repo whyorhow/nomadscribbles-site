@@ -46,18 +46,6 @@ function Nav() {
 
   const toggleSearch = () => setSearchOpen((s) => !s);
 
-  // Hover handlers for Menu
-  const handleMenuEnter = () => {
-    if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
-    setMenuOpen(true);
-  };
-
-  const handleMenuLeave = () => {
-    closeTimeoutRef.current = setTimeout(() => {
-      setMenuOpen(false);
-    }, 300); // 300ms delay to allow moving to the menu
-  };
-
   useEffect(() => {
     const handleClickOutside = (e) => {
       // Logic adjusted to match extracted components classes/ids
@@ -68,15 +56,24 @@ function Nav() {
         setSearchOpen(false);
       }
     };
-    document.addEventListener("click", handleClickOutside);
 
-    let timeout;
+    const handleEsc = (e) => {
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+        setSearchOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    document.addEventListener("keydown", handleEsc);
+
     if (menuOpen || searchOpen) {
       // Optional auto-close logic if needed, currently disabled in previous code
     }
 
     return () => {
       document.removeEventListener("click", handleClickOutside);
+      document.removeEventListener("keydown", handleEsc);
       if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
     };
   }, [menuOpen, searchOpen]);
@@ -117,15 +114,11 @@ function Nav() {
       <BurgerButton
         menuOpen={menuOpen}
         toggleMenu={toggleMenu}
-        handleMenuEnter={handleMenuEnter}
-        handleMenuLeave={handleMenuLeave}
       />
 
       <SidebarMenu
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}
-        handleMenuEnter={handleMenuEnter}
-        handleMenuLeave={handleMenuLeave}
       />
     </>
   );
